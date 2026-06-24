@@ -39,8 +39,12 @@ import { Squares2X2Icon, HeartIcon } from '@heroicons/vue/24/outline'
 
 <style scoped>
 .app-sidebar {
+  position: sticky;
+  top: 64px;
+  align-self: flex-start;
   width: 240px;
   flex-shrink: 0;
+  height: calc(100vh - 64px);
   background: var(--bg-surface);
   border-right: 1px solid var(--border-subtle);
   overflow-y: auto;

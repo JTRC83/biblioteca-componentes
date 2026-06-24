@@ -1,10 +1,13 @@
 <script setup>
-import { computed } from 'vue'
+import { computed, watch } from 'vue'
 import ComponentCard from '@/catalog/layout/ComponentCard.vue'
 import ComponentModal from '@/catalog/showcase/ComponentModal.vue'
+import Pagination from '@/catalog/layout/Pagination.vue'
+import PerPageSelect from '@/catalog/layout/PerPageSelect.vue'
 import { useCatalogStore } from '@/catalog/stores/catalog'
 import { useFiltersStore } from '@/catalog/stores/filters'
 import { useFilteredComponents } from '@/catalog/composables/useFilteredComponents'
+import { usePagination } from '@/catalog/composables/usePagination'
 import { getCategoryBySlug } from '@/catalog/data/categories'
 import { XMarkIcon, FunnelIcon } from '@heroicons/vue/24/outline'
 
@@ -20,7 +23,21 @@ const source = computed(() => (category.value ? catalog.items.filter((c) => c.ca
 
 const { list } = useFilteredComponents(source)
 
+const {
+  paginated,
+  page,
+  perPage,
+  totalPages,
+  startIndex,
+  endIndex,
+  setPage,
+  setPerPage,
+  options: perPageOptions
+} = usePagination(list)
+
 const open = (component) => catalog.open(component.id)
+
+watch(list, () => setPage(1), { flush: 'post' })
 </script>
 
 <template>
@@ -34,12 +51,20 @@ const open = (component) => catalog.open(component.id)
         </div>
       </div>
 
-      <div class="cat-view__search">
-        <input
-          type="search"
-          placeholder="Buscar en esta categoría…"
-          :value="filters.search"
-          @input="filters.setSearch($event.target.value)"
+      <div class="cat-view__controls">
+        <div class="cat-view__search">
+          <input
+            type="search"
+            placeholder="Buscar en esta categoría…"
+            :value="filters.search"
+            @input="filters.setSearch($event.target.value)"
+          />
+        </div>
+
+        <PerPageSelect
+          :model-value="perPage"
+          :options="perPageOptions"
+          @update:model-value="setPerPage"
         />
       </div>
     </header>
@@ -61,9 +86,9 @@ const open = (component) => catalog.open(component.id)
 
     <p class="cat-view__count">{{ list.length }} {{ list.length === 1 ? 'componente' : 'componentes' }}</p>
 
-    <div v-if="list.length" class="cat-view__grid">
+    <div v-if="paginated.length" class="cat-view__grid">
       <ComponentCard
-        v-for="c in list"
+        v-for="c in paginated"
         :key="c.id"
         :component="c"
         @open="open"
@@ -74,6 +99,16 @@ const open = (component) => catalog.open(component.id)
       <p>No hay componentes en esta vista con los filtros actuales.</p>
       <button class="cat-view__empty-btn" @click="filters.reset()">Limpiar filtros</button>
     </div>
+
+    <Pagination
+      v-if="list.length"
+      :page="page"
+      :total-pages="totalPages"
+      :start-index="startIndex"
+      :end-index="endIndex"
+      :total="list.length"
+      @update:page="setPage"
+    />
 
     <ComponentModal />
   </div>
@@ -125,8 +160,15 @@ const open = (component) => catalog.open(component.id)
   color: var(--text-secondary);
 }
 
+.cat-view__controls {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
 .cat-view__search input {
-  width: 280px;
+  width: 240px;
   padding: 8px 14px;
   background: var(--bg-input);
   border: 1px solid var(--border-subtle);

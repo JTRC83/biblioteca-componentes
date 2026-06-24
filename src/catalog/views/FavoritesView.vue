@@ -1,9 +1,12 @@
 <script setup>
-import { computed } from 'vue'
+import { computed, watch } from 'vue'
 import ComponentCard from '@/catalog/layout/ComponentCard.vue'
 import ComponentModal from '@/catalog/showcase/ComponentModal.vue'
+import Pagination from '@/catalog/layout/Pagination.vue'
+import PerPageSelect from '@/catalog/layout/PerPageSelect.vue'
 import { useCatalogStore } from '@/catalog/stores/catalog'
 import { useFavoritesStore } from '@/catalog/stores/favorites'
+import { usePagination } from '@/catalog/composables/usePagination'
 import { HeartIcon } from '@heroicons/vue/24/outline'
 
 const catalog = useCatalogStore()
@@ -13,7 +16,21 @@ const items = computed(() =>
   catalog.items.filter((c) => favs.isFavorite(c.id))
 )
 
+const {
+  paginated,
+  page,
+  perPage,
+  totalPages,
+  startIndex,
+  endIndex,
+  setPage,
+  setPerPage,
+  options: perPageOptions
+} = usePagination(items)
+
 const open = (component) => catalog.open(component.id)
+
+watch(items, () => setPage(1), { flush: 'post' })
 </script>
 
 <template>
@@ -25,23 +42,44 @@ const open = (component) => catalog.open(component.id)
           {{ items.length }} {{ items.length === 1 ? 'componente guardado' : 'componentes guardados' }}
         </p>
       </div>
+
+      <PerPageSelect
+        v-if="items.length"
+        :model-value="perPage"
+        :options="perPageOptions"
+        @update:model-value="setPerPage"
+      />
     </header>
 
-    <div v-if="items.length" class="favs-view__grid">
+    <div v-if="paginated.length" class="favs-view__grid">
       <ComponentCard
-        v-for="c in items"
+        v-for="c in paginated"
         :key="c.id"
         :component="c"
         @open="open"
       />
     </div>
 
-    <div v-else class="favs-view__empty">
+    <div v-else-if="items.length === 0" class="favs-view__empty">
       <HeartIcon class="favs-view__empty-icon" />
       <h2>Aún no tienes favoritos</h2>
       <p>Pulsa el corazón en cualquier componente para guardarlo aquí.</p>
       <RouterLink to="/all" class="favs-view__cta">Explorar componentes</RouterLink>
     </div>
+
+    <div v-else class="favs-view__empty">
+      <p>No hay favoritos en esta página.</p>
+    </div>
+
+    <Pagination
+      v-if="items.length"
+      :page="page"
+      :total-pages="totalPages"
+      :start-index="startIndex"
+      :end-index="endIndex"
+      :total="items.length"
+      @update:page="setPage"
+    />
 
     <ComponentModal />
   </div>
@@ -54,6 +92,11 @@ const open = (component) => catalog.open(component.id)
 }
 
 .favs-view__head {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 16px;
+  flex-wrap: wrap;
   margin-bottom: 24px;
 }
 

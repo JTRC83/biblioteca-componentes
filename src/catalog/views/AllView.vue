@@ -3,15 +3,30 @@ import { computed, onMounted, watch } from 'vue'
 import { useRoute } from 'vue-router'
 import ComponentCard from '@/catalog/layout/ComponentCard.vue'
 import ComponentModal from '@/catalog/showcase/ComponentModal.vue'
+import Pagination from '@/catalog/layout/Pagination.vue'
+import PerPageSelect from '@/catalog/layout/PerPageSelect.vue'
 import { useCatalogStore } from '@/catalog/stores/catalog'
 import { useFiltersStore } from '@/catalog/stores/filters'
 import { useFilteredComponents } from '@/catalog/composables/useFilteredComponents'
+import { usePagination } from '@/catalog/composables/usePagination'
 import { FunnelIcon, XMarkIcon, ChevronUpDownIcon } from '@heroicons/vue/24/outline'
 
 const route = useRoute()
 const catalog = useCatalogStore()
 const filters = useFiltersStore()
 const { list } = useFilteredComponents()
+
+const {
+  paginated,
+  page,
+  perPage,
+  totalPages,
+  startIndex,
+  endIndex,
+  setPage,
+  setPerPage,
+  options: perPageOptions
+} = usePagination(list)
 
 const open = (component) => catalog.open(component.id)
 
@@ -25,6 +40,8 @@ const initFromQuery = () => {
   const q = route.query.q
   if (typeof q === 'string') filters.setSearch(q)
 }
+
+watch(list, () => setPage(1), { flush: 'post' })
 
 onMounted(initFromQuery)
 watch(() => route.query.q, initFromQuery)
@@ -54,6 +71,12 @@ watch(() => route.query.q, initFromQuery)
             <option v-for="opt in sortOptions" :key="opt.value" :value="opt.value">{{ opt.label }}</option>
           </select>
         </div>
+
+        <PerPageSelect
+          :model-value="perPage"
+          :options="perPageOptions"
+          @update:model-value="setPerPage"
+        />
       </div>
     </header>
 
@@ -79,9 +102,9 @@ watch(() => route.query.q, initFromQuery)
       <button class="all-view__clear" @click="filters.reset()">Limpiar todo</button>
     </div>
 
-    <div v-if="list.length" class="all-view__grid">
+    <div v-if="paginated.length" class="all-view__grid">
       <ComponentCard
-        v-for="c in list"
+        v-for="c in paginated"
         :key="c.id"
         :component="c"
         @open="open"
@@ -92,6 +115,16 @@ watch(() => route.query.q, initFromQuery)
       <p>Ningún componente coincide con tu búsqueda.</p>
       <button class="all-view__empty-btn" @click="filters.reset()">Limpiar filtros</button>
     </div>
+
+    <Pagination
+      v-if="list.length"
+      :page="page"
+      :total-pages="totalPages"
+      :start-index="startIndex"
+      :end-index="endIndex"
+      :total="list.length"
+      @update:page="setPage"
+    />
 
     <ComponentModal />
   </div>

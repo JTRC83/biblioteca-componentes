@@ -14,7 +14,8 @@ import {
   ChatBubbleBottomCenterTextIcon,
   SquaresPlusIcon,
   PaintBrushIcon,
-  SparklesIcon
+  SparklesIcon,
+  AdjustmentsVerticalIcon
 } from '@heroicons/vue/24/outline'
 
 export const categories = [
@@ -89,6 +90,12 @@ export const categories = [
     name: 'Animations',
     description: 'Animaciones CSS puras: pulse, float, shake, glow…',
     icon: SparklesIcon
+  },
+  {
+    slug: 'analog',
+    name: 'Analog',
+    description: 'Componentes esquemórficos inspirados en hardware: sintetizadores, controladores, dispositivos.',
+    icon: AdjustmentsVerticalIcon
   }
 ]
 

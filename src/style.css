@@ -76,7 +76,12 @@ body,
 #app {
   margin: 0;
   padding: 0;
-  height: 100%;
+  min-height: 100%;
+  overflow-x: hidden;
+}
+
+html {
+  overflow-y: auto;
 }
 
 body {
@@ -120,12 +125,8 @@ select {
 }
 
 .preview-surface {
-  background:
-    linear-gradient(135deg, rgba(124, 58, 237, 0.04), rgba(236, 72, 153, 0.04)),
-    repeating-conic-gradient(var(--border-subtle) 0% 25%, transparent 0% 50%) 0 / 16px 16px;
+  background: #71717a;
 }
 [data-theme='light'] .preview-surface {
-  background:
-    linear-gradient(135deg, rgba(124, 58, 237, 0.03), rgba(236, 72, 153, 0.03)),
-    repeating-conic-gradient(#e4e4e7 0% 25%, transparent 0% 50%) 0 / 16px 16px;
+  background: #71717a;
 }

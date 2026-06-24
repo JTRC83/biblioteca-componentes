@@ -1,0 +1,476 @@
+export default {
+  id: 'btn-get-started-liquid',
+  name: 'Get Started',
+  category: 'buttons',
+  tags: ['gradient', 'liquid', 'animated', 'glass', 'css-only'],
+  author: 'anand_4957',
+  html: `<svg width="0" height="0">
+  <filter id="liquid">
+    <feTurbulence
+      type="fractalNoise"
+      baseFrequency="0.02"
+      numOctaves="3"
+      seed="2"
+    ></feTurbulence>
+    <feDisplacementMap in="SourceGraphic" scale="8"></feDisplacementMap>
+  </filter>
+</svg>
+<div class="button-container">
+  <button type="button" class="button">
+    <div class="text-one">
+      <p>
+        <span style="--i:0">G</span>
+        <span style="--i:1">E</span>
+        <span style="--i:2">T</span>
+        <span>&nbsp;</span>
+        <span style="--i:3">S</span>
+        <span style="--i:4">T</span>
+        <span style="--i:5">A</span>
+        <span style="--i:6">R</span>
+        <span style="--i:7">T</span>
+        <span style="--i:8">E</span>
+        <span style="--i:9">D</span>
+      </p>
+    </div>
+    <div class="bg-div">
+      <div class="bg-inn-1"></div>
+      <div class="bg-inn-2"></div>
+      <div class="bg-inn-3"></div>
+      <div class="bg-inn-4"></div>
+      <div class="bg-inn-5"></div>
+      <div class="bg-inn-6"></div>
+      <div class="bg-inn-7"></div>
+      <div class="bg-inn-8"></div>
+      <div class="bg-inn-9"></div>
+      <div class="bg-inn-10"></div>
+      <div class="bg-inn-11"></div>
+      <div class="bg-inn-12"></div>
+      <div class="bg-inn-13"></div>
+      <div class="bg-inn-14"></div>
+    </div>
+    <div class="text-two">
+      <p>
+        <span style="--i:0">G</span>
+        <span style="--i:1">E</span>
+        <span style="--i:2">T</span>
+        <span>&nbsp;</span>
+        <span style="--i:3">S</span>
+        <span style="--i:4">T</span>
+        <span style="--i:5">A</span>
+        <span style="--i:6">R</span>
+        <span style="--i:7">T</span>
+        <span style="--i:8">E</span>
+        <span style="--i:9">D</span>
+      </p>
+    </div>
+    <div class="bg-div-2">
+      <div class="bg-div-3"></div>
+    </div>
+  </button>
+</div>`,
+  css: `
+.button-container {
+  height: 75px;
+  width: 260px;
+}
+.button {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  padding: 0px;
+  border-top: 2px double rgba(255, 255, 255, 0.573);
+  border-bottom: none;
+  border-left: 2px outset rgba(0, 0, 0, 0.494);
+  border-right: 2px solid rgba(233, 79, 202, 0.7);
+  border-radius: 50px;
+  filter: hue-rotate(-15deg) drop-shadow(rgba(0, 0, 0, 0.157) 0px 30px 10px)
+    saturate(2);
+  font-family: "poppins ", sans-serif;
+  background: linear-gradient(
+    64.14deg,
+    rgb(59, 130, 246) 0%,
+    rgb(91, 142, 247) 10%,
+    rgb(139, 92, 246) 25%,
+    rgb(167, 143, 247) 40%,
+    rgb(184, 124, 246) 50%,
+    rgb(201, 111, 245) 60%,
+    rgb(236, 72, 153) 75%,
+    rgb(240, 96, 168) 85%,
+    rgb(234, 91, 163) 92%,
+    rgb(59, 130, 246) 100%
+  );
+  transition:
+    transform 0.6s cubic-bezier(0.22, 1, 0.36, 1),
+    filter 0.8s ease,
+    box-shadow 0.8s ease;
+  transform: scale(1);
+  box-sizing: border-box;
+  animation: hue-rotate 6s linear infinite;
+}
+@keyframes hue-rotate {
+  from {
+    filter: hue-rotate(0deg) drop-shadow(rgba(0, 0, 0, 0.157) 0px 30px 10px)
+      saturate(2);
+  }
+  to {
+    filter: hue-rotate(360deg) drop-shadow(rgba(0, 0, 0, 0.157) 0px 30px 10px)
+      saturate(2);
+  }
+}
+.button:hover {
+  transform: scale(1.02);
+  filter: hue-rotate(120deg) drop-shadow(0 18px 28px rgba(0, 0, 0, 0.25))
+    saturate(2.1);
+}
+.button .bg-div-2 {
+  transition:
+    box-shadow 0.9s ease,
+    filter 0.9s ease;
+}
+.button:hover .bg-div-2 {
+  box-shadow:
+    inset 0 0 14px rgba(255, 255, 255, 0.25),
+    inset 0 0 24px rgba(255, 120, 200, 0.35);
+  filter: brightness(1.12);
+}
+.button:active {
+  transform: scale(0.96);
+  filter: hue-rotate(140deg) drop-shadow(0 10px 16px rgba(0, 0, 0, 0.25))
+    saturate(2.2);
+}
+.button:hover .text-two p span {
+  animation-duration: 1.9s;
+}
+.text-one {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 32px 48px;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.bg-div {
+  z-index: 90;
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+}
+
+.bg-inn-1 {
+  position: absolute;
+  border-radius: 9999px;
+  filter: blur(3px) drop-shadow(-2px 0 3px #ffffff);
+  left: 25.6px;
+  top: 3.2px;
+  width: 160px;
+  height: 16px;
+  background: linear-gradient(
+    to right,
+    rgba(255, 255, 255, 0.868) 30%,
+    transparent 100%
+  );
+}
+
+.bg-inn-2 {
+  position: absolute;
+  border-radius: 9999px;
+  left: 40px;
+  top: 32px;
+  width: 64px;
+  height: 32px;
+  background: radial-gradient(
+    circle,
+    rgba(255, 255, 255, 1) 0%,
+    rgba(255, 255, 255, 0) 70%
+  );
+  filter: drop-shadow(-10px 10px 3px #d277cc);
+}
+
+.bg-inn-3 {
+  position: absolute;
+  border-radius: 9999px;
+  left: 160px;
+  top: 8px;
+  width: 80px;
+  height: 80px;
+  background: radial-gradient(
+    circle,
+    rgba(255, 255, 255, 1) 0%,
+    rgba(255, 255, 255, 0) 50%
+  );
+  filter: drop-shadow(-5px -5px 7px #ff5500b4);
+}
+
+.bg-inn-4 {
+  position: absolute;
+  border-radius: 9999px;
+  left: 272px;
+  top: 16px;
+  width: 54.4px;
+  height: 64px;
+  background: radial-gradient(
+    circle,
+    rgba(255, 255, 255, 1) 0%,
+    transparent 70%
+  );
+  filter: drop-shadow(-1px 0 30px #ff002f);
+}
+
+.bg-inn-5 {
+  position: absolute;
+  border-radius: 9999px;
+  top: 8px;
+  width: 100%;
+  height: 11.2px;
+  background: radial-gradient(
+    circle,
+    rgba(255, 255, 255, 0.293) 30%,
+    rgba(255, 181, 21, 0.164) 50%,
+    rgba(234, 44, 255, 0.419) 60%,
+    rgba(255, 255, 255, 0) 90%
+  );
+}
+
+.bg-inn-6 {
+  position: absolute;
+  border-radius: 9999px;
+  left: 281.6px;
+  top: -1.6px;
+  width: 32px;
+  height: 32px;
+  background: radial-gradient(
+    circle,
+    rgba(255, 255, 255, 1) 0%,
+    rgba(255, 255, 255, 0) 70%
+  );
+}
+
+.bg-inn-7 {
+  position: absolute;
+  border-radius: 9999px;
+  left: 121.6px;
+  transform: rotate(-35deg);
+  top: -32px;
+  width: 32px;
+  height: 80px;
+  background: radial-gradient(
+    circle,
+    rgba(255, 255, 255, 0.614) 0%,
+    #fd87602d 60%,
+    rgba(255, 255, 255, 0) 100%
+  );
+}
+
+.bg-inn-8 {
+  position: absolute;
+  border-radius: 9999px;
+  left: 88px;
+  top: -16px;
+  width: 48px;
+  height: 48px;
+  background: radial-gradient(
+    circle,
+    rgba(255, 255, 255, 0.614) 0%,
+    rgba(255, 255, 255, 0) 80%
+  );
+}
+
+.bg-inn-9 {
+  position: absolute;
+  border-radius: 9999px;
+  filter: blur(1px) drop-shadow(0px 0 3px #ffffff);
+  left: 8px;
+  bottom: 22.4px;
+  width: 100%;
+  height: 1.6px;
+  background: radial-gradient(
+    circle,
+    rgba(255, 255, 255, 1) 50%,
+    rgba(255, 255, 255, 0) 90%
+  );
+}
+
+.bg-inn-10 {
+  position: absolute;
+  border-radius: 9999px;
+  filter: blur(1px) drop-shadow(0px 0 3px #ffffff);
+  left: 4.8px;
+  top: 16px;
+  width: 16px;
+  height: 48px;
+  border-top: 1px solid white;
+  border-right: 1px solid white;
+  background: linear-gradient(
+    to bottom,
+    rgba(255, 255, 255, 0.419) 0%,
+    transparent 50%
+  );
+}
+
+.bg-inn-11 {
+  position: absolute;
+  border-radius: 100%;
+  filter: blur(4px) drop-shadow(0px -10px 10px #ff5107fb);
+  left: 192px;
+  top: 56px;
+  width: 80px;
+  height: 28.8px;
+  background: radial-gradient(
+    circle,
+    rgba(255, 255, 255, 0.773) 10%,
+    rgba(255, 255, 255, 0.159) 60%
+  );
+}
+
+.bg-inn-12 {
+  position: absolute;
+  border-radius: 9999px;
+  filter: blur(2px) drop-shadow(0px -10px 10px #f36b9d);
+  left: 176px;
+  top: 17.6px;
+  width: 96px;
+  height: 4.8px;
+  background: radial-gradient(
+    circle,
+    rgba(255, 255, 255, 0.973) 30%,
+    rgba(255, 255, 255, 0.159) 100%
+  );
+}
+
+.bg-inn-13 {
+  position: absolute;
+  border-radius: 9999px;
+  filter: blur(3px) drop-shadow(-15px 0 5px #f8283d9e);
+  left: 128px;
+  top: 59.2px;
+  width: 88px;
+  height: 27.2px;
+  background: radial-gradient(
+    circle,
+    rgba(255, 255, 255, 0.762) 10%,
+    rgba(255, 255, 255, 0.159) 70%
+  );
+}
+
+.bg-inn-14 {
+  position: absolute;
+  border-radius: 9999px;
+  filter: blur(1px) drop-shadow(10px -10px 10px #6f0424);
+  transform: rotate(-35deg);
+  left: 8px;
+  bottom: 4.8px;
+  width: 8px;
+  height: 19.2px;
+  background: radial-gradient(
+    circle,
+    rgba(255, 255, 255, 0.848) 0%,
+    rgba(255, 255, 255, 0.159) 60%
+  );
+}
+
+.text-two {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 90;
+
+  font-family: "poppins", sans-serif;
+  font-weight: 800;
+  font-size: 25px;
+
+  color: rgba(255, 255, 255, 0.85);
+  text-shadow:
+    0 1px 2px rgba(0, 0, 0, 0.35),
+    0 0 6px rgba(255, 255, 255, 0.35),
+    0 0 18px rgba(255, 255, 255, 0.25);
+
+  backdrop-filter: blur(1.5px);
+  -webkit-backdrop-filter: blur(1.5px);
+  mix-blend-mode: normal;
+}
+.text-two p {
+  font-family: "poppins", sans-serif;
+  font-weight: 900;
+  font-size: 20px;
+  color: #180707a2;
+  letter-spacing: 3px;
+  text-shadow: 0 0 6px rgba(255, 255, 255, 0.2);
+  display: inline-flex;
+  margin: 0;
+}
+
+.text-two p span {
+  display: inline-block;
+  --i: 0;
+  filter: url(#liquid);
+  transition: transform 0.4s ease;
+}
+.text-two p span {
+  animation: liquidMove 2.2s ease-in-out infinite;
+  animation-delay: calc(var(--i) * 0.1s);
+}
+@keyframes liquidMove {
+  0% {
+    transform: translate(0, 0) skewX(0deg);
+  }
+  25% {
+    transform: translate(1px, -2px) skewX(-4deg);
+  }
+  50% {
+    transform: translate(-1px, 2px) skewX(4deg);
+  }
+  75% {
+    transform: translate(1px, 1px) skewX(-2deg);
+  }
+  100% {
+    transform: translate(0, 0) skewX(0deg);
+  }
+}
+.bg-div-2 {
+  z-index: 10;
+  position: absolute;
+  inset: 4px;
+  display: flex;
+  border: double 2px rgba(255, 255, 255, 0.263);
+  backdrop-filter: blur(2px);
+  filter: blur(1px) brightness(1.1) saturate(50%) hue-rotate(30deg);
+  border-radius: 47px;
+  width: calc(100% - 8px);
+  height: calc(100% - 8px);
+  padding: 16px;
+  background-color: #ffffff1c;
+  background-origin: content-box;
+  background-clip: content-box, border-box;
+  box-shadow: inset 0 0 10px #a84fd88d;
+}
+
+.bg-div-3 {
+  z-index: 10;
+  display: flex;
+  border-left: 1px solid rgba(255, 255, 255, 0.564);
+  border-right: 1px solid rgb(255, 255, 255);
+  backdrop-filter: blur(40px);
+  box-shadow: inset 0 0 20px rgba(246, 142, 213, 0.86);
+  -webkit-backdrop-filter: blur(5px);
+  border-radius: 31px;
+  width: 100%;
+  height: 100%;
+  background-origin: border-box;
+  background-clip: content-box, border-box;
+  filter: brightness(140%);
+}
+`
+}

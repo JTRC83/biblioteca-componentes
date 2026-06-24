@@ -67,7 +67,7 @@ const isFav = computed(() => favs.isFavorite(props.component.id))
   display: flex;
   align-items: center;
   justify-content: center;
-  min-height: 180px;
+  min-height: 240px;
   padding: 24px;
   border-bottom: 1px solid var(--border-subtle);
 }

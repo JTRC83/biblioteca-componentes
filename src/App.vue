@@ -30,13 +30,12 @@ import AppSidebar from '@/catalog/layout/AppSidebar.vue'
 .app-body {
   display: flex;
   flex: 1;
-  min-height: 0;
+  align-items: flex-start;
 }
 
 .app-main {
   flex: 1;
   min-width: 0;
-  overflow-y: auto;
   padding: 24px 32px 80px;
 }
 
