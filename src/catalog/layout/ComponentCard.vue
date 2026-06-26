@@ -2,7 +2,7 @@
 import { computed } from 'vue'
 import ComponentPreview from '@/catalog/showcase/ComponentPreview.vue'
 import { useFavoritesStore } from '@/catalog/stores/favorites'
-import { HeartIcon } from '@heroicons/vue/24/outline'
+import { HeartIcon, CodeBracketIcon } from '@heroicons/vue/24/outline'
 
 const props = defineProps({
   component: {
@@ -18,7 +18,7 @@ const isFav = computed(() => favs.isFavorite(props.component.id))
 </script>
 
 <template>
-  <article class="c-card" @click="emit('open', component)">
+  <article class="c-card">
     <div class="c-card__preview preview-surface">
       <ComponentPreview :component="component" />
     </div>
@@ -31,14 +31,23 @@ const isFav = computed(() => favs.isFavorite(props.component.id))
         </p>
       </div>
 
-      <button
-        class="c-card__fav"
-        :class="{ 'is-fav': isFav }"
-        :title="isFav ? 'Quitar de favoritos' : 'Añadir a favoritos'"
-        @click.stop="favs.toggle(component.id)"
-      >
-        <HeartIcon class="c-card__fav-icon" />
-      </button>
+      <div class="c-card__actions">
+        <button
+          class="c-card__code"
+          @click="emit('open', component)"
+          title="Ver código HTML y CSS"
+        >
+          <CodeBracketIcon class="c-card__code-icon" />
+        </button>
+        <button
+          class="c-card__fav"
+          :class="{ 'is-fav': isFav }"
+          :title="isFav ? 'Quitar de favoritos' : 'Añadir a favoritos'"
+          @click.stop="favs.toggle(component.id)"
+        >
+          <HeartIcon class="c-card__fav-icon" />
+        </button>
+      </div>
     </footer>
   </article>
 </template>
@@ -52,12 +61,10 @@ const isFav = computed(() => favs.isFavorite(props.component.id))
   border: 1px solid var(--border-subtle);
   border-radius: 16px;
   overflow: hidden;
-  cursor: pointer;
   transition: all 0.2s ease;
 }
 
 .c-card:hover {
-  transform: translateY(-2px);
   border-color: var(--border-default);
   box-shadow: var(--shadow-md);
 }
@@ -67,9 +74,10 @@ const isFav = computed(() => favs.isFavorite(props.component.id))
   display: flex;
   align-items: center;
   justify-content: center;
-  min-height: 240px;
-  padding: 24px;
+  height: 260px;
+  padding: 0;
   border-bottom: 1px solid var(--border-subtle);
+  overflow: hidden;
 }
 
 .c-card__footer {
@@ -103,6 +111,14 @@ const isFav = computed(() => favs.isFavorite(props.component.id))
   color: var(--text-muted);
 }
 
+.c-card__actions {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  flex-shrink: 0;
+}
+
+.c-card__code,
 .c-card__fav {
   display: inline-flex;
   align-items: center;
@@ -115,7 +131,12 @@ const isFav = computed(() => favs.isFavorite(props.component.id))
   color: var(--text-muted);
   cursor: pointer;
   transition: all 0.15s ease;
-  flex-shrink: 0;
+}
+
+.c-card__code:hover {
+  background: rgba(139, 92, 246, 0.12);
+  border-color: rgba(139, 92, 246, 0.4);
+  color: var(--accent-primary);
 }
 
 .c-card__fav:hover {
@@ -129,6 +150,7 @@ const isFav = computed(() => favs.isFavorite(props.component.id))
   color: #ef4444;
 }
 
+.c-card__code-icon,
 .c-card__fav-icon {
   width: 16px;
   height: 16px;

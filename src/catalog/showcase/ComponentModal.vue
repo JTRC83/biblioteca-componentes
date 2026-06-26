@@ -1,10 +1,10 @@
 <script setup>
-import { computed, onMounted, onBeforeUnmount, watch } from 'vue'
+import { computed, onMounted, onBeforeUnmount, ref, watch } from 'vue'
 import { useCatalogStore } from '@/catalog/stores/catalog'
 import { useFavoritesStore } from '@/catalog/stores/favorites'
 import ComponentPreview from './ComponentPreview.vue'
 import CodeBlock from './CodeBlock.vue'
-import { HeartIcon, XMarkIcon } from '@heroicons/vue/24/outline'
+import { HeartIcon, XMarkIcon, CodeBracketIcon, EyeIcon } from '@heroicons/vue/24/outline'
 
 const catalog = useCatalogStore()
 const favs = useFavoritesStore()
@@ -12,8 +12,23 @@ const favs = useFavoritesStore()
 const component = computed(() => catalog.active)
 const isFav = computed(() => (component.value ? favs.isFavorite(component.value.id) : false))
 
+const view = ref('code')
+
+watch(
+  () => component.value?.id,
+  () => {
+    view.value = 'code'
+  }
+)
+
 const onKey = (e) => {
-  if (e.key === 'Escape') catalog.close()
+  if (e.key === 'Escape') {
+    if (view.value === 'code') {
+      view.value = 'preview'
+    } else {
+      catalog.close()
+    }
+  }
 }
 
 onMounted(() => {
@@ -26,12 +41,13 @@ onBeforeUnmount(() => {
   document.body.style.overflow = ''
 })
 
-watch(
-  () => component.value?.id,
-  () => {
-    // al cambiar, no hacer nada especial
-  }
-)
+const goToCode = () => {
+  view.value = 'code'
+}
+
+const goToPreview = () => {
+  view.value = 'preview'
+}
 </script>
 
 <template>
@@ -62,9 +78,23 @@ watch(
           </div>
         </header>
 
-        <div class="modal__body">
+        <div v-if="view === 'preview'" class="modal__preview-only" @click="goToCode">
           <div class="modal__preview preview-surface">
             <ComponentPreview :component="component" :contained="true" />
+          </div>
+          <div class="modal__hint">
+            <CodeBracketIcon class="modal__hint-icon" />
+            <span>Click para ver el código</span>
+          </div>
+        </div>
+
+        <div v-else class="modal__body">
+          <div class="modal__preview preview-surface">
+            <ComponentPreview :component="component" :contained="true" />
+            <button class="modal__back-preview" @click="goToPreview" title="Volver al preview">
+              <EyeIcon class="modal__back-icon" />
+              <span>Solo preview</span>
+            </button>
           </div>
 
           <div class="modal__code">
@@ -193,6 +223,54 @@ watch(
   height: 18px;
 }
 
+.modal__preview-only {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+  padding: 24px;
+  min-height: 0;
+}
+
+.modal__preview-only .modal__preview {
+  width: 100%;
+  min-height: 420px;
+  cursor: pointer;
+  position: relative;
+  transition: all 0.2s ease;
+}
+
+.modal__preview-only .modal__preview:hover {
+  border-color: var(--accent-primary);
+  box-shadow: 0 0 0 3px rgba(139, 92, 246, 0.15);
+}
+
+.modal__hint {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 18px;
+  background: var(--bg-input);
+  border: 1px solid var(--border-subtle);
+  border-radius: 999px;
+  color: var(--text-secondary);
+  font-size: 13px;
+  font-weight: 500;
+  pointer-events: none;
+  animation: pulse-hint 2.2s ease-in-out infinite;
+}
+
+.modal__hint-icon {
+  width: 16px;
+  height: 16px;
+  color: var(--accent-primary);
+}
+
+@keyframes pulse-hint {
+  0%, 100% { opacity: 0.7; transform: translateY(0); }
+  50% { opacity: 1; transform: translateY(-2px); }
+}
+
 .modal__body {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -213,6 +291,36 @@ watch(
   padding: 32px;
 }
 
+.modal__back-preview {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 12px;
+  background: var(--bg-input);
+  border: 1px solid var(--border-subtle);
+  border-radius: 8px;
+  color: var(--text-secondary);
+  font-size: 12px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.15s ease;
+  z-index: 2;
+}
+
+.modal__back-preview:hover {
+  background: var(--bg-hover);
+  color: var(--text-primary);
+  border-color: var(--accent-primary);
+}
+
+.modal__back-icon {
+  width: 14px;
+  height: 14px;
+}
+
 .modal__code {
   display: flex;
   flex-direction: column;
@@ -223,6 +331,7 @@ watch(
 @media (max-width: 900px) {
   .modal__body { grid-template-columns: 1fr; }
   .modal__preview { min-height: 220px; }
+  .modal__preview-only .modal__preview { min-height: 280px; }
 }
 
 .modal-enter-active,
