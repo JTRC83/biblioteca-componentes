@@ -1,5 +1,5 @@
 /**
- * Definición de las 12 categorías de la biblioteca.
+ * Definición de las categorías de la biblioteca.
  * El slug se usa en la URL (/category/<slug>).
  */
 import {
@@ -15,7 +15,8 @@ import {
   SquaresPlusIcon,
   PaintBrushIcon,
   SparklesIcon,
-  AdjustmentsVerticalIcon
+  AdjustmentsVerticalIcon,
+  Bars3BottomLeftIcon
 } from '@heroicons/vue/24/outline'
 
 export const categories = [
@@ -96,6 +97,12 @@ export const categories = [
     name: 'Analog',
     description: 'Componentes esquemórficos inspirados en hardware: sintetizadores, controladores, dispositivos.',
     icon: AdjustmentsVerticalIcon
+  },
+  {
+    slug: 'navbars',
+    name: 'Navbars',
+    description: 'Barras de navegación con menús, glassmorphism y efectos hover.',
+    icon: Bars3BottomLeftIcon
   }
 ]
 

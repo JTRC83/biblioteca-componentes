@@ -19,6 +19,10 @@ import ProfileCard from './ProfileCard.js'
 import HoverFillCard from './HoverFillCard.js'
 import MacCodeCard from './MacCodeCard.js'
 import TicketCard from './TicketCard.js'
+import GlassShineCard from './GlassShineCard.js'
+import LongChairCard from './LongChairCard.js'
+import TerminalCard from './TerminalCard.js'
+import ProPlanCard from './ProPlanCard.js'
 
-export { Hover3D, GlassCard, Neumorphic, FlipRecipeCard, CoralFlipCard, Uiverse3DCard, ThreeDBook, CreditCardFlip, GradientCard, CyberCard, FeaturesCard, StackFlipCards, ProjectCard, CreatorPointsCard, NotebookPage, ResultSummaryCard, DigitalWayCard, ProfileCard, HoverFillCard, MacCodeCard, TicketCard }
-export default { Hover3D, GlassCard, Neumorphic, FlipRecipeCard, CoralFlipCard, Uiverse3DCard, ThreeDBook, CreditCardFlip, GradientCard, CyberCard, FeaturesCard, StackFlipCards, ProjectCard, CreatorPointsCard, NotebookPage, ResultSummaryCard, DigitalWayCard, ProfileCard, HoverFillCard, MacCodeCard, TicketCard }
+export { Hover3D, GlassCard, Neumorphic, FlipRecipeCard, CoralFlipCard, Uiverse3DCard, ThreeDBook, CreditCardFlip, GradientCard, CyberCard, FeaturesCard, StackFlipCards, ProjectCard, CreatorPointsCard, NotebookPage, ResultSummaryCard, DigitalWayCard, ProfileCard, HoverFillCard, MacCodeCard, TicketCard, GlassShineCard, LongChairCard, TerminalCard, ProPlanCard }
+export default { Hover3D, GlassCard, Neumorphic, FlipRecipeCard, CoralFlipCard, Uiverse3DCard, ThreeDBook, CreditCardFlip, GradientCard, CyberCard, FeaturesCard, StackFlipCards, ProjectCard, CreatorPointsCard, NotebookPage, ResultSummaryCard, DigitalWayCard, ProfileCard, HoverFillCard, MacCodeCard, TicketCard, GlassShineCard, LongChairCard, TerminalCard, ProPlanCard }

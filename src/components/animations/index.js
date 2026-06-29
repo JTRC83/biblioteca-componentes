@@ -8,6 +8,8 @@ import CassetteTape from './CassetteTape.js'
 import RankingCard from './RankingCard.js'
 import WalletReveal from './WalletReveal.js'
 import SunRotation from './SunRotation.js'
+import PrinterReceipt from './PrinterReceipt.js'
+import WeatherCard from './WeatherCard.js'
 
-export { Float, GlowPulse, NewTransaction, Shake, ToyCamera, EarthRotation, CassetteTape, RankingCard, WalletReveal, SunRotation }
-export default { Float, GlowPulse, NewTransaction, Shake, ToyCamera, EarthRotation, CassetteTape, RankingCard, WalletReveal, SunRotation }
+export { Float, GlowPulse, NewTransaction, Shake, ToyCamera, EarthRotation, CassetteTape, RankingCard, WalletReveal, SunRotation, PrinterReceipt, WeatherCard }
+export default { Float, GlowPulse, NewTransaction, Shake, ToyCamera, EarthRotation, CassetteTape, RankingCard, WalletReveal, SunRotation, PrinterReceipt, WeatherCard }

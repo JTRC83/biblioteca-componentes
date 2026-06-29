@@ -27,6 +27,7 @@ import * as patterns from './patterns'
 import * as backgrounds from './backgrounds'
 import * as animations from './animations'
 import * as analog from './analog'
+import * as navbars from './navbars'
 
 const groups = [
   buttons,
@@ -41,7 +42,8 @@ const groups = [
   patterns,
   backgrounds,
   animations,
-  analog
+  analog,
+  navbars
 ]
 
 export const components = groups.flatMap((g) => Object.values(g))
