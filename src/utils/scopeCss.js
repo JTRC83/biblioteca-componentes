@@ -61,16 +61,19 @@ export function scopeCss(css, scopeId) {
   while (i < stripped.length) {
     const ch = stripped[i]
     buffer += ch
-    if (ch === '{') {
-      depth += 1
-      if (depth === 1) {
-        // selector: el contenido de buffer hasta { es la parte de selectores
-        const lastOpen = buffer.lastIndexOf('{')
-        const head = buffer.slice(0, lastOpen)
-        result += rewriteSelector(head, scopeClass) + '{'
-        buffer = ''
-      }
-    } else if (ch === '}') {
+      if (ch === '{') {
+        depth += 1
+        if (depth === 1) {
+          // selector: el contenido de buffer hasta { es la parte de selectores
+          const lastOpen = buffer.lastIndexOf('{')
+          let head = buffer.slice(0, lastOpen)
+          // Normalizar saltos de línea y espacios múltiples del selector
+          // (los selectores CSS con saltos de línea no son válidos en una regla)
+          head = head.replace(/\s+/g, ' ').trim()
+          result += rewriteSelector(head, scopeClass) + '{'
+          buffer = ''
+        }
+      } else if (ch === '}') {
       depth -= 1
       if (depth === 0) {
         result += buffer

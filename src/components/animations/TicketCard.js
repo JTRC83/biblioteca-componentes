@@ -1,7 +1,7 @@
 export default {
   id: 'card-ticket',
   name: 'Ticket Card',
-  category: 'cards',
+  category: 'animations',
   tags: ['card', 'ticket', 'flight', 'animated', 'css-only', 'boarding', 'pass', 'gradient', 'shimmer'],
   author: 'Cobp',
   html: `<div class="tk-container">

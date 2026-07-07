@@ -7,6 +7,15 @@ import NeumorphicToggle from './NeumorphicToggle.js'
 import LeverSwitch from './LeverSwitch.js'
 import LedLever from './LedLever.js'
 import ThreeDLight from './ThreeDLight.js'
+import MacKeyboard from './MacKeyboard.js'
+import DarkKeyboard from './DarkKeyboard.js'
+import VacuumTubeAmp from './VacuumTubeAmp.js'
+import BraunThermoCard from './BraunThermoCard.js'
+import ClockWheel from './ClockWheel.js'
+import BeigeButtonSelector from './BeigeButtonSelector.js'
+import TabRadioButtons from './TabRadioButtons.js'
+import RotaryKnob from './RotaryKnob.js'
+import FanSpeedKnobBeige from './FanSpeedKnobBeige.js'
 
-export { Ep133Buttons, MetallicToggle, CommandKey, Press3DOk, RockerSwitch, NeumorphicToggle, LeverSwitch, LedLever, ThreeDLight }
-export default { Ep133Buttons, MetallicToggle, CommandKey, Press3DOk, RockerSwitch, NeumorphicToggle, LeverSwitch, LedLever, ThreeDLight }
+export { Ep133Buttons, MetallicToggle, CommandKey, Press3DOk, RockerSwitch, NeumorphicToggle, LeverSwitch, LedLever, ThreeDLight, MacKeyboard, DarkKeyboard, VacuumTubeAmp, BraunThermoCard, ClockWheel, BeigeButtonSelector, TabRadioButtons, RotaryKnob, FanSpeedKnobBeige }
+export default { Ep133Buttons, MetallicToggle, CommandKey, Press3DOk, RockerSwitch, NeumorphicToggle, LeverSwitch, LedLever, ThreeDLight, MacKeyboard, DarkKeyboard, VacuumTubeAmp, BraunThermoCard, ClockWheel, BeigeButtonSelector, TabRadioButtons, RotaryKnob, FanSpeedKnobBeige }

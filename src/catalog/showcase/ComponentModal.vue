@@ -78,7 +78,7 @@ const goToPreview = () => {
           </div>
         </header>
 
-        <div v-if="view === 'preview'" class="modal__preview-only" @click="goToCode">
+        <div v-if="view === 'preview'" class="modal__preview-only" @click.self="goToCode">
           <div class="modal__preview preview-surface">
             <ComponentPreview :component="component" :contained="true" />
           </div>

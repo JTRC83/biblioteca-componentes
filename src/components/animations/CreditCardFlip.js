@@ -1,7 +1,7 @@
 export default {
   id: 'card-credit-flip',
   name: 'Credit Card Flip',
-  category: 'cards',
+  category: 'animations',
   tags: ['flip', '3d', 'card', 'credit', 'animated', 'css-only', 'perspective', 'mastercard'],
   author: 'Praashoo7',
   html: `<div class="flip-card">

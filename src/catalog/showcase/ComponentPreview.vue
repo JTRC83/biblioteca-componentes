@@ -22,11 +22,44 @@ const styleEl = ref(null)
 const wrapperEl = ref(null)
 const previewEl = ref(null)
 
-const scopedCss = computed(() => scopeCss(props.component.css || '', scopeId.value))
+const scopedCss = computed(() => {
+  let css = props.component.css || ''
+  const scopeSuffix = scopeId.value.replace(/[^a-zA-Z0-9]/g, '_')
+  // Solo renombrar IDs que existen en el HTML del componente
+  // (evita corromper hex colors como #ff2a00 que no son IDs)
+  const html = props.component.html || ''
+  const idRegex = /id="([^"]+)"/g
+  let match
+  while ((match = idRegex.exec(html)) !== null) {
+    const oldId = match[1]
+    // Reemplazar #id en CSS SOLO cuando se usa como selector (seguido de :, espacio, ~, +, >, , {, etc.)
+    // NO cuando se usa como hex color (seguido de ; o ) o espacio dentro de una declaración)
+    css = css.replace(new RegExp(`#${oldId}(?=[\\s:,.~>+\\[{]|$)`, 'gm'), `#${oldId}_${scopeSuffix}`)
+  }
+  return scopeCss(css, scopeId.value)
+})
 
 const render = () => {
   if (!wrapperEl.value) return
-  wrapperEl.value.innerHTML = props.component.html || ''
+  let html = props.component.html || ''
+  // Renombrar IDs y for= para que sean únicos por instancia (evita conflictos
+  // cuando el mismo componente aparece en la card y en el modal a la vez)
+  const scopeSuffix = scopeId.value.replace(/[^a-zA-Z0-9]/g, '_')
+  // Recoger todos los IDs del HTML
+  const idMap = new Map()
+  const idRegex = /id="([^"]+)"/g
+  let match
+  while ((match = idRegex.exec(html)) !== null) {
+    const oldId = match[1]
+    const newId = `${oldId}_${scopeSuffix}`
+    idMap.set(oldId, newId)
+  }
+  // Reemplazar IDs en el HTML
+  for (const [oldId, newId] of idMap) {
+    html = html.replace(new RegExp(`id="${oldId}"`, 'g'), `id="${newId}"`)
+    html = html.replace(new RegExp(`for="${oldId}"`, 'g'), `for="${newId}"`)
+  }
+  wrapperEl.value.innerHTML = html
 }
 
 const mountStyle = () => {
@@ -40,11 +73,67 @@ const mountStyle = () => {
 
 let rafId = null
 
+const centerAbsoluteChildren = (root) => {
+  // Encontrar todos los elementos con position: absolute dentro del wrapper
+  // y aplicar translate(-50%, -50%) si tienen left:50% o top:50% sin transform.
+  // Esto centra los componentes absolute que usan left/right/top/bottom sin translate.
+  const all = root.querySelectorAll('*')
+  for (const el of all) {
+    const cs = window.getComputedStyle(el)
+    if (cs.position !== 'absolute' && cs.position !== 'fixed') continue
+    const left = cs.left
+    const top = cs.top
+    const right = cs.right
+    const transform = cs.transform
+    let dx = 0
+    let dy = 0
+    let needsX = false
+    let needsY = false
+    if (left === '50%' || left === '50px') {
+      if (transform === 'none' || transform === 'matrix(1, 0, 0, 1, 0, 0)') {
+        needsX = true
+        dx = -50
+      }
+    }
+    if (top === '50%' || top === '50px') {
+      if (transform === 'none' || transform === 'matrix(1, 0, 0, 1, 0, 0)') {
+        needsY = true
+        dy = -50
+      }
+    }
+    if (needsX || needsY) {
+      // No aplicar a los elementos con transform-origin de animación (que ya tienen transform)
+      // Solo aplicar si el bbox del elemento es medible
+      const rect = el.getBoundingClientRect()
+      if (rect.width > 0 && rect.height > 0) {
+        const xPct = needsX ? -50 : 0
+        const yPct = needsY ? -50 : 0
+        // Usar transform con porcentaje del propio elemento
+        el.style.transform = `translate(${xPct}%, ${yPct}%)`
+      }
+    }
+  }
+}
+
+const centerRelativeRoot = (root) => {
+  // Si el primer hijo directo del wrapper es position: relative y no tiene
+  // display:flex/grid, lo centramos con margin: auto + align-self/justify-self
+  const firstChild = root.firstElementChild
+  if (!firstChild) return
+  const cs = window.getComputedStyle(firstChild)
+  if (cs.position !== 'relative') return
+  if (cs.display === 'flex' || cs.display === 'grid' || cs.display === 'inline-flex' || cs.display === 'inline-grid') return
+  // Si el padre wrapper es grid (que es el caso por defecto), usamos align/justify self
+  firstChild.style.margin = 'auto'
+  firstChild.style.alignSelf = 'center'
+  firstChild.style.justifySelf = 'center'
+}
+
 const applyAutoScale = () => {
   if (rafId) cancelAnimationFrame(rafId)
   rafId = requestAnimationFrame(() => {
     rafId = null
-    if (props.contained || !wrapperEl.value || !previewEl.value) return
+    if (!wrapperEl.value || !previewEl.value) return
     const inner = wrapperEl.value
     const container = previewEl.value
     // Medir el contenido natural sin escalado
@@ -52,17 +141,27 @@ const applyAutoScale = () => {
     // Un segundo frame para asegurar layout con el CSS scoped aplicado
     requestAnimationFrame(() => {
       if (!wrapperEl.value || !previewEl.value) return
+      // Centrar elementos absolute que usan left/right/top/bottom sin translate
+      // Se ejecuta siempre (tanto en card como en modal) para que elementos
+      // interactivos (como labels de switches) sean clickeables
+      centerAbsoluteChildren(inner)
+      // Centrar el primer hijo relative que no sea flex/grid
+      centerRelativeRoot(inner)
+      // El auto-scale solo aplica en modo card, no en el modal
+      if (props.contained) return
       // Medir el contenido del wrapper. Si es 0 (componentes con position:absolute
-      // sin tamaño propio), usar el tamaño del contenedor como fallback.
-      let naturalW = inner.scrollWidth
-      let naturalH = inner.scrollHeight
+      // sin tamaño propio), NO aplicar scale — dejar que el componente se posicione
+      // según sus propias reglas absolutas dentro del wrapper.
+      const naturalW = inner.scrollWidth
+      const naturalH = inner.scrollHeight
       const containerW = container.clientWidth
       const containerH = container.clientHeight
       if (naturalW <= 0 || naturalH <= 0) {
-        naturalW = containerW
-        naturalH = containerH
+        // Componente sin tamaño medible (todos sus elementos son absolute).
+        // NO escalar — dejar renderizar tal cual.
+        inner.style.transform = ''
+        return
       }
-      if (naturalW <= 0 || naturalH <= 0) return
       const maxW = containerW - 8
       const maxH = containerH - 8
       const scaleW = maxW / naturalW
@@ -146,16 +245,17 @@ if (typeof window !== 'undefined') {
 }
 
 .c-preview__inner {
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  display: grid;
+  place-items: center;
   width: 100%;
   height: 100%;
-  min-width: 240px;
-  min-height: 240px;
+  min-width: 280px;
+  min-height: 180px;
   transform-origin: center center;
   flex-shrink: 0;
   isolation: isolate;
   position: relative;
+  overflow: visible;
+  color: #000;
 }
 </style>
