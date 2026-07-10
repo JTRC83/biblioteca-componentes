@@ -2,6 +2,7 @@
   "name": "@biblioteca/backend",
   "version": "0.1.0",
   "private": true,
+  "type": "module",
   "description": "API REST + MCP Server para la biblioteca de componentes",
   "scripts": {
     "dev": "next dev --port 3001",
