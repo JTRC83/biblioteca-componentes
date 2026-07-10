@@ -302,4 +302,4 @@ export default {
 
 ## Licencia
 
-MIT
+Privada — todos los derechos reservados.
