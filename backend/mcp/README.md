@@ -58,6 +58,28 @@ Añade a `.cursor/mcp.json`:
 }
 ```
 
+### OpenAI Codex (CLI / Desktop / IDE)
+
+Codex usa `config.toml` para configurar MCP servers. Puedes añadirlo de dos formas:
+
+**Opción A — CLI:**
+
+```bash
+codex mcp add biblioteca-componentes -- node /ruta/absoluta/al/proyecto/biblioteca-componentes/backend/mcp/server.mjs
+```
+
+**Opción B — Manual (`~/.codex/config.toml`):**
+
+```toml
+[mcp_servers.biblioteca-componentes]
+command = "node"
+args = ["/ruta/absoluta/al/proyecto/biblioteca-componentes/backend/mcp/server.mjs"]
+```
+
+También puedes añadirlo a nivel de proyecto creando `.codex/config.toml` en la raíz del proyecto.
+
+Una vez configurado, usa `/mcp` en el TUI de Codex para ver el servidor conectado.
+
 ## Herramientas (Tools)
 
 | Tool | Descripción |
