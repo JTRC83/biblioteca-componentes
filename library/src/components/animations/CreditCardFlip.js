@@ -32,8 +32,8 @@ export default {
   css: `
 .flip-card {
   background-color: transparent;
-  width: 240px;
-  height: 154px;
+  width: 340px;
+  height: 214px;
   perspective: 1000px;
   color: white;
 }
