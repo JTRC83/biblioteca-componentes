@@ -1,0 +1,91 @@
+export default {
+  id: 'pat-purple-petals',
+  name: 'Purple Petals',
+  category: 'patterns',
+  tags: ['petals', 'purple', 'conic', 'tiles', 'css-only'],
+  author: 'FColombati',
+  html: `<div class="pat-purple-petals">
+  <div class="pat-purple-petals__bg"></div>
+</div>`,
+  css: `
+.pat-purple-petals {
+  background: #4c2b87;
+  width: 100%;
+  height: 100%;
+  min-height: 200px;
+  margin: 0;
+  border-radius: 12px;
+  overflow: hidden;
+  position: relative;
+  padding: 16px;
+  box-sizing: border-box;
+}
+
+.pat-purple-petals__bg {
+  width: 100%;
+  height: 100%;
+  border-radius: 8px;
+  overflow: hidden;
+  position: relative;
+  background-repeat: repeat;
+  background-position: 50% 50%;
+  background:
+    conic-gradient(from -296deg at 100% 59%, #aa79d5 0 133deg, #fff0 0 100%) 50%/198px
+      168px,
+    conic-gradient(from -296deg at 85% 67%, #4c2b87 0 134.5deg, #fff0 0 100%)
+      50%/198px 168px,
+    conic-gradient(from -296deg at 68% 77%, #aa79d5 0 137deg, #fff0 0 100%) 50%/198px
+      168px,
+    conic-gradient(from -296deg at 55% 85%, #4c2b87 0 150deg, #fff0 0 100%) 50%/198px
+      168px,
+    conic-gradient(from -248deg at 38% 77%, #aa79d5 0 97deg, #fff0 0 100%) 50%/198px
+      168px,
+    conic-gradient(from -248deg at 15% 66%, #4c2b87 0 95deg, #fff0 0 100%) 50%/198px
+      168px,
+    conic-gradient(
+        from 207deg at 15% 66%,
+        #aa79d5 0 84deg,
+        #cfa5f1 0 138deg,
+        #fff0 0 100%
+      )
+      50%/198px 168px,
+    conic-gradient(
+        from 23deg at 85% 12%,
+        #aa79d5 0 34deg,
+        #cfa5f1 0 136deg,
+        #fff0 0 100%
+      )
+      50%/198px 168px,
+    conic-gradient(
+        from 22deg at 66% 27%,
+        #4c2b87 0 34deg,
+        #673ab7 0 128deg,
+        #fff0 0 100%
+      )
+      50%/198px 168px,
+    conic-gradient(
+        from 17deg at 50% 40%,
+        #aa79d5 0 39deg,
+        #cfa5f1 0 133deg,
+        #fff0 0 100%
+      )
+      50%/198px 168px,
+    conic-gradient(
+        from 31deg at 33% 26%,
+        #4c2b87 0 94deg,
+        #673ab7 0 125deg,
+        #fff0 0 100%
+      )
+      50%/198px 168px,
+    conic-gradient(
+        from -57deg at 19% 15%,
+        #4c2b87 0 90deg,
+        #aa79d5 0 181deg,
+        #cfa5f1 0 217deg,
+        #673ab7 0 360deg,
+        #fff0 0 100%
+      )
+      50%/198px 168px;
+}
+`
+}

@@ -1,97 +1,69 @@
 # Biblioteca de Componentes
 
-Catálogo visual de componentes UI estilo uiverse: **HTML + CSS separados**, listos para copiar y reutilizar en cualquier proyecto.
+Catálogo visual de componentes UI estilo uiverse + sistema de generación de webs con IA.
 
-## Stack
+## Estructura del monorepo
 
-- **Vue 3** + `<script setup>` + JavaScript puro
-- **Vite 6** (dev + build)
-- **Vue Router 4** (rutas por categoría)
-- **Pinia** (estado: tema, favoritos, filtros)
-- **Heroicons** (iconos UI)
-- Sin TypeScript, sin Tailwind, sin framework extra
+```
+biblioteca-componentes/
+├── library/              # Biblioteca visual (Vue 3 + Vite)
+│   ├── src/
+│   │   ├── components/    # 237+ componentes en 14 categorías
+│   │   ├── catalog/        # App showcase (Vue)
+│   │   └── ...
+│   ├── public/
+│   ├── index.html
+│   ├── vite.config.js
+│   └── package.json
+├── backend/               # API REST + MCP Server (Next.js)
+│   ├── app/api/
+│   ├── lib/
+│   ├── mcp/
+│   └── package.json
+├── templates/             # Catálogo de plantillas web
+│   ├── landing/
+│   ├── hero/
+│   ├── design/
+│   └── package.json
+├── catalog/               # Catálogo indexado (JSON + MD)
+│   ├── json/components.json
+│   └── md/
+├── scripts/               # Scripts de build del catálogo
+│   └── build-catalog.mjs
+├── pnpm-workspace.yaml
+└── package.json           # Root workspace
+```
 
-## Comandos
+## Quick start
 
 ```bash
-npm install     # instalar dependencias
-npm run dev     # servidor de desarrollo (http://localhost:5173)
-npm run build   # build de producción
-npm run preview # previsualizar el build
+# Instalar dependencias
+pnpm install
+
+# Dev server de la biblioteca
+pnpm dev:library    # → http://localhost:5174
+
+# Regenerar catálogo (JSON + MD)
+pnpm build:catalog
 ```
 
-## Estructura
+## Roadmap
 
-```
-src/
-├── components/          # Biblioteca de componentes (HTML + CSS)
-│   ├── buttons/         # un .js por componente + index.js
-│   ├── checkboxes/
-│   └── ...
-├── catalog/             # App showcase (Vue)
-│   ├── views/           # HomeView, AllView, CategoryView, FavoritesView
-│   ├── layout/          # AppHeader, AppSidebar, ComponentCard
-│   ├── showcase/        # ComponentPreview, ComponentModal, CodeBlock
-│   ├── stores/          # theme, favorites, filters, catalog
-│   ├── composables/     # useFilteredComponents
-│   ├── data/            # categories.js (12 categorías)
-│   └── router/          # rutas
-├── utils/               # scopeCss (aísla CSS), copy, string
-├── App.vue              # shell
-├── main.js
-└── style.css            # variables CSS del tema
-```
+| PRD | Descripción | Issue |
+|-----|-------------|-------|
+| PRD-01 | Monorepo + estructura de workspaces | [#1](https://github.com/JTRC83/biblioteca-componentes/issues/1) |
+| PRD-02 | Sistema de catalogación de componentes (JSON + MD) | [#2](https://github.com/JTRC83/biblioteca-componentes/issues/2) |
+| PRD-03 | Backend Next.js + API REST del catálogo | [#3](https://github.com/JTRC83/biblioteca-componentes/issues/3) |
+| PRD-04 | MCP Server para conexión IA | [#4](https://github.com/JTRC83/biblioteca-componentes/issues/4) |
+| PRD-05 | Catálogo de plantillas web (design.md + prompts) | [#5](https://github.com/JTRC83/biblioteca-componentes/issues/5) |
+| PRD-06 | Integración IA + sistema de generación web | [#6](https://github.com/JTRC83/biblioteca-componentes/issues/6) |
 
 ## Cómo añadir un componente nuevo
 
-1. **Crear el archivo** en `src/components/<categoría>/<Nombre>.js`:
-
-   ```js
-   export default {
-     id: 'mi-boton-unico',          // slug único
-     name: 'Mi Botón',              // nombre visible
-     category: 'buttons',           // debe coincidir con una categoría
-     tags: ['glow', 'css-only'],    // opcional, para filtros/búsqueda
-     html: `
-       <button class="mi-clase">Click me</button>
-     `,
-     css: `
-       .mi-clase {
-         padding: 12px 24px;
-         background: #7c3aed;
-         ...
-       }
-     `
-   }
-   ```
-
-2. **Registrarlo** en `src/components/<categoría>/index.js`:
-
-   ```js
-   import MiBoton from './MiBoton.js'
-   export { MiBoton }
-   export default { MiBoton }
-   ```
-
-3. **Listo.** Aparece automáticamente en:
-   - `/all` (vista global)
-   - `/category/buttons` (vista de categoría)
-   - La búsqueda y los filtros lo encuentran por nombre o tag
-   - Se puede añadir a favoritos
+1. Crear `library/src/components/<categoría>/<Nombre>.js`
+2. Registrarlo en `library/src/components/<categoría>/index.js`
+3. Ejecutar `pnpm build:catalog` para actualizar el catálogo
 
 ## Categorías disponibles
 
-`buttons` · `checkboxes` · `toggles` · `cards` · `loaders` · `inputs` · `radios` · `forms` · `tooltips` · `patterns` · `backgrounds` · `animations`
-
-Para añadir una categoría nueva:
-
-1. Añadir entrada en `src/catalog/data/categories.js`
-2. Crear carpeta `src/components/<nueva-categoria>/`
-3. Crear `index.js` (vacío o con los componentes)
-
-## Notas técnicas
-
-- **Aislamiento de CSS**: cada previsualización genera un id único y se re-escriben los selectores para que el CSS no contamine otros componentes.
-- **Sin JS en los componentes**: el "interactivity" se logra con trucos CSS (`:checked`, `label + input`, etc.), fiel al modelo uiverse.
-- **Persistencia local**: tema y favoritos se guardan en `localStorage`.
-- **Copiar al portapapeles**: cada bloque HTML/CSS tiene un botón "Copiar" con feedback visual.
+`buttons` · `checkboxes` · `toggles` · `cards` · `loaders` · `inputs` · `radios` · `forms` · `tooltips` · `patterns` · `backgrounds` · `animations` · `analog` · `navbars`

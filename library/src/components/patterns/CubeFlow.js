@@ -1,0 +1,83 @@
+export default {
+  id: 'pat-cube-flow',
+  name: 'Cube Flow',
+  category: 'patterns',
+  tags: ['cube', 'animated', 'gradient', 'svg', 'css-only'],
+  author: 'chase2k25',
+  html: `<div class="pat-cube-flow">
+  <div class="pat-cube-flow__bg">
+    <svg
+      preserveAspectRatio="xMidYMid slice"
+      height="100%"
+      width="100%"
+      class="pat-cube-flow__svg"
+      viewBox="0 0 120 104"
+    >
+      <defs>
+        <linearGradient y2="100%" x2="100%" y1="0%" x1="0%" id="cube-dark">
+          <stop stop-color="#232526" offset="0%"></stop>
+          <stop stop-color="#414345" offset="100%"></stop>
+        </linearGradient>
+        <linearGradient y2="0%" x2="100%" y1="100%" x1="0%" id="cube-mid">
+          <stop stop-color="#4b6cb7" offset="0%"></stop>
+          <stop stop-color="#182848" offset="100%"></stop>
+        </linearGradient>
+        <linearGradient y2="100%" x2="0%" y1="0%" x1="100%" id="cube-light">
+          <stop stop-color="#a8edea" offset="0%"></stop>
+          <stop stop-color="#fed6e3" offset="100%"></stop>
+        </linearGradient>
+      </defs>
+    </svg>
+  </div>
+</div>`,
+  css: `
+.pat-cube-flow {
+  background: #181c21;
+  width: 100%;
+  height: 100%;
+  min-height: 200px;
+  margin: 0;
+  border-radius: 12px;
+  overflow: hidden;
+  position: relative;
+  padding: 16px;
+  box-sizing: border-box;
+}
+
+.pat-cube-flow__bg {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  position: relative;
+  border-radius: 8px;
+  background: repeating-linear-gradient(
+    135deg,
+    #232526 0px,
+    #232526 60px,
+    #23252699 70px,
+    #414345 130px
+  );
+}
+
+.pat-cube-flow__svg {
+  position: absolute;
+  width: 200%;
+  height: 200%;
+  left: -30%;
+  top: -20%;
+  background: transparent;
+  opacity: 0.7;
+  z-index: 1;
+  animation: pat-cube-flow-move 18s linear infinite alternate;
+}
+
+@keyframes pat-cube-flow-move {
+  from {
+    transform: translateY(0) scale(1);
+  }
+  to {
+    transform: translateY(-20%) scale(1.02) rotate(1deg);
+  }
+}
+`
+}

@@ -1,0 +1,9 @@
+{
+  "name": "@biblioteca/templates",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Catálogo de plantillas web con design.md y prompts para IA",
+  "scripts": {
+    "build": "node scripts/build-templates.mjs"
+  }
+}
