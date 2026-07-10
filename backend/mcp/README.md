@@ -80,6 +80,27 @@ También puedes añadirlo a nivel de proyecto creando `.codex/config.toml` en la
 
 Una vez configurado, usa `/mcp` en el TUI de Codex para ver el servidor conectado.
 
+### Hermes Agent (Nous Research)
+
+Hermes Agent usa `~/.hermes/config.yaml` para configurar MCP servers:
+
+```yaml
+mcp_servers:
+  biblioteca-componentes:
+    command: "node"
+    args: ["/ruta/absoluta/al/proyecto/biblioteca-componentes/backend/mcp/server.mjs"]
+```
+
+O con el CLI de Hermes:
+
+```bash
+hermes mcp add biblioteca-componentes -- node /ruta/absoluta/al/proyecto/biblioteca-componentes/backend/mcp/server.mjs
+```
+
+Una vez configurado, usa `/reload-mcp` en el TUI de Hermes para recargar los servidores MCP.
+
+> **Nota**: Hermes registra las tools con el prefijo `mcp_biblioteca-componentes_` (ej: `mcp_biblioteca-componentes_search_components`).
+
 ## Herramientas (Tools)
 
 | Tool | Descripción |
