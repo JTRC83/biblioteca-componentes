@@ -110,10 +110,11 @@ Una vez configurado, usa `/reload-mcp` en el TUI de Hermes para recargar los ser
 | `get_components_by_use_case` | Devuelve componentes para un caso de uso específico |
 | `get_components_by_style` | Devuelve componentes con un estilo visual específico |
 | `suggest_components` | Sugiere componentes a partir de una descripción en lenguaje natural |
-| `get_template` | Obtiene una plantilla web completa (PRD-05) |
-| `list_templates` | Lista plantillas disponibles (PRD-05) |
+| `get_template` | Obtiene una plantilla web completa (design tokens + prompt + components) |
+| `list_templates` | Lista plantillas con filtros (type, industry, style) |
 | `get_design_system` | Obtiene el design system global (estilos, colores, complejidad) |
-| `get_adaptation_guide` | Instrucciones específicas para adaptar un componente |
+| `get_adaptation_guide` | Instrucciones específicas para adaptar un componente + código fuente |
+| `validate_web` | Valida que el HTML+CSS generado es correcto (tags, CSS, responsive, colisiones) |
 
 ## Recursos (Resources)
 
