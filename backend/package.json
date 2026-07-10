@@ -11,6 +11,8 @@
     "mcp": "node mcp/server.mjs"
   },
   "dependencies": {
-    "next": "^15.1.0"
+    "@modelcontextprotocol/sdk": "^1.29.0",
+    "next": "^15.1.0",
+    "zod": "^4.4.3"
   }
 }
