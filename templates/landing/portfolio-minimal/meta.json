@@ -1,0 +1,38 @@
+{
+  "id": "landing-portfolio-minimal",
+  "name": "Portfolio Minimal Landing",
+  "type": "landing",
+  "category": "portfolio",
+  "description": "Portfolio minimalista con tema claro, mucho whitespace, tipografía limpia y grid de proyectos",
+  "screenshot": null,
+  "sections": ["hero", "projects", "about", "contact"],
+  "styleTags": ["minimal", "clean", "light", "typography"],
+  "colorScheme": {
+    "primary": "#1a1a1a",
+    "secondary": "#525252",
+    "background": "#fafafa",
+    "surface": "#ffffff",
+    "text": "#1a1a1a",
+    "textSecondary": "#737373"
+  },
+  "typography": {
+    "fontFamily": "'Inter', system-ui, sans-serif",
+    "headingScale": "clamp(2.5rem, 6vw, 5rem)",
+    "bodySize": "16px",
+    "lineHeight": "1.7"
+  },
+  "spacing": {
+    "section": "100px",
+    "element": "32px",
+    "gap": "24px"
+  },
+  "borderRadius": {
+    "sm": "4px",
+    "md": "8px",
+    "lg": "12px",
+    "xl": "20px"
+  },
+  "responsive": true,
+  "complexity": "low",
+  "industry": ["portfolio", "personal", "design", "creative"]
+}

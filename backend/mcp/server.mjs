@@ -21,6 +21,9 @@
  *   catalog://styles                         — estilos disponibles
  */
 
+import { readFileSync, existsSync } from 'node:fs'
+import { fileURLToPath } from 'node:url'
+import { dirname, join } from 'node:path'
 import { McpServer } from '@modelcontextprotocol/sdk/server/mcp.js'
 import { StdioServerTransport } from '@modelcontextprotocol/sdk/server/stdio.js'
 import { ResourceTemplate } from '@modelcontextprotocol/sdk/server/mcp.js'
@@ -360,18 +363,63 @@ server.registerTool(
 server.registerTool(
   'get_template',
   {
-    description: 'Obtiene una plantilla web completa con su design.md, prompt y mapeo de componentes. ' +
-      '(Placeholder — las plantillas se implementarán en PRD-05)',
+    description: 'Obtiene una plantilla web completa con su design.md (tokens CSS), ' +
+      'prompt.md (descripción natural) y components.md (mapeo de componentes). ' +
+      'IDs disponibles: landing-saas-modern, landing-portfolio-minimal, ' +
+      'landing-ecommerce-shop, landing-agency-dark, landing-mobile-app.',
     inputSchema: z.object({
-      id: z.string().describe('ID de la plantilla')
+      id: z.string().describe('ID de la plantilla (ej: landing-saas-modern)')
     })
   },
   async ({ id }) => {
-    return {
-      content: [{
-        type: 'text',
-        text: `Plantilla "${id}" no encontrada. Las plantillas se implementarán en PRD-05.`
-      }]
+    try {
+      const root = join(dirname(fileURLToPath(import.meta.url)), '..', '..')
+      const indexPath = join(root, 'templates', 'index.json')
+      const index = JSON.parse(readFileSync(indexPath, 'utf-8'))
+      const meta = index.templates.find((t) => t.id === id)
+      if (!meta) {
+        return { content: [{ type: 'text', text: `Error: Plantilla "${id}" no encontrada.` }] }
+      }
+      const basePath = join(root, 'templates', meta.path)
+      const files = {}
+      for (const file of ['prompt.md', 'design.md', 'components.md']) {
+        const fp = join(basePath, file)
+        if (existsSync(fp)) files[file] = readFileSync(fp, 'utf-8')
+      }
+      const text = `# Plantilla: ${meta.name}
+
+**ID**: ${meta.id}
+**Tipo**: ${meta.type}
+**Categoría**: ${meta.category}
+**Descripción**: ${meta.description}
+**Secciones**: ${(meta.sections || []).join(', ')}
+**Estilos**: ${(meta.styleTags || []).join(', ')}
+**Industria**: ${(meta.industry || []).join(', ')}
+**Responsive**: ${meta.responsive}
+**Complejidad**: ${meta.complexity}
+
+## Color Scheme
+\`\`\`json
+${JSON.stringify(meta.colorScheme, null, 2)}
+\`\`\`
+
+## Typography
+\`\`\`json
+${JSON.stringify(meta.typography, null, 2)}
+\`\`\`
+
+## Prompt (descripción del diseño)
+${files['prompt.md'] || '—'}
+
+## Design Tokens
+${files['design.md'] || '—'}
+
+## Mapeo de Componentes
+${files['components.md'] || '—'}
+`
+      return { content: [{ type: 'text', text }] }
+    } catch (e) {
+      return { content: [{ type: 'text', text: `Error: ${e.message}` }] }
     }
   }
 )
@@ -379,16 +427,30 @@ server.registerTool(
 server.registerTool(
   'list_templates',
   {
-    description: 'Lista todas las plantillas web disponibles. ' +
-      '(Placeholder — las plantillas se implementarán en PRD-05)',
-    inputSchema: z.object({})
+    description: 'Lista todas las plantillas web disponibles con sus metadatos. ' +
+      'Filtrar por tipo (landing, hero, design), industria o estilo. ' +
+      'Plantillas actuales: SaaS Modern, Portfolio Minimal, E-commerce, Agency Dark, Mobile App.',
+    inputSchema: z.object({
+      type: z.string().optional().describe('Filtrar por tipo (landing, hero, design)'),
+      industry: z.string().optional().describe('Filtrar por industria (saas, ecommerce, portfolio, agency, mobile)'),
+      style: z.string().optional().describe('Filtrar por estilo (modern, minimal, dark, neon, etc.)')
+    })
   },
-  async () => {
-    return {
-      content: [{
-        type: 'text',
-        text: 'No hay plantillas disponibles aún. Se implementarán en PRD-05.'
-      }]
+  async ({ type, industry, style }) => {
+    try {
+      const root = join(dirname(fileURLToPath(import.meta.url)), '..', '..')
+      const index = JSON.parse(readFileSync(join(root, 'templates', 'index.json'), 'utf-8'))
+      let templates = index.templates || []
+      if (type) templates = templates.filter((t) => t.type === type)
+      if (industry) templates = templates.filter((t) => t.industry?.includes(industry))
+      if (style) templates = templates.filter((t) => t.styleTags?.includes(style))
+
+      const text = `${templates.length} plantilla(s) disponible(s):\n\n${templates.map((t) =>
+        `## ${t.name}\n- **ID**: ${t.id}\n- **Tipo**: ${t.type}\n- **Secciones**: ${(t.sections || []).join(', ')}\n- **Estilos**: ${(t.styleTags || []).join(', ')}\n- **Industria**: ${(t.industry || []).join(', ')}\n- **Descripción**: ${t.description}\n`
+      ).join('\n')}`
+      return { content: [{ type: 'text', text }] }
+    } catch (e) {
+      return { content: [{ type: 'text', text: `Error: ${e.message}` }] }
     }
   }
 )
@@ -581,21 +643,36 @@ server.registerResource(
   }
 )
 
-// catalog://templates — plantillas disponibles (placeholder)
+// catalog://templates — plantillas disponibles
 server.registerResource(
   'templates',
   new ResourceTemplate('catalog://templates', { list: undefined }),
   {
-    description: 'Plantillas web disponibles (placeholder — PRD-05)',
+    description: 'Plantillas web disponibles',
     mimeType: 'text/markdown'
   },
   async (uri) => {
-    return {
-      contents: [{
-        uri: uri.href,
-        mimeType: 'text/markdown',
-        text: '# Plantillas\n\nNo hay plantillas disponibles aún. Se implementarán en PRD-05.'
-      }]
+    try {
+      const root = join(dirname(fileURLToPath(import.meta.url)), '..', '..')
+      const index = JSON.parse(readFileSync(join(root, 'templates', 'index.json'), 'utf-8'))
+      const text = `# Plantillas disponibles (${index.total})\n\n${(index.templates || []).map((t) =>
+        `## ${t.name}\n- **ID**: ${t.id}\n- **Tipo**: ${t.type}\n- **Secciones**: ${(t.sections || []).join(', ')}\n- **Estilos**: ${(t.styleTags || []).join(', ')}\n- **Industria**: ${(t.industry || []).join(', ')}\n- **Descripción**: ${t.description}\n`
+      ).join('\n')}`
+      return {
+        contents: [{
+          uri: uri.href,
+          mimeType: 'text/markdown',
+          text
+        }]
+      }
+    } catch {
+      return {
+        contents: [{
+          uri: uri.href,
+          mimeType: 'text/markdown',
+          text: '# Plantillas\n\nNo se pudieron cargar las plantillas.'
+        }]
+      }
     }
   }
 )

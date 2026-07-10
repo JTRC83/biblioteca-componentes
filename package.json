@@ -8,6 +8,8 @@
     "build:library": "pnpm --filter @biblioteca/library build",
     "dev:backend": "pnpm --filter @biblioteca/backend dev",
     "build:catalog": "node scripts/build-catalog.mjs",
+    "build:templates": "node scripts/build-templates.mjs",
+    "build:all": "node scripts/build-catalog.mjs && node scripts/build-templates.mjs",
     "dev": "pnpm dev:library",
     "build": "pnpm build:library"
   },

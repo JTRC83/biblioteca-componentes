@@ -1,0 +1,38 @@
+{
+  "id": "landing-mobile-app",
+  "name": "Mobile App Landing",
+  "type": "landing",
+  "category": "app",
+  "description": "Landing page de app móvil con mockup de teléfono, features, screenshots y botones de descarga estilo app store",
+  "screenshot": null,
+  "sections": ["hero", "features", "screenshots", "download", "footer"],
+  "styleTags": ["clean", "app-store", "minimal", "modern"],
+  "colorScheme": {
+    "primary": "#3b82f6",
+    "secondary": "#60a5fa",
+    "background": "#f8fafc",
+    "surface": "#ffffff",
+    "text": "#0f172a",
+    "textSecondary": "#64748b"
+  },
+  "typography": {
+    "fontFamily": "'Inter', system-ui, sans-serif",
+    "headingScale": "clamp(2rem, 5vw, 3.5rem)",
+    "bodySize": "16px",
+    "lineHeight": "1.6"
+  },
+  "spacing": {
+    "section": "80px",
+    "element": "24px",
+    "gap": "20px"
+  },
+  "borderRadius": {
+    "sm": "8px",
+    "md": "12px",
+    "lg": "20px",
+    "xl": "32px"
+  },
+  "responsive": true,
+  "complexity": "medium",
+  "industry": ["app", "mobile", "tech", "startup"]
+}

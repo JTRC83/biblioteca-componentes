@@ -1,0 +1,38 @@
+{
+  "id": "landing-saas-modern",
+  "name": "SaaS Modern Landing",
+  "type": "landing",
+  "category": "saas",
+  "description": "Landing page moderna para SaaS con hero centrado, features grid, pricing y CTA",
+  "screenshot": null,
+  "sections": ["hero", "features", "pricing", "testimonials", "cta", "footer"],
+  "styleTags": ["modern", "minimal", "gradient", "glassmorphism"],
+  "colorScheme": {
+    "primary": "#6366f1",
+    "secondary": "#8b5cf6",
+    "background": "#0a0a0c",
+    "surface": "#18181c",
+    "text": "#f4f4f5",
+    "textSecondary": "#a1a1aa"
+  },
+  "typography": {
+    "fontFamily": "'Inter', system-ui, sans-serif",
+    "headingScale": "clamp(2rem, 5vw, 4rem)",
+    "bodySize": "16px",
+    "lineHeight": "1.6"
+  },
+  "spacing": {
+    "section": "80px",
+    "element": "24px",
+    "gap": "16px"
+  },
+  "borderRadius": {
+    "sm": "8px",
+    "md": "12px",
+    "lg": "16px",
+    "xl": "24px"
+  },
+  "responsive": true,
+  "complexity": "medium",
+  "industry": ["saas", "tech", "startup"]
+}

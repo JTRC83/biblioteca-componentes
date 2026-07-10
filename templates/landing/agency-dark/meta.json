@@ -1,0 +1,38 @@
+{
+  "id": "landing-agency-dark",
+  "name": "Agency Dark Landing",
+  "type": "landing",
+  "category": "agency",
+  "description": "Landing de agencia creativa con tema oscuro, acentos neon, gradientes violeta y tipografía bold",
+  "screenshot": null,
+  "sections": ["hero", "services", "team", "portfolio", "cta", "footer"],
+  "styleTags": ["dark", "bold", "neon", "gradient"],
+  "colorScheme": {
+    "primary": "#a855f7",
+    "secondary": "#ec4899",
+    "background": "#09090b",
+    "surface": "#18181c",
+    "text": "#fafafa",
+    "textSecondary": "#a1a1aa"
+  },
+  "typography": {
+    "fontFamily": "'Space Grotesk', 'Inter', system-ui, sans-serif",
+    "headingScale": "clamp(2.5rem, 7vw, 6rem)",
+    "bodySize": "16px",
+    "lineHeight": "1.5"
+  },
+  "spacing": {
+    "section": "96px",
+    "element": "24px",
+    "gap": "16px"
+  },
+  "borderRadius": {
+    "sm": "4px",
+    "md": "8px",
+    "lg": "16px",
+    "xl": "24px"
+  },
+  "responsive": true,
+  "complexity": "high",
+  "industry": ["agency", "creative", "design", "marketing"]
+}

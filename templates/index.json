@@ -1,3 +1,221 @@
 {
-  "templates": []
+  "generatedAt": "2026-07-10T07:20:04.443Z",
+  "total": 5,
+  "templates": [
+    {
+      "id": "landing-agency-dark",
+      "name": "Agency Dark Landing",
+      "type": "landing",
+      "category": "landing",
+      "path": "landing/agency-dark",
+      "description": "Landing de agencia creativa con tema oscuro, acentos neon, gradientes violeta y tipografía bold",
+      "sections": [
+        "hero",
+        "services",
+        "team",
+        "portfolio",
+        "cta",
+        "footer"
+      ],
+      "styleTags": [
+        "dark",
+        "bold",
+        "neon",
+        "gradient"
+      ],
+      "colorScheme": {
+        "primary": "#a855f7",
+        "secondary": "#ec4899",
+        "background": "#09090b",
+        "surface": "#18181c",
+        "text": "#fafafa",
+        "textSecondary": "#a1a1aa"
+      },
+      "typography": {
+        "fontFamily": "'Space Grotesk', 'Inter', system-ui, sans-serif",
+        "headingScale": "clamp(2.5rem, 7vw, 6rem)",
+        "bodySize": "16px",
+        "lineHeight": "1.5"
+      },
+      "responsive": true,
+      "complexity": "high",
+      "industry": [
+        "agency",
+        "creative",
+        "design",
+        "marketing"
+      ]
+    },
+    {
+      "id": "landing-ecommerce-shop",
+      "name": "E-commerce Shop Landing",
+      "type": "landing",
+      "category": "landing",
+      "path": "landing/ecommerce-shop",
+      "description": "Landing page de e-commerce vibrante con showcase de producto, grid de productos, reviews y newsletter",
+      "sections": [
+        "hero",
+        "products",
+        "reviews",
+        "newsletter",
+        "footer"
+      ],
+      "styleTags": [
+        "vibrant",
+        "product-focused",
+        "card-heavy",
+        "modern"
+      ],
+      "colorScheme": {
+        "primary": "#f59e0b",
+        "secondary": "#ef4444",
+        "background": "#ffffff",
+        "surface": "#f4f4f5",
+        "text": "#171717",
+        "textSecondary": "#525252"
+      },
+      "typography": {
+        "fontFamily": "'Poppins', 'Inter', system-ui, sans-serif",
+        "headingScale": "clamp(2rem, 5vw, 3.5rem)",
+        "bodySize": "16px",
+        "lineHeight": "1.6"
+      },
+      "responsive": true,
+      "complexity": "medium",
+      "industry": [
+        "ecommerce",
+        "retail",
+        "fashion",
+        "product"
+      ]
+    },
+    {
+      "id": "landing-mobile-app",
+      "name": "Mobile App Landing",
+      "type": "landing",
+      "category": "landing",
+      "path": "landing/mobile-app",
+      "description": "Landing page de app móvil con mockup de teléfono, features, screenshots y botones de descarga estilo app store",
+      "sections": [
+        "hero",
+        "features",
+        "screenshots",
+        "download",
+        "footer"
+      ],
+      "styleTags": [
+        "clean",
+        "app-store",
+        "minimal",
+        "modern"
+      ],
+      "colorScheme": {
+        "primary": "#3b82f6",
+        "secondary": "#60a5fa",
+        "background": "#f8fafc",
+        "surface": "#ffffff",
+        "text": "#0f172a",
+        "textSecondary": "#64748b"
+      },
+      "typography": {
+        "fontFamily": "'Inter', system-ui, sans-serif",
+        "headingScale": "clamp(2rem, 5vw, 3.5rem)",
+        "bodySize": "16px",
+        "lineHeight": "1.6"
+      },
+      "responsive": true,
+      "complexity": "medium",
+      "industry": [
+        "app",
+        "mobile",
+        "tech",
+        "startup"
+      ]
+    },
+    {
+      "id": "landing-portfolio-minimal",
+      "name": "Portfolio Minimal Landing",
+      "type": "landing",
+      "category": "landing",
+      "path": "landing/portfolio-minimal",
+      "description": "Portfolio minimalista con tema claro, mucho whitespace, tipografía limpia y grid de proyectos",
+      "sections": [
+        "hero",
+        "projects",
+        "about",
+        "contact"
+      ],
+      "styleTags": [
+        "minimal",
+        "clean",
+        "light",
+        "typography"
+      ],
+      "colorScheme": {
+        "primary": "#1a1a1a",
+        "secondary": "#525252",
+        "background": "#fafafa",
+        "surface": "#ffffff",
+        "text": "#1a1a1a",
+        "textSecondary": "#737373"
+      },
+      "typography": {
+        "fontFamily": "'Inter', system-ui, sans-serif",
+        "headingScale": "clamp(2.5rem, 6vw, 5rem)",
+        "bodySize": "16px",
+        "lineHeight": "1.7"
+      },
+      "responsive": true,
+      "complexity": "low",
+      "industry": [
+        "portfolio",
+        "personal",
+        "design",
+        "creative"
+      ]
+    },
+    {
+      "id": "landing-saas-modern",
+      "name": "SaaS Modern Landing",
+      "type": "landing",
+      "category": "landing",
+      "path": "landing/saas-modern",
+      "description": "Landing page moderna para SaaS con hero centrado, features grid, pricing y CTA",
+      "sections": [
+        "hero",
+        "features",
+        "pricing",
+        "testimonials",
+        "cta",
+        "footer"
+      ],
+      "styleTags": [
+        "modern",
+        "minimal",
+        "gradient",
+        "glassmorphism"
+      ],
+      "colorScheme": {
+        "primary": "#6366f1",
+        "secondary": "#8b5cf6",
+        "background": "#0a0a0c",
+        "surface": "#18181c",
+        "text": "#f4f4f5",
+        "textSecondary": "#a1a1aa"
+      },
+      "typography": {
+        "fontFamily": "'Inter', system-ui, sans-serif",
+        "headingScale": "clamp(2rem, 5vw, 4rem)",
+        "bodySize": "16px",
+        "lineHeight": "1.6"
+      },
+      "responsive": true,
+      "complexity": "medium",
+      "industry": [
+        "saas",
+        "tech",
+        "startup"
+      ]
+    }
+  ]
 }

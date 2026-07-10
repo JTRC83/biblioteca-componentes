@@ -1,0 +1,38 @@
+{
+  "id": "landing-ecommerce-shop",
+  "name": "E-commerce Shop Landing",
+  "type": "landing",
+  "category": "ecommerce",
+  "description": "Landing page de e-commerce vibrante con showcase de producto, grid de productos, reviews y newsletter",
+  "screenshot": null,
+  "sections": ["hero", "products", "reviews", "newsletter", "footer"],
+  "styleTags": ["vibrant", "product-focused", "card-heavy", "modern"],
+  "colorScheme": {
+    "primary": "#f59e0b",
+    "secondary": "#ef4444",
+    "background": "#ffffff",
+    "surface": "#f4f4f5",
+    "text": "#171717",
+    "textSecondary": "#525252"
+  },
+  "typography": {
+    "fontFamily": "'Poppins', 'Inter', system-ui, sans-serif",
+    "headingScale": "clamp(2rem, 5vw, 3.5rem)",
+    "bodySize": "16px",
+    "lineHeight": "1.6"
+  },
+  "spacing": {
+    "section": "64px",
+    "element": "24px",
+    "gap": "20px"
+  },
+  "borderRadius": {
+    "sm": "8px",
+    "md": "16px",
+    "lg": "24px",
+    "xl": "32px"
+  },
+  "responsive": true,
+  "complexity": "medium",
+  "industry": ["ecommerce", "retail", "fashion", "product"]
+}
