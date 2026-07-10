@@ -1,6 +1,6 @@
 # Buttons
 
-58 componentes
+57 componentes
 
 | ID | Nombre | Tags | Estilo | Complejidad | Interacciones | Descripción |
 |----|--------|------|--------|------------|-------------|-------------|
@@ -38,7 +38,6 @@
 | `btn-ask-ai` | Ask AI | ai, animated, circuit, thinking, css-only | neon, gradient, glow, animated, transition, filter, css-only | high | hover, click, focus, animation, transition | Botón animado "Ask AI" |
 | `btn-view-posts` | View All Posts | icon, arrow, animated, css-only | transition, animated, css-only | low | hover, click, transition, transform | Botón animado "View All Posts" |
 | `btn-like-fireworks` | Like Fireworks | like, heart, fireworks, animated, css-only | animated, transition, css-only | medium | toggle, animation, transition, transform | Botón animado "Like Fireworks" |
-| `btn-order-delivery` | Order Delivery | animated, order, delivery, car, css-only | gradient, animated, transition, css-only | high | hover, toggle, animation, transition, transform | Botón animado "Order Delivery" |
 | `btn-notification-toggle` | Notification Toggle | toggle, notification, animated, css-only | animated, transition, css-only | medium | hover, click, toggle, focus, animation, transition, transform | Botón animado "Notification Toggle" |
 | `btn-check-toggle` | Check Toggle | toggle, checkbox, animated, css-only | animated, transition, css-only | medium | hover, click, toggle, focus, animation, transition, transform | Botón animado "Check Toggle" |
 | `btn-power-toggle` | Power Toggle | toggle, power, animated, css-only | transition, animated, css-only | medium | hover, click, toggle, focus, transition, transform | Botón animado "Power Toggle" |

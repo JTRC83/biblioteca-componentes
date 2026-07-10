@@ -1,7 +1,7 @@
 export default {
-  id: 'btn-order-delivery',
+  id: 'anim-order-delivery',
   name: 'Order Delivery',
-  category: 'buttons',
+  category: 'animations',
   tags: ['animated', 'order', 'delivery', 'car', 'css-only'],
   author: 'yeisonordonez',
   html: `<div class="order-wrap">
@@ -30,7 +30,7 @@ export default {
 .order-wrap {
   position: relative;
   width: 100%;
-  height: 220px;
+  height: 240px;
   overflow: hidden;
   display: flex;
   justify-content: center;
@@ -45,7 +45,7 @@ export default {
   display: flex;
   justify-content: center;
   align-items: center;
-  transform: scale(0.42);
+  transform: scale(0.55);
   transform-origin: center center;
 }
 

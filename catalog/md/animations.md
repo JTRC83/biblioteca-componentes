@@ -1,6 +1,6 @@
 # Animations
 
-23 componentes
+24 componentes
 
 | ID | Nombre | Tags | Estilo | Complejidad | Interacciones | Descripción |
 |----|--------|------|--------|------------|-------------|-------------|
@@ -27,3 +27,4 @@
 | `anim-pda` | Retro PDA | pda, retro, cyberpunk, lcd, animated, css-only, radio, tracker, device, 90s | neon, gradient, glow, animated, transition, filter, retro, css-only | high | hover, toggle, animation, transition, transform | Animación retro y animado "Retro PDA" |
 | `anim-blinking-eye` | Blinking Eye | eye, blink, animated, css-only, face, organic, interactive | animated, css-only, organic | medium | animation, transform | Animación animado "Blinking Eye" |
 | `anim-3d-rotating-circles` | 3D Rotating Circles | 3d, circles, rotating, animated, css-only, orbit, concentric, geometric | neon, 3d, glow, animated, transition, css-only | high | hover, animation, transition, transform | Animación con efecto 3D y animado "3D Rotating Circles" |
+| `anim-order-delivery` | Order Delivery | animated, order, delivery, car, css-only | gradient, animated, transition, css-only | high | hover, toggle, animation, transition, transform | Animación animado "Order Delivery" |

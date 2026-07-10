@@ -21,6 +21,7 @@ import PipBoy from './PipBoy.js'
 import RetroPda from './RetroPda.js'
 import BlinkingEye from './BlinkingEye.js'
 import ThreeDRotatingCircles from './ThreeDRotatingCircles.js'
+import OrderDelivery from '../buttons/OrderDelivery.js'
 
-export { Float, GlowPulse, NewTransaction, Shake, ToyCamera, EarthRotation, CassetteTape, RankingCard, WalletReveal, SunRotation, PrinterReceipt, WeatherCard, CreditCardFlip, TicketCard, FlipCounter, PlayingCardFlip, HolographicTicket, RetroCassette, RadarScanner, PipBoy, RetroPda, BlinkingEye, ThreeDRotatingCircles }
-export default { Float, GlowPulse, NewTransaction, Shake, ToyCamera, EarthRotation, CassetteTape, RankingCard, WalletReveal, SunRotation, PrinterReceipt, WeatherCard, CreditCardFlip, TicketCard, FlipCounter, PlayingCardFlip, HolographicTicket, RetroCassette, RadarScanner, PipBoy, RetroPda, BlinkingEye, ThreeDRotatingCircles }
+export { Float, GlowPulse, NewTransaction, Shake, ToyCamera, EarthRotation, CassetteTape, RankingCard, WalletReveal, SunRotation, PrinterReceipt, WeatherCard, CreditCardFlip, TicketCard, FlipCounter, PlayingCardFlip, HolographicTicket, RetroCassette, RadarScanner, PipBoy, RetroPda, BlinkingEye, ThreeDRotatingCircles, OrderDelivery }
+export default { Float, GlowPulse, NewTransaction, Shake, ToyCamera, EarthRotation, CassetteTape, RankingCard, WalletReveal, SunRotation, PrinterReceipt, WeatherCard, CreditCardFlip, TicketCard, FlipCounter, PlayingCardFlip, HolographicTicket, RetroCassette, RadarScanner, PipBoy, RetroPda, BlinkingEye, ThreeDRotatingCircles, OrderDelivery }
