@@ -1,8 +1,8 @@
 # Catálogo de Componentes
 
-Generado: 2026-07-10T06:32:04.749Z
+Generado: 2026-07-10T08:40:26.730Z
 
-**Total: 236 componentes en 14 categorías**
+**Total: 237 componentes en 14 categorías**
 
 ## Resumen por categoría
 
@@ -11,7 +11,7 @@ Generado: 2026-07-10T06:32:04.749Z
 | Analog | 21 | transition, skeuomorphic, css-only, neon, glow, filter, 3d, gradient, animated, neumorphic, industrial, mask, dark, glassmorphism, retro, minimal, neobrutalism | [analog.md](./analog.md) |
 | Animations | 23 | gradient, animated, css-only, neon, glow, transition, 3d, neobrutalism, filter, retro, mask, organic | [animations.md](./animations.md) |
 | Backgrounds | 7 | gradient, animated, filter, css-only | [backgrounds.md](./backgrounds.md) |
-| Buttons | 57 | neon, glow, transition, css-only, gradient, animated, glassmorphism, filter, 3d, squircle, neumorphic, mask | [buttons.md](./buttons.md) |
+| Buttons | 58 | neon, glow, transition, css-only, gradient, animated, glassmorphism, filter, 3d, squircle, neumorphic, mask | [buttons.md](./buttons.md) |
 | Cards | 34 | 3d, gradient, transition, css-only, glassmorphism, filter, animated, neon, glow, neumorphic, terminal, dark, minimal, doodle, retro | [cards.md](./cards.md) |
 | Checkboxes | 15 | animated, transition, css-only, neon, glow, gradient, 3d, filter, neumorphic, organic, mask | [checkboxes.md](./checkboxes.md) |
 | Forms | 1 | gradient, transition, css-only | [forms.md](./forms.md) |

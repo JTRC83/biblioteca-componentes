@@ -10,7 +10,7 @@ Mapeo de secciones a componentes de la biblioteca. Los IDs son reales y correspo
 - `btn-buy-now` — Botón CTA "Comprar ahora" específico para e-commerce
 - `btn-pay-now` — Alternativa para el botón de pago directo
 - `card-3d` — Tarjeta 3D para el producto estrella con tilt en hover
-- `card-product` — Card de producto con imagen + info
+- `card-black-friday` — Card de producto con imagen + info
 - `anim-float` — Float sutil para la imagen del producto en el hero
 - `card-flip-recipe` — Opcional: tarjeta flip para mostrar producto desde múltiples ángulos
 
@@ -25,7 +25,7 @@ Mapeo de secciones a componentes de la biblioteca. Los IDs son reales y correspo
 ## Products Section
 
 **Componentes recomendados:**
-- `card-product` — Tarjeta de producto base: imagen, nombre, precio, rating
+- `card-black-friday` — Tarjeta de producto base: imagen, nombre, precio, rating
 - `card-hover-fill` — Efecto de fill en hover para tarjetas de producto
 - `card-3d` — Variante con tilt 3D para productos premium
 - `btn-add-item` — Botón "Añadir al carrito" que aparece en hover
@@ -33,7 +33,7 @@ Mapeo de secciones a componentes de la biblioteca. Los IDs son reales y correspo
 - `card-black-friday` — Tarjeta con badge de oferta para productos en descuento
 
 **Adaptación:**
-- `card-product` con fondo #f4f4f5, radius 16px, imagen aspect 1:1
+- `card-black-friday` con fondo #f4f4f5, radius 16px, imagen aspect 1:1
 - En hover: sombra aparece (shadow-md), `btn-add-item` se desliza desde abajo (translateY 100% → 0)
 - `card-black-friday` para productos con descuento: badge rojo "Oferta" en esquina
 - Precio en #f59e0b peso 700, precio antiguo tachado en #a3a3a3

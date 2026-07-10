@@ -15,7 +15,8 @@ export async function GET(request) {
       { method: 'GET', path: '/api/use-cases', description: 'Listar use cases con conteo' },
       { method: 'GET', path: '/api/stats', description: 'Estadísticas del catálogo' },
       { method: 'GET', path: '/api/catalog/export', description: 'Exportar catálogo completo' },
-      { method: 'GET', path: '/api/templates', description: 'Plantillas (placeholder PRD-05)' },
+      { method: 'GET', path: '/api/templates', description: 'Listar plantillas web con filtros' },
+      { method: 'GET', path: '/api/templates/:id', description: 'Detalle de una plantilla' },
     ],
   })
 }

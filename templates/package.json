@@ -4,6 +4,6 @@
   "private": true,
   "description": "Catálogo de plantillas web con design.md y prompts para IA",
   "scripts": {
-    "build": "node scripts/build-templates.mjs"
+    "build": "node ../scripts/build-templates.mjs"
   }
 }

@@ -52,7 +52,7 @@ function loadTemplates() {
 
       templates.push({
         ...meta,
-        category: cat,
+        group: cat,
         path: `${cat}/${tmplDir}`,
         prompt,
         design,
@@ -75,6 +75,7 @@ function build() {
       name: t.name,
       type: t.type,
       category: t.category,
+      group: t.group,
       path: t.path,
       description: t.description,
       sections: t.sections,

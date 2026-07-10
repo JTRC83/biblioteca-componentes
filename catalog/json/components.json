@@ -1,6 +1,6 @@
 {
-  "generatedAt": "2026-07-10T06:32:04.749Z",
-  "total": 236,
+  "generatedAt": "2026-07-10T08:40:26.730Z",
+  "total": 237,
   "categories": [
     {
       "slug": "analog",
@@ -20,7 +20,7 @@
     {
       "slug": "buttons",
       "name": "Buttons",
-      "count": 57
+      "count": 58
     },
     {
       "slug": "cards",
@@ -3269,6 +3269,51 @@
       },
       "adaptable": true,
       "adaptationNotes": "Usa unidades relativas (em/rem). Ajustar font-size del contenedor para escalar. Colores hardcodeados. Extraer a variables CSS para tematización."
+    },
+    {
+      "id": "btn-hover-ripple",
+      "name": "Hover Ripple",
+      "category": "buttons",
+      "tags": [
+        "ripple",
+        "layers",
+        "animated",
+        "css-only"
+      ],
+      "author": "OliverZeros",
+      "source": "uiverse.io",
+      "html": "<button class=\"button button-item\">\n  <span class=\"button-bg\">\n    <span class=\"button-bg-layers\">\n      <span class=\"button-bg-layer button-bg-layer-1 -purple\"></span>\n      <span class=\"button-bg-layer button-bg-layer-2 -turquoise\"></span>\n      <span class=\"button-bg-layer button-bg-layer-3 -yellow\"></span>\n    </span>\n  </span>\n  <span class=\"button-inner\">\n    <span class=\"button-inner-static\">Hover me</span>\n    <span class=\"button-inner-hover\">Hover me</span>\n  </span>\n</button>",
+      "css": "\nbutton {\n  all: unset;\n}\n\n.button {\n  position: relative;\n  display: inline-flex;\n  height: 3.5rem;\n  align-items: center;\n  border-radius: 9999px;\n  padding-left: 2rem;\n  padding-right: 2rem;\n  font-family: Segoe UI;\n  font-size: 1.2rem;\n  font-weight: 640;\n  color: #fafaf6;\n  letter-spacing: -0.06em;\n}\n\n.button-item {\n  background-color: transparent;\n  color: #1d1d1f;\n}\n\n.button-item .button-bg {\n  border-color: rgba(255, 208, 116);\n  background-color: rgba(255, 208, 116);\n}\n\n.button-inner,\n.button-inner-hover,\n.button-inner-static {\n  pointer-events: none;\n  display: block;\n}\n\n.button-inner {\n  position: relative;\n}\n\n.button-inner-hover {\n  position: absolute;\n  top: 0;\n  left: 0;\n  opacity: 0;\n  transform: translateY(70%);\n}\n\n.button-bg {\n  overflow: hidden;\n  border-radius: 2rem;\n  position: absolute;\n  top: 0;\n  left: 0;\n  width: 100%;\n  height: 100%;\n  transform: scale(1);\n  transition: transform 1.8s cubic-bezier(0.19, 1, 0.22, 1);\n}\n\n.button-bg,\n.button-bg-layer,\n.button-bg-layers {\n  display: block;\n}\n\n.button-bg-layers {\n  position: absolute;\n  left: 50%;\n  transform: translate(-50%);\n  top: -60%;\n  aspect-ratio: 1 / 1;\n  width: max(200%, 10rem);\n}\n\n.button-bg-layer {\n  border-radius: 9999px;\n  position: absolute;\n  top: 0;\n  left: 0;\n  width: 100%;\n  height: 100%;\n  transform: scale(0);\n}\n\n.button-bg-layer.-purple {\n  background-color: rgba(163, 116, 255);\n}\n\n.button-bg-layer.-turquoise {\n  background-color: rgba(23, 241, 209);\n}\n\n.button-bg-layer.-yellow {\n  --tw-bg-opacity: 1;\n  background-color: rgba(255, 208, 116, var(--tw-bg-opacity));\n}\n\n.button:hover .button-inner-static {\n  opacity: 0;\n  transform: translateY(-70%);\n  transition:\n    transform 1.4s cubic-bezier(0.19, 1, 0.22, 1),\n    opacity 0.3s linear;\n}\n\n.button:hover .button-inner-hover {\n  opacity: 1;\n  transform: translateY(0);\n  transition:\n    transform 1.4s cubic-bezier(0.19, 1, 0.22, 1),\n    opacity 1.4s cubic-bezier(0.19, 1, 0.22, 1);\n}\n\n.button:hover .button-bg-layer {\n  transition:\n    transform 1.3s cubic-bezier(0.19, 1, 0.22, 1),\n    opacity 0.3s linear;\n}\n\n.button:hover .button-bg-layer-1 {\n  transform: scale(1);\n}\n\n.button:hover .button-bg-layer-2 {\n  transition-delay: 0.1s;\n  transform: scale(1);\n}\n\n.button:hover .button-bg-layer-3 {\n  transition-delay: 0.2s;\n  transform: scale(1);\n}\n",
+      "description": "Botón animado \"Hover Ripple\"",
+      "useCases": [
+        "cta",
+        "action-button",
+        "form-submit",
+        "navigation",
+        "animation"
+      ],
+      "complexity": "low",
+      "responsive": true,
+      "darkMode": false,
+      "interactions": [
+        "hover",
+        "transition",
+        "transform"
+      ],
+      "styles": {
+        "styleTags": [
+          "transition",
+          "animated",
+          "css-only"
+        ],
+        "colorScheme": "mixed",
+        "dominantColors": [
+          "#fafaf6",
+          "#1d1d1f"
+        ]
+      },
+      "adaptable": true,
+      "adaptationNotes": "Usa variables CSS (--var) para personalizar colores y tamaños fácilmente. Usa unidades relativas (em/rem). Ajustar font-size del contenedor para escalar."
     },
     {
       "id": "btn-like-counter",

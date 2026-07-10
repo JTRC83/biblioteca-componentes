@@ -651,8 +651,10 @@ server.registerResource(
     mimeType: 'text/markdown'
   },
   async (uri) => {
-    const styles = getStyles()
-    const text = `# Estilos disponibles\n\n${styles.map((s) => `- \`${s.style}\` (${s.count} componentes)`).join('\n')}`
+    const stats = getStats()
+    const styleEntries = Object.entries(stats.byStyle || {})
+      .sort(([, a], [, b]) => b - a)
+    const text = `# Estilos disponibles\n\n${styleEntries.map(([style, count]) => `- \`${style}\` (${count} componentes)`).join('\n')}`
     return {
       contents: [{
         uri: uri.href,

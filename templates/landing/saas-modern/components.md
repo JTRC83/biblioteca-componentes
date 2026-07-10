@@ -46,7 +46,7 @@ Mapeo de secciones a componentes de la biblioteca. Los IDs son reales y correspo
 - `cb-animated-check` — Alternativa de check animado para lista de features
 
 **Adaptación:**
-- Plan Pro: añadir borde gradient y `shadow-glow-strong` para destacarlo
+- Plan Pro: añadir borde gradient y `btn-circle-glow` para destacarlo
 - Usar `tgl-pill` con colores primario/secondary para el toggle mensual/anual
 - `cb-gradient-check` en tamaño pequeño (16px) al lado de cada feature en la lista
 

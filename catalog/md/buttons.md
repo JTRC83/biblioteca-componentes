@@ -1,6 +1,6 @@
 # Buttons
 
-57 componentes
+58 componentes
 
 | ID | Nombre | Tags | Estilo | Complejidad | Interacciones | Descripción |
 |----|--------|------|--------|------------|-------------|-------------|
@@ -16,6 +16,7 @@
 | `btn-comic-pow` | Comic POW! | comic, brutalist, 3d, animated, css-only | gradient, animated, transition, 3d, css-only | high | hover, click, focus, animation, transition, transform | Botón con efecto 3D y animado "Comic POW!" |
 | `btn-settings` | Settings | icon, svg, settings, animated, css-only | animated, css-only | low | hover, animation, transform | Botón animado "Settings" |
 | `btn-learn-more` | Learn More | expand, arrow, animated, css-only | transition, animated, css-only | low | hover, transition, transform | Botón animado "Learn More" |
+| `btn-hover-ripple` | Hover Ripple | ripple, layers, animated, css-only | transition, animated, css-only | low | hover, transition, transform | Botón animado "Hover Ripple" |
 | `btn-like-counter` | Like Counter | like, heart, counter, animated, css-only | animated, transition, css-only | medium | toggle, animation, transition, transform | Botón animado "Like Counter" |
 | `btn-delete-expand` | Delete Expand | icon, expand, delete, animated, css-only | animated, css-only | medium | hover, transform | Botón animado "Delete Expand" |
 | `btn-continue-application` | Continue Application | icon, folder, pencil, animated, css-only | 3d, gradient, transition, animated, css-only | medium | hover, transition, transform | Botón animado "Continue Application" |
