@@ -38,6 +38,7 @@ import {
   searchComponents,
   getStats
 } from '../lib/catalog.js'
+import { validateWeb, extractCSS } from '../ai/validate.mjs'
 
 // ─── Helpers ──────────────────────────────────────────────────
 
@@ -554,6 +555,45 @@ ${component.css || '—'}
 
     return {
       content: [{ type: 'text', text: guide }]
+    }
+  }
+)
+
+// ─── validate_web tool ────────────────────────────────────────
+
+server.registerTool(
+  'validate_web',
+  {
+    description: 'Valida que el HTML+CSS generado es correcto: tags balanceados, ' +
+      'CSS sin errores, meta tags obligatorios, responsive, sin colisiones de clases, ' +
+      'y colores hardcodeados que deberían ser variables CSS. ' +
+      'Devuelve { valid, warnings, errors, summary }. ' +
+      'Si no se pasa css, se extrae del <style> del html.',
+    inputSchema: z.object({
+      html: z.string().describe('HTML a validar'),
+      css: z.string().optional().describe('CSS a validar (si se omite, se extrae del <style> del html)')
+    })
+  },
+  async ({ html, css }) => {
+    const cssToCheck = css !== undefined ? css : extractCSS(html)
+    const report = validateWeb(html, cssToCheck)
+
+    const lines = [
+      report.summary,
+      '',
+      report.errors.length > 0 ? '## Errores' : '',
+      ...report.errors.map((e) => `- ✗ ${e}`),
+      report.warnings.length > 0 ? `\n## Advertencias (${report.warnings.length})` : '',
+      ...report.warnings.map((w) => `- ⚠ ${w}`)
+    ].filter((l) => l !== '' || report.errors.length === 0 && report.warnings.length === 0)
+
+    const text = lines.join('\n').replace(/\n{3,}/g, '\n\n')
+
+    return {
+      content: [{
+        type: 'text',
+        text: `# Validación de web\n\n\`\`\`json\n${JSON.stringify(report, null, 2)}\n\`\`\`\n\n${text}`
+      }]
     }
   }
 )
