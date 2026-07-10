@@ -2,30 +2,30 @@
 
 25 componentes
 
-| ID | Nombre | Tags | Autor | Descripción |
-|----|--------|------|-------|-------------|
-| `pat-batman` | Batman Pattern | batman, conic, tiles, css-only | mobinkakei | — |
-| `pat-blue-stripes` | Blue Stripes | stripes, diagonal, css-only | uiverse-astronaut | — |
-| `pat-bubble-grid` | Bubble Grid | bubbles, radial, grid, css-only | bociKond | — |
-| `pat-concentric-dots` | Concentric Dots | radial, concentric, dots, css-only | csemszepp | — |
-| `pat-cube-flow` | Cube Flow | cube, animated, gradient, svg, css-only | chase2k25 | — |
-| `pat-stripes` | Diagonal Stripes | stripes, css-only | unknown | — |
-| `pat-diamond-weave` | Diamond Weave | diamond, weave, conic, tiles, css-only | csemszepp | — |
-| `pat-dots` | Dot Grid | dots, grid, css-only | unknown | — |
-| `pat-geo-tiles` | Geo Tiles | geometric, tiles, conic, css-only | csemszepp | — |
-| `pat-gold-spiral` | Gold Spiral | gold, radial, spiral, css-only | s3npa1w_5117 | — |
-| `pat-grid-fade` | Grid Fade | grid, gradient, fade, mask, css-only | kencode7 | — |
-| `pat-hex-dark` | Hex Dark Tiles | hexagon, tiles, conic, dark, css-only | om_6153 | — |
-| `pat-hex-mono` | Hex Mono Tiles | hexagon, tiles, conic, monochrome, css-only | Juanes200122 | — |
-| `pat-hex` | Hexagon Tiles | hexagon, tiles, conic, css-only | csemszepp | — |
-| `pat-horiz-lines` | Horizontal Lines | lines, horizontal, stripes, css-only | ArnavK-09 | — |
-| `pat-kaleido` | Kaleido Pattern | kaleidoscope, conic, animated, hue-rotate, css-only | mobinkakei | — |
-| `pat-leaf-tiles` | Leaf Tiles | leaf, nature, conic, tiles, css-only | FColombati | — |
-| `pat-mixed-grid` | Mixed Grid | grid, conic, checkerboard, css-only | atishaytuli07 | — |
-| `pat-grid` | Neon Grid | grid, neon, css-only | unknown | — |
-| `pat-purple-petals` | Purple Petals | petals, purple, conic, tiles, css-only | FColombati | — |
-| `pat-red-flames` | Red Flames | flames, gradient, diagonal, css-only | ayman-ashine | — |
-| `pat-ribbon-weave` | Ribbon Weave | ribbon, weave, conic, tiles, css-only | csemszepp | — |
-| `pat-star-burst` | Star Burst | star, conic, tiles, css-only | csemszepp | — |
-| `pat-teal-star` | Teal Star | star, teal, conic, tiles, css-only | FColombati | — |
-| `pat-weave` | Weave Pattern | weave, conic, tiles, css-only | csemszepp | — |
+| ID | Nombre | Tags | Estilo | Complejidad | Interacciones | Descripción |
+|----|--------|------|--------|------------|-------------|-------------|
+| `pat-dots` | Dot Grid | dots, grid, css-only | gradient, css-only | low | — | Patrón de fondo "Dot Grid" |
+| `pat-grid` | Neon Grid | grid, neon, css-only | gradient, neon, css-only | low | — | Patrón de fondo con efecto neón "Neon Grid" |
+| `pat-stripes` | Diagonal Stripes | stripes, css-only | gradient, css-only | low | — | Patrón de fondo "Diagonal Stripes" |
+| `pat-hex` | Hexagon Tiles | hexagon, tiles, conic, css-only | gradient, css-only | low | — | Patrón de fondo "Hexagon Tiles" |
+| `pat-batman` | Batman Pattern | batman, conic, tiles, css-only | gradient, css-only | low | — | Patrón de fondo "Batman Pattern" |
+| `pat-cube-flow` | Cube Flow | cube, animated, gradient, svg, css-only | gradient, animated, css-only | low | animation, transform | Patrón de fondo animado y con gradiente "Cube Flow" |
+| `pat-grid-fade` | Grid Fade | grid, gradient, fade, mask, css-only | gradient, mask, css-only | low | — | Patrón de fondo con gradiente "Grid Fade" |
+| `pat-mixed-grid` | Mixed Grid | grid, conic, checkerboard, css-only | gradient, css-only | low | — | Patrón de fondo "Mixed Grid" |
+| `pat-weave` | Weave Pattern | weave, conic, tiles, css-only | gradient, css-only | low | — | Patrón de fondo "Weave Pattern" |
+| `pat-diamond-weave` | Diamond Weave | diamond, weave, conic, tiles, css-only | gradient, css-only | low | — | Patrón de fondo "Diamond Weave" |
+| `pat-kaleido` | Kaleido Pattern | kaleidoscope, conic, animated, hue-rotate, css-only | gradient, animated, filter, css-only | medium | animation | Patrón de fondo animado "Kaleido Pattern" |
+| `pat-geo-tiles` | Geo Tiles | geometric, tiles, conic, css-only | gradient, css-only | low | — | Patrón de fondo "Geo Tiles" |
+| `pat-star-burst` | Star Burst | star, conic, tiles, css-only | gradient, css-only | low | — | Patrón de fondo "Star Burst" |
+| `pat-ribbon-weave` | Ribbon Weave | ribbon, weave, conic, tiles, css-only | gradient, css-only | low | — | Patrón de fondo "Ribbon Weave" |
+| `pat-hex-mono` | Hex Mono Tiles | hexagon, tiles, conic, monochrome, css-only | gradient, css-only | low | — | Patrón de fondo "Hex Mono Tiles" |
+| `pat-red-flames` | Red Flames | flames, gradient, diagonal, css-only | gradient, css-only | low | — | Patrón de fondo con gradiente "Red Flames" |
+| `pat-bubble-grid` | Bubble Grid | bubbles, radial, grid, css-only | gradient, css-only | low | — | Patrón de fondo "Bubble Grid" |
+| `pat-blue-stripes` | Blue Stripes | stripes, diagonal, css-only | gradient, css-only | low | — | Patrón de fondo "Blue Stripes" |
+| `pat-hex-dark` | Hex Dark Tiles | hexagon, tiles, conic, dark, css-only | gradient, dark, css-only | low | — | Patrón de fondo en modo oscuro "Hex Dark Tiles" |
+| `pat-gold-spiral` | Gold Spiral | gold, radial, spiral, css-only | gradient, css-only | low | — | Patrón de fondo "Gold Spiral" |
+| `pat-leaf-tiles` | Leaf Tiles | leaf, nature, conic, tiles, css-only | gradient, css-only | low | — | Patrón de fondo "Leaf Tiles" |
+| `pat-purple-petals` | Purple Petals | petals, purple, conic, tiles, css-only | gradient, css-only | low | — | Patrón de fondo "Purple Petals" |
+| `pat-teal-star` | Teal Star | star, teal, conic, tiles, css-only | gradient, css-only | low | — | Patrón de fondo "Teal Star" |
+| `pat-concentric-dots` | Concentric Dots | radial, concentric, dots, css-only | gradient, css-only | low | — | Patrón de fondo "Concentric Dots" |
+| `pat-horiz-lines` | Horizontal Lines | lines, horizontal, stripes, css-only | gradient, css-only | low | — | Patrón de fondo "Horizontal Lines" |

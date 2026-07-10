@@ -2,6 +2,6 @@
 
 1 componentes
 
-| ID | Nombre | Tags | Autor | Descripción |
-|----|--------|------|-------|-------------|
-| `form-modern` | Modern Form | form, css-only | unknown | — |
+| ID | Nombre | Tags | Estilo | Complejidad | Interacciones | Descripción |
+|----|--------|------|--------|------------|-------------|-------------|
+| `form-modern` | Modern Form | form, css-only | gradient, transition, css-only | low | hover, focus, transition | Formulario "Modern Form" |

@@ -1,27 +1,27 @@
 # Analog
 
-18 componentes
+21 componentes
 
-| ID | Nombre | Tags | Autor | Descripción |
-|----|--------|------|-------|-------------|
-| `analog-beige-button-selector` | Beige Button Selector | analog, buttons, radio, beige, selector, animated, css-only, 3d, physical | Pradeepsaranbishnoi (adaptado a beige) | — |
-| `analog-thermo-braun` | Braun Thermo Card | analog, thermometer, braun, retro, industrial, css-only, interactive, temperature, beige, classic | mamyapro123 (adaptado estilo Braun) | — |
-| `analog-clock-wheel` | Clock Wheel Selector | analog, clock, wheel, selector, dial, animated, css-only, industrial, notch | SelfMadeSystem | — |
-| `analog-command-key` | Command Key | analog, realistic, keyboard, css-only | Yaya12085 | — |
-| `analog-keyboard-dark` | Dark Keyboard | analog, keyboard, dark, shadow, input, css-only, hardware, realistic, physical | dexter-st | — |
-| `analog-ep133-buttons` | EP-133 K.O. II | analog, skeuomorphic, realistic, device, css-only | Praashoo7 | — |
-| `analog-fan-speed-knob-beige` | Fan Speed Knob (Beige) | analog, fan, knob, rotary, beige, animated, css-only, selector, multi-state | chase2k25 (adaptado a beige) | — |
-| `an-led-lever` | LED Lever | 3d, industrial, led, animated, css-only, lever, toggle, metallic | csemszepp | — |
-| `an-lever-toggle` | Lever Switch | lever, joystick, 3d, animated, css-only, metallic, industrial | njesenberger | — |
-| `analog-keyboard` | Mac Keyboard | analog, keyboard, mac, input, css-only, hardware, realistic, physical | LightAndy1 | — |
-| `analog-metallic-toggle` | Metallic Toggle | analog, realistic, metallic, toggle, css-only | FColombati | — |
-| `an-neumorphic-toggle` | Neumorphic Toggle | 3d, neumorphic, split, animated, css-only, toggle | csemszepp | — |
-| `analog-press-3d-ok` | 3D Press OK | 3d, press, realistic, device, css-only | arthur_6104 | — |
-| `an-rocker-switch` | Rocker Switch | 3d, industrial, rocker, switch, animated, css-only, perspective, flicker | Nawsome | — |
-| `analog-rotary-knob` | Rotary Knob Selector | analog, rotary, knob, dial, animated, css-only, selector, 5-positions, metal | Subaashbala | — |
-| `analog-tab-radio-buttons` | Tab Radio Buttons | analog, radio, tabs, selector, animated, css-only, segmented, minimal | m1her | — |
-| `an-3d-light` | 3D Light Switch | 3d, industrial, light, animated, css-only, panel, led | IbrahimIF | — |
-| `analog-vacuum-amp` | Vacuum Tube Amp | analog, amplifier, vacuum, tube, vintage, animated, css-only, radio, knob, switch, meter, hardware | chase2k25 | — |
-| `btn-3d-layered` | 3D Layered | 3d, layered, animated, css-only | njesenberger | — |
-| `tg-on-off` | On Off Toggle | toggle, labeled, animated, css-only, on-off, gradient | JaydipPrajapati1910 | — |
-| `tg-red-green-text` | Red Green Text | red, green, labeled, animated, css-only, toggle, metallic, on-off | Red-Sa | — |
+| ID | Nombre | Tags | Estilo | Complejidad | Interacciones | Descripción |
+|----|--------|------|--------|------------|-------------|-------------|
+| `analog-ep133-buttons` | EP-133 K.O. II | analog, skeuomorphic, realistic, device, css-only | transition, skeuomorphic, css-only | medium | click, transition, transform | Componente analógico esquemórfico "EP-133 K.O. II" |
+| `analog-metallic-toggle` | Metallic Toggle | analog, realistic, metallic, toggle, css-only | neon, glow, transition, filter, css-only | low | click, toggle, transition, transform | Componente analógico "Metallic Toggle" |
+| `analog-command-key` | Command Key | analog, realistic, keyboard, css-only | 3d, gradient, animated, transition, css-only | high | click, focus, animation, transition, transform | Componente analógico "Command Key" |
+| `analog-press-3d-ok` | 3D Press OK | 3d, press, realistic, device, css-only | 3d, gradient, transition, css-only | medium | click, transition, transform | Componente analógico con efecto 3D "3D Press OK" |
+| `an-rocker-switch` | Rocker Switch | 3d, industrial, rocker, switch, animated, css-only, perspective, flicker | neon, 3d, gradient, glow, neumorphic, animated, transition, industrial, css-only | high | toggle, animation, transition, transform | Componente analógico con efecto 3D y animado "Rocker Switch" |
+| `an-neumorphic-toggle` | Neumorphic Toggle | 3d, neumorphic, split, animated, css-only, toggle | neon, gradient, transition, 3d, neumorphic, animated, css-only | medium | toggle, transition | Componente analógico con efecto 3D y animado "Neumorphic Toggle" |
+| `an-lever-toggle` | Lever Switch | lever, joystick, 3d, animated, css-only, metallic, industrial | neon, gradient, neumorphic, transition, mask, 3d, animated, css-only, industrial | medium | hover, toggle, focus, transition, transform | Componente analógico con efecto 3D y animado "Lever Switch" |
+| `an-led-lever` | LED Lever | 3d, industrial, led, animated, css-only, lever, toggle, metallic | neon, gradient, transition, filter, 3d, industrial, animated, css-only | medium | toggle, transition, transform | Componente analógico con efecto 3D y animado "LED Lever" |
+| `an-3d-light` | 3D Light Switch | 3d, industrial, light, animated, css-only, panel, led | gradient, transition, filter, 3d, industrial, animated, css-only | medium | toggle, transition, transform | Componente analógico con efecto 3D y animado "3D Light Switch" |
+| `analog-keyboard` | Mac Keyboard | analog, keyboard, mac, input, css-only, hardware, realistic, physical | transition, css-only, skeuomorphic | low | hover, click, transition, transform | Componente analógico físico realista "Mac Keyboard" |
+| `analog-keyboard-dark` | Dark Keyboard | analog, keyboard, dark, shadow, input, css-only, hardware, realistic, physical | gradient, transition, dark, css-only, skeuomorphic | low | hover, click, transition, transform | Componente analógico en modo oscuro y físico realista "Dark Keyboard" |
+| `analog-vacuum-amp` | Vacuum Tube Amp | analog, amplifier, vacuum, tube, vintage, animated, css-only, radio, knob, switch, meter, hardware | neon, 3d, gradient, glow, animated, transition, mask, filter, css-only | high | hover, toggle, animation, transition, transform | Componente analógico animado "Vacuum Tube Amp" |
+| `analog-thermo-braun` | Braun Thermo Card | analog, thermometer, braun, retro, industrial, css-only, interactive, temperature, beige, classic | glassmorphism, neon, gradient, transition, filter, retro, industrial, css-only | medium | toggle, transition, transform | Componente analógico retro "Braun Thermo Card" |
+| `analog-clock-wheel` | Clock Wheel Selector | analog, clock, wheel, selector, dial, animated, css-only, industrial, notch | gradient, animated, transition, css-only, industrial | medium | toggle, animation, transition, transform | Componente analógico animado "Clock Wheel Selector" |
+| `analog-beige-button-selector` | Beige Button Selector | analog, buttons, radio, beige, selector, animated, css-only, 3d, physical | neon, 3d, transition, animated, css-only, skeuomorphic | medium | toggle, transition, transform | Componente analógico animado y con efecto 3D "Beige Button Selector" |
+| `analog-tab-radio-buttons` | Tab Radio Buttons | analog, radio, tabs, selector, animated, css-only, segmented, minimal | neon, gradient, transition, animated, css-only, minimal | medium | toggle, transition, transform | Componente analógico animado y minimalista "Tab Radio Buttons" |
+| `analog-rotary-knob` | Rotary Knob Selector | analog, rotary, knob, dial, animated, css-only, selector, 5-positions, metal | transition, animated, css-only | medium | toggle, transition, transform | Componente analógico animado "Rotary Knob Selector" |
+| `analog-fan-speed-knob-beige` | Fan Speed Knob (Beige) | analog, fan, knob, rotary, beige, animated, css-only, selector, multi-state | neon, gradient, glow, transition, animated, css-only | medium | toggle, transition, transform | Componente analógico animado "Fan Speed Knob (Beige)" |
+| `tg-on-off` | On Off Toggle | toggle, labeled, animated, css-only, on-off, gradient | neon, gradient, neobrutalism, neumorphic, filter, animated, css-only | low | toggle | Componente analógico animado y con gradiente "On Off Toggle" |
+| `tg-red-green-text` | Red Green Text | red, green, labeled, animated, css-only, toggle, metallic, on-off | neon, gradient, glow, transition, animated, css-only | medium | toggle, transition | Componente analógico animado "Red Green Text" |
+| `btn-3d-layered` | 3D Layered | 3d, layered, animated, css-only | neon, gradient, 3d, animated, css-only | medium | click, transform | Componente analógico con efecto 3D y animado "3D Layered" |
