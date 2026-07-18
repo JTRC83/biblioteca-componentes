@@ -1,0 +1,589 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Retro 80s — Design System Preview</title>
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;900&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --color-primary: #ff2a6d;
+    --color-primary-glow: rgba(255, 42, 109, 0.4);
+    --color-secondary: #05d9e8;
+    --color-secondary-glow: rgba(5, 217, 232, 0.4);
+    --color-tertiary: #b400ff;
+    --color-background: #0d0221;
+    --color-background-alt: #10052a;
+    --color-surface: #1a0b2e;
+    --color-surface-hover: #26134a;
+    --color-border: #2a1a44;
+    --color-border-neon: rgba(255, 42, 109, 0.3);
+    --color-border-neon-cyan: rgba(5, 217, 232, 0.3);
+    --color-text: #d1f7ff;
+    --color-text-secondary: #8b6f9c;
+    --color-text-muted: #5a4a6f;
+    --color-success: #00ff88;
+    --color-warning: #ffaa00;
+    --color-error: #ff2a6d;
+    --font-display: 'Orbitron', 'Inter', system-ui, sans-serif;
+    --font-body: 'Inter', system-ui, sans-serif;
+    --font-mono: 'JetBrains Mono', monospace;
+    --radius-sm: 4px;
+    --radius-md: 8px;
+    --radius-lg: 12px;
+    --radius-xl: 16px;
+    --transition: 200ms ease;
+    --sunset-gradient: linear-gradient(180deg, #ff2a6d 0%, #b400ff 50%, #05d9e8 100%);
+    --sunset-gradient-h: linear-gradient(90deg, #ff2a6d 0%, #b400ff 50%, #05d9e8 100%);
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: var(--font-body);
+    background: var(--color-background);
+    color: var(--color-text);
+    min-height: 100vh;
+  }
+  .container { max-width: 1280px; margin: 0 auto; padding: 0 24px; }
+
+  .hero {
+    position: relative;
+    text-align: center;
+    padding: 100px 24px 160px;
+    overflow: hidden;
+    background: linear-gradient(180deg, #0d0221 0%, #1a0b2e 60%, #2a0f4a 100%);
+  }
+  .hero__scanlines {
+    position: absolute;
+    inset: 0;
+    background: repeating-linear-gradient(
+      0deg,
+      rgba(5, 217, 232, 0.02) 0px,
+      rgba(5, 217, 232, 0.02) 1px,
+      transparent 1px,
+      transparent 4px
+    );
+    pointer-events: none;
+    z-index: 2;
+  }
+  .hero__sun {
+    position: absolute;
+    bottom: 100px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 280px;
+    height: 140px;
+    border-radius: 50%;
+    background: var(--sunset-gradient);
+    filter: blur(2px);
+    opacity: 0.6;
+    z-index: 1;
+    -webkit-mask-image: linear-gradient(180deg, #000 0%, #000 50%, transparent 100%);
+    mask-image: linear-gradient(180deg, #000 0%, #000 50%, transparent 100%);
+    box-shadow: 0 0 80px rgba(255, 42, 109, 0.3);
+  }
+  .hero__sun::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: repeating-linear-gradient(
+      0deg,
+      transparent 0px,
+      transparent 12px,
+      #0d0221 12px,
+      #0d0221 16px
+    );
+    border-radius: 50%;
+  }
+  .hero__content { position: relative; z-index: 3; }
+  .hero__eyebrow {
+    display: inline-block;
+    padding: 6px 16px;
+    border: 1px solid var(--color-border-neon);
+    border-radius: var(--radius-sm);
+    font-family: var(--font-display);
+    font-size: 11px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.2em;
+    color: var(--color-primary);
+    margin-bottom: 32px;
+    text-shadow: 0 0 10px var(--color-primary-glow);
+  }
+  .hero__title {
+    font-family: var(--font-display);
+    font-size: clamp(2.5rem, 7vw, 6rem);
+    font-weight: 900;
+    letter-spacing: 0.02em;
+    line-height: 1.0;
+    margin-bottom: 24px;
+    color: var(--color-text);
+  }
+  .hero__title .neon-pink {
+    color: var(--color-primary);
+    text-shadow: 0 0 20px var(--color-primary-glow), 0 0 40px var(--color-primary-glow);
+  }
+  .hero__title .neon-cyan {
+    color: var(--color-secondary);
+    text-shadow: 0 0 20px var(--color-secondary-glow), 0 0 40px var(--color-secondary-glow);
+  }
+  .hero__subtitle {
+    font-family: var(--font-body);
+    font-size: 1.125rem;
+    color: var(--color-text-secondary);
+    max-width: 560px;
+    margin: 0 auto 40px;
+    line-height: 1.5;
+  }
+  .hero__actions { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; }
+
+  .grid-floor {
+    position: absolute;
+    bottom: 0;
+    left: -50%;
+    right: -50%;
+    height: 180px;
+    background-image:
+      linear-gradient(rgba(5, 217, 232, 0.3) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255, 42, 109, 0.2) 1px, transparent 1px);
+    background-size: 40px 40px;
+    transform: perspective(280px) rotateX(65deg);
+    transform-origin: bottom center;
+    z-index: 1;
+    -webkit-mask-image: linear-gradient(180deg, transparent 0%, #000 30%, #000 100%);
+    mask-image: linear-gradient(180deg, transparent 0%, #000 30%, #000 100%);
+  }
+
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 12px 28px;
+    border: none;
+    border-radius: var(--radius-md);
+    font-family: var(--font-display);
+    font-size: 14px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    cursor: pointer;
+    transition: var(--transition);
+    text-decoration: none;
+  }
+  .btn--primary {
+    background: var(--color-primary);
+    color: #fff;
+  }
+  .btn--primary:hover {
+    box-shadow: 0 0 24px var(--color-primary-glow);
+    transform: translateY(-1px);
+  }
+  .btn--secondary {
+    background: var(--color-surface);
+    border: 1px solid var(--color-border-neon-cyan);
+    color: var(--color-secondary);
+  }
+  .btn--secondary:hover {
+    box-shadow: 0 0 20px var(--color-secondary-glow);
+    background: var(--color-surface-hover);
+  }
+  .btn--gradient {
+    background: var(--sunset-gradient-h);
+    color: #fff;
+  }
+  .btn--gradient:hover {
+    box-shadow: 0 0 24px rgba(180, 0, 255, 0.4);
+    transform: translateY(-1px);
+  }
+  .btn--ghost {
+    background: transparent;
+    color: var(--color-text-secondary);
+    border: 1px solid var(--color-border);
+  }
+  .btn--ghost:hover { color: var(--color-primary); border-color: var(--color-border-neon); }
+
+  .section { margin-bottom: 80px; padding: 0 24px; }
+  .section__title {
+    font-family: var(--font-display);
+    font-size: 1.5rem;
+    font-weight: 700;
+    margin-bottom: 32px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    text-transform: uppercase;
+    letter-spacing: 0.02em;
+  }
+  .section__title::before {
+    content: '';
+    width: 4px;
+    height: 24px;
+    background: var(--sunset-gradient-h);
+    box-shadow: 0 0 12px var(--color-primary-glow);
+    border-radius: 2px;
+  }
+
+  .palette { display: grid; grid-template-columns: repeat(auto-fill, minmax(140px, 1fr)); gap: 16px; }
+  .swatch {
+    background: var(--color-surface);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    transition: var(--transition);
+  }
+  .swatch:hover { border-color: var(--color-border-neon); box-shadow: 0 0 20px rgba(255,42,109,0.1); }
+  .swatch__color { height: 80px; }
+  .swatch__color--neon { box-shadow: inset 0 0 20px currentColor; }
+  .swatch__color--sunset { background: var(--sunset-gradient); }
+  .swatch__info { padding: 12px 16px; }
+  .swatch__name { font-family: var(--font-display); font-size: 11px; font-weight: 600; color: var(--color-text); text-transform: uppercase; letter-spacing: 0.05em; }
+  .swatch__hex { font-size: 11px; color: var(--color-text-muted); font-family: var(--font-mono); }
+
+  .cards { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 20px; }
+  .card {
+    background: var(--color-surface);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-lg);
+    padding: 24px;
+    transition: var(--transition);
+    position: relative;
+    overflow: hidden;
+  }
+  .card::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: repeating-linear-gradient(
+      0deg,
+      rgba(5, 217, 232, 0.02) 0px,
+      rgba(5, 217, 232, 0.02) 1px,
+      transparent 1px,
+      transparent 4px
+    );
+    pointer-events: none;
+  }
+  .card:hover {
+    border-color: var(--color-border-neon);
+    box-shadow: 0 0 24px rgba(255,42,109,0.15);
+  }
+  .card--featured {
+    border-color: var(--color-border-neon);
+    box-shadow: 0 0 30px rgba(255,42,109,0.1);
+  }
+  .card--gradient {
+    background: linear-gradient(135deg, #1a0b2e 0%, #2a0f4a 50%, #0d0221 100%);
+  }
+  .card__icon {
+    width: 48px;
+    height: 48px;
+    border: 1px solid var(--color-border-neon);
+    border-radius: var(--radius-md);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: var(--font-display);
+    font-size: 22px;
+    color: var(--color-primary);
+    text-shadow: 0 0 10px var(--color-primary-glow);
+    margin-bottom: 20px;
+    position: relative;
+    z-index: 1;
+  }
+  .card__title {
+    font-family: var(--font-display);
+    font-size: 1rem;
+    font-weight: 700;
+    margin-bottom: 8px;
+    text-transform: uppercase;
+    letter-spacing: 0.02em;
+    position: relative;
+    z-index: 1;
+  }
+  .card__desc {
+    font-family: var(--font-body);
+    font-size: 14px;
+    color: var(--color-text-secondary);
+    line-height: 1.5;
+    position: relative;
+    z-index: 1;
+  }
+
+  .form-row { display: flex; gap: 16px; flex-wrap: wrap; margin-bottom: 16px; max-width: 600px; }
+  .field { flex: 1; min-width: 200px; }
+  .field label {
+    display: block;
+    font-family: var(--font-display);
+    font-size: 11px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.2em;
+    color: var(--color-text-secondary);
+    margin-bottom: 8px;
+  }
+  .input {
+    width: 100%;
+    padding: 12px 16px;
+    background: var(--color-surface);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-md);
+    color: var(--color-text);
+    font-family: var(--font-mono);
+    font-size: 14px;
+    transition: var(--transition);
+  }
+  .input:focus {
+    outline: none;
+    border-color: var(--color-primary);
+    box-shadow: 0 0 12px rgba(255,42,109,0.2);
+  }
+  .input::placeholder { color: var(--color-text-muted); }
+
+  .input-underline {
+    width: 100%;
+    padding: 12px 0;
+    background: transparent;
+    border: none;
+    border-bottom: 2px solid var(--color-border);
+    color: var(--color-text);
+    font-family: var(--font-mono);
+    font-size: 14px;
+    transition: var(--transition);
+  }
+  .input-underline:focus {
+    outline: none;
+    border-bottom-color: var(--color-secondary);
+    box-shadow: 0 2px 12px rgba(5,217,232,0.3);
+  }
+  .input-underline::placeholder { color: var(--color-text-muted); }
+
+  .chips { display: flex; gap: 8px; flex-wrap: wrap; }
+  .chip {
+    padding: 4px 12px;
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-sm);
+    font-family: var(--font-display);
+    font-size: 11px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    background: transparent;
+    color: var(--color-text-secondary);
+    transition: var(--transition);
+  }
+  .chip--active { border-color: var(--color-primary); color: var(--color-primary); background: rgba(255,42,109,0.05); text-shadow: 0 0 8px var(--color-primary-glow); }
+  .chip--cyan { border-color: var(--color-secondary); color: var(--color-secondary); text-shadow: 0 0 8px var(--color-secondary-glow); }
+  .chip--success { border-color: var(--color-success); color: var(--color-success); }
+  .chip--warning { border-color: var(--color-warning); color: var(--color-warning); }
+  .chip--error { border-color: var(--color-error); color: var(--color-error); }
+
+  .toggles { display: flex; gap: 32px; align-items: center; flex-wrap: wrap; }
+  .toggle {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    font-family: var(--font-body);
+    font-size: 14px;
+    color: var(--color-text-secondary);
+  }
+  .toggle__switch {
+    position: relative;
+    width: 48px;
+    height: 24px;
+    background: var(--color-surface);
+    border: 1px solid var(--color-border);
+    border-radius: 9999px;
+    cursor: pointer;
+    transition: var(--transition);
+  }
+  .toggle__switch::after {
+    content: '';
+    position: absolute;
+    top: 2px;
+    left: 2px;
+    width: 18px;
+    height: 18px;
+    background: var(--color-text-muted);
+    border-radius: 50%;
+    transition: var(--transition);
+  }
+  .toggle__switch--on {
+    background: rgba(255,42,109,0.2);
+    border-color: var(--color-primary);
+    box-shadow: 0 0 12px var(--color-primary-glow);
+  }
+  .toggle__switch--on::after {
+    left: 26px;
+    background: var(--color-primary);
+    box-shadow: 0 0 8px var(--color-primary-glow);
+  }
+
+  .loaders { display: flex; gap: 40px; align-items: center; flex-wrap: wrap; }
+  .loader-sphere {
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    background: var(--sunset-gradient);
+    box-shadow: 0 0 20px rgba(180,0,255,0.4);
+    animation: pulse 1.5s ease-in-out infinite;
+  }
+  @keyframes pulse {
+    0%, 100% { transform: scale(1); opacity: 1; }
+    50% { transform: scale(0.85); opacity: 0.6; }
+  }
+  .loader-ring {
+    width: 48px;
+    height: 48px;
+    border: 3px solid var(--color-surface);
+    border-top-color: var(--color-primary);
+    border-right-color: var(--color-secondary);
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+    box-shadow: 0 0 12px var(--color-primary-glow);
+  }
+  @keyframes spin {
+    to { transform: rotate(360deg); }
+  }
+  .loader-label {
+    font-family: var(--font-display);
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--color-text-secondary);
+    margin-top: 8px;
+    text-align: center;
+  }
+</style>
+</head>
+<body>
+
+  <div class="hero">
+    <div class="hero__scanlines"></div>
+    <div class="hero__sun"></div>
+    <div class="grid-floor"></div>
+    <div class="hero__content">
+      <span class="hero__eyebrow">Synthwave Design System</span>
+      <h1 class="hero__title">Retro <span class="neon-pink">80s</span></h1>
+      <p class="hero__subtitle">Estetica synthwave con sunset gradients, grid floor y neon pink/cyan. Nostalgia retrofuturista de los 80s.</p>
+      <div class="hero__actions">
+        <a class="btn btn--primary">Inicializar</a>
+        <a class="btn btn--gradient">Documentacion</a>
+        <a class="btn btn--secondary">Explorar</a>
+      </div>
+    </div>
+  </div>
+
+  <div class="container">
+
+    <div class="section">
+      <h2 class="section__title">Paleta de Colores</h2>
+      <div class="palette">
+        <div class="swatch"><div class="swatch__color swatch__color--neon" style="background:#ff2a6d;color:#ff2a6d"></div><div class="swatch__info"><div class="swatch__name">Primary</div><div class="swatch__hex">#ff2a6d</div></div></div>
+        <div class="swatch"><div class="swatch__color swatch__color--neon" style="background:#05d9e8;color:#05d9e8"></div><div class="swatch__info"><div class="swatch__name">Secondary</div><div class="swatch__hex">#05d9e8</div></div></div>
+        <div class="swatch"><div class="swatch__color swatch__color--neon" style="background:#b400ff;color:#b400ff"></div><div class="swatch__info"><div class="swatch__name">Tertiary</div><div class="swatch__hex">#b400ff</div></div></div>
+        <div class="swatch"><div class="swatch__color swatch__color--sunset"></div><div class="swatch__info"><div class="swatch__name">Sunset</div><div class="swatch__hex">gradient</div></div></div>
+        <div class="swatch"><div class="swatch__color" style="background:#0d0221"></div><div class="swatch__info"><div class="swatch__name">Background</div><div class="swatch__hex">#0d0221</div></div></div>
+        <div class="swatch"><div class="swatch__color" style="background:#1a0b2e"></div><div class="swatch__info"><div class="swatch__name">Surface</div><div class="swatch__hex">#1a0b2e</div></div></div>
+        <div class="swatch"><div class="swatch__color" style="background:#2a1a44"></div><div class="swatch__info"><div class="swatch__name">Border</div><div class="swatch__hex">#2a1a44</div></div></div>
+        <div class="swatch"><div class="swatch__color" style="background:#d1f7ff"></div><div class="swatch__info"><div class="swatch__name">Text</div><div class="swatch__hex">#d1f7ff</div></div></div>
+        <div class="swatch"><div class="swatch__color swatch__color--neon" style="background:#00ff88;color:#00ff88"></div><div class="swatch__info"><div class="swatch__name">Success</div><div class="swatch__hex">#00ff88</div></div></div>
+      </div>
+    </div>
+
+    <div class="section">
+      <h2 class="section__title">Synthwave Cards</h2>
+      <div class="cards">
+        <div class="card card--featured">
+          <div class="card__icon">▶</div>
+          <h3 class="card__title">Synthwave Player</h3>
+          <p class="card__desc">Reproductor de musica synthwave con visualizador neón. Sunset gradients y grid floor animado.</p>
+        </div>
+        <div class="card card--gradient">
+          <div class="card__icon">◆</div>
+          <h3 class="card__title">Retro Arcade</h3>
+          <p class="card__desc">Coleccion de juegos arcade de los 80s con high scores neón y scan lines CRT.</p>
+        </div>
+        <div class="card">
+          <div class="card__icon">▲</div>
+          <h3 class="card__title">Vaporwave</h3>
+          <p class="card__desc">Estetica vaporwave con gradientes sunset, tipografia Orbitron y glow effects.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="section">
+      <h2 class="section__title">Botones</h2>
+      <div style="display:flex;gap:16px;flex-wrap:wrap">
+        <a class="btn btn--primary">Neon Pink</a>
+        <a class="btn btn--secondary">Neon Cyan</a>
+        <a class="btn btn--gradient">Sunset Gradient</a>
+        <a class="btn btn--ghost">Ghost</a>
+      </div>
+    </div>
+
+    <div class="section">
+      <h2 class="section__title">Elementos de Formulario</h2>
+      <div class="form-row">
+        <div class="field">
+          <label>Usuario</label>
+          <input class="input" type="text" placeholder="player@arcade.io">
+        </div>
+        <div class="field">
+          <label>Clave de Acceso</label>
+          <input class="input" type="password" placeholder="••••••••••">
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="field">
+          <label>Input Underline</label>
+          <input class="input-underline" type="text" placeholder="underline neón cyan">
+        </div>
+      </div>
+    </div>
+
+    <div class="section">
+      <h2 class="section__title">Chips y Badges</h2>
+      <div class="chips">
+        <span class="chip">DEFAULT</span>
+        <span class="chip chip--active">PINK</span>
+        <span class="chip chip--cyan">CYAN</span>
+        <span class="chip chip--success">ONLINE</span>
+        <span class="chip chip--warning">PENDING</span>
+        <span class="chip chip--error">OFFLINE</span>
+      </div>
+    </div>
+
+    <div class="section">
+      <h2 class="section__title">Toggles</h2>
+      <div class="toggles">
+        <div class="toggle">
+          <span>Modo Retro</span>
+          <div class="toggle__switch toggle__switch--on"></div>
+        </div>
+        <div class="toggle">
+          <span>Scan Lines</span>
+          <div class="toggle__switch toggle__switch--on"></div>
+        </div>
+        <div class="toggle">
+          <span>Grid Floor</span>
+          <div class="toggle__switch"></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="section">
+      <h2 class="section__title">Loaders</h2>
+      <div class="loaders">
+        <div style="display:flex;flex-direction:column;align-items:center">
+          <div class="loader-sphere"></div>
+          <div class="loader-label">Sunset Sphere</div>
+        </div>
+        <div style="display:flex;flex-direction:column;align-items:center">
+          <div class="loader-ring"></div>
+          <div class="loader-label">Neon Ring</div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+</body>
+</html>

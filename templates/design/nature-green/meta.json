@@ -1,0 +1,38 @@
+{
+  "id": "design-nature-green",
+  "name": "Nature Green",
+  "type": "design",
+  "category": "nature",
+  "description": "Sistema de design ligero, organico y eco-friendly con tonos verdes. Verde bosque, menta y crema calido. Estetica natural, sostenible y fresca. Para marcas que transmiten conexion con la naturaleza y sostenibilidad.",
+  "screenshot": null,
+  "sections": ["colors", "typography", "spacing", "components", "elevation", "guidelines"],
+  "styleTags": ["light", "organic", "green", "eco", "natural", "sustainable"],
+  "colorScheme": {
+    "primary": "#2d6a4f",
+    "secondary": "#52b788",
+    "background": "#f5f7f3",
+    "surface": "#ffffff",
+    "text": "#1a2e1a",
+    "textSecondary": "#4a6a4a"
+  },
+  "typography": {
+    "fontFamily": "'DM Sans', 'Inter', system-ui, sans-serif",
+    "headingScale": "clamp(2rem, 5vw, 3.5rem)",
+    "bodySize": "16px",
+    "lineHeight": "1.7"
+  },
+  "spacing": {
+    "section": "80px",
+    "element": "24px",
+    "gap": "20px"
+  },
+  "borderRadius": {
+    "sm": "8px",
+    "md": "12px",
+    "lg": "16px",
+    "xl": "24px"
+  },
+  "responsive": true,
+  "complexity": "low",
+  "industry": ["sustainability", "outdoor", "agriculture", "eco", "organic", "gardening", "energy"]
+}

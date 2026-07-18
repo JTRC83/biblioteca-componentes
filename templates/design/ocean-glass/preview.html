@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ocean Glass — Design System Preview</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --color-primary: #0d9488;
+    --color-primary-hover: #0b7d72;
+    --color-secondary: #06b6d4;
+    --color-tertiary: #22d3ee;
+    --color-gradient: linear-gradient(135deg, #0d9488 0%, #06b6d4 100%);
+    --color-gradient-text: linear-gradient(135deg, #0d9488 0%, #06b6d4 50%, #22d3ee 100%);
+    --color-background: #0a0f12;
+    --color-background-alt: #0c1418;
+    --color-surface: #0f1a1e;
+    --color-surface-hover: #15252a;
+    --color-surface-glass: rgba(15, 26, 30, 0.6);
+    --color-border: rgba(255, 255, 255, 0.08);
+    --color-border-hover: rgba(13, 148, 136, 0.4);
+    --color-text: #e0f2f1;
+    --color-text-secondary: #80a0a0;
+    --color-text-muted: #5a7a7a;
+    --color-success: #22c55e;
+    --color-warning: #f59e0b;
+    --color-error: #ef4444;
+    --radius-sm: 8px;
+    --radius-md: 12px;
+    --radius-lg: 16px;
+    --radius-xl: 24px;
+    --glass-blur: 12px;
+    --glass-bg: rgba(15, 26, 30, 0.6);
+    --glass-border: 1px solid rgba(255, 255, 255, 0.08);
+    --glass-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
+    --shadow-glow: 0 0 40px rgba(13, 148, 136, 0.15);
+    --transition: 250ms cubic-bezier(0.4, 0, 0.2, 1);
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: 'Inter', system-ui, sans-serif;
+    background: var(--color-background);
+    color: var(--color-text);
+    padding: 48px 24px;
+    min-height: 100vh;
+  }
+  .container { max-width: 1200px; margin: 0 auto; }
+
+  .hero { text-align: center; margin-bottom: 64px; }
+  .hero__eyebrow {
+    display: inline-block;
+    padding: 6px 16px;
+    background: var(--glass-bg);
+    backdrop-filter: blur(var(--glass-blur));
+    border: var(--glass-border);
+    border-radius: 9999px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--color-text-secondary);
+    margin-bottom: 24px;
+  }
+  .hero__title {
+    font-size: clamp(2rem, 5vw, 4rem);
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    line-height: 1.1;
+    margin-bottom: 16px;
+  }
+  .hero__title .gradient {
+    background: var(--color-gradient-text);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+  .hero__subtitle {
+    font-size: 1.125rem;
+    color: var(--color-text-secondary);
+    max-width: 600px;
+    margin: 0 auto 32px;
+    line-height: 1.6;
+  }
+  .hero__actions { display: flex; gap: 16px; justify-content: center; }
+
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 24px;
+    border: none;
+    border-radius: var(--radius-md);
+    font-family: inherit;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: var(--transition);
+    text-decoration: none;
+  }
+  .btn--primary {
+    background: var(--color-gradient);
+    color: #fff;
+  }
+  .btn--primary:hover {
+    box-shadow: var(--shadow-glow);
+    transform: translateY(-1px);
+  }
+  .btn--secondary {
+    background: var(--glass-bg);
+    backdrop-filter: blur(var(--glass-blur));
+    border: var(--glass-border);
+    color: var(--color-text);
+  }
+  .btn--secondary:hover {
+    border-color: var(--color-border-hover);
+    background: var(--color-surface-hover);
+  }
+  .btn--ghost {
+    background: transparent;
+    color: var(--color-text-secondary);
+  }
+  .btn--ghost:hover { color: var(--color-text); }
+
+  .section { margin-bottom: 64px; }
+  .section__title {
+    font-size: 1.25rem;
+    font-weight: 600;
+    margin-bottom: 24px;
+    color: var(--color-text);
+  }
+
+  .palette { display: grid; grid-template-columns: repeat(auto-fill, minmax(140px, 1fr)); gap: 16px; }
+  .swatch {
+    background: var(--glass-bg);
+    backdrop-filter: blur(var(--glass-blur));
+    border: var(--glass-border);
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    transition: var(--transition);
+  }
+  .swatch:hover { border-color: var(--color-border-hover); transform: translateY(-2px); }
+  .swatch__color { height: 80px; }
+  .swatch__info { padding: 12px 16px; }
+  .swatch__name { font-size: 12px; font-weight: 600; color: var(--color-text); }
+  .swatch__hex { font-size: 11px; color: var(--color-text-muted); font-family: 'JetBrains Mono', monospace; }
+
+  .cards { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 24px; }
+  .card {
+    background: var(--glass-bg);
+    backdrop-filter: blur(var(--glass-blur));
+    border: var(--glass-border);
+    border-radius: var(--radius-lg);
+    padding: 24px;
+    transition: var(--transition);
+  }
+  .card:hover {
+    border-color: var(--color-border-hover);
+    box-shadow: var(--glass-shadow);
+    transform: translateY(-2px);
+  }
+  .card__icon {
+    width: 48px;
+    height: 48px;
+    border-radius: var(--radius-md);
+    background: var(--color-gradient);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 24px;
+    margin-bottom: 16px;
+  }
+  .card__title { font-size: 1rem; font-weight: 600; margin-bottom: 8px; }
+  .card__desc { font-size: 14px; color: var(--color-text-secondary); line-height: 1.6; }
+
+  .form-row { display: flex; gap: 16px; flex-wrap: wrap; margin-bottom: 16px; }
+  .field { flex: 1; min-width: 200px; }
+  .field label { display: block; font-size: 13px; font-weight: 500; color: var(--color-text-secondary); margin-bottom: 8px; }
+  .input {
+    width: 100%;
+    padding: 10px 14px;
+    background: var(--glass-bg);
+    backdrop-filter: blur(var(--glass-blur));
+    border: var(--glass-border);
+    border-radius: var(--radius-md);
+    color: var(--color-text);
+    font-family: inherit;
+    font-size: 14px;
+    transition: var(--transition);
+  }
+  .input:focus {
+    outline: none;
+    border-color: var(--color-primary);
+    box-shadow: 0 0 0 3px rgba(13, 148, 136, 0.12);
+  }
+  .input::placeholder { color: var(--color-text-muted); }
+
+  .chips { display: flex; gap: 8px; flex-wrap: wrap; }
+  .chip {
+    padding: 4px 12px;
+    border-radius: 9999px;
+    font-size: 12px;
+    font-weight: 500;
+    background: var(--color-surface-hover);
+    color: var(--color-text-secondary);
+  }
+  .chip--active { background: var(--color-gradient); color: #fff; }
+  .chip--success { background: rgba(34, 197, 94, 0.15); color: var(--color-success); }
+  .chip--warning { background: rgba(245, 158, 11, 0.15); color: var(--color-warning); }
+  .chip--error { background: rgba(239, 68, 68, 0.15); color: var(--color-error); }
+
+  .toggle {
+    width: 44px;
+    height: 24px;
+    border-radius: 9999px;
+    background: var(--color-surface-hover);
+    border: var(--glass-border);
+    position: relative;
+    cursor: pointer;
+    transition: var(--transition);
+  }
+  .toggle--on { background: var(--color-gradient); }
+  .toggle__thumb {
+    position: absolute;
+    top: 2px;
+    left: 2px;
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    background: #fff;
+    transition: var(--transition);
+  }
+  .toggle--on .toggle__thumb { left: 22px; }
+</style>
+</head>
+<body>
+<div class="container">
+
+  <div class="hero">
+    <span class="hero__eyebrow">Sistema de Design</span>
+    <h1 class="hero__title">Ocean <span class="gradient">Glass</span></h1>
+    <p class="hero__subtitle">Glassmorphism oscuro con tonos teal y cian, evocando profundidad, agua y claridad para plataformas de viajes, cloud y tecnologia marina.</p>
+    <div class="hero__actions">
+      <a class="btn btn--primary">Comenzar</a>
+      <a class="btn btn--secondary">Documentacion</a>
+      <a class="btn btn--ghost">Saber mas</a>
+    </div>
+  </div>
+
+  <div class="section">
+    <h2 class="section__title">Paleta de Color</h2>
+    <div class="palette">
+      <div class="swatch"><div class="swatch__color" style="background:#0d9488"></div><div class="swatch__info"><div class="swatch__name">Primary</div><div class="swatch__hex">#0d9488</div></div></div>
+      <div class="swatch"><div class="swatch__color" style="background:#06b6d4"></div><div class="swatch__info"><div class="swatch__name">Secondary</div><div class="swatch__hex">#06b6d4</div></div></div>
+      <div class="swatch"><div class="swatch__color" style="background:#22d3ee"></div><div class="swatch__info"><div class="swatch__name">Tertiary</div><div class="swatch__hex">#22d3ee</div></div></div>
+      <div class="swatch"><div class="swatch__color" style="background:#0a0f12"></div><div class="swatch__info"><div class="swatch__name">Background</div><div class="swatch__hex">#0a0f12</div></div></div>
+      <div class="swatch"><div class="swatch__color" style="background:#0f1a1e"></div><div class="swatch__info"><div class="swatch__name">Surface</div><div class="swatch__hex">#0f1a1e</div></div></div>
+      <div class="swatch"><div class="swatch__color" style="background:#e0f2f1"></div><div class="swatch__info"><div class="swatch__name">Text</div><div class="swatch__hex">#e0f2f1</div></div></div>
+      <div class="swatch"><div class="swatch__color" style="background:#80a0a0"></div><div class="swatch__info"><div class="swatch__name">Text Sec.</div><div class="swatch__hex">#80a0a0</div></div></div>
+      <div class="swatch"><div class="swatch__color" style="background:#22c55e"></div><div class="swatch__info"><div class="swatch__name">Success</div><div class="swatch__hex">#22c55e</div></div></div>
+      <div class="swatch"><div class="swatch__color" style="background:#f59e0b"></div><div class="swatch__info"><div class="swatch__name">Warning</div><div class="swatch__hex">#f59e0b</div></div></div>
+      <div class="swatch"><div class="swatch__color" style="background:#ef4444"></div><div class="swatch__info"><div class="swatch__name">Error</div><div class="swatch__hex">#ef4444</div></div></div>
+    </div>
+  </div>
+
+  <div class="section">
+    <h2 class="section__title">Glass Cards</h2>
+    <div class="cards">
+      <div class="card">
+        <div class="card__icon">N</div>
+        <h3 class="card__title">Navegacion</h3>
+        <p class="card__desc">Rutas maritimas en tiempo real con dashboards glassmorphism y mapas con tinte teal.</p>
+      </div>
+      <div class="card">
+        <div class="card__icon">C</div>
+        <h3 class="card__title">Cloud</h3>
+        <p class="card__desc">Infraestructura cloud con superficies translucidas que muestran profundidad de servicios.</p>
+      </div>
+      <div class="card">
+        <div class="card__icon">V</div>
+        <h3 class="card__title">Viajes</h3>
+        <p class="card__desc">Reservas y itinerarios con capas que separan contenido de controles como olas del mar.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <h2 class="section__title">Elementos de Formulario</h2>
+    <div style="max-width: 600px;">
+      <div class="form-row">
+        <div class="field">
+          <label>Email</label>
+          <input class="input" type="email" placeholder="tu@correo.com">
+        </div>
+        <div class="field">
+          <label>Contrasena</label>
+          <input class="input" type="password" placeholder="••••••••">
+        </div>
+      </div>
+      <div class="form-row" style="align-items:center;">
+        <div class="toggle toggle--on"><div class="toggle__thumb"></div></div>
+        <span style="font-size:14px;color:var(--color-text-secondary);">Activar notificaciones</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <h2 class="section__title">Chips y Badges</h2>
+    <div class="chips">
+      <span class="chip">Default</span>
+      <span class="chip chip--active">Activo</span>
+      <span class="chip chip--success">Publicado</span>
+      <span class="chip chip--warning">Pendiente</span>
+      <span class="chip chip--error">Rechazado</span>
+    </div>
+  </div>
+
+</div>
+</body>
+</html>

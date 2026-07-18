@@ -1,0 +1,38 @@
+{
+  "id": "design-neon-cyber",
+  "name": "Neon Cyber",
+  "type": "design",
+  "category": "cyber",
+  "description": "Sistema de design oscuro con neón, glow effects, grid patterns y acentos cyberpunk. Estética futurista, tecnológica y audaz. Para productos que quieren destacar con energía visual.",
+  "screenshot": null,
+  "sections": ["colors", "typography", "spacing", "components", "elevation", "guidelines"],
+  "styleTags": ["dark", "neon", "cyber", "futuristic", "glow", "bold"],
+  "colorScheme": {
+    "primary": "#00ffd1",
+    "secondary": "#ff2a00",
+    "background": "#050505",
+    "surface": "#0d0d0f",
+    "text": "#e0e0e0",
+    "textSecondary": "#8a8a8f"
+  },
+  "typography": {
+    "fontFamily": "'Space Grotesk', 'Inter', system-ui, sans-serif",
+    "headingScale": "clamp(2.5rem, 7vw, 6rem)",
+    "bodySize": "16px",
+    "lineHeight": "1.5"
+  },
+  "spacing": {
+    "section": "80px",
+    "element": "24px",
+    "gap": "16px"
+  },
+  "borderRadius": {
+    "sm": "4px",
+    "md": "8px",
+    "lg": "12px",
+    "xl": "16px"
+  },
+  "responsive": true,
+  "complexity": "high",
+  "industry": ["gaming", "crypto", "tech", "developer", "cybersecurity", "music"]
+}

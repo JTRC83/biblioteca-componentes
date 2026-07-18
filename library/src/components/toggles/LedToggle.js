@@ -1,7 +1,7 @@
 export default {
   id: 'tg-led-toggle',
   name: 'LED Toggle',
-  category: 'toggles',
+  category: 'analog',
   tags: ['led', 'red', 'green', 'animated', 'css-only', 'toggle', 'metallic'],
   author: 'JaydipPrajapati1910',
   html: `<div class="switch">

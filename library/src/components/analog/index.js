@@ -19,6 +19,7 @@ import FanSpeedKnobBeige from './FanSpeedKnobBeige.js'
 import OnOffToggle from '../toggles/OnOffToggle.js'
 import RedGreenText from '../toggles/RedGreenText.js'
 import ThreeDLayered from '../buttons/ThreeDLayered.js'
+import LedToggle from '../toggles/LedToggle.js'
 
-export { Ep133Buttons, MetallicToggle, CommandKey, Press3DOk, RockerSwitch, NeumorphicToggle, LeverSwitch, LedLever, ThreeDLight, MacKeyboard, DarkKeyboard, VacuumTubeAmp, BraunThermoCard, ClockWheel, BeigeButtonSelector, TabRadioButtons, RotaryKnob, FanSpeedKnobBeige, OnOffToggle, RedGreenText, ThreeDLayered }
-export default { Ep133Buttons, MetallicToggle, CommandKey, Press3DOk, RockerSwitch, NeumorphicToggle, LeverSwitch, LedLever, ThreeDLight, MacKeyboard, DarkKeyboard, VacuumTubeAmp, BraunThermoCard, ClockWheel, BeigeButtonSelector, TabRadioButtons, RotaryKnob, FanSpeedKnobBeige, OnOffToggle, RedGreenText, ThreeDLayered }
+export { Ep133Buttons, MetallicToggle, CommandKey, Press3DOk, RockerSwitch, NeumorphicToggle, LeverSwitch, LedLever, ThreeDLight, MacKeyboard, DarkKeyboard, VacuumTubeAmp, BraunThermoCard, ClockWheel, BeigeButtonSelector, TabRadioButtons, RotaryKnob, FanSpeedKnobBeige, OnOffToggle, RedGreenText, ThreeDLayered, LedToggle }
+export default { Ep133Buttons, MetallicToggle, CommandKey, Press3DOk, RockerSwitch, NeumorphicToggle, LeverSwitch, LedLever, ThreeDLight, MacKeyboard, DarkKeyboard, VacuumTubeAmp, BraunThermoCard, ClockWheel, BeigeButtonSelector, TabRadioButtons, RotaryKnob, FanSpeedKnobBeige, OnOffToggle, RedGreenText, ThreeDLayered, LedToggle }

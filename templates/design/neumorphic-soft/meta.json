@@ -1,0 +1,38 @@
+{
+  "id": "design-neumorphic-soft",
+  "name": "Neumorphic Soft",
+  "type": "design",
+  "category": "neumorphic",
+  "description": "Sistema de design con neumorfismo suave. Superficies con sombras difusas que crean relieve y profundidad sin bordes duros. Estética tactil, suave y organica.",
+  "screenshot": null,
+  "sections": ["colors", "typography", "spacing", "components", "elevation", "guidelines"],
+  "styleTags": ["light", "neumorphic", "soft", "tactile", "organic"],
+  "colorScheme": {
+    "primary": "#6c5ce7",
+    "secondary": "#a29bfe",
+    "background": "#e8eaf0",
+    "surface": "#e8eaf0",
+    "text": "#2d3436",
+    "textSecondary": "#636e72"
+  },
+  "typography": {
+    "fontFamily": "'Nunito', 'Inter', system-ui, sans-serif",
+    "headingScale": "clamp(2rem, 5vw, 3.5rem)",
+    "bodySize": "16px",
+    "lineHeight": "1.6"
+  },
+  "spacing": {
+    "section": "80px",
+    "element": "24px",
+    "gap": "20px"
+  },
+  "borderRadius": {
+    "sm": "8px",
+    "md": "12px",
+    "lg": "20px",
+    "xl": "28px"
+  },
+  "responsive": true,
+  "complexity": "medium",
+  "industry": ["healthcare", "wellness", "education", "lifestyle", "furniture", "beauty"]
+}

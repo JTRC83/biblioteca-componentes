@@ -1,0 +1,38 @@
+{
+  "id": "design-bauhaus",
+  "name": "Bauhaus",
+  "type": "design",
+  "category": "bauhaus",
+  "description": "Sistema de design inspirado en la escuela Bauhaus. Formas geometricas primarias (circulo, cuadrado, triangulo), colores primarios (rojo, azul, amarillo) y tipografia bold. Funcional, radical y atemporal.",
+  "screenshot": null,
+  "sections": ["colors", "typography", "spacing", "components", "elevation", "guidelines"],
+  "styleTags": ["light", "geometric", "primary-colors", "bold", "functional", "radical"],
+  "colorScheme": {
+    "primary": "#e63946",
+    "secondary": "#1d3557",
+    "background": "#f1faee",
+    "surface": "#ffffff",
+    "text": "#1d3557",
+    "textSecondary": "#457b9d"
+  },
+  "typography": {
+    "fontFamily": "'Archivo Black', 'Inter', system-ui, sans-serif",
+    "headingScale": "clamp(2.5rem, 7vw, 6rem)",
+    "bodySize": "16px",
+    "lineHeight": "1.4"
+  },
+  "spacing": {
+    "section": "80px",
+    "element": "24px",
+    "gap": "16px"
+  },
+  "borderRadius": {
+    "sm": "0px",
+    "md": "0px",
+    "lg": "0px",
+    "xl": "0px"
+  },
+  "responsive": true,
+  "complexity": "medium",
+  "industry": ["architecture", "art", "design", "education", "museum", "gallery", "creative"]
+}

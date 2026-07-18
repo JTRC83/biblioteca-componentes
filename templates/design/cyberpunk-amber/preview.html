@@ -1,0 +1,1061 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Cyberpunk Amber — Design System</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@400;500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --amber: #ffb800;
+    --amber-glow: rgba(255, 184, 0, 0.4);
+    --amber-soft: rgba(255, 184, 0, 0.15);
+    --amber-border: rgba(255, 184, 0, 0.3);
+    --burnt: #ff6b35;
+    --burnt-glow: rgba(255, 107, 53, 0.4);
+    --bronze: #8b5a2b;
+    --bg: #0a0a0a;
+    --bg-alt: #0f0d0a;
+    --surface: #161210;
+    --surface-hover: #1f1a14;
+    --border: #2a2218;
+    --text: #f0e0c0;
+    --text-sec: #a09080;
+    --text-muted: #6a5d4a;
+    --error: #ff3b35;
+    --radius-sm: 2px;
+    --radius-md: 4px;
+    --radius-lg: 8px;
+    --radius-xl: 12px;
+  }
+
+  body {
+    font-family: 'Rajdhani', 'Inter', system-ui, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.5;
+    font-size: 16px;
+    overflow-x: hidden;
+  }
+
+  body::after {
+    content: '';
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: 9999;
+    background: repeating-linear-gradient(
+      0deg,
+      rgba(255, 184, 0, 0.025) 0px,
+      rgba(255, 184, 0, 0.025) 1px,
+      transparent 1px,
+      transparent 4px
+    );
+  }
+
+  code, .mono { font-family: 'JetBrains Mono', ui-monospace, monospace; }
+
+  .container {
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 0 24px;
+  }
+
+  .overline {
+    font-size: 0.6875rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.18em;
+    color: var(--amber);
+  }
+
+  .section {
+    padding: 80px 0;
+    position: relative;
+  }
+
+  .section + .section { border-top: 1px solid var(--border); }
+
+  .section-title {
+    font-size: clamp(1.75rem, 4vw, 2.75rem);
+    font-weight: 700;
+    letter-spacing: -0.015em;
+    line-height: 1.15;
+    margin-bottom: 8px;
+  }
+
+  .section-desc {
+    color: var(--text-sec);
+    font-size: 1.125rem;
+    margin-bottom: 40px;
+    max-width: 640px;
+  }
+
+  .grid-pattern {
+    position: absolute;
+    inset: 0;
+    background-image:
+      linear-gradient(rgba(255, 184, 0, 0.03) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255, 184, 0, 0.03) 1px, transparent 1px);
+    background-size: 40px 40px;
+    pointer-events: none;
+    mask-image: linear-gradient(to bottom, black, transparent 80%);
+  }
+
+  /* HERO */
+  .hero {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    position: relative;
+    padding: 80px 0 64px;
+    overflow: hidden;
+  }
+
+  .hero-grid {
+    position: absolute;
+    inset: 0;
+    background-image:
+      linear-gradient(rgba(255, 184, 0, 0.06) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255, 184, 0, 0.06) 1px, transparent 1px);
+    background-size: 60px 60px;
+    mask-image: radial-gradient(ellipse at 50% 40%, black 0%, transparent 75%);
+  }
+
+  .hero-glow {
+    position: absolute;
+    width: 600px;
+    height: 600px;
+    top: 20%;
+    left: 50%;
+    transform: translateX(-50%);
+    background: radial-gradient(circle, rgba(255, 184, 0, 0.15), transparent 70%);
+    pointer-events: none;
+  }
+
+  .hero-content {
+    position: relative;
+    z-index: 2;
+    max-width: 900px;
+  }
+
+  .hero h1 {
+    font-size: clamp(2.5rem, 7vw, 5.5rem);
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    line-height: 1.05;
+    margin: 20px 0 24px;
+    text-shadow: 0 0 40px rgba(255, 184, 0, 0.3);
+  }
+
+  .hero h1 .accent { color: var(--amber); }
+
+  .hero p {
+    font-size: 1.25rem;
+    color: var(--text-sec);
+    max-width: 580px;
+    margin-bottom: 40px;
+    line-height: 1.6;
+  }
+
+  .hero-actions {
+    display: flex;
+    gap: 16px;
+    flex-wrap: wrap;
+  }
+
+  /* BOTONES */
+  .btn {
+    font-family: inherit;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    border: none;
+    cursor: pointer;
+    border-radius: var(--radius-md);
+    padding: 12px 28px;
+    font-size: 0.95rem;
+    transition: all 200ms ease;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    text-decoration: none;
+  }
+
+  .btn-primary {
+    background: var(--amber);
+    color: var(--bg);
+  }
+
+  .btn-primary:hover {
+    box-shadow: 0 0 24px var(--amber-glow);
+    transform: translateY(-1px);
+  }
+
+  .btn-secondary {
+    background: var(--surface);
+    color: var(--amber);
+    border: 1px solid var(--amber-border);
+  }
+
+  .btn-secondary:hover {
+    box-shadow: 0 0 20px var(--amber-soft);
+    background: var(--surface-hover);
+  }
+
+  .btn-ghost {
+    background: transparent;
+    color: var(--amber);
+    padding: 12px 20px;
+  }
+
+  .btn-ghost:hover {
+    background: var(--surface-hover);
+    box-shadow: 0 0 16px var(--amber-soft);
+  }
+
+  .btn-burnt {
+    background: var(--burnt);
+    color: var(--bg);
+  }
+
+  .btn-burnt:hover {
+    box-shadow: 0 0 24px var(--burnt-glow);
+    transform: translateY(-1px);
+  }
+
+  /* PALETA */
+  .palette {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 16px;
+  }
+
+  .swatch {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    transition: all 200ms ease;
+  }
+
+  .swatch:hover {
+    border-color: var(--amber-border);
+    box-shadow: 0 0 20px var(--amber-soft);
+  }
+
+  .swatch-color {
+    height: 96px;
+  }
+
+  .swatch-body {
+    padding: 14px 16px;
+  }
+
+  .swatch-name {
+    font-weight: 700;
+    font-size: 0.95rem;
+    margin-bottom: 4px;
+  }
+
+  .swatch-hex {
+    font-family: 'JetBrains Mono', ui-monospace, monospace;
+    font-size: 0.8rem;
+    color: var(--text-sec);
+  }
+
+  /* CARDS */
+  .cards-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 20px;
+  }
+
+  .card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    padding: 24px;
+    position: relative;
+    overflow: hidden;
+    transition: all 200ms ease;
+  }
+
+  .card::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: repeating-linear-gradient(
+      0deg,
+      rgba(255, 184, 0, 0.02) 0px,
+      rgba(255, 184, 0, 0.02) 1px,
+      transparent 1px,
+      transparent 4px
+    );
+    pointer-events: none;
+  }
+
+  .card:hover {
+    border-color: var(--amber-border);
+    box-shadow: 0 0 24px var(--amber-soft);
+    transform: translateY(-2px);
+  }
+
+  .card-featured {
+    border-color: var(--amber-border);
+    box-shadow: 0 0 30px rgba(255, 184, 0, 0.1);
+  }
+
+  .card-icon {
+    width: 44px;
+    height: 44px;
+    border-radius: var(--radius-md);
+    background: rgba(255, 184, 0, 0.1);
+    border: 1px solid var(--amber-border);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 20px;
+    color: var(--amber);
+    font-size: 1.3rem;
+    font-weight: 700;
+  }
+
+  .card h3 {
+    font-size: 1.4rem;
+    font-weight: 600;
+    margin-bottom: 10px;
+    position: relative;
+    z-index: 1;
+  }
+
+  .card p {
+    color: var(--text-sec);
+    font-size: 0.95rem;
+    position: relative;
+    z-index: 1;
+  }
+
+  .card-tag {
+    display: inline-block;
+    margin-top: 16px;
+    font-family: 'JetBrains Mono', ui-monospace, monospace;
+    font-size: 0.75rem;
+    color: var(--amber);
+    position: relative;
+    z-index: 1;
+  }
+
+  /* FORMULARIOS */
+  .form-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+    margin-bottom: 16px;
+  }
+
+  .form-group {
+    margin-bottom: 16px;
+  }
+
+  .form-group label {
+    display: block;
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: var(--text-sec);
+    margin-bottom: 8px;
+  }
+
+  .input {
+    width: 100%;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-md);
+    padding: 12px 16px;
+    color: var(--text);
+    font-family: inherit;
+    font-size: 0.95rem;
+    transition: all 200ms ease;
+  }
+
+  .input::placeholder { color: var(--text-muted); }
+
+  .input:focus {
+    outline: none;
+    border-color: var(--amber);
+    box-shadow: 0 0 12px rgba(255, 184, 0, 0.2);
+  }
+
+  .input.mono {
+    font-family: 'JetBrains Mono', ui-monospace, monospace;
+    font-size: 0.9rem;
+  }
+
+  .form-wrap {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    padding: 32px;
+    max-width: 640px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .form-wrap::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: repeating-linear-gradient(
+      0deg,
+      rgba(255, 184, 0, 0.015) 0px,
+      rgba(255, 184, 0, 0.015) 1px,
+      transparent 1px,
+      transparent 5px
+    );
+    pointer-events: none;
+  }
+
+  .form-wrap > * { position: relative; z-index: 1; }
+
+  /* CHIPS */
+  .chips {
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+    margin-top: 24px;
+  }
+
+  .chip {
+    border: 1px solid var(--amber-border);
+    background: transparent;
+    color: var(--amber);
+    border-radius: var(--radius-sm);
+    padding: 4px 12px;
+    font-size: 0.7rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+  }
+
+  .chip.active {
+    background: var(--amber);
+    color: var(--bg);
+  }
+
+  .chip-burnt {
+    border-color: rgba(255, 107, 53, 0.4);
+    color: var(--burnt);
+  }
+
+  /* TOGGLES */
+  .toggles {
+    display: flex;
+    gap: 40px;
+    flex-wrap: wrap;
+    align-items: center;
+    margin-top: 24px;
+  }
+
+  .toggle {
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .switch {
+    position: relative;
+    width: 52px;
+    height: 26px;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 9999px;
+    cursor: pointer;
+    transition: all 300ms cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .switch::after {
+    content: '';
+    position: absolute;
+    width: 18px;
+    height: 18px;
+    background: var(--text-muted);
+    border-radius: 50%;
+    top: 3px;
+    left: 3px;
+    transition: all 300ms cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .switch.on {
+    background: rgba(255, 184, 0, 0.2);
+    border-color: var(--amber);
+    box-shadow: 0 0 16px var(--amber-soft);
+  }
+
+  .switch.on::after {
+    left: 29px;
+    background: var(--amber);
+    box-shadow: 0 0 8px rgba(255, 184, 0, 0.6);
+  }
+
+  .toggle-label {
+    font-size: 0.8rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--text-sec);
+  }
+
+  /* CHECKBOXES */
+  .checks {
+    display: flex;
+    gap: 28px;
+    flex-wrap: wrap;
+    margin-top: 24px;
+  }
+
+  .check {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    cursor: pointer;
+    font-size: 0.9rem;
+    color: var(--text-sec);
+  }
+
+  .check-box {
+    width: 20px;
+    height: 20px;
+    border: 1px solid var(--border);
+    border-radius: var(--radius-sm);
+    background: var(--surface);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 200ms ease;
+  }
+
+  .check input { display: none; }
+
+  .check input:checked + .check-box {
+    background: var(--amber);
+    border-color: var(--amber);
+    box-shadow: 0 0 8px rgba(255, 184, 0, 0.3);
+  }
+
+  .check input:checked + .check-box::after {
+    content: '';
+    width: 6px;
+    height: 10px;
+    border: solid var(--bg);
+    border-width: 0 2px 2px 0;
+    transform: rotate(45deg);
+    margin-top: -2px;
+  }
+
+  /* OTP */
+  .otp {
+    display: flex;
+    gap: 10px;
+    margin-top: 12px;
+  }
+
+  .otp input {
+    width: 44px;
+    height: 52px;
+    text-align: center;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-md);
+    color: var(--amber);
+    font-family: 'JetBrains Mono', ui-monospace, monospace;
+    font-size: 1.25rem;
+    font-weight: 500;
+    transition: all 200ms ease;
+  }
+
+  .otp input:focus {
+    outline: none;
+    border-color: var(--amber);
+    box-shadow: 0 0 12px rgba(255, 184, 0, 0.25);
+  }
+
+  /* LOADERS */
+  .loaders {
+    display: flex;
+    gap: 40px;
+    flex-wrap: wrap;
+    align-items: center;
+    margin-top: 24px;
+  }
+
+  .loader-bar {
+    width: 160px;
+    height: 4px;
+    background: var(--border);
+    border-radius: var(--radius-sm);
+    overflow: hidden;
+    position: relative;
+  }
+
+  .loader-bar::after {
+    content: '';
+    position: absolute;
+    width: 40%;
+    height: 100%;
+    background: var(--amber);
+    box-shadow: 0 0 12px var(--amber-glow);
+    animation: bar-slide 1.6s ease-in-out infinite;
+  }
+
+  @keyframes bar-slide {
+    0% { left: -40%; }
+    100% { left: 100%; }
+  }
+
+  .loader-pulse {
+    width: 48px;
+    height: 48px;
+    border: 2px solid var(--amber-border);
+    border-radius: 50%;
+    position: relative;
+  }
+
+  .loader-pulse::after {
+    content: '';
+    position: absolute;
+    inset: 4px;
+    border: 2px solid var(--amber);
+    border-radius: 50%;
+    animation: pulse-amber 1.4s ease-in-out infinite;
+  }
+
+  @keyframes pulse-amber {
+    0%, 100% { opacity: 0.4; transform: scale(0.8); }
+    50% { opacity: 1; transform: scale(1); box-shadow: 0 0 16px var(--amber-glow); }
+  }
+
+  .loader-dots {
+    display: inline-flex;
+    gap: 6px;
+  }
+
+  .loader-dots span {
+    width: 8px;
+    height: 8px;
+    background: var(--amber);
+    border-radius: 50%;
+    animation: dot-bounce 1.2s ease-in-out infinite;
+  }
+
+  .loader-dots span:nth-child(2) { animation-delay: 0.2s; }
+  .loader-dots span:nth-child(3) { animation-delay: 0.4s; }
+
+  @keyframes dot-bounce {
+    0%, 80%, 100% { opacity: 0.3; transform: scale(0.8); }
+    40% { opacity: 1; transform: scale(1); box-shadow: 0 0 8px var(--amber-glow); }
+  }
+
+  .loader-label {
+    font-family: 'JetBrains Mono', ui-monospace, monospace;
+    font-size: 0.8rem;
+    color: var(--amber);
+    margin-left: 12px;
+  }
+
+  /* NAV */
+  nav {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: rgba(10, 10, 10, 0.85);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border);
+    height: 60px;
+    display: flex;
+    align-items: center;
+  }
+
+  .nav-inner {
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 0 24px;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .logo {
+    font-weight: 700;
+    font-size: 1.1rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--amber);
+    text-shadow: 0 0 12px var(--amber-soft);
+  }
+
+  .nav-links {
+    display: flex;
+    gap: 28px;
+    list-style: none;
+  }
+
+  .nav-links a {
+    color: var(--text-sec);
+    text-decoration: none;
+    font-size: 0.85rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    transition: color 200ms ease;
+  }
+
+  .nav-links a:hover {
+    color: var(--amber);
+    text-shadow: 0 0 12px var(--amber-soft);
+  }
+
+  /* SPACING DEMO */
+  .spacing-demo {
+    display: flex;
+    gap: 8px;
+    align-items: flex-end;
+    flex-wrap: wrap;
+    margin-top: 24px;
+  }
+
+  .spacing-demo span {
+    background: rgba(255, 184, 0, 0.1);
+    border: 1px solid var(--amber-border);
+    border-bottom: 2px solid var(--amber);
+    border-radius: var(--radius-sm);
+    display: inline-flex;
+    align-items: flex-end;
+    justify-content: center;
+    padding-bottom: 4px;
+    font-family: 'JetBrains Mono', ui-monospace, monospace;
+    font-size: 0.7rem;
+    color: var(--amber);
+  }
+
+  /* FOOTER */
+  footer {
+    border-top: 1px solid var(--border);
+    padding: 40px 0;
+    text-align: center;
+    color: var(--text-muted);
+    font-size: 0.85rem;
+  }
+
+  footer .mono { color: var(--amber); }
+
+  @media (max-width: 768px) {
+    .form-row { grid-template-columns: 1fr; }
+    .nav-links { display: none; }
+    .section { padding: 48px 0; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-inner">
+    <div class="logo">CYBER/AMBER</div>
+    <ul class="nav-links">
+      <li><a href="#paleta">Paleta</a></li>
+      <li><a href="#tipografia">Tipografia</a></li>
+      <li><a href="#componentes">Componentes</a></li>
+      <li><a href="#formularios">Formularios</a></li>
+    </ul>
+    <button class="btn btn-primary" style="padding: 8px 20px; font-size: 0.8rem;">Acceder</button>
+  </div>
+</nav>
+
+<section class="hero">
+  <div class="hero-grid"></div>
+  <div class="hero-glow"></div>
+  <div class="container hero-content">
+    <div class="overline">// Sistema de design — v1.0</div>
+    <h1>Luz ambar sobre <span class="accent">negro carbon</span></h1>
+    <p>Estetica industrial futurista, Bladerunner-esque. Ambar dorado y rojo oxidado recortando formas angulares sobre un negro profundo. Calido pero tecnologico.</p>
+    <div class="hero-actions">
+      <button class="btn btn-primary">Iniciar proyecto →</button>
+      <button class="btn btn-secondary">Ver componentes</button>
+    </div>
+    <div class="chips">
+      <span class="chip active">Gaming</span>
+      <span class="chip">Cybersecurity</span>
+      <span class="chip">Industrial</span>
+      <span class="chip">Automotive</span>
+      <span class="chip chip-burnt">Energy</span>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="paleta">
+  <div class="container">
+    <div class="overline">// 01 — Paleta</div>
+    <h2 class="section-title">Colores</h2>
+    <p class="section-desc">Ambar dorado como primario, naranja quemado como secundario, sobre negro carbon. La paleta es deliberadamente calida — sin colores frios.</p>
+    <div class="palette">
+      <div class="swatch">
+        <div class="swatch-color" style="background: #ffb800;"></div>
+        <div class="swatch-body">
+          <div class="swatch-name">Ambar</div>
+          <div class="swatch-hex">#ffb800 — Primary</div>
+        </div>
+      </div>
+      <div class="swatch">
+        <div class="swatch-color" style="background: #ff6b35;"></div>
+        <div class="swatch-body">
+          <div class="swatch-name">Naranja quemado</div>
+          <div class="swatch-hex">#ff6b35 — Secondary</div>
+        </div>
+      </div>
+      <div class="swatch">
+        <div class="swatch-color" style="background: #8b5a2b;"></div>
+        <div class="swatch-body">
+          <div class="swatch-name">Bronce</div>
+          <div class="swatch-hex">#8b5a2b — Tertiary</div>
+        </div>
+      </div>
+      <div class="swatch">
+        <div class="swatch-color" style="background: #0a0a0a;"></div>
+        <div class="swatch-body">
+          <div class="swatch-name">Negro carbon</div>
+          <div class="swatch-hex">#0a0a0a — Background</div>
+        </div>
+      </div>
+      <div class="swatch">
+        <div class="swatch-color" style="background: #161210;"></div>
+        <div class="swatch-body">
+          <div class="swatch-name">Surface</div>
+          <div class="swatch-hex">#161210 — Surface</div>
+        </div>
+      </div>
+      <div class="swatch">
+        <div class="swatch-color" style="background: #f0e0c0;"></div>
+        <div class="swatch-body">
+          <div class="swatch-name">Blanco calido</div>
+          <div class="swatch-hex">#f0e0c0 — Text</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="tipografia">
+  <div class="grid-pattern"></div>
+  <div class="container">
+    <div class="overline">// 02 — Tipografia</div>
+    <h2 class="section-title">Rajdhani</h2>
+    <p class="section-desc">Condensed, tecnica, futuristica. Rajdhani evoca letreros luminosos y paneles de maquinaria. JetBrains Mono para codigo y datos tecnicos.</p>
+    <div style="font-size: clamp(2.5rem, 7vw, 5.5rem); font-weight: 700; letter-spacing: -0.02em; line-height: 1.05; margin-bottom: 16px; text-shadow: 0 0 30px var(--amber-soft);">
+      Display ambar
+    </div>
+    <div style="font-size: clamp(1.75rem, 4vw, 2.75rem); font-weight: 700; margin-bottom: 16px;">
+      Heading 2 — Calido industrial
+    </div>
+    <div style="font-size: 1.4rem; font-weight: 600; margin-bottom: 16px;">
+      Heading 3 — Panel de control
+    </div>
+    <div style="font-size: 1.125rem; color: var(--text-sec); margin-bottom: 8px;">
+      Body Large — Texto amplio para descripciones y contenido principal.
+    </div>
+    <div style="font-size: 1rem; color: var(--text-sec); margin-bottom: 8px;">
+      Body — Texto base del sistema a 16px y line-height 1.5.
+    </div>
+    <div class="mono" style="font-size: 0.9rem; color: var(--amber); margin-top: 20px;">
+      $ system.status: ONLINE · sector: industrial · power: 98.2%
+    </div>
+  </div>
+</section>
+
+<section class="section" id="componentes">
+  <div class="container">
+    <div class="overline">// 03 — Componentes</div>
+    <h2 class="section-title">Cards y elementos</h2>
+    <p class="section-desc">Cards con border ambar y glow en hover, scan lines internas para textura industrial, bordes angulares.</p>
+
+    <div class="cards-grid">
+      <div class="card">
+        <div class="card-icon">⚡</div>
+        <h3>Nucleo de energia</h3>
+        <p>Modulo de potencia con monitoreo en tiempo real. Trazas ambar sobre negro carbon.</p>
+        <span class="card-tag mono">// power-module.v2</span>
+      </div>
+      <div class="card card-featured">
+        <div class="card-icon">◈</div>
+        <h3>Sistema central</h3>
+        <p>Unidad de procesamiento principal con glow ambar constante. Card featured destacada.</p>
+        <span class="card-tag mono">// core-system.v3</span>
+      </div>
+      <div class="card">
+        <div class="card-icon">▲</div>
+        <h3>Sensor array</h3>
+        <p>Red de sensores industriales con telemetria continua y diagnostico automatizado.</p>
+        <span class="card-tag mono">// sensor-array.v1</span>
+      </div>
+    </div>
+
+    <div class="chips">
+      <span class="chip active">Activo</span>
+      <span class="chip">En espera</span>
+      <span class="chip">Mantenimiento</span>
+      <span class="chip chip-burnt">Critico</span>
+      <span class="chip">Online</span>
+    </div>
+
+    <h3 style="font-size: 1.4rem; font-weight: 600; margin-top: 48px; margin-bottom: 8px;">Toggles y switches</h3>
+    <p style="color: var(--text-sec); font-size: 0.95rem;">Switch con track surface, checked en ambar con glow dorado.</p>
+    <div class="toggles">
+      <div class="toggle">
+        <div class="switch on" onclick="this.classList.toggle('on')"></div>
+        <span class="toggle-label">Energia</span>
+      </div>
+      <div class="toggle">
+        <div class="switch" onclick="this.classList.toggle('on')"></div>
+        <span class="toggle-label">Modo seguro</span>
+      </div>
+      <div class="toggle">
+        <div class="switch on" onclick="this.classList.toggle('on')"></div>
+        <span class="toggle-label">Telemetria</span>
+      </div>
+    </div>
+
+    <h3 style="font-size: 1.4rem; font-weight: 600; margin-top: 48px; margin-bottom: 8px;">Checkboxes</h3>
+    <p style="color: var(--text-sec); font-size: 0.95rem;">Checked en ambar con checkmark negro carbon y glow sutil.</p>
+    <div class="checks">
+      <label class="check">
+        <input type="checkbox" checked>
+        <span class="check-box"></span>
+        Monitoreo activo
+      </label>
+      <label class="check">
+        <input type="checkbox" checked>
+        <span class="check-box"></span>
+        Alertas automaticas
+      </label>
+      <label class="check">
+        <input type="checkbox">
+        <span class="check-box"></span>
+        Modo diagnostico
+      </label>
+      <label class="check">
+        <input type="checkbox">
+        <span class="check-box"></span>
+        Registro continuo
+      </label>
+    </div>
+
+    <h3 style="font-size: 1.4rem; font-weight: 600; margin-top: 48px; margin-bottom: 8px;">Loaders</h3>
+    <p style="color: var(--text-sec); font-size: 0.95rem;">Indicadores de carga con efecto ambar pulsante y glow dorado.</p>
+    <div class="loaders">
+      <div style="display: flex; align-items: center;">
+        <div class="loader-bar"></div>
+        <span class="loader-label">cargando...</span>
+      </div>
+      <div class="loader-pulse"></div>
+      <div class="loader-dots"><span></span><span></span><span></span></div>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="formularios">
+  <div class="container">
+    <div class="overline">// 04 — Formularios</div>
+    <h2 class="section-title">Inputs y forms</h2>
+    <p class="section-desc">Inputs con surface bg, border base y focus en ambar con glow. Verification code estilo terminal industrial.</p>
+
+    <div class="form-wrap">
+      <div style="margin-bottom: 24px;">
+        <div class="overline">// registro de acceso</div>
+        <h3 style="font-size: 1.4rem; font-weight: 600; margin-top: 8px;">Identificacion de operador</h3>
+      </div>
+
+      <div class="form-row">
+        <div class="form-group">
+          <label>Identificador</label>
+          <input type="text" class="input mono" placeholder="OPR-0042">
+        </div>
+        <div class="form-group">
+          <label>Sector</label>
+          <input type="text" class="input" placeholder="Bloque industrial B">
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label>Clave de acceso</label>
+        <input type="password" class="input mono" placeholder="••••••••••">
+      </div>
+
+      <div class="form-group">
+        <label>Codigo de verificacion</label>
+        <div class="otp">
+          <input type="text" maxlength="1" value="7">
+          <input type="text" maxlength="1" value="A">
+          <input type="text" maxlength="1" value="3">
+          <input type="text" maxlength="1">
+          <input type="text" maxlength="1">
+          <input type="text" maxlength="1">
+        </div>
+      </div>
+
+      <div style="display: flex; gap: 12px; margin-top: 24px; flex-wrap: wrap;">
+        <button class="btn btn-primary">Validar acceso</button>
+        <button class="btn btn-ghost">Cancelar</button>
+      </div>
+    </div>
+
+    <div class="cards-grid" style="margin-top: 32px;">
+      <div class="card">
+        <div class="overline">// spacing</div>
+        <h3 style="font-size: 1.4rem; font-weight: 600; margin-top: 12px; margin-bottom: 8px;">Escala de espaciado</h3>
+        <p style="color: var(--text-sec); font-size: 0.95rem;">Base 4px. Componentes densos para estetica industrial.</p>
+        <div class="spacing-demo">
+          <span style="width: 16px; height: 16px;">4</span>
+          <span style="width: 24px; height: 24px;">8</span>
+          <span style="width: 32px; height: 32px;">12</span>
+          <span style="width: 40px; height: 40px;">16</span>
+          <span style="width: 48px; height: 48px;">20</span>
+          <span style="width: 56px; height: 56px;">24</span>
+          <span style="width: 64px; height: 64px;">32</span>
+          <span style="width: 80px; height: 80px;">48</span>
+        </div>
+      </div>
+      <div class="card">
+        <div class="overline">// radius</div>
+        <h3 style="font-size: 1.4rem; font-weight: 600; margin-top: 12px; margin-bottom: 8px;">Border radius</h3>
+        <p style="color: var(--text-sec); font-size: 0.95rem;">Angular y tecnico. Maximo 12px para mantener caracter industrial.</p>
+        <div style="display: flex; gap: 12px; margin-top: 20px; align-items: flex-end;">
+          <div style="width: 40px; height: 40px; background: rgba(255,184,0,0.1); border: 1px solid var(--amber-border); border-radius: 2px;"></div>
+          <div style="width: 48px; height: 48px; background: rgba(255,184,0,0.1); border: 1px solid var(--amber-border); border-radius: 4px;"></div>
+          <div style="width: 56px; height: 56px; background: rgba(255,184,0,0.1); border: 1px solid var(--amber-border); border-radius: 8px;"></div>
+          <div style="width: 64px; height: 64px; background: rgba(255,184,0,0.1); border: 1px solid var(--amber-border); border-radius: 12px;"></div>
+        </div>
+        <div style="display: flex; gap: 12px; margin-top: 8px; font-family: 'JetBrains Mono', monospace; font-size: 0.7rem; color: var(--text-sec);">
+          <span style="width: 40px; text-align: center;">2</span>
+          <span style="width: 48px; text-align: center;">4</span>
+          <span style="width: 56px; text-align: center;">8</span>
+          <span style="width: 64px; text-align: center;">12</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="container">
+    <span class="mono">CYBER/AMBER</span> · Design system cyberpunk industrial · Ambar sobre negro carbon
+  </div>
+</footer>
+
+</body>
+</html>

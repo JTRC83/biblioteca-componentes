@@ -1,0 +1,38 @@
+{
+  "id": "design-luxury-gold",
+  "name": "Luxury Gold",
+  "type": "design",
+  "category": "luxury",
+  "description": "Sistema de design oscuro premium con dorado. Negro mate con acentos oro, tipografia serif elegante y sombras sutiles. Para marcas de lujo, moda, joyeria y hotelera.",
+  "screenshot": null,
+  "sections": ["colors", "typography", "spacing", "components", "elevation", "guidelines"],
+  "styleTags": ["dark", "luxury", "gold", "premium", "elegant", "exclusive"],
+  "colorScheme": {
+    "primary": "#d4af37",
+    "secondary": "#c9a227",
+    "background": "#0c0c0c",
+    "surface": "#161616",
+    "text": "#f5f5f0",
+    "textSecondary": "#a1a1a1"
+  },
+  "typography": {
+    "fontFamily": "'Cormorant Garamond', 'Inter', system-ui, serif",
+    "headingScale": "clamp(2.5rem, 6vw, 5rem)",
+    "bodySize": "16px",
+    "lineHeight": "1.7"
+  },
+  "spacing": {
+    "section": "96px",
+    "element": "28px",
+    "gap": "24px"
+  },
+  "borderRadius": {
+    "sm": "4px",
+    "md": "8px",
+    "lg": "12px",
+    "xl": "20px"
+  },
+  "responsive": true,
+  "complexity": "low",
+  "industry": ["fashion", "jewelry", "hotel", "luxury", "wine", "cosmetics"]
+}

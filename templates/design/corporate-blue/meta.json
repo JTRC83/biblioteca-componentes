@@ -1,0 +1,38 @@
+{
+  "id": "design-corporate-blue",
+  "name": "Corporate Blue",
+  "type": "design",
+  "category": "corporate",
+  "description": "Sistema de design claro y profesional para enterprise. Azul corporativo, superficies blancas, bordes sutiles y tipografia solida. Transmite confianza, estabilidad y seriedad.",
+  "screenshot": null,
+  "sections": ["colors", "typography", "spacing", "components", "elevation", "guidelines"],
+  "styleTags": ["light", "corporate", "professional", "enterprise", "trustworthy", "blue"],
+  "colorScheme": {
+    "primary": "#1e40af",
+    "secondary": "#0891b2",
+    "background": "#ffffff",
+    "surface": "#f8fafc",
+    "text": "#0f172a",
+    "textSecondary": "#475569"
+  },
+  "typography": {
+    "fontFamily": "'Plus Jakarta Sans', 'Inter', system-ui, sans-serif",
+    "headingScale": "clamp(2.25rem, 5vw, 4rem)",
+    "bodySize": "16px",
+    "lineHeight": "1.6"
+  },
+  "spacing": {
+    "section": "80px",
+    "element": "24px",
+    "gap": "20px"
+  },
+  "borderRadius": {
+    "sm": "8px",
+    "md": "12px",
+    "lg": "16px",
+    "xl": "24px"
+  },
+  "responsive": true,
+  "complexity": "low",
+  "industry": ["enterprise", "b2b", "finance", "legal", "consulting", "corporate"]
+}

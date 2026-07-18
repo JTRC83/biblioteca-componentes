@@ -1,0 +1,585 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>E-commerce Shop Landing — Preview</title>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --color-primary: #f59e0b;
+    --color-primary-hover: #d97706;
+    --color-secondary: #ef4444;
+    --color-success: #16a34a;
+    --color-bg: #ffffff;
+    --color-surface: #f4f4f5;
+    --color-border: #e5e5e5;
+    --color-text: #171717;
+    --color-text-sec: #525252;
+    --color-text-muted: #a3a3a3;
+    --font-sans: 'Poppins', 'Inter', system-ui, sans-serif;
+    --radius-sm: 8px;
+    --radius-md: 16px;
+    --radius-lg: 24px;
+    --radius-xl: 32px;
+    --transition: 0.25s ease;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: var(--font-sans); background: var(--color-bg); color: var(--color-text); line-height: 1.6; overflow-x: hidden; }
+  .container { max-width: 1280px; margin: 0 auto; padding: 0 48px; }
+
+  /* Hero */
+  .hero {
+    padding: 64px 0;
+    background: linear-gradient(135deg, #fffbeb 0%, #fff 50%, #fef2f2 100%);
+  }
+  .hero__grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 48px;
+    align-items: center;
+  }
+  .hero__badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 6px 14px;
+    background: var(--color-secondary);
+    color: #fff;
+    border-radius: 9999px;
+    font-size: 12px;
+    font-weight: 600;
+    margin-bottom: 20px;
+  }
+  .hero__title {
+    font-size: clamp(2rem, 5vw, 3.5rem);
+    font-weight: 700;
+    line-height: 1.15;
+    margin-bottom: 16px;
+  }
+  .hero__title .accent { color: var(--color-primary); }
+  .hero__subtitle {
+    font-size: 1.125rem;
+    color: var(--color-text-sec);
+    margin-bottom: 28px;
+    max-width: 460px;
+  }
+  .hero__price {
+    display: flex;
+    align-items: baseline;
+    gap: 12px;
+    margin-bottom: 24px;
+  }
+  .hero__price-now { font-size: 2rem; font-weight: 700; color: var(--color-primary); }
+  .hero__price-old { font-size: 1.25rem; color: var(--color-text-muted); text-decoration: line-through; }
+  .hero__price-badge { padding: 4px 10px; background: var(--color-secondary); color: #fff; border-radius: 6px; font-size: 12px; font-weight: 600; }
+  .hero__actions { display: flex; gap: 12px; flex-wrap: wrap; }
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 14px 32px;
+    border: none;
+    border-radius: var(--radius-sm);
+    font-family: var(--font-sans);
+    font-size: 15px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: var(--transition);
+    text-decoration: none;
+  }
+  .btn--primary { background: var(--color-primary); color: #fff; }
+  .btn--primary:hover { background: var(--color-primary-hover); transform: translateY(-2px); }
+  .btn--secondary { background: #fff; border: 2px solid var(--color-border); color: var(--color-text); }
+  .btn--secondary:hover { border-color: var(--color-primary); }
+  .hero__image {
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    aspect-ratio: 1;
+    background: var(--color-surface);
+  }
+  .hero__image img { width: 100%; height: 100%; object-fit: cover; }
+  .hero__features {
+    display: flex;
+    gap: 24px;
+    margin-top: 28px;
+  }
+  .hero__feature {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 14px;
+    color: var(--color-text-sec);
+  }
+  .hero__feature-icon {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    background: rgba(22,163,74,0.1);
+    color: var(--color-success);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 16px;
+  }
+
+  /* Section base */
+  .section { padding: 64px 0; }
+  .section__head {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    margin-bottom: 32px;
+  }
+  .section__title { font-size: clamp(1.5rem, 3vw, 2.25rem); font-weight: 700; }
+  .section__title .accent { color: var(--color-primary); }
+  .section__link { font-size: 14px; font-weight: 600; color: var(--color-text-sec); text-decoration: none; transition: var(--transition); }
+  .section__link:hover { color: var(--color-primary); }
+
+  /* Categories */
+  .categories {
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+    margin-bottom: 24px;
+  }
+  .category-chip {
+    padding: 8px 20px;
+    background: var(--color-surface);
+    border: 1px solid var(--color-border);
+    border-radius: 9999px;
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--color-text-sec);
+    cursor: pointer;
+    transition: var(--transition);
+  }
+  .category-chip:hover { border-color: var(--color-primary); color: var(--color-text); }
+  .category-chip--active { background: var(--color-text); color: #fff; border-color: var(--color-text); }
+
+  /* Products */
+  .products__grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+  }
+  .product-card {
+    background: #fff;
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-md);
+    overflow: hidden;
+    transition: var(--transition);
+    cursor: pointer;
+  }
+  .product-card:hover { box-shadow: 0 8px 32px rgba(0,0,0,0.08); transform: translateY(-4px); }
+  .product-card__image {
+    position: relative;
+    aspect-ratio: 1;
+    background: var(--color-surface);
+    overflow: hidden;
+  }
+  .product-card__image img { width: 100%; height: 100%; object-fit: cover; transition: var(--transition); }
+  .product-card:hover .product-card__image img { transform: scale(1.05); }
+  .product-card__badge {
+    position: absolute;
+    top: 12px;
+    left: 12px;
+    padding: 4px 10px;
+    background: var(--color-secondary);
+    color: #fff;
+    border-radius: 6px;
+    font-size: 12px;
+    font-weight: 600;
+  }
+  .product-card__badge--new { background: var(--color-success); }
+  .product-card__wishlist {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.9);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 18px;
+    cursor: pointer;
+    transition: var(--transition);
+  }
+  .product-card__wishlist:hover { background: #fff; transform: scale(1.1); }
+  .product-card__info { padding: 16px; }
+  .product-card__category { font-size: 12px; color: var(--color-text-muted); text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 4px; }
+  .product-card__name { font-size: 15px; font-weight: 600; margin-bottom: 8px; }
+  .product-card__rating { display: flex; align-items: center; gap: 4px; margin-bottom: 8px; }
+  .product-card__stars { color: var(--color-primary); font-size: 14px; }
+  .product-card__reviews { font-size: 12px; color: var(--color-text-muted); }
+  .product-card__price-row { display: flex; align-items: baseline; gap: 8px; }
+  .product-card__price { font-size: 1.25rem; font-weight: 700; color: var(--color-text); }
+  .product-card__price-old { font-size: 14px; color: var(--color-text-muted); text-decoration: line-through; }
+
+  /* Reviews */
+  .reviews { background: var(--color-surface); }
+  .reviews__grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+  }
+  .review-card {
+    background: #fff;
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-md);
+    padding: 24px;
+  }
+  .review-card__rating { color: var(--color-primary); font-size: 16px; margin-bottom: 12px; }
+  .review-card__text { font-size: 14px; color: var(--color-text-sec); line-height: 1.7; margin-bottom: 16px; }
+  .review-card__author { display: flex; align-items: center; gap: 12px; }
+  .review-card__avatar { width: 40px; height: 40px; border-radius: 50%; background: var(--color-surface); overflow: hidden; }
+  .review-card__avatar img { width: 100%; height: 100%; object-fit: cover; }
+  .review-card__name { font-size: 14px; font-weight: 600; }
+  .review-card__date { font-size: 12px; color: var(--color-text-muted); }
+
+  /* Newsletter */
+  .newsletter {
+    background: linear-gradient(135deg, #fffbeb 0%, #fef2f2 100%);
+    text-align: center;
+  }
+  .newsletter__title { font-size: clamp(1.75rem, 4vw, 2.5rem); font-weight: 700; margin-bottom: 12px; }
+  .newsletter__title .accent { color: var(--color-primary); }
+  .newsletter__subtitle { font-size: 1.125rem; color: var(--color-text-sec); margin-bottom: 32px; }
+  .newsletter__form { display: flex; gap: 12px; max-width: 480px; margin: 0 auto; }
+  .newsletter__input {
+    flex: 1;
+    padding: 14px 20px;
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-sm);
+    font-family: var(--font-sans);
+    font-size: 15px;
+    outline: none;
+    transition: var(--transition);
+  }
+  .newsletter__input:focus { border-color: var(--color-primary); }
+  .newsletter__input::placeholder { color: var(--color-text-muted); }
+
+  /* Footer */
+  .footer { background: #171717; color: #d4d4d4; padding: 48px 0 32px; }
+  .footer__grid { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 40px; margin-bottom: 32px; }
+  .footer__brand h3 { font-size: 1.5rem; font-weight: 700; margin-bottom: 8px; color: #fff; }
+  .footer__brand p { font-size: 14px; color: #a3a3a3; }
+  .footer__col h4 { font-size: 12px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.1em; color: #737373; margin-bottom: 16px; }
+  .footer__col a { display: block; font-size: 14px; color: #d4d4d4; text-decoration: none; margin-bottom: 8px; transition: var(--transition); }
+  .footer__col a:hover { color: var(--color-primary); }
+  .footer__bottom { display: flex; justify-content: space-between; align-items: center; padding-top: 24px; border-top: 1px solid #262626; }
+  .footer__copy { font-size: 13px; color: #737373; }
+  .footer__socials { display: flex; gap: 12px; }
+  .footer__social { width: 36px; height: 36px; border-radius: 50%; background: #262626; display: flex; align-items: center; justify-content: center; color: #a3a3a3; font-size: 14px; text-decoration: none; transition: var(--transition); }
+  .footer__social:hover { background: var(--color-primary); color: #fff; }
+
+  /* Divider */
+  .divider { position: relative; width: 100%; overflow: hidden; line-height: 0; }
+  .divider svg { display: block; width: 100%; height: 80px; }
+
+  @media (max-width: 1024px) {
+    .hero__grid { grid-template-columns: 1fr; }
+    .hero__image { max-width: 400px; margin: 0 auto; }
+    .products__grid { grid-template-columns: repeat(2, 1fr); }
+    .reviews__grid { grid-template-columns: 1fr; }
+    .footer__grid { grid-template-columns: 1fr 1fr; }
+  }
+  @media (max-width: 768px) {
+    .container { padding: 0 20px; }
+    .products__grid { grid-template-columns: 1fr; }
+    .footer__grid { grid-template-columns: 1fr; }
+    .newsletter__form { flex-direction: column; }
+  }
+</style>
+</head>
+<body>
+
+<section class="hero">
+  <div class="container">
+    <div class="hero__grid">
+      <div class="hero__content">
+        <span class="hero__badge">🔥 Oferta limitada -40%</span>
+        <h1 class="hero__title">Estilo que <span class="accent">define</span> tu temporada</h1>
+        <p class="hero__subtitle">Descubre la nueva coleccion con piezas seleccionadas a mano. Envio gratis en pedidos superiores a 50€.</p>
+        <div class="hero__price">
+          <span class="hero__price-now">89€</span>
+          <span class="hero__price-old">149€</span>
+          <span class="hero__price-badge">Ahorra 40%</span>
+        </div>
+        <div class="hero__actions">
+          <a class="btn btn--primary">Comprar ahora →</a>
+          <a class="btn btn--secondary">Ver coleccion</a>
+        </div>
+        <div class="hero__features">
+          <div class="hero__feature"><span class="hero__feature-icon">✓</span><span>Envio gratis +50€</span></div>
+          <div class="hero__feature"><span class="hero__feature-icon">✓</span><span>30 dias devolucion</span></div>
+          <div class="hero__feature"><span class="hero__feature-icon">✓</span><span>Pago seguro</span></div>
+        </div>
+      </div>
+      <div class="hero__image">
+        <img src="https://picsum.photos/seed/ecom-heroready/600/600" alt="Producto destacado">
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider">
+  <svg viewBox="0 0 1440 80" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+    <path d="M0,0 L0,40 Q360,80 720,40 T1440,40 L1440,0 Z" fill="rgba(245,158,11,0.04)"/>
+    <path d="M0,0 L0,50 Q360,20 720,50 T1440,50 L1440,0 Z" fill="rgba(239,68,68,0.03)"/>
+  </svg>
+</div>
+
+<section class="section">
+  <div class="container">
+    <div class="section__head">
+      <h2 class="section__title">Productos <span class="accent">destacados</span></h2>
+      <a class="section__link">Ver todo →</a>
+    </div>
+    <div class="categories">
+      <span class="category-chip category-chip--active">Todos</span>
+      <span class="category-chip">Ropa</span>
+      <span class="category-chip">Calzado</span>
+      <span class="category-chip">Accesorios</span>
+      <span class="category-chip">Novedades</span>
+      <span class="category-chip">Ofertas</span>
+    </div>
+    <div class="products__grid">
+      <div class="product-card">
+        <div class="product-card__image">
+          <span class="product-card__badge">-30%</span>
+          <span class="product-card__wishlist">♡</span>
+          <img src="https://picsum.photos/seed/ecom-p1/300/300" alt="Producto 1">
+        </div>
+        <div class="product-card__info">
+          <div class="product-card__category">Calzado</div>
+          <div class="product-card__name">Sneakers Urban Pro</div>
+          <div class="product-card__rating">
+            <span class="product-card__stars">★★★★★</span>
+            <span class="product-card__reviews">(124)</span>
+          </div>
+          <div class="product-card__price-row">
+            <span class="product-card__price">69€</span>
+            <span class="product-card__price-old">99€</span>
+          </div>
+        </div>
+      </div>
+      <div class="product-card">
+        <div class="product-card__image">
+          <span class="product-card__badge product-card__badge--new">Nuevo</span>
+          <span class="product-card__wishlist">♡</span>
+          <img src="https://picsum.photos/seed/ecom-p2/300/300" alt="Producto 2">
+        </div>
+        <div class="product-card__info">
+          <div class="product-card__category">Ropa</div>
+          <div class="product-card__name">Chaqueta Tech Fleece</div>
+          <div class="product-card__rating">
+            <span class="product-card__stars">★★★★☆</span>
+            <span class="product-card__reviews">(89)</span>
+          </div>
+          <div class="product-card__price-row">
+            <span class="product-card__price">129€</span>
+          </div>
+        </div>
+      </div>
+      <div class="product-card">
+        <div class="product-card__image">
+          <span class="product-card__wishlist">♡</span>
+          <img src="https://picsum.photos/seed/ecom-p3/300/300" alt="Producto 3">
+        </div>
+        <div class="product-card__info">
+          <div class="product-card__category">Accesorios</div>
+          <div class="product-card__name">Mochila Adventure 30L</div>
+          <div class="product-card__rating">
+            <span class="product-card__stars">★★★★★</span>
+            <span class="product-card__reviews">(256)</span>
+          </div>
+          <div class="product-card__price-row">
+            <span class="product-card__price">59€</span>
+            <span class="product-card__price-old">79€</span>
+          </div>
+        </div>
+      </div>
+      <div class="product-card">
+        <div class="product-card__image">
+          <span class="product-card__badge">-20%</span>
+          <span class="product-card__wishlist">♡</span>
+          <img src="https://picsum.photos/seed/ecom-p4/300/300" alt="Producto 4">
+        </div>
+        <div class="product-card__info">
+          <div class="product-card__category">Ropa</div>
+          <div class="product-card__name">Camiseta Organic Cotton</div>
+          <div class="product-card__rating">
+            <span class="product-card__stars">★★★★☆</span>
+            <span class="product-card__reviews">(67)</span>
+          </div>
+          <div class="product-card__price-row">
+            <span class="product-card__price">24€</span>
+            <span class="product-card__price-old">30€</span>
+          </div>
+        </div>
+      </div>
+      <div class="product-card">
+        <div class="product-card__image">
+          <span class="product-card__wishlist">♡</span>
+          <img src="https://picsum.photos/seed/ecom-p5/300/300" alt="Producto 5">
+        </div>
+        <div class="product-card__info">
+          <div class="product-card__category">Calzado</div>
+          <div class="product-card__name">Botas Trekking Pro</div>
+          <div class="product-card__rating">
+            <span class="product-card__stars">★★★★★</span>
+            <span class="product-card__reviews">(198)</span>
+          </div>
+          <div class="product-card__price-row">
+            <span class="product-card__price">149€</span>
+          </div>
+        </div>
+      </div>
+      <div class="product-card">
+        <div class="product-card__image">
+          <span class="product-card__badge product-card__badge--new">Nuevo</span>
+          <span class="product-card__wishlist">♡</span>
+          <img src="https://picsum.photos/seed/ecom-p6/300/300" alt="Producto 6">
+        </div>
+        <div class="product-card__info">
+          <div class="product-card__category">Accesorios</div>
+          <div class="product-card__name">Gorra Performance UV</div>
+          <div class="product-card__rating">
+            <span class="product-card__stars">★★★★☆</span>
+            <span class="product-card__reviews">(45)</span>
+          </div>
+          <div class="product-card__price-row">
+            <span class="product-card__price">29€</span>
+          </div>
+        </div>
+      </div>
+      <div class="product-card">
+        <div class="product-card__image">
+          <span class="product-card__badge">-50%</span>
+          <span class="product-card__wishlist">♡</span>
+          <img src="https://picsum.photos/seed/ecom-p7/300/300" alt="Producto 7">
+        </div>
+        <div class="product-card__info">
+          <div class="product-card__category">Ropa</div>
+          <div class="product-card__name">Pantalon Cargo Slim</div>
+          <div class="product-card__rating">
+            <span class="product-card__stars">★★★★☆</span>
+            <span class="product-card__reviews">(112)</span>
+          </div>
+          <div class="product-card__price-row">
+            <span class="product-card__price">39€</span>
+            <span class="product-card__price-old">78€</span>
+          </div>
+        </div>
+      </div>
+      <div class="product-card">
+        <div class="product-card__image">
+          <span class="product-card__wishlist">♡</span>
+          <img src="https://picsum.photos/seed/ecom-p8/300/300" alt="Producto 8">
+        </div>
+        <div class="product-card__info">
+          <div class="product-card__category">Accesorios</div>
+          <div class="product-card__name">Reloj Minimalista</div>
+          <div class="product-card__rating">
+            <span class="product-card__stars">★★★★★</span>
+            <span class="product-card__reviews">(340)</span>
+          </div>
+          <div class="product-card__price-row">
+            <span class="product-card__price">89€</span>
+            <span class="product-card__price-old">119€</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section reviews">
+  <div class="container">
+    <div class="section__head">
+      <h2 class="section__title">Lo que dicen nuestros <span class="accent">clientes</span></h2>
+      <a class="section__link">Ver todas →</a>
+    </div>
+    <div class="reviews__grid">
+      <div class="review-card">
+        <div class="review-card__rating">★★★★★</div>
+        <p class="review-card__text">"Calidad increible. Los sneakers llegaron en 2 dias y son exactamente como en las fotos. Sere cliente recurrente."</p>
+        <div class="review-card__author">
+          <div class="review-card__avatar"><img src="https://i.pravatar.cc/80?img=12" alt=""></div>
+          <div><div class="review-card__name">Laura M.</div><div class="review-card__date">Hace 3 dias</div></div>
+        </div>
+      </div>
+      <div class="review-card">
+        <div class="review-card__rating">★★★★☆</div>
+        <p class="review-card__text">"Buena relacion calidad-precio. La chaqueta tech es comoda y abriga mucho. Devolvi otra talla sin problemas."</p>
+        <div class="review-card__author">
+          <div class="review-card__avatar"><img src="https://i.pravatar.cc/80?img=22" alt=""></div>
+          <div><div class="review-card__name">Carlos R.</div><div class="review-card__date">Hace 1 semana</div></div>
+        </div>
+      </div>
+      <div class="review-card">
+        <div class="review-card__rating">★★★★★</div>
+        <p class="review-card__text">"La mochila es resistente y espaciosa. Perfecta para aventuras. El servicio al cliente respondio rapidisimo."</p>
+        <div class="review-card__author">
+          <div class="review-card__avatar"><img src="https://i.pravatar.cc/80?img=33" alt=""></div>
+          <div><div class="review-card__name">Sofia G.</div><div class="review-card__date">Hace 2 semanas</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section newsletter">
+  <div class="container">
+    <h2 class="newsletter__title">Unete y consigue <span class="accent">10% descuento</span></h2>
+    <p class="newsletter__subtitle">Suscribete para recibir ofertas exclusivas y novedades antes que nadie.</p>
+    <div class="newsletter__form">
+      <input class="newsletter__input" type="email" placeholder="tu@email.com">
+      <a class="btn btn--primary">Suscribirme</a>
+    </div>
+  </div>
+</section>
+
+<footer class="footer">
+  <div class="container">
+    <div class="footer__grid">
+      <div class="footer__brand">
+        <h3>SHOP<span style="color:var(--color-primary)">.</span></h3>
+        <p>Tienda online con las mejores marcas. Envio gratis, devolucion facil y pago seguro.</p>
+      </div>
+      <div class="footer__col">
+        <h4>Tienda</h4>
+        <a href="#">Novedades</a>
+        <a href="#">Ofertas</a>
+        <a href="#">Mas vendidos</a>
+      </div>
+      <div class="footer__col">
+        <h4>Ayuda</h4>
+        <a href="#">Envios</a>
+        <a href="#">Devoluciones</a>
+        <a href="#">Contacto</a>
+      </div>
+      <div class="footer__col">
+        <h4>Empresa</h4>
+        <a href="#">Sobre nosotros</a>
+        <a href="#">Blog</a>
+        <a href="#">Carreras</a>
+      </div>
+    </div>
+    <div class="footer__bottom">
+      <span class="footer__copy">© 2026 SHOP. Todos los derechos reservados.</span>
+      <div class="footer__socials">
+        <a class="footer__social">in</a>
+        <a class="footer__social">ig</a>
+        <a class="footer__social">tw</a>
+        <a class="footer__social">fb</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>

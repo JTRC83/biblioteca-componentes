@@ -1,0 +1,38 @@
+{
+  "id": "landing-travel-tourism",
+  "name": "Travel & Tourism Landing",
+  "type": "landing",
+  "category": "travel",
+  "description": "Landing page para agencia de viajes o turismo con hero con destinos, paquetes, experiencias, testimonios y contacto",
+  "screenshot": null,
+  "sections": ["hero", "destinations", "packages", "experiences", "testimonials", "newsletter", "footer"],
+  "styleTags": ["vibrant", "warm", "adventurous", "inviting", "modern"],
+  "colorScheme": {
+    "primary": "#0891b2",
+    "secondary": "#f97316",
+    "background": "#ffffff",
+    "surface": "#f8fafc",
+    "text": "#0f172a",
+    "textSecondary": "#475569"
+  },
+  "typography": {
+    "fontFamily": "'Plus Jakarta Sans', 'Inter', system-ui, sans-serif",
+    "headingScale": "clamp(2.5rem, 6vw, 5rem)",
+    "bodySize": "16px",
+    "lineHeight": "1.6"
+  },
+  "spacing": {
+    "section": "80px",
+    "element": "24px",
+    "gap": "20px"
+  },
+  "borderRadius": {
+    "sm": "8px",
+    "md": "12px",
+    "lg": "16px",
+    "xl": "24px"
+  },
+  "responsive": true,
+  "complexity": "medium",
+  "industry": ["travel", "tourism", "hotel", "adventure", "vacation", "agency"]
+}

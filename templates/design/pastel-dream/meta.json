@@ -1,0 +1,38 @@
+{
+  "id": "design-pastel-dream",
+  "name": "Pastel Dream",
+  "type": "design",
+  "category": "pastel",
+  "description": "Sistema de design claro y suave con tonos pastel. Rosa, lavanda, menta y azul cielo. Estetica playful, amigable y onirica. Para productos que transmiten calma y alegria.",
+  "screenshot": null,
+  "sections": ["colors", "typography", "spacing", "components", "elevation", "guidelines"],
+  "styleTags": ["light", "pastel", "soft", "playful", "friendly", "dreamy"],
+  "colorScheme": {
+    "primary": "#a78bfa",
+    "secondary": "#f9a8d4",
+    "background": "#fef9f9",
+    "surface": "#ffffff",
+    "text": "#3f3f46",
+    "textSecondary": "#71717a"
+  },
+  "typography": {
+    "fontFamily": "'Quicksand', 'Nunito', system-ui, sans-serif",
+    "headingScale": "clamp(2rem, 5vw, 3.5rem)",
+    "bodySize": "16px",
+    "lineHeight": "1.6"
+  },
+  "spacing": {
+    "section": "80px",
+    "element": "24px",
+    "gap": "20px"
+  },
+  "borderRadius": {
+    "sm": "12px",
+    "md": "16px",
+    "lg": "20px",
+    "xl": "28px"
+  },
+  "responsive": true,
+  "complexity": "low",
+  "industry": ["education", "kids", "lifestyle", "wellness", "social", "app", "playful"]
+}

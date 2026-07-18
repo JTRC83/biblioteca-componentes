@@ -1,0 +1,38 @@
+{
+  "id": "landing-gym-fitness",
+  "name": "Gym & Fitness Landing",
+  "type": "landing",
+  "category": "fitness",
+  "description": "Landing page para gimnasio o centro fitness con hero energetico, clases, trainers, planes y horarios",
+  "screenshot": null,
+  "sections": ["hero", "classes", "trainers", "pricing", "schedule", "testimonials", "cta", "footer"],
+  "styleTags": ["energetic", "bold", "dark", "neon", "athletic"],
+  "colorScheme": {
+    "primary": "#00ff88",
+    "secondary": "#ff2a00",
+    "background": "#0a0a0c",
+    "surface": "#15151a",
+    "text": "#f0f0f0",
+    "textSecondary": "#8a8a8f"
+  },
+  "typography": {
+    "fontFamily": "'Bebas Neue', 'Inter', system-ui, sans-serif",
+    "headingScale": "clamp(3rem, 8vw, 7rem)",
+    "bodySize": "16px",
+    "lineHeight": "1.4"
+  },
+  "spacing": {
+    "section": "80px",
+    "element": "24px",
+    "gap": "16px"
+  },
+  "borderRadius": {
+    "sm": "4px",
+    "md": "8px",
+    "lg": "12px",
+    "xl": "16px"
+  },
+  "responsive": true,
+  "complexity": "medium",
+  "industry": ["fitness", "gym", "wellness", "sports", "health"]
+}

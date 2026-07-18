@@ -1,7 +1,9 @@
 <script setup>
 import { categories } from '@/catalog/data/categories'
 import { stats } from '@/components'
-import { Squares2X2Icon, HeartIcon } from '@heroicons/vue/24/outline'
+import { designStats } from '@/catalog/data/designSystems'
+import { landingStats } from '@/catalog/data/landings'
+import { Squares2X2Icon, HeartIcon, SwatchIcon, RectangleStackIcon } from '@heroicons/vue/24/outline'
 </script>
 
 <template>
@@ -16,6 +18,16 @@ import { Squares2X2Icon, HeartIcon } from '@heroicons/vue/24/outline'
         <RouterLink to="/favorites" class="app-sidebar__item" active-class="is-active">
           <HeartIcon class="app-sidebar__icon" />
           <span>Favoritos</span>
+        </RouterLink>
+        <RouterLink to="/design" class="app-sidebar__item" active-class="is-active">
+          <SwatchIcon class="app-sidebar__icon" />
+          <span>Design Systems</span>
+          <span class="app-sidebar__count">{{ designStats.total }}</span>
+        </RouterLink>
+        <RouterLink to="/landings" class="app-sidebar__item" active-class="is-active">
+          <RectangleStackIcon class="app-sidebar__icon" />
+          <span>Landings</span>
+          <span class="app-sidebar__count">{{ landingStats.total }}</span>
         </RouterLink>
       </div>
 

@@ -1,6 +1,6 @@
 # Buttons
 
-57 componentes
+58 componentes
 
 | ID | Nombre | Tags | Estilo | Complejidad | Interacciones | Descripción |
 |----|--------|------|--------|------------|-------------|-------------|
@@ -58,6 +58,7 @@
 | `btn-follow-me` | Follow me | social, animated, slide, css-only | transition, animated, css-only | medium | hover, click, transition, transform | Botón animado "Follow me" |
 | `btn-follow-instagram` | Follow Instagram | social, instagram, animated, slide, css-only | gradient, transition, animated, css-only | medium | hover, click, transition, transform | Botón animado "Follow Instagram" |
 | `btn-buy-now` | Buy Now | cart, animated, css-only | transition, animated, css-only | low | hover, transition | Botón animado "Buy Now" |
-| `btn-copy-link` | Copy Link | copy, animated, css-only | animated, css-only | low | focus, transform | Botón animado "Copy Link" |
+| `btn-copy-link` | Copy Link | copy, animated, css-only | transition, animated, css-only | low | focus, transition, transform | Botón animado "Copy Link" |
 | `btn-send-message` | Send Message | send, animated, css-only, paper-plane | transition, animated, css-only | medium | hover, focus, transition, transform | Botón animado "Send Message" |
 | `btn-play-pause` | Play Pause | play, pause, media, animated, css-only, circle, toggle | gradient, animated, transition, css-only | medium | toggle, animation, transition, transform | Botón animado "Play Pause" |
+| `btn-export` | Export Button | export, download, gradient, animated, css-only, hover-fill | gradient, transition, animated, css-only | low | hover, click, transition, transform | Botón con gradiente y animado "Export Button" |

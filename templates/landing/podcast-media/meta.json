@@ -1,0 +1,38 @@
+{
+  "id": "landing-podcast-media",
+  "name": "Podcast & Media Landing",
+  "type": "landing",
+  "category": "podcast",
+  "description": "Landing page para podcast, show o plataforma de streaming con hero, episodios, host, suscripcion y reproductor",
+  "screenshot": null,
+  "sections": ["hero", "episodes", "host", "subscribe", "platforms", "testimonials", "footer"],
+  "styleTags": ["dark", "audio", "modern", "bold", "streaming"],
+  "colorScheme": {
+    "primary": "#8b5cf6",
+    "secondary": "#ec4899",
+    "background": "#0a0a0c",
+    "surface": "#15151a",
+    "text": "#f4f4f5",
+    "textSecondary": "#a1a1aa"
+  },
+  "typography": {
+    "fontFamily": "'Space Grotesk', 'Inter', system-ui, sans-serif",
+    "headingScale": "clamp(2.5rem, 7vw, 5.5rem)",
+    "bodySize": "16px",
+    "lineHeight": "1.5"
+  },
+  "spacing": {
+    "section": "80px",
+    "element": "24px",
+    "gap": "16px"
+  },
+  "borderRadius": {
+    "sm": "8px",
+    "md": "12px",
+    "lg": "16px",
+    "xl": "24px"
+  },
+  "responsive": true,
+  "complexity": "medium",
+  "industry": ["podcast", "media", "streaming", "audio", "entertainment", "music"]
+}

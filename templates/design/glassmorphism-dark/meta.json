@@ -1,0 +1,38 @@
+{
+  "id": "design-glassmorphism-dark",
+  "name": "Glassmorphism Dark",
+  "type": "design",
+  "category": "glassmorphism",
+  "description": "Sistema de design oscuro con glassmorphism, superficies translucidas con blur y gradientes indigo-violeta. Sensacion premium y tecnologica.",
+  "screenshot": null,
+  "sections": ["colors", "typography", "spacing", "components", "elevation", "guidelines"],
+  "styleTags": ["dark", "glassmorphism", "gradient", "premium", "modern"],
+  "colorScheme": {
+    "primary": "#6366f1",
+    "secondary": "#8b5cf6",
+    "background": "#0a0a0c",
+    "surface": "#18181c",
+    "text": "#f4f4f5",
+    "textSecondary": "#a1a1aa"
+  },
+  "typography": {
+    "fontFamily": "'Inter', system-ui, sans-serif",
+    "headingScale": "clamp(2rem, 5vw, 4rem)",
+    "bodySize": "16px",
+    "lineHeight": "1.6"
+  },
+  "spacing": {
+    "section": "80px",
+    "element": "24px",
+    "gap": "16px"
+  },
+  "borderRadius": {
+    "sm": "8px",
+    "md": "12px",
+    "lg": "16px",
+    "xl": "24px"
+  },
+  "responsive": true,
+  "complexity": "medium",
+  "industry": ["saas", "tech", "startup", "fintech", "crypto"]
+}

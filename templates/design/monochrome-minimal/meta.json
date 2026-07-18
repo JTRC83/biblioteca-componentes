@@ -1,0 +1,29 @@
+{
+  "id": "design-monochrome-minimal",
+  "name": "Monochrome Minimal",
+  "type": "design",
+  "category": "monochrome",
+  "description": "Sistema de design puramente monocromatico. Sin color, solo grises y blanco. Maximo minimalismo, tipografia ligera y mucho whitespace.",
+  "screenshot": null,
+  "sections": ["colors", "typography", "spacing", "components", "elevation", "guidelines"],
+  "styleTags": ["light", "monochrome", "minimal", "pure", "grayscale", "elegant"],
+  "colorScheme": {
+    "primary": "#18181b",
+    "secondary": "#52525b",
+    "background": "#ffffff",
+    "surface": "#fafafa",
+    "text": "#18181b",
+    "textSecondary": "#71717a"
+  },
+  "typography": {
+    "fontFamily": "'Inter', system-ui, sans-serif",
+    "headingScale": "clamp(2.5rem, 6vw, 5rem)",
+    "bodySize": "16px",
+    "lineHeight": "1.7"
+  },
+  "spacing": { "section": "96px", "element": "28px", "gap": "24px" },
+  "borderRadius": { "sm": "4px", "md": "8px", "lg": "12px", "xl": "16px" },
+  "responsive": true,
+  "complexity": "low",
+  "industry": ["photography", "art", "architecture", "portfolio", "editorial", "fashion", "minimalist"]
+}

@@ -1,0 +1,38 @@
+{
+  "id": "design-warm-earth",
+  "name": "Warm Earth",
+  "type": "design",
+  "category": "earth",
+  "description": "Sistema de design calido con tonos tierra. Terracota, ambar, crema y verde oliva. Estetica organica, artesanal y acogedora. Para marcas que transmiten calidez y autenticidad.",
+  "screenshot": null,
+  "sections": ["colors", "typography", "spacing", "components", "elevation", "guidelines"],
+  "styleTags": ["warm", "earth", "organic", "cozy", "artisanal", "terracotta"],
+  "colorScheme": {
+    "primary": "#c8553d",
+    "secondary": "#d4a373",
+    "background": "#faf6f0",
+    "surface": "#ffffff",
+    "text": "#2d2422",
+    "textSecondary": "#6b5d54"
+  },
+  "typography": {
+    "fontFamily": "'Playfair Display', 'Inter', system-ui, serif",
+    "headingScale": "clamp(2.5rem, 6vw, 5rem)",
+    "bodySize": "16px",
+    "lineHeight": "1.7"
+  },
+  "spacing": {
+    "section": "80px",
+    "element": "24px",
+    "gap": "20px"
+  },
+  "borderRadius": {
+    "sm": "6px",
+    "md": "10px",
+    "lg": "16px",
+    "xl": "24px"
+  },
+  "responsive": true,
+  "complexity": "low",
+  "industry": ["restaurant", "cafe", "food", "lifestyle", "furniture", "beauty", "organic"]
+}

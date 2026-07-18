@@ -1,0 +1,957 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Events & Conference Landing — Preview</title>
+<link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --color-primary: #a3e635;
+    --color-primary-hover: #84cc16;
+    --color-secondary: #fb923c;
+    --color-bg: #0a0a0a;
+    --color-bg-alt: #0f0f0f;
+    --color-surface: #141414;
+    --color-surface-hover: #1a1a1a;
+    --color-border: #1f1f1f;
+    --color-border-hover: #2a2a2a;
+    --color-text: #e5e5e5;
+    --color-text-sec: #737373;
+    --color-text-muted: #525252;
+    --color-glow: 0 0 24px rgba(163, 230, 53, 0.15);
+    --font-mono: 'Space Mono', 'JetBrains Mono', monospace;
+    --font-sans: 'Inter', system-ui, sans-serif;
+    --transition: 200ms ease;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: var(--font-sans); background: var(--color-bg); color: var(--color-text); line-height: 1.5; overflow-x: hidden; }
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image: linear-gradient(rgba(163,230,53,0.015) 1px, transparent 1px);
+    background-size: 100% 3px;
+    pointer-events: none;
+    z-index: 1;
+  }
+  .container { max-width: 1280px; margin: 0 auto; padding: 0 48px; position: relative; z-index: 2; }
+
+  /* Nav bar (terminal style) */
+  .nav {
+    position: sticky;
+    top: 0;
+    z-index: 50;
+    background: rgba(10,10,10,0.9);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--color-border);
+  }
+  .nav__inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 16px 48px;
+    max-width: 1280px;
+    margin: 0 auto;
+  }
+  .nav__logo {
+    font-family: var(--font-mono);
+    font-size: 16px;
+    font-weight: 700;
+    color: var(--color-text);
+  }
+  .nav__logo .cursor { color: var(--color-primary); animation: blink 1s step-end infinite; }
+  @keyframes blink { 50% { opacity: 0; } }
+  .nav__links { display: flex; gap: 24px; }
+  .nav__link {
+    font-family: var(--font-mono);
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--color-text-sec);
+    text-decoration: none;
+    transition: var(--transition);
+  }
+  .nav__link:hover { color: var(--color-primary); }
+  .nav__cta {
+    padding: 8px 16px;
+    border: 1px solid var(--color-primary);
+    color: var(--color-primary);
+    font-family: var(--font-mono);
+    font-size: 12px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    text-decoration: none;
+    transition: var(--transition);
+  }
+  .nav__cta:hover { background: var(--color-primary); color: #0a0a0a; box-shadow: var(--color-glow); }
+
+  /* Hero — editorial/terminal, no centered generic */
+  .hero {
+    padding: 120px 0 80px;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero::before {
+    content: '';
+    position: absolute;
+    top: 20%;
+    right: -10%;
+    width: 500px;
+    height: 500px;
+    background: radial-gradient(circle, rgba(163,230,53,0.06), transparent 70%);
+    filter: blur(60px);
+  }
+  .hero__grid {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: 64px;
+    align-items: end;
+  }
+  .hero__meta {
+    font-family: var(--font-mono);
+    font-size: 12px;
+    color: var(--color-text-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    margin-bottom: 32px;
+    display: flex;
+    gap: 24px;
+    flex-wrap: wrap;
+  }
+  .hero__meta span { display: flex; align-items: center; gap: 6px; }
+  .hero__meta .dot { width: 6px; height: 6px; border-radius: 50%; background: var(--color-primary); animation: blink 2s ease infinite; }
+  .hero__title {
+    font-family: var(--font-mono);
+    font-size: clamp(2.5rem, 8vw, 7rem);
+    font-weight: 700;
+    line-height: 0.95;
+    letter-spacing: -0.04em;
+    margin-bottom: 0;
+  }
+  .hero__title .lime { color: var(--color-primary); }
+  .hero__title .strike { text-decoration: line-through; text-decoration-color: var(--color-secondary); text-decoration-thickness: 4px; opacity: 0.4; }
+  .hero__side {
+    border-left: 1px solid var(--color-border);
+    padding-left: 32px;
+  }
+  .hero__side-label {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    color: var(--color-text-muted);
+    margin-bottom: 12px;
+  }
+  .hero__side-text {
+    font-size: 15px;
+    color: var(--color-text-sec);
+    line-height: 1.7;
+    margin-bottom: 24px;
+  }
+  .hero__side-actions { display: flex; flex-direction: column; gap: 12px; }
+
+  /* Buttons — unique styles, not generic */
+  .btn-term {
+    display: inline-flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 14px 20px;
+    border: 1px solid var(--color-border);
+    background: var(--color-surface);
+    font-family: var(--font-mono);
+    font-size: 13px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--color-text);
+    text-decoration: none;
+    cursor: pointer;
+    transition: var(--transition);
+    position: relative;
+    overflow: hidden;
+  }
+  .btn-term::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: var(--color-primary);
+    transform: translateX(-100%);
+    transition: transform 250ms ease;
+    z-index: 0;
+  }
+  .btn-term > * { position: relative; z-index: 1; }
+  .btn-term:hover::before { transform: translateX(0); }
+  .btn-term:hover { color: #0a0a0a; border-color: var(--color-primary); }
+  .btn-term .arrow { transition: transform 200ms ease; }
+  .btn-term:hover .arrow { transform: translateX(4px); }
+
+  .btn-lime {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 14px 20px;
+    background: var(--color-primary);
+    color: #0a0a0a;
+    border: none;
+    font-family: var(--font-mono);
+    font-size: 13px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    text-decoration: none;
+    cursor: pointer;
+    transition: var(--transition);
+  }
+  .btn-lime:hover { background: var(--color-primary-hover); box-shadow: var(--color-glow); transform: translateY(-2px); }
+
+  .btn-ghost-term {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 14px 20px;
+    background: transparent;
+    border: 1px solid var(--color-border);
+    color: var(--color-text-sec);
+    font-family: var(--font-mono);
+    font-size: 13px;
+    font-weight: 400;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    text-decoration: none;
+    cursor: pointer;
+    transition: var(--transition);
+  }
+  .btn-ghost-term:hover { border-color: var(--color-primary); color: var(--color-primary); }
+
+  /* Countdown — terminal style */
+  .countdown {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 0;
+    border: 1px solid var(--color-border);
+    margin-top: 64px;
+  }
+  .countdown__cell {
+    padding: 24px;
+    text-align: center;
+    border-right: 1px solid var(--color-border);
+    transition: var(--transition);
+  }
+  .countdown__cell:last-child { border-right: none; }
+  .countdown__cell:hover { background: var(--color-surface); }
+  .countdown__num {
+    font-family: var(--font-mono);
+    font-size: 3rem;
+    font-weight: 700;
+    color: var(--color-primary);
+    line-height: 1;
+    text-shadow: 0 0 20px rgba(163,230,53,0.3);
+  }
+  .countdown__label {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    color: var(--color-text-muted);
+    margin-top: 8px;
+  }
+
+  /* Section base */
+  .section { padding: 96px 0; position: relative; }
+  .section__head {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    margin-bottom: 48px;
+    border-bottom: 1px solid var(--color-border);
+    padding-bottom: 20px;
+  }
+  .section__num {
+    font-family: var(--font-mono);
+    font-size: 12px;
+    color: var(--color-text-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+  }
+  .section__title {
+    font-family: var(--font-mono);
+    font-size: clamp(1.75rem, 4vw, 2.5rem);
+    font-weight: 700;
+    letter-spacing: -0.03em;
+  }
+  .section__title .lime { color: var(--color-primary); }
+  .section__link {
+    font-family: var(--font-mono);
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--color-text-sec);
+    text-decoration: none;
+    transition: var(--transition);
+  }
+  .section__link:hover { color: var(--color-primary); }
+
+  /* Speakers — card with scan line effect */
+  .speakers__grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1px;
+    background: var(--color-border);
+    border: 1px solid var(--color-border);
+  }
+  .speaker-card {
+    background: var(--color-bg);
+    padding: 24px;
+    transition: var(--transition);
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+  }
+  .speaker-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: var(--color-primary);
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 300ms ease;
+  }
+  .speaker-card:hover { background: var(--color-surface); }
+  .speaker-card:hover::before { transform: scaleX(1); }
+  .speaker-card__id {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    color: var(--color-text-muted);
+    margin-bottom: 16px;
+  }
+  .speaker-card__photo {
+    width: 100%;
+    aspect-ratio: 1;
+    background: var(--color-surface);
+    margin-bottom: 16px;
+    overflow: hidden;
+    filter: grayscale(1) contrast(1.1);
+    transition: filter 300ms ease;
+  }
+  .speaker-card:hover .speaker-card__photo { filter: grayscale(0) contrast(1); }
+  .speaker-card__photo img { width: 100%; height: 100%; object-fit: cover; }
+  .speaker-card__name { font-size: 15px; font-weight: 600; margin-bottom: 4px; }
+  .speaker-card__role { font-size: 13px; color: var(--color-text-sec); margin-bottom: 12px; }
+  .speaker-card__topic {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    color: var(--color-primary);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+
+  /* Agenda — terminal table style */
+  .agenda__table {
+    border: 1px solid var(--color-border);
+  }
+  .agenda__row {
+    display: grid;
+    grid-template-columns: 80px 60px 1fr 120px 100px;
+    align-items: center;
+    padding: 20px 24px;
+    border-bottom: 1px solid var(--color-border);
+    transition: var(--transition);
+    cursor: pointer;
+  }
+  .agenda__row:last-child { border-bottom: none; }
+  .agenda__row:hover { background: var(--color-surface); padding-left: 32px; }
+  .agenda__row--header {
+    background: var(--color-surface);
+    font-family: var(--font-mono);
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    color: var(--color-text-muted);
+    cursor: default;
+  }
+  .agenda__row--header:hover { background: var(--color-surface); padding-left: 24px; }
+  .agenda__time { font-family: var(--font-mono); font-size: 14px; color: var(--color-text-sec); }
+  .agenda__id { font-family: var(--font-mono); font-size: 12px; color: var(--color-text-muted); }
+  .agenda__title { font-size: 15px; font-weight: 500; }
+  .agenda__speaker { font-size: 13px; color: var(--color-text-sec); font-family: var(--font-mono); }
+  .agenda__tag {
+    font-family: var(--font-mono);
+    font-size: 10px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    padding: 4px 10px;
+    border: 1px solid;
+    text-align: center;
+  }
+  .agenda__tag--keynote { border-color: var(--color-primary); color: var(--color-primary); }
+  .agenda__tag--workshop { border-color: var(--color-secondary); color: var(--color-secondary); }
+  .agenda__tag--panel { border-color: var(--color-text-sec); color: var(--color-text-sec); }
+
+  /* Tickets — brutalist cards with offset shadow */
+  .tickets__grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 0;
+  }
+  .ticket-card {
+    border: 2px solid var(--color-border);
+    padding: 40px 32px;
+    transition: var(--transition);
+    position: relative;
+    margin-right: -2px;
+  }
+  .ticket-card:hover { border-color: var(--color-text-sec); z-index: 1; }
+  .ticket-card--featured {
+    border-color: var(--color-primary);
+    box-shadow: 8px 8px 0 var(--color-primary);
+    z-index: 2;
+  }
+  .ticket-card--featured:hover { box-shadow: 12px 12px 0 var(--color-primary); transform: translate(-2px, -2px); }
+  .ticket-card__id {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    color: var(--color-text-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    margin-bottom: 16px;
+  }
+  .ticket-card__name {
+    font-family: var(--font-mono);
+    font-size: 1.5rem;
+    font-weight: 700;
+    margin-bottom: 8px;
+  }
+  .ticket-card--featured .ticket-card__name { color: var(--color-primary); }
+  .ticket-card__price {
+    font-family: var(--font-mono);
+    font-size: 2.5rem;
+    font-weight: 700;
+    margin-bottom: 4px;
+  }
+  .ticket-card__price .currency { font-size: 1rem; color: var(--color-text-sec); }
+  .ticket-card__period {
+    font-family: var(--font-mono);
+    font-size: 12px;
+    color: var(--color-text-muted);
+    margin-bottom: 28px;
+  }
+  .ticket-card__features { list-style: none; margin-bottom: 32px; }
+  .ticket-card__features li {
+    padding: 8px 0;
+    font-size: 14px;
+    color: var(--color-text-sec);
+    border-bottom: 1px solid var(--color-border);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-family: var(--font-mono);
+    font-size: 13px;
+  }
+  .ticket-card__features li::before {
+    content: '>';
+    color: var(--color-primary);
+    font-weight: 700;
+  }
+  .ticket-card__features li--no::before { content: 'x'; color: var(--color-text-muted); }
+
+  /* Sponsors — minimal text logos */
+  .sponsors { background: var(--color-bg-alt); }
+  .sponsors__tier {
+    display: flex;
+    align-items: center;
+    gap: 32px;
+    padding: 24px 0;
+    border-bottom: 1px solid var(--color-border);
+  }
+  .sponsors__tier:last-child { border-bottom: none; }
+  .sponsors__tier-label {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    color: var(--color-text-muted);
+    min-width: 100px;
+    flex-shrink: 0;
+  }
+  .sponsors__logos { display: flex; flex-wrap: wrap; gap: 32px; }
+  .sponsor-logo {
+    font-family: var(--font-mono);
+    font-size: 16px;
+    font-weight: 700;
+    color: var(--color-text-muted);
+    transition: var(--transition);
+    cursor: pointer;
+  }
+  .sponsor-logo:hover { color: var(--color-primary); text-shadow: 0 0 12px rgba(163,230,53,0.3); }
+
+  /* Venue — split with terminal map */
+  .venue__grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0;
+    border: 1px solid var(--color-border);
+  }
+  .venue__map {
+    background: var(--color-surface);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    min-height: 320px;
+    border-right: 1px solid var(--color-border);
+    overflow: hidden;
+  }
+  .venue__map::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image: linear-gradient(rgba(163,230,53,0.03) 1px, transparent 1px), linear-gradient(90deg, rgba(163,230,53,0.03) 1px, transparent 1px);
+    background-size: 30px 30px;
+  }
+  .venue__pin {
+    position: relative;
+    width: 12px;
+    height: 12px;
+    background: var(--color-primary);
+    box-shadow: 0 0 0 4px rgba(163,230,53,0.2), 0 0 30px rgba(163,230,53,0.5);
+    animation: pulse-pin 2s ease infinite;
+  }
+  @keyframes pulse-pin { 0%,100% { box-shadow: 0 0 0 4px rgba(163,230,53,0.2), 0 0 30px rgba(163,230,53,0.5); } 50% { box-shadow: 0 0 0 12px rgba(163,230,53,0.05), 0 0 50px rgba(163,230,53,0.3); } }
+  .venue__pin-label {
+    position: absolute;
+    bottom: 24px;
+    left: 24px;
+    font-family: var(--font-mono);
+    font-size: 11px;
+    color: var(--color-text-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+  }
+  .venue__info { padding: 40px; }
+  .venue__info h3 { font-family: var(--font-mono); font-size: 1.25rem; font-weight: 700; margin-bottom: 20px; }
+  .venue__info-row {
+    display: flex;
+    gap: 16px;
+    padding: 12px 0;
+    border-bottom: 1px solid var(--color-border);
+  }
+  .venue__info-key {
+    font-family: var(--font-mono);
+    font-size: 12px;
+    color: var(--color-text-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    min-width: 100px;
+    flex-shrink: 0;
+  }
+  .venue__info-val { font-size: 14px; color: var(--color-text); }
+  .venue__actions { display: flex; gap: 12px; margin-top: 24px; }
+
+  /* Footer */
+  .footer { border-top: 1px solid var(--color-border); padding: 48px 0 32px; }
+  .footer__grid { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 40px; margin-bottom: 32px; }
+  .footer__brand h3 { font-family: var(--font-mono); font-size: 1.25rem; font-weight: 700; margin-bottom: 8px; }
+  .footer__brand h3 .cursor { color: var(--color-primary); animation: blink 1s step-end infinite; }
+  .footer__brand p { font-size: 13px; color: var(--color-text-sec); }
+  .footer__col h4 { font-family: var(--font-mono); font-size: 11px; text-transform: uppercase; letter-spacing: 0.15em; color: var(--color-text-muted); margin-bottom: 16px; }
+  .footer__col a { display: block; font-family: var(--font-mono); font-size: 13px; color: var(--color-text-sec); text-decoration: none; margin-bottom: 8px; transition: var(--transition); }
+  .footer__col a:hover { color: var(--color-primary); }
+  .footer__bottom { display: flex; justify-content: space-between; align-items: center; padding-top: 24px; border-top: 1px solid var(--color-border); }
+  .footer__copy { font-family: var(--font-mono); font-size: 12px; color: var(--color-text-muted); }
+  .footer__socials { display: flex; gap: 12px; }
+  .footer__social { width: 32px; height: 32px; border: 1px solid var(--color-border); display: flex; align-items: center; justify-content: center; color: var(--color-text-sec); font-size: 12px; text-decoration: none; transition: var(--transition); }
+  .footer__social:hover { border-color: var(--color-primary); color: var(--color-primary); box-shadow: 0 0 12px rgba(163,230,53,0.2); }
+
+  /* Shape divider */
+  .divider { position: relative; width: 100%; overflow: hidden; line-height: 0; }
+  .divider svg { display: block; width: 100%; height: 60px; }
+
+  @media (max-width: 1024px) {
+    .hero__grid { grid-template-columns: 1fr; }
+    .hero__side { border-left: none; border-top: 1px solid var(--color-border); padding-left: 0; padding-top: 32px; }
+    .speakers__grid { grid-template-columns: repeat(2, 1fr); }
+    .tickets__grid { grid-template-columns: 1fr; }
+    .ticket-card { margin-right: 0; margin-bottom: -2px; }
+    .venue__grid { grid-template-columns: 1fr; }
+    .venue__map { border-right: none; border-bottom: 1px solid var(--color-border); }
+    .footer__grid { grid-template-columns: 1fr 1fr; }
+    .agenda__row { grid-template-columns: 80px 1fr 100px; }
+    .agenda__id, .agenda__speaker { display: none; }
+  }
+  @media (max-width: 768px) {
+    .container { padding: 0 20px; }
+    .nav__inner { padding: 12px 20px; }
+    .nav__links { display: none; }
+    .speakers__grid { grid-template-columns: 1fr; }
+    .countdown { grid-template-columns: repeat(2, 1fr); }
+    .countdown__cell:nth-child(2) { border-right: none; }
+    .countdown__cell:nth-child(1), .countdown__cell:nth-child(2) { border-bottom: 1px solid var(--color-border); }
+    .footer__grid { grid-template-columns: 1fr; }
+    .agenda__row { grid-template-columns: 80px 1fr; }
+    .agenda__tag { display: none; }
+  }
+</style>
+</head>
+<body>
+
+<nav class="nav">
+  <div class="nav__inner">
+    <div class="nav__logo">nexus/conf<span class="cursor">_</span></div>
+    <div class="nav__links">
+      <a class="nav__link">Speakers</a>
+      <a class="nav__link">Agenda</a>
+      <a class="nav__link">Tickets</a>
+      <a class="nav__link">Venue</a>
+    </div>
+    <a class="nav__cta">Get Tickets</a>
+  </div>
+</nav>
+
+<section class="hero">
+  <div class="container">
+    <div class="hero__meta">
+      <span><span class="dot"></span>NEXUS_CONF 2026</span>
+      <span>15-16 MAY · BARCELONA</span>
+      <span>EDITION_07</span>
+    </div>
+    <div class="hero__grid">
+      <div>
+        <h1 class="hero__title">
+          <span class="strike">PROMISE</span><br>
+          <span class="lime">DELIVER</span>_
+        </h1>
+      </div>
+      <div class="hero__side">
+        <div class="hero__side-label">// about</div>
+        <p class="hero__side-text">7ª edicion de la conferencia mas radical de tecnologia, IA y web. Sin relleno, sin pattens, solo codigo y ideas que importan.</p>
+        <div class="hero__side-actions">
+          <a class="btn-lime">./register --now <span>→</span></a>
+          <a class="btn-ghost-term">cat agenda.md</a>
+        </div>
+      </div>
+    </div>
+    <div class="countdown">
+      <div class="countdown__cell"><div class="countdown__num">47</div><div class="countdown__label">dias</div></div>
+      <div class="countdown__cell"><div class="countdown__num">12</div><div class="countdown__label">horas</div></div>
+      <div class="countdown__cell"><div class="countdown__num">30</div><div class="countdown__label">min</div></div>
+      <div class="countdown__cell"><div class="countdown__num">15</div><div class="countdown__label">seg</div></div>
+    </div>
+  </div>
+</section>
+
+<div class="divider">
+  <svg viewBox="0 0 1440 60" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+    <path d="M0,60 L0,40 C200,10 400,60 720,30 C1040,0 1240,50 1440,25 L1440,60 Z" fill="rgba(163,230,53,0.04)"/>
+    <path d="M0,60 L0,50 C280,20 520,70 720,45 C920,20 1160,60 1440,40 L1440,60 Z" fill="rgba(251,146,60,0.03)"/>
+  </svg>
+</div>
+
+<section class="section">
+  <div class="container">
+    <div class="section__head">
+      <span class="section__num">// 01_speakers</span>
+      <h2 class="section__title">keynote_<span class="lime">speakers</span></h2>
+      <a class="section__link">view_all →</a>
+    </div>
+    <div class="speakers__grid">
+      <div class="speaker-card">
+        <div class="speaker-card__id">#001</div>
+        <div class="speaker-card__photo"><img src="https://i.pravatar.cc/300?img=12" alt=""></div>
+        <div class="speaker-card__name">Sarah Chen</div>
+        <div class="speaker-card__role">AI Director · DeepMind</div>
+        <div class="speaker-card__topic">// the_age_of_agi</div>
+      </div>
+      <div class="speaker-card">
+        <div class="speaker-card__id">#002</div>
+        <div class="speaker-card__photo"><img src="https://i.pravatar.cc/300?img=33" alt=""></div>
+        <div class="speaker-card__name">Marcus Wright</div>
+        <div class="speaker-card__role">CTO · Vercel</div>
+        <div class="speaker-card__topic">// edge_first_arch</div>
+      </div>
+      <div class="speaker-card">
+        <div class="speaker-card__id">#003</div>
+        <div class="speaker-card__photo"><img src="https://i.pravatar.cc/300?img=45" alt=""></div>
+        <div class="speaker-card__name">Elena Rodriguez</div>
+        <div class="speaker-card__role">VP Design · Figma</div>
+        <div class="speaker-card__topic">// design_at_scale</div>
+      </div>
+      <div class="speaker-card">
+        <div class="speaker-card__id">#004</div>
+        <div class="speaker-card__photo"><img src="https://i.pravatar.cc/300?img=68" alt=""></div>
+        <div class="speaker-card__name">James Park</div>
+        <div class="speaker-card__role">Founder · Anthropic</div>
+        <div class="speaker-card__topic">// ai_safety_first</div>
+      </div>
+      <div class="speaker-card">
+        <div class="speaker-card__id">#005</div>
+        <div class="speaker-card__photo"><img src="https://i.pravatar.cc/300?img=15" alt=""></div>
+        <div class="speaker-card__name">Priya Nair</div>
+        <div class="speaker-card__role">Head of Web · Stripe</div>
+        <div class="speaker-card__topic">// borderless_payments</div>
+      </div>
+      <div class="speaker-card">
+        <div class="speaker-card__id">#006</div>
+        <div class="speaker-card__photo"><img src="https://i.pravatar.cc/300?img=51" alt=""></div>
+        <div class="speaker-card__name">David Kim</div>
+        <div class="speaker-card__role">Creator · Astro</div>
+        <div class="speaker-card__topic">// islands_architecture</div>
+      </div>
+      <div class="speaker-card">
+        <div class="speaker-card__id">#007</div>
+        <div class="speaker-card__photo"><img src="https://i.pravatar.cc/300?img=20" alt=""></div>
+        <div class="speaker-card__name">Anna Schmidt</div>
+        <div class="speaker-card__role">DX Lead · Supabase</div>
+        <div class="speaker-card__topic">// no_server_backend</div>
+      </div>
+      <div class="speaker-card">
+        <div class="speaker-card__id">#008</div>
+        <div class="speaker-card__photo"><img src="https://i.pravatar.cc/300?img=60" alt=""></div>
+        <div class="speaker-card__name">Ricardo Alves</div>
+        <div class="speaker-card__role">CEO · Linear</div>
+        <div class="speaker-card__topic">// build_for_speed</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container">
+    <div class="section__head">
+      <span class="section__num">// 02_agenda</span>
+      <h2 class="section__title">day_01_<span class="lime">schedule</span></h2>
+      <a class="section__link">day_02 →</a>
+    </div>
+    <div class="agenda__table">
+      <div class="agenda__row agenda__row--header">
+        <div>time</div>
+        <div>id</div>
+        <div>talk</div>
+        <div>speaker</div>
+        <div>type</div>
+      </div>
+      <div class="agenda__row">
+        <div class="agenda__time">09:00</div>
+        <div class="agenda__id">T01</div>
+        <div class="agenda__title">The Age of AGI: What Comes After LLMs</div>
+        <div class="agenda__speaker">s.chen</div>
+        <div class="agenda__tag agenda__tag--keynote">KEY</div>
+      </div>
+      <div class="agenda__row">
+        <div class="agenda__time">10:30</div>
+        <div class="agenda__id">T02</div>
+        <div class="agenda__title">Edge-First Architecture in Production</div>
+        <div class="agenda__speaker">m.wright</div>
+        <div class="agenda__tag agenda__tag--workshop">WRK</div>
+      </div>
+      <div class="agenda__row">
+        <div class="agenda__time">12:00</div>
+        <div class="agenda__id">T03</div>
+        <div class="agenda__title">Design Systems at Scale: 0 to 1M users</div>
+        <div class="agenda__speaker">e.rodriguez</div>
+        <div class="agenda__tag agenda__tag--keynote">KEY</div>
+      </div>
+      <div class="agenda__row">
+        <div class="agenda__time">14:30</div>
+        <div class="agenda__id">T04</div>
+        <div class="agenda__title">Panel: AI Safety & The Future of Work</div>
+        <div class="agenda__speaker">j.park + guests</div>
+        <div class="agenda__tag agenda__tag--panel">PNL</div>
+      </div>
+      <div class="agenda__row">
+        <div class="agenda__time">16:00</div>
+        <div class="agenda__id">T05</div>
+        <div class="agenda__title">Islands Architecture: Less JS, More Speed</div>
+        <div class="agenda__speaker">d.kim</div>
+        <div class="agenda__tag agenda__tag--workshop">WRK</div>
+      </div>
+      <div class="agenda__row">
+        <div class="agenda__time">17:30</div>
+        <div class="agenda__id">T06</div>
+        <div class="agenda__title">Payments of the Future: Real-time, Borderless</div>
+        <div class="agenda__speaker">p.nair</div>
+        <div class="agenda__tag agenda__tag--keynote">TLK</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container">
+    <div class="section__head">
+      <span class="section__num">// 03_tickets</span>
+      <h2 class="section__title">choose_your_<span class="lime">pass</span></h2>
+      <a class="section__link">faq →</a>
+    </div>
+    <div class="tickets__grid">
+      <div class="ticket-card">
+        <div class="ticket-card__id">// pass_early</div>
+        <div class="ticket-card__name">EARLY</div>
+        <div class="ticket-card__price"><span class="currency">€</span>149</div>
+        <div class="ticket-card__period">until_mar_01</div>
+        <ul class="ticket-card__features">
+          <li>2 days access</li>
+          <li>all talks + workshops</li>
+          <li>welcome kit</li>
+          <li>coffee breaks</li>
+          <li>networking lounge</li>
+        </ul>
+        <a class="btn-term"><span>./buy --early</span><span class="arrow">→</span></a>
+      </div>
+      <div class="ticket-card ticket-card--featured">
+        <div class="ticket-card__id">// pass_standard</div>
+        <div class="ticket-card__name">STANDARD</div>
+        <div class="ticket-card__price"><span class="currency">€</span>299</div>
+        <div class="ticket-card__period">regular_price</div>
+        <ul class="ticket-card__features">
+          <li>everything in early</li>
+          <li>priority workshops</li>
+          <li>session recordings</li>
+          <li>gourmet lunch</li>
+          <li>networking party</li>
+          <li>official t-shirt</li>
+        </ul>
+        <a class="btn-lime" style="width: 100%; justify-content: space-between;"><span>./buy --standard</span><span>→</span></a>
+      </div>
+      <div class="ticket-card">
+        <div class="ticket-card__id">// pass_vip</div>
+        <div class="ticket-card__name">VIP</div>
+        <div class="ticket-card__price"><span class="currency">€</span>599</div>
+        <div class="ticket-card__period">premium_exp</div>
+        <ul class="ticket-card__features">
+          <li>everything in standard</li>
+          <li>front row seats</li>
+          <li>private dinner w/ speakers</li>
+          <li>VIP lounge access</li>
+          <li>free parking</li>
+          <li>1-on-1 session</li>
+        </ul>
+        <a class="btn-term"><span>./buy --vip</span><span class="arrow">→</span></a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section sponsors">
+  <div class="container">
+    <div class="section__head">
+      <span class="section__num">// 04_sponsors</span>
+      <h2 class="section__title">powered_<span class="lime">by</span></h2>
+      <a class="section__link">become_sponsor →</a>
+    </div>
+    <div class="sponsors__tier">
+      <div class="sponsors__tier-label">◆ DIAMOND</div>
+      <div class="sponsors__logos">
+        <span class="sponsor-logo">Google</span>
+        <span class="sponsor-logo">Vercel</span>
+        <span class="sponsor-logo">Anthropic</span>
+      </div>
+    </div>
+    <div class="sponsors__tier">
+      <div class="sponsors__tier-label">● GOLD</div>
+      <div class="sponsors__logos">
+        <span class="sponsor-logo">Figma</span>
+        <span class="sponsor-logo">Stripe</span>
+        <span class="sponsor-logo">Supabase</span>
+        <span class="sponsor-logo">Linear</span>
+        <span class="sponsor-logo">Astro</span>
+      </div>
+    </div>
+    <div class="sponsors__tier">
+      <div class="sponsors__tier-label">▲ SILVER</div>
+      <div class="sponsors__logos">
+        <span class="sponsor-logo">GitHub</span>
+        <span class="sponsor-logo">Notion</span>
+        <span class="sponsor-logo">JetBrains</span>
+        <span class="sponsor-logo">Cloudflare</span>
+        <span class="sponsor-logo">Netlify</span>
+        <span class="sponsor-logo">Sentry</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container">
+    <div class="section__head">
+      <span class="section__num">// 05_venue</span>
+      <h2 class="section__title">fira_<span class="lime">barcelona</span></h2>
+      <a class="section__link">hotels →</a>
+    </div>
+    <div class="venue__grid">
+      <div class="venue__map">
+        <div class="venue__pin"></div>
+        <div class="venue__pin-label">// 41.3731° N, 2.0880° E</div>
+      </div>
+      <div class="venue__info">
+        <h3>// Fira Gran Via</h3>
+        <div class="venue__info-row">
+          <div class="venue__info-key">address</div>
+          <div class="venue__info-val">Av. Joan Carles I, 64 · L'Hospitalet</div>
+        </div>
+        <div class="venue__info-row">
+          <div class="venue__info-key">metro</div>
+          <div class="venue__info-val">L9 (Fira) · FGC (Europa/Fira)</div>
+        </div>
+        <div class="venue__info-row">
+          <div class="venue__info-key">bus</div>
+          <div class="venue__info-val">H12 · D40 · 79</div>
+        </div>
+        <div class="venue__info-row">
+          <div class="venue__info-key">hotels</div>
+          <div class="venue__info-val">Catalonia Plaza · Ayre Rosellon</div>
+        </div>
+        <div class="venue__actions">
+          <a class="btn-lime">./directions <span>→</span></a>
+          <a class="btn-ghost-term">book_hotel</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer class="footer">
+  <div class="container">
+    <div class="footer__grid">
+      <div class="footer__brand">
+        <h3>nexus/conf<span class="cursor">_</span></h3>
+        <p>La conferencia mas radical de tecnologia, IA y web. Barcelona 2026.</p>
+      </div>
+      <div class="footer__col">
+        <h4>// event</h4>
+        <a href="#">code_of_conduct</a>
+        <a href="#">faq.md</a>
+        <a href="#">press_kit</a>
+      </div>
+      <div class="footer__col">
+        <h4>// participate</h4>
+        <a href="#">call_for_papers</a>
+        <a href="#">volunteer</a>
+        <a href="#">sponsorship</a>
+      </div>
+      <div class="footer__col">
+        <h4>// contact</h4>
+        <a href="#">hola@nexusconf</a>
+        <a href="#">@nexusconf</a>
+        <a href="#">barcelona.es</a>
+      </div>
+    </div>
+    <div class="footer__bottom">
+      <span class="footer__copy">© 2026 nexus_conf. all_rights_reserved.</span>
+      <div class="footer__socials">
+        <a class="footer__social">in</a>
+        <a class="footer__social">tw</a>
+        <a class="footer__social">gh</a>
+        <a class="footer__social">yt</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>

@@ -32,7 +32,9 @@ const CATEGORY_USE_CASES = {
   backgrounds: ['section-background', 'hero-background', 'decorative'],
   animations: ['decoration', 'attention', 'transition-effect'],
   analog: ['hardware-control', 'physical-ui', 'skeuomorphic'],
-  navbars: ['navigation', 'menu', 'header']
+  navbars: ['navigation', 'menu', 'header'],
+  icons: ['icon', 'ui-element', 'visual-element'],
+  dividers: ['section-separator', 'shape-divider', 'transition']
 }
 
 const TAG_TO_USE_CASE = {
@@ -135,7 +137,9 @@ function generateDescription(name, category, tags, css, html) {
     cards: 'Tarjeta', loaders: 'Loader', inputs: 'Campo de entrada',
     radios: 'Radio button', forms: 'Formulario', tooltips: 'Tooltip',
     patterns: 'Patrón de fondo', backgrounds: 'Fondo animado',
-    animations: 'Animación', analog: 'Componente analógico', navbars: 'Barra de navegación'
+    animations: 'Animación', analog: 'Componente analógico', navbars: 'Barra de navegación',
+    icons: 'Icono',
+    dividers: 'Shape divider'
   }
   const base = catDescriptions[category] || 'Componente'
   parts.push(base)
@@ -245,6 +249,19 @@ function loadComponentFromFile(filePath) {
   }
 }
 
+function loadMultiComponentFile(filePath) {
+  const raw = readFileSync(filePath, 'utf-8')
+  // Convert export { A, B, C } and export default { A, B, C } to a single object
+  let code = raw
+    .replace(/export\s+\{([^}]+)\}/g, '')
+    .replace(/export\s+default\s+\{([^}]+)\}/g, '__exports = { $1 }')
+  // Wrap in a function to capture the exports
+  code = '(function() { var __exports = {}; ' + code + '; return __exports; })()'
+  // eslint-disable-next-line no-eval
+  const exports = eval(code)
+  return Object.values(exports).filter((v) => v && v.id && v.html)
+}
+
 function loadCategoryFromBarrel(categoryDir) {
   const catName = basename(categoryDir)
   const indexPath = join(categoryDir, 'index.js')
@@ -252,19 +269,26 @@ function loadCategoryFromBarrel(categoryDir) {
   if (!existsSync(indexPath)) return []
 
   const raw = readFileSync(indexPath, 'utf-8')
-  // Parsear imports: import X from './X.js'  OR  import X from '../other/X.js'
-  const importRegex = /import\s+(\w+)\s+from\s+['"]([^'"]+)['"]/g
+  const importRegex = /import\s+(\* as\s+)?(\w+)\s+from\s+['"]([^'"]+)['"]/g
+  const exportStarRegex = /export\s+\*\s+from\s+['"]([^'"]+)['"]/g
   const imports = []
   let match
   while ((match = importRegex.exec(raw)) !== null) {
-    imports.push({ name: match[1], path: match[2] })
+    imports.push({ name: match[2], path: match[3], isNamespace: !!match[1] })
+  }
+  while ((match = exportStarRegex.exec(raw)) !== null) {
+    imports.push({ name: '*', path: match[1], isNamespace: true })
   }
 
   const components = []
   for (const imp of imports) {
-    // Resolver ruta relativa al index.js
     const resolvedPath = resolve(dirname(indexPath), imp.path)
-    if (existsSync(resolvedPath)) {
+    if (!existsSync(resolvedPath)) continue
+
+    if (imp.isNamespace) {
+      const multi = loadMultiComponentFile(resolvedPath)
+      components.push(...multi)
+    } else {
       const comp = loadComponentFromFile(resolvedPath)
       components.push(comp)
     }

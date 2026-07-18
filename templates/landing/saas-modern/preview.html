@@ -1,0 +1,1379 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Nexora — Analítica en tiempo real para tu negocio</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root {
+  --primary: #6366f1;
+  --primary-hover: #5558e0;
+  --secondary: #8b5cf6;
+  --tertiary: #a855f7;
+  --gradient: linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%);
+  --gradient-text: linear-gradient(135deg, #6366f1 0%, #8b5cf6 50%, #a855f7 100%);
+  --bg: #0a0a0c;
+  --bg-alt: #0f0f12;
+  --surface: #18181c;
+  --surface-hover: #1f1f24;
+  --surface-glass: rgba(24, 24, 28, 0.6);
+  --border: rgba(255, 255, 255, 0.08);
+  --border-hover: rgba(99, 102, 241, 0.4);
+  --text: #f4f4f5;
+  --text-sec: #a1a1aa;
+  --text-muted: #71717a;
+  --glow-sm: 0 0 12px rgba(99, 102, 241, 0.15);
+  --glow-md: 0 0 24px rgba(99, 102, 241, 0.2);
+  --glow-lg: 0 0 48px rgba(99, 102, 241, 0.15);
+  --radius-sm: 8px;
+  --radius-md: 12px;
+  --radius-lg: 16px;
+  --radius-xl: 24px;
+  --transition-fast: 150ms cubic-bezier(0.4, 0, 0.2, 1);
+  --transition: 250ms cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-slow: 400ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: 'Inter', system-ui, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  font-size: 16px;
+  line-height: 1.6;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+}
+::selection { background: rgba(99, 102, 241, 0.35); color: #fff; }
+.container { max-width: 1200px; margin: 0 auto; padding: 0 24px; }
+.bg-orb {
+  position: fixed;
+  border-radius: 50%;
+  filter: blur(120px);
+  pointer-events: none;
+  z-index: 0;
+}
+.orb-1 { width: 560px; height: 560px; background: rgba(99, 102, 241, 0.13); top: -180px; left: -140px; }
+.orb-2 { width: 480px; height: 480px; background: rgba(139, 92, 246, 0.1); top: 32%; right: -200px; }
+.orb-3 { width: 420px; height: 420px; background: rgba(168, 85, 247, 0.08); bottom: -160px; left: 28%; }
+main { position: relative; z-index: 1; }
+h1, h2, h3 { letter-spacing: -0.02em; line-height: 1.2; font-weight: 700; }
+.gradient-text {
+  background: var(--gradient-text);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: transparent;
+}
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  font-family: inherit;
+  font-weight: 600;
+  font-size: 15px;
+  border: none;
+  border-radius: var(--radius-md);
+  cursor: pointer;
+  text-decoration: none;
+  transition: all var(--transition);
+  white-space: nowrap;
+}
+.btn-gradient {
+  background: var(--gradient);
+  color: #fff;
+  padding: 14px 28px;
+  box-shadow: var(--glow-sm);
+  position: relative;
+  overflow: hidden;
+}
+.btn-gradient::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, rgba(255,255,255,0.2) 0%, transparent 55%);
+  opacity: 0;
+  transition: opacity var(--transition);
+}
+.btn-gradient:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--glow-md), 0 10px 28px rgba(99, 102, 241, 0.35);
+}
+.btn-gradient:hover::after { opacity: 1; }
+.btn-ghost {
+  background: var(--surface-glass);
+  color: var(--text);
+  padding: 14px 28px;
+  border: 1px solid var(--border);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+}
+.btn-ghost:hover {
+  border-color: var(--border-hover);
+  background: var(--surface-hover);
+  transform: translateY(-2px);
+  box-shadow: var(--glow-sm);
+}
+.btn-sm { padding: 10px 22px; font-size: 14px; }
+.btn-lg { padding: 17px 44px; font-size: 17px; border-radius: var(--radius-lg); }
+.reveal {
+  opacity: 0;
+  transform: translateY(28px);
+  transition: opacity 0.7s cubic-bezier(0.4, 0, 0.2, 1), transform 0.7s cubic-bezier(0.4, 0, 0.2, 1);
+}
+.reveal.visible { opacity: 1; transform: translateY(0); }
+.d1 { transition-delay: 0.08s; }
+.d2 { transition-delay: 0.16s; }
+.d3 { transition-delay: 0.24s; }
+.d4 { transition-delay: 0.32s; }
+.d5 { transition-delay: 0.4s; }
+</style>
+<style>
+.navbar {
+  position: fixed;
+  top: 16px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: min(1152px, calc(100% - 32px));
+  z-index: 100;
+  background: rgba(15, 15, 18, 0.55);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  padding: 10px 12px 10px 24px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  transition: box-shadow var(--transition), border-color var(--transition);
+}
+.navbar.scrolled {
+  border-color: rgba(255, 255, 255, 0.12);
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.45), var(--glow-sm);
+}
+.nav-logo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  text-decoration: none;
+  color: var(--text);
+  font-weight: 700;
+  font-size: 18px;
+  letter-spacing: -0.02em;
+}
+.nav-logo-mark {
+  width: 32px;
+  height: 32px;
+  border-radius: 10px;
+  background: var(--gradient);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: var(--glow-sm);
+  flex-shrink: 0;
+}
+.nav-logo-mark svg { width: 17px; height: 17px; }
+.nav-links { display: flex; align-items: center; gap: 4px; list-style: none; }
+.nav-links a {
+  color: var(--text-sec);
+  text-decoration: none;
+  font-size: 14px;
+  font-weight: 500;
+  padding: 8px 14px;
+  border-radius: 999px;
+  transition: all var(--transition-fast);
+}
+.nav-links a:hover { color: var(--text); background: rgba(255, 255, 255, 0.06); }
+.nav-cta { display: flex; align-items: center; gap: 14px; }
+.nav-login {
+  color: var(--text-sec);
+  text-decoration: none;
+  font-size: 14px;
+  font-weight: 500;
+  transition: color var(--transition-fast);
+}
+.nav-login:hover { color: var(--text); }
+</style>
+</head>
+<body>
+<div class="bg-orb orb-1"></div>
+<div class="bg-orb orb-2"></div>
+<div class="bg-orb orb-3"></div>
+<nav class="navbar" id="navbar">
+  <a href="#" class="nav-logo">
+    <span class="nav-logo-mark">
+      <svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2L4.5 13.5H11L10 22l8.5-11.5H12L13 2z"/></svg>
+    </span>
+    Nexora
+  </a>
+  <ul class="nav-links">
+    <li><a href="#features">Funciones</a></li>
+    <li><a href="#pricing">Precios</a></li>
+    <li><a href="#testimonials">Clientes</a></li>
+    <li><a href="#contacto">Contacto</a></li>
+  </ul>
+  <div class="nav-cta">
+    <a href="#" class="nav-login">Iniciar sesión</a>
+    <a href="#pricing" class="btn btn-gradient btn-sm">Empezar gratis</a>
+  </div>
+</nav>
+<main>
+<style>
+.hero {
+  position: relative;
+  padding: 190px 0 110px;
+  background-image:
+    linear-gradient(rgba(255, 255, 255, 0.025) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.025) 1px, transparent 1px);
+  background-size: 56px 56px;
+  -webkit-mask-image: radial-gradient(ellipse 100% 90% at 50% 20%, black 55%, transparent 100%);
+  mask-image: radial-gradient(ellipse 100% 90% at 50% 20%, black 55%, transparent 100%);
+}
+.hero-inner {
+  display: grid;
+  grid-template-columns: 1.05fr 0.95fr;
+  gap: 72px;
+  align-items: center;
+}
+.hero-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  background: var(--surface-glass);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  padding: 7px 16px 7px 8px;
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--text-sec);
+  margin-bottom: 28px;
+}
+.badge-new {
+  background: var(--gradient);
+  color: #fff;
+  font-size: 11px;
+  font-weight: 700;
+  padding: 3px 9px;
+  border-radius: 999px;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+.badge-new .dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #fff;
+  animation: pulse 2.2s infinite;
+}
+@keyframes pulse {
+  0% { box-shadow: 0 0 0 0 rgba(255, 255, 255, 0.5); }
+  70% { box-shadow: 0 0 0 6px rgba(255, 255, 255, 0); }
+  100% { box-shadow: 0 0 0 0 rgba(255, 255, 255, 0); }
+}
+.hero h1 { font-size: clamp(2.6rem, 5vw, 3.9rem); margin-bottom: 22px; }
+.hero-sub {
+  color: var(--text-sec);
+  font-size: 18px;
+  line-height: 1.7;
+  max-width: 480px;
+  margin-bottom: 36px;
+}
+.hero-ctas { display: flex; gap: 14px; flex-wrap: wrap; margin-bottom: 44px; }
+.hero-proof { display: flex; align-items: center; gap: 16px; }
+.proof-avatars { display: flex; }
+.proof-avatars span {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  border: 2px solid var(--bg);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 11px;
+  font-weight: 700;
+  color: #fff;
+  margin-left: -10px;
+}
+.proof-avatars span:first-child { margin-left: 0; }
+.av-1 { background: linear-gradient(135deg, #6366f1, #8b5cf6); }
+.av-2 { background: linear-gradient(135deg, #8b5cf6, #a855f7); }
+.av-3 { background: linear-gradient(135deg, #4f46e5, #6366f1); }
+.av-4 { background: linear-gradient(135deg, #a855f7, #7c3aed); }
+.proof-text { font-size: 13.5px; color: var(--text-sec); line-height: 1.45; }
+.proof-text strong { color: var(--text); font-weight: 600; }
+.hero-visual { position: relative; }
+.dashboard {
+  position: relative;
+  background: var(--surface-glass);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-xl);
+  box-shadow: 0 24px 64px rgba(0, 0, 0, 0.55), var(--glow-lg);
+  overflow: hidden;
+  animation: float 6s ease-in-out infinite;
+}
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+}
+.dash-topbar {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  padding: 14px 18px;
+  border-bottom: 1px solid var(--border);
+}
+.dash-topbar i {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.12);
+}
+.dash-topbar i:first-child { background: rgba(99, 102, 241, 0.7); }
+.dash-body { display: grid; grid-template-columns: 56px 1fr; min-height: 300px; }
+.dash-sidebar {
+  border-right: 1px solid var(--border);
+  padding: 16px 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 14px;
+}
+.dash-sidebar b {
+  width: 26px;
+  height: 26px;
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.05);
+}
+.dash-sidebar b.active { background: var(--gradient); box-shadow: var(--glow-sm); }
+.dash-main { padding: 20px; }
+.dash-main-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 18px;
+}
+.dash-title { width: 110px; height: 12px; border-radius: 6px; background: rgba(255, 255, 255, 0.12); }
+.dash-pill {
+  width: 64px;
+  height: 22px;
+  border-radius: 999px;
+  background: linear-gradient(135deg, rgba(99, 102, 241, 0.25), rgba(139, 92, 246, 0.25));
+  border: 1px solid rgba(99, 102, 241, 0.35);
+}
+.dash-stats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin-bottom: 18px; }
+.dash-stat {
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  padding: 12px;
+}
+.dash-stat u {
+  display: block;
+  text-decoration: none;
+  width: 34px;
+  height: 8px;
+  border-radius: 4px;
+  background: rgba(255, 255, 255, 0.1);
+  margin-bottom: 8px;
+}
+.dash-stat s {
+  display: block;
+  text-decoration: none;
+  width: 52px;
+  height: 13px;
+  border-radius: 6px;
+  background: var(--gradient);
+  opacity: 0.85;
+}
+.dash-chart {
+  display: flex;
+  align-items: flex-end;
+  gap: 8px;
+  height: 110px;
+  padding: 14px;
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+}
+.dash-chart i {
+  flex: 1;
+  border-radius: 5px 5px 2px 2px;
+  background: linear-gradient(180deg, rgba(99, 102, 241, 0.75), rgba(139, 92, 246, 0.25));
+}
+.float-card {
+  position: absolute;
+  background: rgba(24, 24, 28, 0.75);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: 14px 18px;
+  box-shadow: 0 16px 48px rgba(0, 0, 0, 0.5), var(--glow-sm);
+  z-index: 2;
+}
+.float-card-1 {
+  top: -26px;
+  right: -22px;
+  animation: float 5s ease-in-out infinite;
+  animation-delay: 0.6s;
+}
+.float-card-2 {
+  bottom: -24px;
+  left: -30px;
+  animation: float 7s ease-in-out infinite;
+  animation-delay: 1.2s;
+}
+.float-label { font-size: 11.5px; color: var(--text-muted); font-weight: 500; margin-bottom: 3px; }
+.float-value { font-size: 19px; font-weight: 700; letter-spacing: -0.02em; }
+.float-value em { font-style: normal; font-size: 12.5px; font-weight: 700; margin-left: 6px; }
+.up { color: #34d399; }
+.float-users { display: flex; align-items: center; gap: 10px; }
+.float-users .proof-avatars span { width: 28px; height: 28px; font-size: 9px; }
+.stats-bar {
+  margin-top: 96px;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  background: var(--surface-glass);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-xl);
+  overflow: hidden;
+}
+.stat {
+  padding: 30px 24px;
+  text-align: center;
+  position: relative;
+}
+.stat + .stat::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 25%;
+  height: 50%;
+  width: 1px;
+  background: var(--border);
+}
+.stat-num {
+  font-size: 30px;
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  background: var(--gradient-text);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+.stat-label { font-size: 13.5px; color: var(--text-muted); margin-top: 4px; font-weight: 500; }
+.divider { line-height: 0; margin-top: -40px; position: relative; z-index: 2; }
+.divider svg { width: 100%; height: 130px; display: block; }
+</style>
+<section class="hero">
+  <div class="container">
+    <div class="hero-inner">
+      <div class="hero-copy">
+        <div class="hero-badge reveal visible">
+          <span class="badge-new"><span class="dot"></span>Nuevo</span>
+          Nexora AI ya disponible en todos los planes
+        </div>
+        <h1 class="reveal visible d1">El pulso de tu negocio, <span class="gradient-text">en tiempo real</span></h1>
+        <p class="hero-sub reveal visible d2">Centraliza métricas, automatiza informes y detecta oportunidades antes que tu competencia. Sin hojas de cálculo, sin esperas.</p>
+        <div class="hero-ctas reveal visible d3">
+          <a href="#pricing" class="btn btn-gradient">Empezar gratis
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+          </a>
+          <a href="#features" class="btn btn-ghost">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M10 9l5 3-5 3V9z"/></svg>
+            Ver demo
+          </a>
+        </div>
+        <div class="hero-proof reveal visible d4">
+          <div class="proof-avatars">
+            <span class="av-1">MG</span>
+            <span class="av-2">JR</span>
+            <span class="av-3">LP</span>
+            <span class="av-4">+</span>
+          </div>
+          <p class="proof-text"><strong>+2.400 equipos</strong> ya toman decisiones con Nexora cada día</p>
+        </div>
+      </div>
+      <div class="hero-visual reveal visible d2">
+        <div class="dashboard">
+          <div class="dash-topbar"><i></i><i></i><i></i></div>
+          <div class="dash-body">
+            <div class="dash-sidebar"><b class="active"></b><b></b><b></b><b></b><b></b></div>
+            <div class="dash-main">
+              <div class="dash-main-head"><span class="dash-title"></span><span class="dash-pill"></span></div>
+              <div class="dash-stats">
+                <div class="dash-stat"><u></u><s></s></div>
+                <div class="dash-stat"><u></u><s style="width:40px"></s></div>
+                <div class="dash-stat"><u></u><s style="width:60px"></s></div>
+              </div>
+              <div class="dash-chart">
+                <i style="height:38%"></i><i style="height:62%"></i><i style="height:46%"></i><i style="height:78%"></i><i style="height:55%"></i><i style="height:90%"></i><i style="height:70%"></i><i style="height:100%"></i>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="float-card float-card-1">
+          <div class="float-label">Ingresos mensuales</div>
+          <div class="float-value">48.2k€ <em class="up">↑ 24,8%</em></div>
+        </div>
+        <div class="float-card float-card-2">
+          <div class="float-users">
+            <div class="proof-avatars">
+              <span class="av-1">A</span>
+              <span class="av-2">B</span>
+              <span class="av-3">C</span>
+            </div>
+            <div>
+              <div class="float-value" style="font-size:15px">+1.2k usuarios</div>
+              <div class="float-label">esta semana</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="stats-bar reveal visible d3">
+      <div class="stat"><div class="stat-num">99,99%</div><div class="stat-label">Disponibilidad garantizada</div></div>
+      <div class="stat"><div class="stat-num">12M</div><div class="stat-label">Eventos procesados al día</div></div>
+      <div class="stat"><div class="stat-num">4,9/5</div><div class="stat-label">Valoración media de clientes</div></div>
+      <div class="stat"><div class="stat-num">&lt;50ms</div><div class="stat-label">Latencia de consulta</div></div>
+    </div>
+  </div>
+</section>
+<div class="divider">
+  <svg viewBox="0 0 1440 130" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+    <defs>
+      <linearGradient id="waveGrad1" x1="0" y1="0" x2="1" y2="0">
+        <stop offset="0%" stop-color="rgba(99,102,241,0.10)"/>
+        <stop offset="100%" stop-color="rgba(139,92,246,0.04)"/>
+      </linearGradient>
+      <linearGradient id="waveGrad2" x1="0" y1="0" x2="1" y2="0">
+        <stop offset="0%" stop-color="rgba(139,92,246,0.07)"/>
+        <stop offset="100%" stop-color="rgba(99,102,241,0.03)"/>
+      </linearGradient>
+    </defs>
+    <path d="M0,70 C240,120 480,20 720,55 C960,90 1200,35 1440,75 L1440,130 L0,130 Z" fill="url(#waveGrad1)"/>
+    <path d="M0,95 C260,45 520,115 780,85 C1040,55 1240,105 1440,65 L1440,130 L0,130 Z" fill="url(#waveGrad2)"/>
+  </svg>
+</div>
+<style>
+.section { padding: 96px 0; position: relative; }
+.section-head { max-width: 620px; margin-bottom: 64px; }
+.section-head.center { margin-left: auto; margin-right: auto; text-align: center; }
+.eyebrow {
+  display: inline-block;
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  margin-bottom: 16px;
+  background: var(--gradient-text);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+.section-head h2 { font-size: clamp(1.9rem, 3.4vw, 2.6rem); margin-bottom: 16px; }
+.section-head p { color: var(--text-sec); font-size: 17px; }
+.features { background: var(--bg); }
+.features-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 22px;
+}
+.feature-card {
+  position: relative;
+  background: var(--surface-glass);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: 32px 28px;
+  transition: transform var(--transition), background var(--transition), box-shadow var(--transition);
+}
+.feature-card::before {
+  content: '';
+  position: absolute;
+  inset: -1px;
+  border-radius: calc(var(--radius-lg) + 1px);
+  padding: 1px;
+  background: linear-gradient(135deg, #6366f1, #8b5cf6 60%, #a855f7);
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  mask-composite: exclude;
+  opacity: 0;
+  transition: opacity var(--transition);
+  pointer-events: none;
+}
+.feature-card:hover {
+  transform: translateY(-6px);
+  background: rgba(31, 31, 36, 0.65);
+  box-shadow: 0 20px 48px rgba(0, 0, 0, 0.45), var(--glow-sm);
+}
+.feature-card:hover::before { opacity: 1; }
+.feature-icon {
+  width: 52px;
+  height: 52px;
+  border-radius: 15px;
+  background: var(--gradient);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 22px;
+  box-shadow: var(--glow-sm);
+  transition: box-shadow var(--transition), transform var(--transition);
+}
+.feature-card:hover .feature-icon {
+  box-shadow: var(--glow-md);
+  transform: scale(1.06) rotate(-3deg);
+}
+.feature-icon svg { width: 24px; height: 24px; stroke: #fff; }
+.feature-card h3 { font-size: 18.5px; font-weight: 600; margin-bottom: 10px; }
+.feature-card p { color: var(--text-sec); font-size: 14.5px; line-height: 1.65; }
+.feature-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  margin-top: 18px;
+  font-size: 13.5px;
+  font-weight: 600;
+  color: var(--text-muted);
+  text-decoration: none;
+  transition: color var(--transition-fast), gap var(--transition-fast);
+}
+.feature-card:hover .feature-link { color: var(--secondary); gap: 10px; }
+.pricing { background: var(--bg-alt); }
+.pricing .container { position: relative; }
+.billing-toggle {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 14px;
+  margin-bottom: 56px;
+}
+.toggle-label {
+  font-size: 15px;
+  font-weight: 500;
+  color: var(--text-muted);
+  transition: color var(--transition-fast);
+  cursor: pointer;
+}
+.toggle-label.active { color: var(--text); }
+.toggle-save {
+  background: linear-gradient(135deg, rgba(99, 102, 241, 0.16), rgba(139, 92, 246, 0.16));
+  border: 1px solid rgba(99, 102, 241, 0.35);
+  color: var(--secondary);
+  font-size: 11.5px;
+  font-weight: 700;
+  padding: 3px 10px;
+  border-radius: 999px;
+  letter-spacing: 0.02em;
+}
+.switch {
+  position: relative;
+  width: 56px;
+  height: 30px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  cursor: pointer;
+  transition: all var(--transition);
+  flex-shrink: 0;
+}
+.switch .knob {
+  position: absolute;
+  top: 3px;
+  left: 3px;
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  background: var(--gradient);
+  box-shadow: var(--glow-sm);
+  transition: transform var(--transition);
+}
+.switch.annual { border-color: var(--border-hover); box-shadow: var(--glow-sm); }
+.switch.annual .knob { transform: translateX(26px); }
+.pricing-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+  align-items: stretch;
+}
+.plan {
+  position: relative;
+  background: var(--surface-glass);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-xl);
+  padding: 36px 30px;
+  display: flex;
+  flex-direction: column;
+  transition: transform var(--transition), box-shadow var(--transition), border-color var(--transition);
+}
+.plan:hover {
+  transform: translateY(-6px);
+  border-color: rgba(255, 255, 255, 0.14);
+  box-shadow: 0 20px 48px rgba(0, 0, 0, 0.4);
+}
+.plan.featured {
+  background: rgba(31, 31, 38, 0.7);
+  border: 1px solid transparent;
+  background-image: linear-gradient(rgba(31, 31, 38, 0.85), rgba(31, 31, 38, 0.85)), linear-gradient(135deg, #6366f1, #8b5cf6 60%, #a855f7);
+  background-origin: border-box;
+  background-clip: padding-box, border-box;
+  box-shadow: 0 0 0 1px rgba(99, 102, 241, 0.15), var(--glow-md), 0 24px 56px rgba(0, 0, 0, 0.5);
+  transform: scale(1.03);
+  z-index: 2;
+}
+.plan.featured:hover { transform: scale(1.03) translateY(-6px); box-shadow: 0 0 0 1px rgba(99, 102, 241, 0.2), var(--glow-lg), 0 28px 64px rgba(0, 0, 0, 0.55); }
+.plan-badge {
+  position: absolute;
+  top: -14px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: var(--gradient);
+  color: #fff;
+  font-size: 12px;
+  font-weight: 700;
+  padding: 6px 16px;
+  border-radius: 999px;
+  box-shadow: var(--glow-md);
+  white-space: nowrap;
+  letter-spacing: 0.02em;
+}
+.plan-name { font-size: 15px; font-weight: 600; color: var(--text-sec); margin-bottom: 6px; }
+.plan-desc { font-size: 13.5px; color: var(--text-muted); margin-bottom: 24px; min-height: 40px; }
+.plan-price { display: flex; align-items: baseline; gap: 6px; margin-bottom: 28px; }
+.price-value { font-size: 46px; font-weight: 800; letter-spacing: -0.03em; }
+.plan.featured .price-value {
+  background: var(--gradient-text);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+.price-period { color: var(--text-muted); font-size: 14px; font-weight: 500; }
+.plan-features { list-style: none; margin-bottom: 32px; flex: 1; }
+.plan-features li {
+  display: flex;
+  align-items: flex-start;
+  gap: 11px;
+  padding: 7px 0;
+  font-size: 14.5px;
+  color: var(--text-sec);
+}
+.check {
+  flex-shrink: 0;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, rgba(99, 102, 241, 0.22), rgba(139, 92, 246, 0.22));
+  border: 1px solid rgba(99, 102, 241, 0.4);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 1px;
+}
+.check svg { width: 10px; height: 10px; stroke: url(#checkGrad); stroke-width: 3; }
+.plan .btn { width: 100%; }
+</style>
+<section class="section features" id="features">
+  <div class="container">
+    <div class="section-head reveal">
+      <span class="eyebrow">Funciones</span>
+      <h2>Todo lo que necesitas, <span class="gradient-text">nada que sobre</span></h2>
+      <p>Herramientas diseñadas para equipos que quieren moverse rápido sin sacrificar precisión ni control.</p>
+    </div>
+    <div class="features-grid">
+      <div class="feature-card reveal d1">
+        <div class="feature-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2L4.5 13.5H11L10 22l8.5-11.5H12L13 2z"/></svg>
+        </div>
+        <h3>Automatización inteligente</h3>
+        <p>Flujos de trabajo que se ejecutan solos: alertas, informes y sincronización de datos sin escribir una línea de código.</p>
+        <a href="#" class="feature-link">Saber más <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+      </div>
+      <div class="feature-card reveal d2">
+        <div class="feature-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2l8 3.5v5.5c0 5-3.4 9.2-8 11-4.6-1.8-8-6-8-11V5.5L12 2z"/><path d="M9 12l2 2 4-4.5"/></svg>
+        </div>
+        <h3>Seguridad de nivel bancario</h3>
+        <p>Cifrado AES-256 en reposo y en tránsito, SSO, auditorías SOC 2 Tipo II y control granular de permisos por rol.</p>
+        <a href="#" class="feature-link">Saber más <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+      </div>
+      <div class="feature-card reveal d3">
+        <div class="feature-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3v18h18"/><path d="M7 15l4-5 3 3 5-7"/></svg>
+        </div>
+        <h3>Analítica en tiempo real</h3>
+        <p>Dashboards que se actualizan al segundo. Detecta anomalías y tendencias el momento exacto en que ocurren.</p>
+        <a href="#" class="feature-link">Saber más <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+      </div>
+      <div class="feature-card reveal d1">
+        <div class="feature-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2l9 5-9 5-9-5 9-5z"/><path d="M3 12l9 5 9-5"/><path d="M3 17l9 5 9-5"/></svg>
+        </div>
+        <h3>+120 integraciones</h3>
+        <p>Conecta Stripe, Salesforce, Slack, HubSpot y todo tu stack en minutos. API REST y webhooks abiertos.</p>
+        <a href="#" class="feature-link">Saber más <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+      </div>
+      <div class="feature-card reveal d2">
+        <div class="feature-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="8" r="3.5"/><path d="M2.5 20c0-3.6 2.9-6 6.5-6s6.5 2.4 6.5 6"/><circle cx="17.5" cy="9" r="2.5"/><path d="M15.5 14.5c2.8.4 5 2.3 5 5.5"/></svg>
+        </div>
+        <h3>Colaboración sin fricción</h3>
+        <p>Comenta, comparte y asigna insights directamente sobre los datos. Tu equipo siempre en la misma página.</p>
+        <a href="#" class="feature-link">Saber más <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+      </div>
+      <div class="feature-card reveal d3">
+        <div class="feature-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M3 12h18"/><path d="M12 3c2.5 2.6 3.8 5.7 3.8 9S14.5 18.4 12 21c-2.5-2.6-3.8-5.7-3.8-9S9.5 5.6 12 3z"/></svg>
+        </div>
+        <h3>Infraestructura global</h3>
+        <p>Despliegue multi-región con latencia inferior a 50ms en cualquier parte del mundo. Escala sin límites.</p>
+        <a href="#" class="feature-link">Saber más <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+      </div>
+    </div>
+  </div>
+</section>
+<svg width="0" height="0" style="position:absolute">
+  <defs>
+    <linearGradient id="checkGrad" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#6366f1"/>
+      <stop offset="100%" stop-color="#a855f7"/>
+    </linearGradient>
+    <linearGradient id="starGrad" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#6366f1"/>
+      <stop offset="50%" stop-color="#8b5cf6"/>
+      <stop offset="100%" stop-color="#a855f7"/>
+    </linearGradient>
+  </defs>
+</svg>
+<section class="section pricing" id="pricing">
+  <div class="container">
+    <div class="section-head center reveal">
+      <span class="eyebrow">Precios</span>
+      <h2>Un plan para <span class="gradient-text">cada etapa</span></h2>
+      <p>Empieza gratis y escala cuando lo necesites. Sin permanencias, sin sorpresas en la factura.</p>
+    </div>
+    <div class="billing-toggle reveal d1">
+      <span class="toggle-label active" id="labelMonthly">Mensual</span>
+      <button class="switch" id="billingSwitch" aria-label="Cambiar facturación"><span class="knob"></span></button>
+      <span class="toggle-label" id="labelAnnual">Anual</span>
+      <span class="toggle-save">Ahorra 20%</span>
+    </div>
+    <div class="pricing-grid">
+      <div class="plan reveal d1">
+        <div class="plan-name">Esencial</div>
+        <p class="plan-desc">Para proyectos personales y primeras pruebas.</p>
+        <div class="plan-price">
+          <span class="price-value" data-monthly="0€" data-annual="0€">0€</span>
+          <span class="price-period">/ mes</span>
+        </div>
+        <ul class="plan-features">
+          <li><span class="check"><svg viewBox="0 0 24 24" fill="none" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12.5l5 5L20 6.5"/></svg></span>Hasta 3 dashboards</li>
+          <li><span class="check"><svg viewBox="0 0 24 24" fill="none" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12.5l5 5L20 6.5"/></svg></span>10.000 eventos / mes</li>
+          <li><span class="check"><svg viewBox="0 0 24 24" fill="none" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12.5l5 5L20 6.5"/></svg></span>1 usuario</li>
+          <li><span class="check"><svg viewBox="0 0 24 24" fill="none" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12.5l5 5L20 6.5"/></svg></span>Retención de 30 días</li>
+          <li><span class="check"><svg viewBox="0 0 24 24" fill="none" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12.5l5 5L20 6.5"/></svg></span>Soporte por comunidad</li>
+        </ul>
+        <a href="#" class="btn btn-ghost">Crear cuenta</a>
+      </div>
+      <div class="plan featured reveal d2">
+        <div class="plan-badge">Más popular</div>
+        <div class="plan-name">Pro</div>
+        <p class="plan-desc">Para equipos en crecimiento que necesitan potencia real.</p>
+        <div class="plan-price">
+          <span class="price-value" data-monthly="29€" data-annual="23€">29€</span>
+          <span class="price-period">/ mes</span>
+        </div>
+        <ul class="plan-features">
+          <li><span class="check"><svg viewBox="0 0 24 24" fill="none" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12.5l5 5L20 6.5"/></svg></span>Dashboards ilimitados</li>
+          <li><span class="check"><svg viewBox="0 0 24 24" fill="none" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12.5l5 5L20 6.5"/></svg></span>1M eventos / mes</li>
+          <li><span class="check"><svg viewBox="0 0 24 24" fill="none" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12.5l5 5L20 6.5"/></svg></span>Hasta 15 usuarios</li>
+          <li><span class="check"><svg viewBox="0 0 24 24" fill="none" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12.5l5 5L20 6.5"/></svg></span>Automatizaciones e IA</li>
+          <li><span class="check"><svg viewBox="0 0 24 24" fill="none" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12.5l5 5L20 6.5"/></svg></span>Retención de 12 meses</li>
+          <li><span class="check"><svg viewBox="0 0 24 24" fill="none" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12.5l5 5L20 6.5"/></svg></span>Soporte prioritario 24/7</li>
+        </ul>
+        <a href="#" class="btn btn-gradient">Empezar prueba de 14 días</a>
+      </div>
+      <div class="plan reveal d3">
+        <div class="plan-name">Empresa</div>
+        <p class="plan-desc">Para organizaciones con necesidades avanzadas.</p>
+        <div class="plan-price">
+          <span class="price-value" data-monthly="89€" data-annual="71€">89€</span>
+          <span class="price-period">/ mes</span>
+        </div>
+        <ul class="plan-features">
+          <li><span class="check"><svg viewBox="0 0 24 24" fill="none" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12.5l5 5L20 6.5"/></svg></span>Todo lo del plan Pro</li>
+          <li><span class="check"><svg viewBox="0 0 24 24" fill="none" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12.5l5 5L20 6.5"/></svg></span>Eventos ilimitados</li>
+          <li><span class="check"><svg viewBox="0 0 24 24" fill="none" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12.5l5 5L20 6.5"/></svg></span>SSO / SAML y SCIM</li>
+          <li><span class="check"><svg viewBox="0 0 24 24" fill="none" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12.5l5 5L20 6.5"/></svg></span>SLA del 99,99%</li>
+          <li><span class="check"><svg viewBox="0 0 24 24" fill="none" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12.5l5 5L20 6.5"/></svg></span>Gestor de cuenta dedicado</li>
+        </ul>
+        <a href="#" class="btn btn-ghost">Hablar con ventas</a>
+      </div>
+    </div>
+  </div>
+</section>
+<style>
+.testimonials { background: var(--bg); }
+.testimonials-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 22px;
+}
+.testimonial {
+  position: relative;
+  background: var(--surface-glass);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: 32px 28px;
+  display: flex;
+  flex-direction: column;
+  transition: transform var(--transition), border-color var(--transition), box-shadow var(--transition);
+}
+.testimonial:hover {
+  transform: translateY(-6px);
+  border-color: var(--border-hover);
+  box-shadow: 0 20px 48px rgba(0, 0, 0, 0.4), var(--glow-sm);
+}
+.quote-mark {
+  width: 38px;
+  height: 38px;
+  border-radius: 11px;
+  background: linear-gradient(135deg, rgba(99, 102, 241, 0.18), rgba(139, 92, 246, 0.18));
+  border: 1px solid rgba(99, 102, 241, 0.3);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 20px;
+}
+.quote-mark svg { width: 16px; height: 16px; fill: url(#starGrad); }
+.stars { display: flex; gap: 3px; margin-bottom: 16px; }
+.stars svg { width: 15px; height: 15px; fill: url(#starGrad); }
+.testimonial-text {
+  color: var(--text-sec);
+  font-size: 15px;
+  line-height: 1.7;
+  flex: 1;
+  margin-bottom: 26px;
+}
+.testimonial-author {
+  display: flex;
+  align-items: center;
+  gap: 13px;
+  padding-top: 20px;
+  border-top: 1px solid var(--border);
+}
+.author-avatar {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 13px;
+  font-weight: 700;
+  color: #fff;
+  flex-shrink: 0;
+}
+.author-name { font-weight: 600; font-size: 14.5px; }
+.author-role { color: var(--text-muted); font-size: 13px; }
+.cta-section { padding: 110px 0; background: var(--bg-alt); position: relative; overflow: hidden; }
+.cta-section::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: radial-gradient(rgba(255, 255, 255, 0.06) 1px, transparent 1px);
+  background-size: 26px 26px;
+  -webkit-mask-image: radial-gradient(ellipse 60% 70% at 50% 50%, black, transparent 75%);
+  mask-image: radial-gradient(ellipse 60% 70% at 50% 50%, black, transparent 75%);
+  pointer-events: none;
+}
+.cta-wrap { position: relative; max-width: 780px; margin: 0 auto; }
+.cta-glow {
+  position: absolute;
+  inset: -60px -40px;
+  background: radial-gradient(ellipse 55% 65% at 50% 55%, rgba(99, 102, 241, 0.28), rgba(139, 92, 246, 0.1) 55%, transparent 75%);
+  filter: blur(30px);
+  pointer-events: none;
+  animation: ctaPulse 5s ease-in-out infinite;
+}
+@keyframes ctaPulse {
+  0%, 100% { opacity: 0.8; transform: scale(1); }
+  50% { opacity: 1; transform: scale(1.04); }
+}
+.cta-card {
+  position: relative;
+  background: var(--surface-glass);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: var(--radius-xl);
+  padding: 72px 56px;
+  text-align: center;
+  box-shadow: 0 32px 80px rgba(0, 0, 0, 0.5);
+}
+.cta-card h2 { font-size: clamp(2rem, 4vw, 3rem); margin-bottom: 18px; }
+.cta-card p {
+  color: var(--text-sec);
+  font-size: 17px;
+  max-width: 460px;
+  margin: 0 auto 38px;
+}
+.cta-note { margin-top: 20px; font-size: 13px; color: var(--text-muted); }
+footer {
+  background: var(--bg);
+  border-top: 1px solid var(--border);
+  padding: 72px 0 40px;
+  position: relative;
+  z-index: 1;
+}
+.footer-grid {
+  display: grid;
+  grid-template-columns: 1.4fr 1fr 1fr 1.3fr;
+  gap: 48px;
+  margin-bottom: 56px;
+}
+.footer-brand p {
+  color: var(--text-sec);
+  font-size: 14px;
+  line-height: 1.7;
+  margin: 18px 0 24px;
+  max-width: 260px;
+}
+.social-links { display: flex; gap: 10px; }
+.social-links a {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all var(--transition);
+}
+.social-links a svg { width: 15px; height: 15px; fill: var(--text-sec); transition: fill var(--transition-fast); }
+.social-links a:hover {
+  background: var(--gradient);
+  border-color: transparent;
+  box-shadow: var(--glow-md);
+  transform: translateY(-3px);
+}
+.social-links a:hover svg { fill: #fff; }
+.footer-col h4 {
+  font-size: 13px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--text);
+  margin-bottom: 20px;
+}
+.footer-col ul { list-style: none; }
+.footer-col li { margin-bottom: 12px; }
+.footer-col a {
+  color: var(--text-sec);
+  text-decoration: none;
+  font-size: 14px;
+  transition: color var(--transition-fast);
+}
+.footer-col a:hover { color: var(--text); }
+.footer-contact p { color: var(--text-sec); font-size: 14px; margin-bottom: 8px; }
+.footer-contact a { color: var(--secondary); text-decoration: none; font-weight: 500; }
+.footer-contact a:hover { text-decoration: underline; }
+.newsletter { margin-top: 20px; }
+.newsletter label { font-size: 13px; color: var(--text-muted); display: block; margin-bottom: 10px; }
+.newsletter-row {
+  display: flex;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  transition: border-color var(--transition-fast), box-shadow var(--transition-fast);
+}
+.newsletter-row:focus-within {
+  border-color: var(--border-hover);
+  box-shadow: var(--glow-sm);
+}
+.newsletter-row input {
+  flex: 1;
+  background: transparent;
+  border: none;
+  outline: none;
+  color: var(--text);
+  font-family: inherit;
+  font-size: 14px;
+  padding: 12px 14px;
+  min-width: 0;
+}
+.newsletter-row input::placeholder { color: var(--text-muted); }
+.newsletter-row button {
+  background: var(--gradient);
+  border: none;
+  color: #fff;
+  font-family: inherit;
+  font-size: 13px;
+  font-weight: 600;
+  padding: 0 18px;
+  cursor: pointer;
+  transition: filter var(--transition-fast);
+}
+.newsletter-row button:hover { filter: brightness(1.15); }
+.footer-bottom {
+  border-top: 1px solid var(--border);
+  padding-top: 32px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+.footer-bottom p { color: var(--text-muted); font-size: 13.5px; }
+.footer-legal { display: flex; gap: 24px; }
+.footer-legal a { color: var(--text-muted); text-decoration: none; font-size: 13.5px; transition: color var(--transition-fast); }
+.footer-legal a:hover { color: var(--text); }
+@media (max-width: 1024px) {
+  .hero-inner { grid-template-columns: 1fr; gap: 80px; }
+  .hero-sub { max-width: 560px; }
+  .hero-visual { max-width: 560px; margin: 0 auto; width: 100%; }
+  .features-grid, .testimonials-grid { grid-template-columns: repeat(2, 1fr); }
+  .pricing-grid { grid-template-columns: 1fr; max-width: 480px; margin: 0 auto; }
+  .plan.featured { transform: none; }
+  .plan.featured:hover { transform: translateY(-6px); }
+  .footer-grid { grid-template-columns: 1fr 1fr; gap: 40px; }
+}
+@media (max-width: 768px) {
+  .nav-links, .nav-login { display: none; }
+  .hero { padding: 150px 0 80px; }
+  .features-grid, .testimonials-grid { grid-template-columns: 1fr; }
+  .stats-bar { grid-template-columns: repeat(2, 1fr); }
+  .stat:nth-child(3)::before { display: none; }
+  .cta-card { padding: 52px 28px; }
+  .float-card-1 { right: -8px; }
+  .float-card-2 { left: -8px; }
+  .hero-ctas .btn { flex: 1; justify-content: center; }
+  .footer-grid { grid-template-columns: 1fr; gap: 36px; }
+  .footer-bottom { justify-content: center; text-align: center; }
+}
+</style>
+<section class="section testimonials" id="testimonials">
+  <div class="container">
+    <div class="section-head center reveal">
+      <span class="eyebrow">Testimonios</span>
+      <h2>Lo que dicen <span class="gradient-text">nuestros clientes</span></h2>
+      <p>Equipos de todos los tamaños confían en Nexora para entender su negocio.</p>
+    </div>
+    <div class="testimonials-grid">
+      <div class="testimonial reveal d1">
+        <div class="quote-mark">
+          <svg viewBox="0 0 24 24"><path d="M10 8c-3 0-5 2-5 5.5S7 19 9 19c1.7 0 3-1.3 3-3s-1.3-3-3-3c-.3 0-.7 0-1 .1C8.5 11.4 9.5 10 11 9.5L10 8zm9 0c-3 0-5 2-5 5.5s2 5.5 4 5.5c1.7 0 3-1.3 3-3s-1.3-3-3-3c-.3 0-.7 0-1 .1.5-1.7 1.5-3.1 3-3.6L19 8z"/></svg>
+        </div>
+        <div class="stars">
+          <svg viewBox="0 0 24 24"><path d="M12 2l2.9 6.6 7.1.7-5.4 4.8 1.6 7-6.2-3.7-6.2 3.7 1.6-7L2 9.3l7.1-.7L12 2z"/></svg>
+          <svg viewBox="0 0 24 24"><path d="M12 2l2.9 6.6 7.1.7-5.4 4.8 1.6 7-6.2-3.7-6.2 3.7 1.6-7L2 9.3l7.1-.7L12 2z"/></svg>
+          <svg viewBox="0 0 24 24"><path d="M12 2l2.9 6.6 7.1.7-5.4 4.8 1.6 7-6.2-3.7-6.2 3.7 1.6-7L2 9.3l7.1-.7L12 2z"/></svg>
+          <svg viewBox="0 0 24 24"><path d="M12 2l2.9 6.6 7.1.7-5.4 4.8 1.6 7-6.2-3.7-6.2 3.7 1.6-7L2 9.3l7.1-.7L12 2z"/></svg>
+          <svg viewBox="0 0 24 24"><path d="M12 2l2.9 6.6 7.1.7-5.4 4.8 1.6 7-6.2-3.7-6.2 3.7 1.6-7L2 9.3l7.1-.7L12 2z"/></svg>
+        </div>
+        <p class="testimonial-text">"Pasamos de tardar una semana en preparar informes a tenerlos en tiempo real. Nexora cambió por completo cómo el equipo directivo toma decisiones."</p>
+        <div class="testimonial-author">
+          <span class="author-avatar av-1">MG</span>
+          <div>
+            <div class="author-name">Marta Gutiérrez</div>
+            <div class="author-role">COO · Kubbo Logistics</div>
+          </div>
+        </div>
+      </div>
+      <div class="testimonial reveal d2">
+        <div class="quote-mark">
+          <svg viewBox="0 0 24 24"><path d="M10 8c-3 0-5 2-5 5.5S7 19 9 19c1.7 0 3-1.3 3-3s-1.3-3-3-3c-.3 0-.7 0-1 .1C8.5 11.4 9.5 10 11 9.5L10 8zm9 0c-3 0-5 2-5 5.5s2 5.5 4 5.5c1.7 0 3-1.3 3-3s-1.3-3-3-3c-.3 0-.7 0-1 .1.5-1.7 1.5-3.1 3-3.6L19 8z"/></svg>
+        </div>
+        <div class="stars">
+          <svg viewBox="0 0 24 24"><path d="M12 2l2.9 6.6 7.1.7-5.4 4.8 1.6 7-6.2-3.7-6.2 3.7 1.6-7L2 9.3l7.1-.7L12 2z"/></svg>
+          <svg viewBox="0 0 24 24"><path d="M12 2l2.9 6.6 7.1.7-5.4 4.8 1.6 7-6.2-3.7-6.2 3.7 1.6-7L2 9.3l7.1-.7L12 2z"/></svg>
+          <svg viewBox="0 0 24 24"><path d="M12 2l2.9 6.6 7.1.7-5.4 4.8 1.6 7-6.2-3.7-6.2 3.7 1.6-7L2 9.3l7.1-.7L12 2z"/></svg>
+          <svg viewBox="0 0 24 24"><path d="M12 2l2.9 6.6 7.1.7-5.4 4.8 1.6 7-6.2-3.7-6.2 3.7 1.6-7L2 9.3l7.1-.7L12 2z"/></svg>
+          <svg viewBox="0 0 24 24"><path d="M12 2l2.9 6.6 7.1.7-5.4 4.8 1.6 7-6.2-3.7-6.2 3.7 1.6-7L2 9.3l7.1-.7L12 2z"/></svg>
+        </div>
+        <p class="testimonial-text">"La integración con nuestro stack llevó menos de una tarde. Las alertas automáticas nos han ahorrado más de un susto con clientes enterprise."</p>
+        <div class="testimonial-author">
+          <span class="author-avatar av-2">JR</span>
+          <div>
+            <div class="author-name">Jorge Ramírez</div>
+            <div class="author-role">CTO · Finanzen App</div>
+          </div>
+        </div>
+      </div>
+      <div class="testimonial reveal d3">
+        <div class="quote-mark">
+          <svg viewBox="0 0 24 24"><path d="M10 8c-3 0-5 2-5 5.5S7 19 9 19c1.7 0 3-1.3 3-3s-1.3-3-3-3c-.3 0-.7 0-1 .1C8.5 11.4 9.5 10 11 9.5L10 8zm9 0c-3 0-5 2-5 5.5s2 5.5 4 5.5c1.7 0 3-1.3 3-3s-1.3-3-3-3c-.3 0-.7 0-1 .1.5-1.7 1.5-3.1 3-3.6L19 8z"/></svg>
+        </div>
+        <div class="stars">
+          <svg viewBox="0 0 24 24"><path d="M12 2l2.9 6.6 7.1.7-5.4 4.8 1.6 7-6.2-3.7-6.2 3.7 1.6-7L2 9.3l7.1-.7L12 2z"/></svg>
+          <svg viewBox="0 0 24 24"><path d="M12 2l2.9 6.6 7.1.7-5.4 4.8 1.6 7-6.2-3.7-6.2 3.7 1.6-7L2 9.3l7.1-.7L12 2z"/></svg>
+          <svg viewBox="0 0 24 24"><path d="M12 2l2.9 6.6 7.1.7-5.4 4.8 1.6 7-6.2-3.7-6.2 3.7 1.6-7L2 9.3l7.1-.7L12 2z"/></svg>
+          <svg viewBox="0 0 24 24"><path d="M12 2l2.9 6.6 7.1.7-5.4 4.8 1.6 7-6.2-3.7-6.2 3.7 1.6-7L2 9.3l7.1-.7L12 2z"/></svg>
+          <svg viewBox="0 0 24 24"><path d="M12 2l2.9 6.6 7.1.7-5.4 4.8 1.6 7-6.2-3.7-6.2 3.7 1.6-7L2 9.3l7.1-.7L12 2z"/></svg>
+        </div>
+        <p class="testimonial-text">"El soporte es de otro nivel: respuestas en minutos, no en días. Y la detección de anomalías con IA nos descubrió un fraude que llevaba meses oculto."</p>
+        <div class="testimonial-author">
+          <span class="author-avatar av-4">LP</span>
+          <div>
+            <div class="author-name">Lucía Peña</div>
+            <div class="author-role">Head of Data · Voltaic Energy</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<section class="cta-section">
+  <div class="container">
+    <div class="cta-wrap reveal">
+      <div class="cta-glow"></div>
+      <div class="cta-card">
+        <h2>Empieza <span class="gradient-text">hoy</span></h2>
+        <p>Crea tu cuenta en menos de 2 minutos y visualiza tus primeras métricas antes de que acabe el día.</p>
+        <a href="#" class="btn btn-gradient btn-lg">Empezar gratis
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+        </a>
+        <p class="cta-note">Sin tarjeta de crédito · Cancela cuando quieras</p>
+      </div>
+    </div>
+  </div>
+</section>
+<footer id="contacto">
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <a href="#" class="nav-logo">
+          <span class="nav-logo-mark">
+            <svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2L4.5 13.5H11L10 22l8.5-11.5H12L13 2z"/></svg>
+          </span>
+          Nexora
+        </a>
+        <p>La plataforma de analítica en tiempo real para equipos que quieren decidir con datos, no con intuición.</p>
+        <div class="social-links">
+          <a href="#" aria-label="X"><svg viewBox="0 0 24 24"><path d="M18.9 2H22l-6.8 7.8L23.3 22h-6.3l-4.9-6.4L6.5 22H3.4l7.3-8.3L1 2h6.5l4.4 5.9L18.9 2zm-1.1 18h1.7L7.6 3.8H5.7L17.8 20z"/></svg></a>
+          <a href="#" aria-label="LinkedIn"><svg viewBox="0 0 24 24"><path d="M4.98 3.5C4.98 4.88 3.87 6 2.5 6S0 4.88 0 3.5 1.12 1 2.5 1s2.48 1.12 2.48 2.5zM.22 8.09h4.56V23H.22V8.09zM8.34 8.09h4.37v2.04h.06c.61-1.15 2.1-2.37 4.32-2.37 4.62 0 5.47 3.04 5.47 7v8.24h-4.55v-7.3c0-1.74-.03-3.98-2.43-3.98-2.43 0-2.8 1.9-2.8 3.86V23H8.34V8.09z"/></svg></a>
+          <a href="#" aria-label="GitHub"><svg viewBox="0 0 24 24"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.3 3.44 9.8 8.2 11.4.6.1.82-.26.82-.58v-2.03c-3.34.72-4.04-1.6-4.04-1.6-.55-1.39-1.34-1.76-1.34-1.76-1.1-.75.08-.73.08-.73 1.2.08 1.84 1.24 1.84 1.24 1.08 1.85 2.83 1.31 3.52 1 .1-.78.42-1.31.76-1.6-2.66-.31-5.47-1.34-5.47-5.94 0-1.31.47-2.38 1.24-3.22-.13-.3-.54-1.52.11-3.18 0 0 1.01-.32 3.3 1.23a11.5 11.5 0 016 0c2.28-1.55 3.29-1.23 3.29-1.23.65 1.66.24 2.88.12 3.18.77.84 1.23 1.9 1.23 3.22 0 4.61-2.8 5.62-5.48 5.92.43.37.81 1.1.81 2.23v3.3c0 .32.22.7.83.58C20.56 21.8 24 17.3 24 12c0-6.63-5.37-12-12-12z"/></svg></a>
+          <a href="#" aria-label="YouTube"><svg viewBox="0 0 24 24"><path d="M23.5 6.2a3 3 0 00-2.1-2.1C19.5 3.5 12 3.5 12 3.5s-7.5 0-9.4.6A3 3 0 00.5 6.2 31.3 31.3 0 000 12a31.3 31.3 0 00.5 5.8 3 3 0 002.1 2.1c1.9.6 9.4.6 9.4.6s7.5 0 9.4-.6a3 3 0 002.1-2.1A31.3 31.3 0 0024 12a31.3 31.3 0 00-.5-5.8zM9.6 15.6V8.4l6.2 3.6-6.2 3.6z"/></svg></a>
+        </div>
+      </div>
+      <div class="footer-col">
+        <h4>Producto</h4>
+        <ul>
+          <li><a href="#features">Funciones</a></li>
+          <li><a href="#pricing">Precios</a></li>
+          <li><a href="#">Integraciones</a></li>
+          <li><a href="#">Novedades</a></li>
+          <li><a href="#">Roadmap</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Empresa</h4>
+        <ul>
+          <li><a href="#">Sobre nosotros</a></li>
+          <li><a href="#">Blog</a></li>
+          <li><a href="#">Empleo</a></li>
+          <li><a href="#">Prensa</a></li>
+          <li><a href="#">Partners</a></li>
+        </ul>
+      </div>
+      <div class="footer-col footer-contact">
+        <h4>Contacto</h4>
+        <p>¿Hablamos? Escríbenos a<br><a href="mailto:hola@nexora.io">hola@nexora.io</a></p>
+        <div class="newsletter">
+          <label for="newsletter-email">Recibe novedades y consejos de analítica</label>
+          <form class="newsletter-row" id="newsletterForm">
+            <input type="email" id="newsletter-email" placeholder="tu@email.com" required>
+            <button type="submit">Unirme</button>
+          </form>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>© 2026 Nexora Labs, S.L. Todos los derechos reservados.</p>
+      <div class="footer-legal">
+        <a href="#">Privacidad</a>
+        <a href="#">Términos</a>
+        <a href="#">Cookies</a>
+      </div>
+    </div>
+  </div>
+</footer>
+<script>
+const navbar = document.getElementById('navbar');
+window.addEventListener('scroll', () => {
+  navbar.classList.toggle('scrolled', window.scrollY > 24);
+}, { passive: true });
+
+const billingSwitch = document.getElementById('billingSwitch');
+const labelMonthly = document.getElementById('labelMonthly');
+const labelAnnual = document.getElementById('labelAnnual');
+const priceValues = document.querySelectorAll('.price-value[data-monthly]');
+
+function setBilling(annual) {
+  billingSwitch.classList.toggle('annual', annual);
+  labelMonthly.classList.toggle('active', !annual);
+  labelAnnual.classList.toggle('active', annual);
+  priceValues.forEach(el => {
+    el.style.opacity = '0';
+    el.style.transform = 'translateY(6px)';
+    setTimeout(() => {
+      el.textContent = annual ? el.dataset.annual : el.dataset.monthly;
+      el.style.opacity = '1';
+      el.style.transform = 'translateY(0)';
+    }, 160);
+  });
+}
+
+priceValues.forEach(el => {
+  el.style.transition = 'opacity 160ms ease, transform 160ms ease';
+  el.style.display = 'inline-block';
+});
+
+billingSwitch.addEventListener('click', () => setBilling(!billingSwitch.classList.contains('annual')));
+labelMonthly.addEventListener('click', () => setBilling(false));
+labelAnnual.addEventListener('click', () => setBilling(true));
+
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('visible');
+      observer.unobserve(entry.target);
+    }
+  });
+}, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+
+document.querySelectorAll('.reveal:not(.visible)').forEach(el => observer.observe(el));
+
+document.getElementById('newsletterForm').addEventListener('submit', (e) => {
+  e.preventDefault();
+  const input = document.getElementById('newsletter-email');
+  const btn = e.target.querySelector('button');
+  btn.textContent = '¡Listo!';
+  input.value = '';
+  input.placeholder = 'Gracias por unirte';
+  setTimeout(() => { btn.textContent = 'Unirme'; input.placeholder = 'tu@email.com'; }, 2600);
+});
+</script>
+</main>
+</body>
+</html>

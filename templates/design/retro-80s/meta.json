@@ -1,0 +1,38 @@
+{
+  "id": "design-retro-80s",
+  "name": "Retro 80s",
+  "type": "design",
+  "category": "retro",
+  "description": "Sistema de design retro de los 80s. Synthwave, sunset gradients, grid floors y neon pink/cyan. Estetica vaporwave, nostalgia y retrofuturismo.",
+  "screenshot": null,
+  "sections": ["colors", "typography", "spacing", "components", "elevation", "guidelines"],
+  "styleTags": ["dark", "retro", "80s", "synthwave", "vaporwave", "neon", "gradient"],
+  "colorScheme": {
+    "primary": "#ff2a6d",
+    "secondary": "#05d9e8",
+    "background": "#0d0221",
+    "surface": "#1a0b2e",
+    "text": "#d1f7ff",
+    "textSecondary": "#8b6f9c"
+  },
+  "typography": {
+    "fontFamily": "'Orbitron', 'Inter', system-ui, sans-serif",
+    "headingScale": "clamp(2.5rem, 7vw, 6rem)",
+    "bodySize": "16px",
+    "lineHeight": "1.5"
+  },
+  "spacing": {
+    "section": "80px",
+    "element": "24px",
+    "gap": "16px"
+  },
+  "borderRadius": {
+    "sm": "4px",
+    "md": "8px",
+    "lg": "12px",
+    "xl": "16px"
+  },
+  "responsive": true,
+  "complexity": "high",
+  "industry": ["music", "gaming", "retro", "creative", "entertainment", "arcade", "vaporwave"]
+}

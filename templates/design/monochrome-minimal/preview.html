@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Monochrome Minimal — Design System</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --color-primary: #18181b; --color-secondary: #52525b; --color-bg: #ffffff;
+    --color-surface: #fafafa; --color-border: #e4e4e7; --color-border-strong: #d4d4d8;
+    --color-text: #18181b; --color-text-sec: #71717a; --color-text-muted: #a1a1aa;
+    --font-sans: 'Inter', system-ui, sans-serif;
+    --radius-sm: 4px; --radius-md: 8px; --radius-lg: 12px;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: var(--font-sans); background: var(--color-bg); color: var(--color-text); padding: 96px 48px; min-height: 100vh; font-weight: 400; line-height: 1.7; }
+  .container { max-width: 1200px; margin: 0 auto; }
+  .hero { text-align: center; margin-bottom: 96px; }
+  .hero__eyebrow { font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.15em; color: var(--color-text-sec); margin-bottom: 32px; }
+  .hero__title { font-size: clamp(2.5rem, 6vw, 5rem); font-weight: 300; letter-spacing: -0.03em; line-height: 1.05; margin-bottom: 24px; color: var(--color-text); }
+  .hero__subtitle { font-size: 18px; color: var(--color-text-sec); max-width: 480px; margin: 0 auto 40px; line-height: 1.7; font-weight: 300; }
+  .hero__actions { display: flex; gap: 12px; justify-content: center; }
+  .btn { display: inline-flex; padding: 12px 24px; border: 1px solid; border-radius: var(--radius-md); font-family: var(--font-sans); font-size: 14px; font-weight: 500; cursor: pointer; transition: all 0.2s ease; text-decoration: none; }
+  .btn--primary { background: var(--color-primary); border-color: var(--color-primary); color: #fff; }
+  .btn--primary:hover { background: #27272a; }
+  .btn--secondary { background: transparent; border-color: var(--color-border); color: var(--color-text); }
+  .btn--secondary:hover { border-color: var(--color-border-strong); background: var(--color-surface); }
+  .btn--ghost { background: transparent; border: none; color: var(--color-text-sec); }
+  .btn--ghost:hover { color: var(--color-text); }
+  .section { margin-bottom: 96px; }
+  .section__title { font-size: 2.25rem; font-weight: 400; letter-spacing: -0.02em; margin-bottom: 32px; color: var(--color-text); }
+  .palette { display: grid; grid-template-columns: repeat(auto-fill, minmax(120px, 1fr)); gap: 16px; }
+  .swatch { border: 1px solid var(--color-border); border-radius: var(--radius-md); overflow: hidden; }
+  .swatch__color { height: 60px; }
+  .swatch__info { padding: 12px 16px; }
+  .swatch__name { font-size: 12px; font-weight: 500; }
+  .swatch__hex { font-size: 11px; color: var(--color-text-muted); font-family: ui-monospace, monospace; }
+  .cards { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 24px; }
+  .card { background: var(--color-surface); border: 1px solid var(--color-border); border-radius: var(--radius-md); padding: 32px; transition: border-color 0.2s ease; }
+  .card:hover { border-color: var(--color-border-strong); }
+  .card__number { font-size: 32px; font-weight: 300; color: var(--color-text-muted); margin-bottom: 16px; }
+  .card__title { font-size: 1.125rem; font-weight: 500; margin-bottom: 8px; }
+  .card__desc { font-size: 14px; color: var(--color-text-sec); line-height: 1.7; }
+  .form-row { display: flex; gap: 16px; flex-wrap: wrap; max-width: 600px; margin-bottom: 16px; }
+  .field { flex: 1; min-width: 200px; }
+  .field label { display: block; font-size: 13px; font-weight: 500; color: var(--color-text-sec); margin-bottom: 8px; }
+  .input { width: 100%; padding: 12px 16px; background: #fff; border: 1px solid var(--color-border); border-radius: var(--radius-md); color: var(--color-text); font-family: var(--font-sans); font-size: 14px; transition: border-color 0.2s ease; }
+  .input:focus { outline: none; border-color: var(--color-primary); }
+  .input::placeholder { color: var(--color-text-muted); }
+  .chips { display: flex; gap: 8px; flex-wrap: wrap; }
+  .chip { padding: 4px 12px; border: 1px solid var(--color-border); border-radius: 9999px; font-size: 12px; font-weight: 500; color: var(--color-text-sec); }
+  .chip--active { background: var(--color-primary); border-color: var(--color-primary); color: #fff; }
+</style>
+</head>
+<body>
+<div class="container">
+  <div class="hero">
+    <div class="hero__eyebrow">Design System</div>
+    <h1 class="hero__title">Monochrome Minimal</h1>
+    <p class="hero__subtitle">Puramente monocromatico. Sin color, solo grises y blanco. La elegancia de la ausencia.</p>
+    <div class="hero__actions">
+      <a class="btn btn--primary">Get Started</a>
+      <a class="btn btn--secondary">Documentation</a>
+      <a class="btn btn--ghost">Learn more</a>
+    </div>
+  </div>
+  <div class="section">
+    <h2 class="section__title">Color Palette</h2>
+    <div class="palette">
+      <div class="swatch"><div class="swatch__color" style="background:#18181b"></div><div class="swatch__info"><div class="swatch__name">Primary</div><div class="swatch__hex">#18181b</div></div></div>
+      <div class="swatch"><div class="swatch__color" style="background:#52525b"></div><div class="swatch__info"><div class="swatch__name">Secondary</div><div class="swatch__hex">#52525b</div></div></div>
+      <div class="swatch"><div class="swatch__color" style="background:#71717a"></div><div class="swatch__info"><div class="swatch__name">Text Sec.</div><div class="swatch__hex">#71717a</div></div></div>
+      <div class="swatch"><div class="swatch__color" style="background:#a1a1aa"></div><div class="swatch__info"><div class="swatch__name">Muted</div><div class="swatch__hex">#a1a1aa</div></div></div>
+      <div class="swatch"><div class="swatch__color" style="background:#e4e4e7"></div><div class="swatch__info"><div class="swatch__name">Border</div><div class="swatch__hex">#e4e4e7</div></div></div>
+      <div class="swatch"><div class="swatch__color" style="background:#fafafa"></div><div class="swatch__info"><div class="swatch__name">Surface</div><div class="swatch__hex">#fafafa</div></div></div>
+      <div class="swatch"><div class="swatch__color" style="background:#ffffff;border-bottom:1px solid #e4e4e7"></div><div class="swatch__info"><div class="swatch__name">Background</div><div class="swatch__hex">#ffffff</div></div></div>
+    </div>
+  </div>
+  <div class="section">
+    <h2 class="section__title">Cards</h2>
+    <div class="cards">
+      <div class="card"><div class="card__number">01</div><h3 class="card__title">Simplicity</h3><p class="card__desc">Remove everything that isn't essential. The result is what remains when nothing more can be taken away.</p></div>
+      <div class="card"><div class="card__number">02</div><h3 class="card__title">Whitespace</h3><p class="card__desc">Space is not empty. It breathes, it gives rhythm, it lets content speak without shouting.</p></div>
+      <div class="card"><div class="card__number">03</div><h3 class="card__title">Absence</h3><p class="card__desc">The absence of color reveals form. Without distraction, structure becomes the message.</p></div>
+    </div>
+  </div>
+  <div class="section">
+    <h2 class="section__title">Form Elements</h2>
+    <div class="form-row">
+      <div class="field"><label>Name</label><input class="input" type="text" placeholder="Jane Doe"></div>
+      <div class="field"><label>Email</label><input class="input" type="email" placeholder="you@example.com"></div>
+    </div>
+  </div>
+  <div class="section">
+    <h2 class="section__title">Chips</h2>
+    <div class="chips">
+      <span class="chip">Default</span>
+      <span class="chip chip--active">Active</span>
+      <span class="chip">Tag</span>
+    </div>
+  </div>
+</div>
+</body>
+</html>

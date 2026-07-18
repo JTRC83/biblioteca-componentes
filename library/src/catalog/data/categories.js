@@ -16,7 +16,9 @@ import {
   PaintBrushIcon,
   SparklesIcon,
   AdjustmentsVerticalIcon,
-  Bars3BottomLeftIcon
+  Bars3BottomLeftIcon,
+  CubeIcon,
+  ChartBarIcon
 } from '@heroicons/vue/24/outline'
 
 export const categories = [
@@ -103,6 +105,18 @@ export const categories = [
     name: 'Navbars',
     description: 'Barras de navegación con menús, glassmorphism y efectos hover.',
     icon: Bars3BottomLeftIcon
+  },
+  {
+    slug: 'icons',
+    name: 'Icons',
+    description: 'Iconos SVG de Lucide listos para copiar y usar.',
+    icon: CubeIcon
+  },
+  {
+    slug: 'dividers',
+    name: 'Shape Dividers',
+    description: 'Separadores SVG para dividir secciones con estilo.',
+    icon: ChartBarIcon
   }
 ]
 

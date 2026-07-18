@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Luxury Gold — Design System Preview</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,600;0,700;1,600;1,700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --color-primary: #d4af37; --color-primary-hover: #c9a227; --color-secondary: #e8c868;
+    --color-background: #0c0c0c; --color-background-alt: #101010;
+    --color-surface: #161616; --color-surface-hover: #1c1c1c;
+    --color-border: #2a2a2a; --color-border-gold: rgba(212, 175, 55, 0.3);
+    --color-text: #f5f5f0; --color-text-secondary: #a1a1a1; --color-text-muted: #6a6a6a;
+    --color-success: #5a8a4a; --color-error: #c8553d;
+    --font-display: 'Cormorant Garamond', Georgia, serif; --font-sans: 'Inter', system-ui, sans-serif;
+    --radius-sm: 4px; --radius-md: 8px; --radius-lg: 12px; --radius-xl: 20px; --transition: 300ms ease;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: var(--font-sans); background: var(--color-background); color: var(--color-text); padding: 96px 24px; min-height: 100vh; }
+  .container { max-width: 1200px; margin: 0 auto; }
+  .hero { text-align: center; margin-bottom: 96px; }
+  .hero__eyebrow { display: inline-block; padding: 6px 18px; border: 1px solid var(--color-border-gold); color: var(--color-primary); font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.15em; margin-bottom: 32px; }
+  .hero__title { font-family: var(--font-display); font-size: clamp(2.5rem, 6vw, 5rem); font-weight: 700; line-height: 1.1; margin-bottom: 24px; color: var(--color-text); }
+  .hero__title .italic { font-style: italic; color: var(--color-primary); }
+  .hero__subtitle { font-size: 1.125rem; color: var(--color-text-secondary); max-width: 480px; margin: 0 auto 40px; line-height: 1.7; }
+  .hero__actions { display: flex; gap: 16px; justify-content: center; }
+  .btn { display: inline-flex; align-items: center; padding: 14px 32px; border: 1px solid; border-radius: var(--radius-md); font-family: var(--font-sans); font-size: 13px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.1em; cursor: pointer; transition: var(--transition); text-decoration: none; }
+  .btn--primary { border-color: var(--color-primary); color: var(--color-primary); background: transparent; }
+  .btn--primary:hover { background: rgba(212,175,55,0.1); border-color: var(--color-secondary); }
+  .btn--primary:active { background: var(--color-primary); color: #000; }
+  .btn--secondary { border-color: var(--color-border); color: var(--color-text); background: transparent; }
+  .btn--secondary:hover { border-color: var(--color-primary); color: var(--color-primary); }
+  .btn--ghost { border: none; color: var(--color-text-muted); background: transparent; }
+  .btn--ghost:hover { color: var(--color-primary); }
+  .section { margin-bottom: 80px; }
+  .section__title { font-family: var(--font-display); font-size: 1.75rem; font-weight: 700; margin-bottom: 32px; }
+  .palette { display: grid; grid-template-columns: repeat(auto-fill, minmax(120px, 1fr)); gap: 16px; }
+  .swatch { background: var(--color-surface); border: 1px solid var(--color-border); border-radius: var(--radius-lg); overflow: hidden; transition: var(--transition); }
+  .swatch:hover { border-color: var(--color-border-gold); box-shadow: 0 8px 32px rgba(0,0,0,0.6); }
+  .swatch__color { height: 70px; }
+  .swatch__info { padding: 12px 16px; }
+  .swatch__name { font-size: 12px; font-weight: 600; color: var(--color-text); }
+  .swatch__hex { font-size: 11px; color: var(--color-text-muted); }
+  .cards { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 24px; }
+  .card { background: var(--color-surface); border: 1px solid var(--color-border); border-radius: var(--radius-lg); padding: 32px; transition: var(--transition); }
+  .card:hover { border-color: var(--color-border-gold); box-shadow: 0 8px 32px rgba(0,0,0,0.6); }
+  .card__title { font-family: var(--font-display); font-size: 1.5rem; font-weight: 700; margin-bottom: 12px; color: var(--color-text); }
+  .card__desc { font-size: 14px; color: var(--color-text-secondary); line-height: 1.7; }
+  .form-row { display: flex; gap: 16px; flex-wrap: wrap; max-width: 600px; margin-bottom: 16px; }
+  .field { flex: 1; min-width: 200px; }
+  .field label { display: block; font-size: 13px; font-weight: 500; color: var(--color-text-secondary); margin-bottom: 10px; }
+  .input { width: 100%; padding: 12px 16px; background: var(--color-background); border: 1px solid var(--color-border); border-radius: var(--radius-md); color: var(--color-text); font-family: var(--font-sans); font-size: 14px; transition: var(--transition); }
+  .input:focus { outline: none; border-color: var(--color-primary); box-shadow: 0 0 0 2px rgba(212,175,55,0.2); }
+  .input::placeholder { color: var(--color-text-muted); }
+  .chips { display: flex; gap: 8px; flex-wrap: wrap; }
+  .chip { padding: 4px 12px; border: 1px solid var(--color-border); border-radius: var(--radius-sm); font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.12em; color: var(--color-text-secondary); background: transparent; }
+  .chip--active { border-color: var(--color-primary); color: var(--color-primary); }
+</style>
+</head>
+<body>
+<div class="container">
+  <div class="hero">
+    <span class="hero__eyebrow">Maison · Est. 2026</span>
+    <h1 class="hero__title">Luxury <span class="italic">Gold</span></h1>
+    <p class="hero__subtitle">Negro mate con acentos oro. Elegancia atemporal, serif refinada y minimalismo exclusivo.</p>
+    <div class="hero__actions">
+      <a class="btn btn--primary">Discover</a>
+      <a class="btn btn--secondary">Collection</a>
+      <a class="btn btn--ghost">Atelier</a>
+    </div>
+  </div>
+  <div class="section">
+    <h2 class="section__title">Color Palette</h2>
+    <div class="palette">
+      <div class="swatch"><div class="swatch__color" style="background:#d4af37"></div><div class="swatch__info"><div class="swatch__name">Primary</div><div class="swatch__hex">#d4af37</div></div></div>
+      <div class="swatch"><div class="swatch__color" style="background:#e8c868"></div><div class="swatch__info"><div class="swatch__name">Secondary</div><div class="swatch__hex">#e8c868</div></div></div>
+      <div class="swatch"><div class="swatch__color" style="background:#0c0c0c"></div><div class="swatch__info"><div class="swatch__name">Background</div><div class="swatch__hex">#0c0c0c</div></div></div>
+      <div class="swatch"><div class="swatch__color" style="background:#161616"></div><div class="swatch__info"><div class="swatch__name">Surface</div><div class="swatch__hex">#161616</div></div></div>
+      <div class="swatch"><div class="swatch__color" style="background:#2a2a2a"></div><div class="swatch__info"><div class="swatch__name">Border</div><div class="swatch__hex">#2a2a2a</div></div></div>
+      <div class="swatch"><div class="swatch__color" style="background:#f5f5f0"></div><div class="swatch__info"><div class="swatch__name">Text</div><div class="swatch__hex">#f5f5f0</div></div></div>
+      <div class="swatch"><div class="swatch__color" style="background:#a1a1a1"></div><div class="swatch__info"><div class="swatch__name">Text Sec.</div><div class="swatch__hex">#a1a1a1</div></div></div>
+      <div class="swatch"><div class="swatch__color" style="background:#5a8a4a"></div><div class="swatch__info"><div class="swatch__name">Success</div><div class="swatch__hex">#5a8a4a</div></div></div>
+    </div>
+  </div>
+  <div class="section">
+    <h2 class="section__title">Maison Cards</h2>
+    <div class="cards">
+      <div class="card"><h3 class="card__title">Heritage</h3><p class="card__desc">Crafted since 1924. Each piece carries a century of artisanal tradition and refinement.</p></div>
+      <div class="card"><h3 class="card__title">Bespoke</h3><p class="card__desc">Made-to-measure creations tailored to your unique vision. Exclusivity in every detail.</p></div>
+      <div class="card"><h3 class="card__title">Atelier</h3><p class="card__desc">Visit our private workshop for a personalized consultation with our master craftsmen.</p></div>
+    </div>
+  </div>
+  <div class="section">
+    <h2 class="section__title">Form Elements</h2>
+    <div class="form-row">
+      <div class="field"><label>Full Name</label><input class="input" type="text" placeholder="Jane Doe"></div>
+      <div class="field"><label>Email</label><input class="input" type="email" placeholder="you@example.com"></div>
+    </div>
+  </div>
+  <div class="section">
+    <h2 class="section__title">Chips & Badges</h2>
+    <div class="chips">
+      <span class="chip">New</span>
+      <span class="chip chip--active">Featured</span>
+      <span class="chip">Limited</span>
+      <span class="chip">Exclusive</span>
+    </div>
+  </div>
+</div>
+</body>
+</html>

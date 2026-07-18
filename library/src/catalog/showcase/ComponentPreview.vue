@@ -139,44 +139,55 @@ const applyAutoScale = () => {
     if (!wrapperEl.value || !previewEl.value) return
     const inner = wrapperEl.value
     const container = previewEl.value
-    // Medir el contenido natural sin escalado
+    // Medir el contenido natural sin escalado ni restricciones del grid
     inner.style.transform = ''
+    inner.style.width = 'max-content'
+    inner.style.height = 'max-content'
     // Un segundo frame para asegurar layout con el CSS scoped aplicado
     requestAnimationFrame(() => {
       if (!wrapperEl.value || !previewEl.value) return
+      // Restaurar el width/height para que el scale no distorsione proporciones
+      inner.style.width = ''
+      inner.style.height = ''
       // Centrar elementos absolute que usan left/right/top/bottom sin translate
       // Se ejecuta siempre (tanto en card como en modal) para que elementos
       // interactivos (como labels de switches) sean clickeables
       centerAbsoluteChildren(inner)
       // Centrar el primer hijo relative que no sea flex/grid
       centerRelativeRoot(inner)
-      // El auto-scale solo aplica en modo card, no en el modal
-      if (props.contained) return
-      // Medir el contenido del wrapper. Si es 0 (componentes con position:absolute
-      // sin tamaño propio), NO aplicar scale — dejar que el componente se posicione
-      // según sus propias reglas absolutas dentro del wrapper.
-      const naturalW = inner.scrollWidth
-      const naturalH = inner.scrollHeight
-      const containerW = container.clientWidth
-      const containerH = container.clientHeight
-      if (naturalW <= 0 || naturalH <= 0) {
-        // Componente sin tamaño medible (todos sus elementos son absolute).
-        // NO escalar — dejar renderizar tal cual.
-        inner.style.transform = ''
-        return
-      }
-      const maxW = containerW - 8
-      const maxH = containerH - 8
-      const scaleW = maxW / naturalW
-      const scaleH = maxH / naturalH
-      // Componentes más pequeños que la preview: NO se escalan (escala 1)
-      // Componentes ligeramente más grandes (hasta 1.15x): se dejan tal cual
-      //   (mejor que escalarlos, ya que la distorsión es peor que el corte)
-      // Componentes claramente más grandes (>1.15x): se escalan al tamaño que cabe
-      const naturalScale = Math.min(scaleW, scaleH, 1)
-      const ratio = Math.max(naturalW / maxW, naturalH / maxH)
-      const scale = ratio > 1.15 ? naturalScale : 1
-      inner.style.transform = scale < 1 ? `scale(${scale})` : ''
+      // Esperar un frame más a que el layout se asiente tras restaurar width/height
+      requestAnimationFrame(() => {
+        if (!wrapperEl.value || !previewEl.value) return
+        // Medir el contenido del wrapper. Si es 0 (componentes con position:absolute
+        // sin tamaño propio), NO aplicar scale — dejar que el componente se posicione
+        // según sus propias reglas absolutas dentro del wrapper.
+        const naturalW = inner.scrollWidth
+        const naturalH = inner.scrollHeight
+        // Obtener el espacio real disponible descontando el padding del contenedor
+        const cs = window.getComputedStyle(container)
+        const padX = parseFloat(cs.paddingLeft) + parseFloat(cs.paddingRight)
+        const padY = parseFloat(cs.paddingTop) + parseFloat(cs.paddingBottom)
+        const containerW = container.clientWidth - padX
+        const containerH = container.clientHeight - padY
+        if (naturalW <= 0 || naturalH <= 0) {
+          // Componente sin tamaño medible (todos sus elementos son absolute).
+          // NO escalar — dejar renderizar tal cual.
+          inner.style.transform = ''
+          return
+        }
+        const maxW = containerW - 8
+        const maxH = containerH - 8
+        const scaleW = maxW / naturalW
+        const scaleH = maxH / naturalH
+        // Componentes más pequeños que la preview: NO se escalan (escala 1)
+        // Componentes ligeramente más grandes (hasta 1.15x): se dejan tal cual
+        //   (mejor que escalarlos, ya que la distorsión es peor que el corte)
+        // Componentes claramente más grandes (>1.15x): se escalan al tamaño que cabe
+        const naturalScale = Math.min(scaleW, scaleH, 1)
+        const ratio = Math.max(naturalW / maxW, naturalH / maxH)
+        const scale = ratio > 1.15 ? naturalScale : 1
+        inner.style.transform = scale < 1 ? `scale(${scale})` : ''
+      })
     })
   })
 }
@@ -234,11 +245,11 @@ if (typeof window !== 'undefined') {
 }
 
 .c-preview--card {
-  height: 280px;
-  min-height: 280px;
-  max-height: 280px;
+  height: 260px;
+  min-height: 260px;
+  max-height: 260px;
   overflow: hidden;
-  padding: 16px;
+  padding: 12px;
 }
 
 .c-preview--contained {
@@ -264,8 +275,8 @@ if (typeof window !== 'undefined') {
   place-items: center;
   width: 100%;
   height: 100%;
-  min-width: 280px;
-  min-height: 180px;
+  min-width: 0;
+  min-height: 0;
   transform-origin: center center;
   flex-shrink: 0;
   isolation: isolate;

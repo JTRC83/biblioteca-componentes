@@ -1,0 +1,38 @@
+{
+  "id": "design-editorial-clean",
+  "name": "Editorial Clean",
+  "type": "design",
+  "category": "editorial",
+  "description": "Sistema de design claro, minimalista con tipografia editorial. Generoso whitespace, superficies planas con bordes sutiles y jerarquia tipografica fuerte. Sensacion profesional y confiable.",
+  "screenshot": null,
+  "sections": ["colors", "typography", "spacing", "components", "elevation", "guidelines"],
+  "styleTags": ["light", "minimal", "clean", "editorial", "professional"],
+  "colorScheme": {
+    "primary": "#0a0a0a",
+    "secondary": "#6b6b6b",
+    "background": "#fafafa",
+    "surface": "#ffffff",
+    "text": "#0a0a0a",
+    "textSecondary": "#6b6b6b"
+  },
+  "typography": {
+    "fontFamily": "'General Sans', 'Inter', system-ui, sans-serif",
+    "headingScale": "clamp(2.5rem, 6vw, 5rem)",
+    "bodySize": "15px",
+    "lineHeight": "1.7"
+  },
+  "spacing": {
+    "section": "96px",
+    "element": "24px",
+    "gap": "20px"
+  },
+  "borderRadius": {
+    "sm": "4px",
+    "md": "6px",
+    "lg": "12px",
+    "xl": "16px"
+  },
+  "responsive": true,
+  "complexity": "low",
+  "industry": ["education", "healthcare", "marketing", "portfolio", "blog", "corporate"]
+}

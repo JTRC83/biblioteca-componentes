@@ -1,0 +1,29 @@
+{
+  "id": "design-nordic-wood",
+  "name": "Nordic Wood",
+  "type": "design",
+  "category": "nordic",
+  "description": "Sistema de design nordico escandinavo. Madera clara, tonos neutros frios, simplicidad y funcionalidad. Estetica hygge, calma y minimalismo organico.",
+  "screenshot": null,
+  "sections": ["colors", "typography", "spacing", "components", "elevation", "guidelines"],
+  "styleTags": ["light", "nordic", "scandinavian", "wood", "organic", "hygge", "minimal"],
+  "colorScheme": {
+    "primary": "#5e6b5e",
+    "secondary": "#c4a882",
+    "background": "#f7f5f2",
+    "surface": "#ffffff",
+    "text": "#2d2d2d",
+    "textSecondary": "#7a7a7a"
+  },
+  "typography": {
+    "fontFamily": "'DM Sans', 'Inter', system-ui, sans-serif",
+    "headingScale": "clamp(2rem, 5vw, 3.5rem)",
+    "bodySize": "16px",
+    "lineHeight": "1.8"
+  },
+  "spacing": { "section": "96px", "element": "28px", "gap": "24px" },
+  "borderRadius": { "sm": "6px", "md": "10px", "lg": "14px", "xl": "20px" },
+  "responsive": true,
+  "complexity": "low",
+  "industry": ["furniture", "interior", "lifestyle", "home", "organic", "sustainable", "scandinavian"]
+}

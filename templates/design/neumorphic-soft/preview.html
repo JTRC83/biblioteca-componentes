@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Neumorphic Soft — Design System Preview</title>
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&family=JetBrains+Mono:wght@400&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --color-primary: #6c5ce7;
+    --color-primary-hover: #5b4cdb;
+    --color-secondary: #a29bfe;
+    --color-background: #e8eaf0;
+    --color-surface: #e8eaf0;
+    --color-text: #2d3436;
+    --color-text-secondary: #636e72;
+    --color-text-muted: #9da3a6;
+    --color-success: #00b894;
+    --color-warning: #fdcb6e;
+    --color-error: #e17055;
+    --shadow-light: #ffffff;
+    --shadow-dark: #c8ccd6;
+    --neu-raised: 6px 6px 12px #c8ccd6, -6px -6px 12px #ffffff;
+    --neu-raised-sm: 4px 4px 8px #c8ccd6, -4px -4px 8px #ffffff;
+    --neu-raised-lg: 12px 12px 24px #c8ccd6, -12px -12px 24px #ffffff;
+    --neu-inset: inset 4px 4px 8px #c8ccd6, inset -4px -4px 8px #ffffff;
+    --font-sans: 'Nunito', 'Inter', system-ui, sans-serif;
+    --font-mono: 'JetBrains Mono', monospace;
+    --radius-sm: 8px;
+    --radius-md: 12px;
+    --radius-lg: 20px;
+    --radius-xl: 28px;
+    --transition: 250ms ease;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: var(--font-sans);
+    background: var(--color-background);
+    color: var(--color-text);
+    padding: 80px 24px;
+    min-height: 100vh;
+  }
+  .container { max-width: 1200px; margin: 0 auto; }
+
+  .hero { text-align: center; margin-bottom: 80px; }
+  .hero__eyebrow {
+    display: inline-block;
+    padding: 8px 20px;
+    background: var(--color-surface);
+    box-shadow: var(--neu-raised-sm);
+    border-radius: 9999px;
+    font-size: 11px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--color-primary);
+    margin-bottom: 32px;
+  }
+  .hero__title {
+    font-size: clamp(2rem, 5vw, 3.5rem);
+    font-weight: 700;
+    line-height: 1.15;
+    margin-bottom: 20px;
+    color: var(--color-text);
+  }
+  .hero__title .accent { color: var(--color-primary); }
+  .hero__subtitle {
+    font-size: 1.125rem;
+    color: var(--color-text-secondary);
+    max-width: 520px;
+    margin: 0 auto 40px;
+    line-height: 1.6;
+  }
+  .hero__actions { display: flex; gap: 16px; justify-content: center; }
+
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 12px 24px;
+    border: none;
+    border-radius: var(--radius-md);
+    font-family: var(--font-sans);
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: var(--transition);
+    text-decoration: none;
+  }
+  .btn--primary {
+    background: var(--color-primary);
+    color: #fff;
+    box-shadow: var(--neu-raised-sm);
+  }
+  .btn--primary:hover {
+    box-shadow: var(--neu-raised), 0 0 20px rgba(108, 92, 231, 0.2);
+    transform: translateY(-1px);
+  }
+  .btn--primary:active { box-shadow: var(--neu-inset); transform: translateY(0); }
+  .btn--secondary {
+    background: var(--color-surface);
+    color: var(--color-primary);
+    box-shadow: var(--neu-raised-sm);
+  }
+  .btn--secondary:hover { box-shadow: var(--neu-raised); }
+  .btn--secondary:active { box-shadow: var(--neu-inset); }
+  .btn--ghost {
+    background: transparent;
+    color: var(--color-text-secondary);
+    box-shadow: none;
+  }
+  .btn--ghost:hover { color: var(--color-primary); }
+
+  .section { margin-bottom: 80px; }
+  .section__title {
+    font-size: 1.375rem;
+    font-weight: 700;
+    margin-bottom: 32px;
+    color: var(--color-text);
+  }
+
+  .palette { display: grid; grid-template-columns: repeat(auto-fill, minmax(130px, 1fr)); gap: 20px; }
+  .swatch {
+    background: var(--color-surface);
+    box-shadow: var(--neu-raised-sm);
+    border-radius: var(--radius-md);
+    overflow: hidden;
+    transition: var(--transition);
+  }
+  .swatch:hover { box-shadow: var(--neu-raised); }
+  .swatch__color { height: 70px; }
+  .swatch__info { padding: 12px 16px; }
+  .swatch__name { font-size: 12px; font-weight: 700; color: var(--color-text); }
+  .swatch__hex { font-size: 11px; color: var(--color-text-muted); font-family: var(--font-mono); }
+
+  .cards { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 24px; }
+  .card {
+    background: var(--color-surface);
+    box-shadow: var(--neu-raised-lg);
+    border-radius: var(--radius-lg);
+    padding: 28px;
+    transition: var(--transition);
+  }
+  .card:hover { box-shadow: var(--neu-raised); transform: translateY(-2px); }
+  .card__icon {
+    width: 52px;
+    height: 52px;
+    border-radius: var(--radius-md);
+    background: var(--color-surface);
+    box-shadow: var(--neu-raised-sm);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 24px;
+    color: var(--color-primary);
+    margin-bottom: 20px;
+  }
+  .card__title { font-size: 1.125rem; font-weight: 700; margin-bottom: 8px; color: var(--color-text); }
+  .card__desc { font-size: 14px; color: var(--color-text-secondary); line-height: 1.6; }
+
+  .form-row { display: flex; gap: 16px; flex-wrap: wrap; margin-bottom: 16px; max-width: 600px; }
+  .field { flex: 1; min-width: 200px; }
+  .field label { display: block; font-size: 13px; font-weight: 600; color: var(--color-text-secondary); margin-bottom: 10px; }
+  .input {
+    width: 100%;
+    padding: 12px 16px;
+    background: var(--color-surface);
+    border: none;
+    border-radius: var(--radius-md);
+    box-shadow: var(--neu-inset);
+    color: var(--color-text);
+    font-family: var(--font-sans);
+    font-size: 14px;
+    transition: var(--transition);
+  }
+  .input:focus {
+    outline: none;
+    box-shadow: var(--neu-inset), 0 0 0 3px rgba(108, 92, 231, 0.15);
+  }
+  .input::placeholder { color: var(--color-text-muted); }
+
+  .chips { display: flex; gap: 12px; flex-wrap: wrap; }
+  .chip {
+    padding: 6px 16px;
+    border-radius: 9999px;
+    font-size: 12px;
+    font-weight: 600;
+    background: var(--color-surface);
+    box-shadow: var(--neu-raised-sm);
+    color: var(--color-text-secondary);
+  }
+  .chip--active { background: var(--color-primary); color: #fff; }
+  .chip--success { color: var(--color-success); }
+  .chip--warning { color: var(--color-warning); }
+  .chip--error { color: var(--color-error); }
+
+  .toggle {
+    width: 56px;
+    height: 30px;
+    border-radius: 9999px;
+    background: var(--color-surface);
+    box-shadow: var(--neu-inset);
+    position: relative;
+    cursor: pointer;
+    transition: var(--transition);
+  }
+  .toggle__thumb {
+    position: absolute;
+    top: 3px;
+    left: 3px;
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    background: var(--color-surface);
+    box-shadow: var(--neu-raised-sm);
+    transition: var(--transition);
+  }
+  .toggle--on { background: var(--color-primary); }
+  .toggle--on .toggle__thumb { left: 29px; background: #fff; }
+</style>
+</head>
+<body>
+<div class="container">
+
+  <div class="hero">
+    <span class="hero__eyebrow">Design System</span>
+    <h1 class="hero__title">Neumorphic <span class="accent">Soft</span></h1>
+    <p class="hero__subtitle">Superficies tactiles con sombras difusas. Suave, organico y calido. Para productos que transmiten calma.</p>
+    <div class="hero__actions">
+      <a class="btn btn--primary">Get Started</a>
+      <a class="btn btn--secondary">Documentation</a>
+      <a class="btn btn--ghost">Learn more</a>
+    </div>
+  </div>
+
+  <div class="section">
+    <h2 class="section__title">Color Palette</h2>
+    <div class="palette">
+      <div class="swatch"><div class="swatch__color" style="background:#6c5ce7"></div><div class="swatch__info"><div class="swatch__name">Primary</div><div class="swatch__hex">#6c5ce7</div></div></div>
+      <div class="swatch"><div class="swatch__color" style="background:#a29bfe"></div><div class="swatch__info"><div class="swatch__name">Secondary</div><div class="swatch__hex">#a29bfe</div></div></div>
+      <div class="swatch"><div class="swatch__color" style="background:#e8eaf0"></div><div class="swatch__info"><div class="swatch__name">Surface</div><div class="swatch__hex">#e8eaf0</div></div></div>
+      <div class="swatch"><div class="swatch__color" style="background:#2d3436"></div><div class="swatch__info"><div class="swatch__name">Text</div><div class="swatch__hex">#2d3436</div></div></div>
+      <div class="swatch"><div class="swatch__color" style="background:#636e72"></div><div class="swatch__info"><div class="swatch__name">Text Sec.</div><div class="swatch__hex">#636e72</div></div></div>
+      <div class="swatch"><div class="swatch__color" style="background:#c8ccd6"></div><div class="swatch__info"><div class="swatch__name">Shadow Dark</div><div class="swatch__hex">#c8ccd6</div></div></div>
+      <div class="swatch"><div class="swatch__color" style="background:#00b894"></div><div class="swatch__info"><div class="swatch__name">Success</div><div class="swatch__hex">#00b894</div></div></div>
+      <div class="swatch"><div class="swatch__color" style="background:#fdcb6e"></div><div class="swatch__info"><div class="swatch__name">Warning</div><div class="swatch__hex">#fdcb6e</div></div></div>
+      <div class="swatch"><div class="swatch__color" style="background:#e17055"></div><div class="swatch__info"><div class="swatch__name">Error</div><div class="swatch__hex">#e17055</div></div></div>
+    </div>
+  </div>
+
+  <div class="section">
+    <h2 class="section__title">Neumorphic Cards</h2>
+    <div class="cards">
+      <div class="card">
+        <div class="card__icon">♥</div>
+        <h3 class="card__title">Wellness</h3>
+        <p class="card__desc">Track your daily habits with a calm, tactile interface that feels gentle and supportive.</p>
+      </div>
+      <div class="card">
+        <div class="card__icon">☀</div>
+        <h3 class="card__title">Mindfulness</h3>
+        <p class="card__desc">Guided sessions with soft visual feedback. Designed to reduce stress, not add to it.</p>
+      </div>
+      <div class="card">
+        <div class="card__icon">♦</div>
+        <h3 class="card__title">Progress</h3>
+        <p class="card__desc">Visual progress tracking with organic shapes and gentle animations that celebrate growth.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <h2 class="section__title">Form Elements</h2>
+    <div class="form-row">
+      <div class="field">
+        <label>Email</label>
+        <input class="input" type="email" placeholder="you@example.com">
+      </div>
+      <div class="field">
+        <label>Password</label>
+        <input class="input" type="password" placeholder="••••••••">
+      </div>
+    </div>
+    <div class="form-row" style="align-items:center; margin-top:20px;">
+      <div class="toggle toggle--on"><div class="toggle__thumb"></div></div>
+      <span style="font-size:14px;color:var(--color-text-secondary);">Enable daily reminders</span>
+    </div>
+  </div>
+
+  <div class="section">
+    <h2 class="section__title">Chips & Badges</h2>
+    <div class="chips">
+      <span class="chip">Default</span>
+      <span class="chip chip--active">Active</span>
+      <span class="chip chip--success">Healthy</span>
+      <span class="chip chip--warning">Reminder</span>
+      <span class="chip chip--error">Alert</span>
+    </div>
+  </div>
+
+</div>
+</body>
+</html>

@@ -1,0 +1,38 @@
+{
+  "id": "landing-restaurant-cafe",
+  "name": "Restaurant & Cafe Landing",
+  "type": "landing",
+  "category": "restaurant",
+  "description": "Landing page para restaurante o cafe con hero apetitoso, menu, reservas, galeria y ubicacion",
+  "screenshot": null,
+  "sections": ["hero", "menu", "reservation", "gallery", "reviews", "location", "footer"],
+  "styleTags": ["warm", "appetizing", "cozy", "elegant", "food-focused"],
+  "colorScheme": {
+    "primary": "#c8553d",
+    "secondary": "#f4a261",
+    "background": "#faf6f0",
+    "surface": "#ffffff",
+    "text": "#2d2422",
+    "textSecondary": "#6b5d54"
+  },
+  "typography": {
+    "fontFamily": "'Playfair Display', 'Inter', system-ui, serif",
+    "headingScale": "clamp(2.5rem, 6vw, 5rem)",
+    "bodySize": "16px",
+    "lineHeight": "1.7"
+  },
+  "spacing": {
+    "section": "80px",
+    "element": "24px",
+    "gap": "20px"
+  },
+  "borderRadius": {
+    "sm": "6px",
+    "md": "10px",
+    "lg": "16px",
+    "xl": "24px"
+  },
+  "responsive": true,
+  "complexity": "medium",
+  "industry": ["restaurant", "cafe", "food", "hospitality", "bar"]
+}

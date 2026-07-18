@@ -1,0 +1,38 @@
+{
+  "id": "design-mono-terminal",
+  "name": "Mono Terminal",
+  "type": "design",
+  "category": "terminal",
+  "description": "Sistema de design oscuro estilo terminal/IDE. Verde fosforo sobre negro, tipografia monospaciada, bordes crudos. Estetica hacker, developer y retro-computing.",
+  "screenshot": null,
+  "sections": ["colors", "typography", "spacing", "components", "elevation", "guidelines"],
+  "styleTags": ["dark", "terminal", "mono", "developer", "retro", "hacker"],
+  "colorScheme": {
+    "primary": "#00ff41",
+    "secondary": "#ffbe00",
+    "background": "#0a0a0a",
+    "surface": "#111111",
+    "text": "#c8ffc8",
+    "textSecondary": "#5a8a5a"
+  },
+  "typography": {
+    "fontFamily": "'JetBrains Mono', 'Fira Code', ui-monospace, monospace",
+    "headingScale": "clamp(2rem, 6vw, 4rem)",
+    "bodySize": "14px",
+    "lineHeight": "1.5"
+  },
+  "spacing": {
+    "section": "64px",
+    "element": "20px",
+    "gap": "16px"
+  },
+  "borderRadius": {
+    "sm": "0px",
+    "md": "4px",
+    "lg": "8px",
+    "xl": "12px"
+  },
+  "responsive": true,
+  "complexity": "low",
+  "industry": ["developer", "tech", "saas", "devtools", "cybersecurity", "code"]
+}

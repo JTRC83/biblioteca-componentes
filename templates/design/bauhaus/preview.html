@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Bauhaus — Design System Preview</title>
+<link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --color-primary: #e63946;
+    --color-secondary: #1d3557;
+    --color-accent: #fcbf49;
+    --color-background: #f1faee;
+    --color-background-alt: #e8eef0;
+    --color-surface: #ffffff;
+    --color-surface-inverse: #1d3557;
+    --color-text: #1d3557;
+    --color-text-secondary: #457b9d;
+    --color-text-inverse: #f1faee;
+    --color-text-muted: #a8a8a8;
+    --color-border: #1d3557;
+    --color-success: #2a9d8f;
+    --color-warning: #fcbf49;
+    --color-error: #e63946;
+    --font-display: 'Archivo Black', system-ui, sans-serif;
+    --font-body: 'Inter', system-ui, sans-serif;
+    --transition: 150ms ease;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: var(--font-body);
+    background: var(--color-background);
+    color: var(--color-text);
+    padding: 64px 32px;
+    min-height: 100vh;
+  }
+  .container { max-width: 1280px; margin: 0 auto; position: relative; }
+
+  .hero { margin-bottom: 80px; position: relative; }
+  .hero__shapes { position: absolute; top: -20px; right: 0; width: 200px; height: 200px; pointer-events: none; }
+  .hero__shape-circle { position: absolute; top: 0; right: 80px; width: 80px; height: 80px; background: var(--color-primary); border-radius: 50%; }
+  .hero__shape-triangle { position: absolute; top: 60px; right: 0; width: 0; height: 0; border-left: 50px solid transparent; border-right: 50px solid transparent; border-bottom: 90px solid var(--color-accent); }
+  .hero__shape-square { position: absolute; top: 120px; right: 100px; width: 60px; height: 60px; background: var(--color-secondary); }
+  .hero__eyebrow {
+    display: inline-block;
+    padding: 6px 14px;
+    background: var(--color-secondary);
+    color: var(--color-text-inverse);
+    font-family: var(--font-body);
+    font-size: 11px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    margin-bottom: 32px;
+  }
+  .hero__title {
+    font-family: var(--font-display);
+    font-size: clamp(2.5rem, 7vw, 6rem);
+    letter-spacing: -0.02em;
+    line-height: 0.95;
+    margin-bottom: 24px;
+  }
+  .hero__title .red { color: var(--color-primary); }
+  .hero__title .yellow { color: var(--color-accent); }
+  .hero__subtitle {
+    font-size: 1.25rem;
+    color: var(--color-text-secondary);
+    max-width: 600px;
+    margin-bottom: 40px;
+    line-height: 1.4;
+  }
+  .hero__actions { display: flex; gap: 0; flex-wrap: wrap; }
+
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 12px 24px;
+    border: 2px solid var(--color-border);
+    border-radius: 0;
+    font-family: var(--font-body);
+    font-size: 14px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    cursor: pointer;
+    transition: var(--transition);
+    text-decoration: none;
+    box-shadow: 4px 4px 0 var(--color-secondary);
+  }
+  .btn--primary {
+    background: var(--color-primary);
+    color: var(--color-text-inverse);
+    border-color: var(--color-secondary);
+  }
+  .btn--primary:hover { box-shadow: 6px 6px 0 var(--color-secondary); transform: translate(-2px, -2px); }
+  .btn--primary:active { box-shadow: 0 0 0 var(--color-secondary); transform: translate(4px, 4px); }
+  .btn--secondary {
+    background: var(--color-surface);
+    color: var(--color-text);
+    margin-left: -2px;
+    box-shadow: 4px 4px 0 var(--color-primary);
+    border-color: var(--color-secondary);
+  }
+  .btn--secondary:hover { box-shadow: 6px 6px 0 var(--color-primary); transform: translate(-2px, -2px); }
+  .btn--secondary:active { box-shadow: 0 0 0 var(--color-primary); transform: translate(4px, 4px); }
+  .btn--accent {
+    background: var(--color-accent);
+    color: var(--color-secondary);
+    border-color: var(--color-secondary);
+    box-shadow: 4px 4px 0 var(--color-secondary);
+  }
+  .btn--accent:hover { box-shadow: 6px 6px 0 var(--color-secondary); transform: translate(-2px, -2px); }
+  .btn--accent:active { box-shadow: 0 0 0 var(--color-secondary); transform: translate(4px, 4px); }
+
+  .section { margin-bottom: 80px; }
+  .section__title {
+    font-family: var(--font-display);
+    font-size: 1.5rem;
+    margin-bottom: 24px;
+    padding-bottom: 12px;
+    border-bottom: 3px solid var(--color-border);
+    position: relative;
+  }
+  .section__title::after {
+    content: '';
+    position: absolute;
+    bottom: -3px;
+    left: 0;
+    width: 40px;
+    height: 3px;
+    background: var(--color-primary);
+  }
+
+  .palette { display: grid; grid-template-columns: repeat(auto-fill, minmax(140px, 1fr)); gap: 0; border: 2px solid var(--color-border); }
+  .swatch { border-right: 2px solid var(--color-border); }
+  .swatch:last-child { border-right: none; }
+  .swatch__color { height: 80px; }
+  .swatch__info { padding: 12px 16px; }
+  .swatch__name { font-family: var(--font-body); font-size: 12px; font-weight: 700; }
+  .swatch__hex { font-size: 11px; color: var(--color-text-secondary); }
+
+  .cards { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 24px; }
+  .card {
+    background: var(--color-surface);
+    border: 2px solid var(--color-border);
+    padding: 28px;
+    transition: var(--transition);
+    position: relative;
+    overflow: hidden;
+  }
+  .card--red { box-shadow: 4px 4px 0 var(--color-primary); }
+  .card--red:hover { box-shadow: 6px 6px 0 var(--color-primary); transform: translate(-2px, -2px); }
+  .card--blue { box-shadow: 4px 4px 0 var(--color-secondary); }
+  .card--blue:hover { box-shadow: 6px 6px 0 var(--color-secondary); transform: translate(-2px, -2px); }
+  .card--yellow { box-shadow: 4px 4px 0 var(--color-accent); }
+  .card--yellow:hover { box-shadow: 6px 6px 0 var(--color-accent); transform: translate(-2px, -2px); }
+  .card__shape {
+    position: absolute;
+    top: 16px;
+    right: 16px;
+    width: 40px;
+    height: 40px;
+  }
+  .card__shape--circle { background: var(--color-primary); border-radius: 50%; }
+  .card__shape--square { background: var(--color-secondary); }
+  .card__shape--triangle {
+    background: transparent;
+    width: 0;
+    height: 0;
+    border-left: 20px solid transparent;
+    border-right: 20px solid transparent;
+    border-bottom: 40px solid var(--color-accent);
+  }
+  .card--inverse {
+    background: var(--color-secondary);
+    color: var(--color-text-inverse);
+  }
+  .card--inverse .card__title { color: var(--color-text-inverse); }
+  .card--inverse .card__desc { color: #a8c0d8; }
+  .card__number {
+    font-family: var(--font-display);
+    font-size: 48px;
+    margin-bottom: 16px;
+    line-height: 1;
+  }
+  .card__title { font-family: var(--font-display); font-size: 1.125rem; margin-bottom: 8px; text-transform: uppercase; }
+  .card__desc { font-size: 14px; color: var(--color-text-secondary); line-height: 1.4; }
+
+  .form-row { display: flex; gap: 0; flex-wrap: wrap; margin-bottom: 16px; max-width: 600px; }
+  .field { flex: 1; min-width: 200px; }
+  .field label { display: block; font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; padding: 8px 12px; background: var(--color-secondary); color: var(--color-text-inverse); }
+  .input {
+    width: 100%;
+    padding: 12px 16px;
+    background: var(--color-surface);
+    border: 2px solid var(--color-border);
+    border-radius: 0;
+    color: var(--color-text);
+    font-family: var(--font-body);
+    font-size: 14px;
+    transition: var(--transition);
+  }
+  .input:focus {
+    outline: none;
+    border-color: var(--color-accent);
+    box-shadow: 0 0 0 2px var(--color-accent);
+  }
+  .input::placeholder { color: var(--color-text-muted); }
+
+  .chips { display: flex; gap: 0; flex-wrap: wrap; }
+  .chip {
+    padding: 6px 14px;
+    border: 2px solid var(--color-border);
+    border-radius: 0;
+    font-size: 11px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    background: var(--color-surface);
+    color: var(--color-text);
+    margin-left: -2px;
+  }
+  .chip--active { background: var(--color-secondary); color: var(--color-text-inverse); }
+  .chip--primary { background: var(--color-primary); color: var(--color-text-inverse); border-color: var(--color-primary); }
+  .chip--accent { background: var(--color-accent); color: var(--color-secondary); border-color: var(--color-accent); }
+</style>
+</head>
+<body>
+<div class="container">
+
+  <div class="hero">
+    <div class="hero__shapes">
+      <div class="hero__shape-circle"></div>
+      <div class="hero__shape-triangle"></div>
+      <div class="hero__shape-square"></div>
+    </div>
+    <span class="hero__eyebrow">SISTEMA_DE_DISENO</span>
+    <h1 class="hero__title"><span class="red">BAU</span>HAUS<br>FORMA <span class="yellow">Y</span> FUNCION</h1>
+    <p class="hero__subtitle">Formas geometricas primarias. Colores primarios puros. Tipografia bold. Funcional, radical y atemporal.</p>
+    <div class="hero__actions">
+      <a class="btn btn--primary">EMPEZAR</a>
+      <a class="btn btn--secondary">VER MAS</a>
+      <a class="btn btn--accent">ACENTO</a>
+    </div>
+  </div>
+
+  <div class="section">
+    <h2 class="section__title">PALETA_DE_COLORES</h2>
+    <div class="palette">
+      <div class="swatch"><div class="swatch__color" style="background:#e63946"></div><div class="swatch__info"><div class="swatch__name">ROJO PRIMARIO</div><div class="swatch__hex">#e63946</div></div></div>
+      <div class="swatch"><div class="swatch__color" style="background:#1d3557"></div><div class="swatch__info"><div class="swatch__name">AZUL PROFUNDO</div><div class="swatch__hex">#1d3557</div></div></div>
+      <div class="swatch"><div class="swatch__color" style="background:#fcbf49"></div><div class="swatch__info"><div class="swatch__name">AMARILLO PRIMARIO</div><div class="swatch__hex">#fcbf49</div></div></div>
+      <div class="swatch"><div class="swatch__color" style="background:#f1faee;border-bottom:1px solid #ddd"></div><div class="swatch__info"><div class="swatch__name">FONDO CREMA</div><div class="swatch__hex">#f1faee</div></div></div>
+      <div class="swatch"><div class="swatch__color" style="background:#457b9d"></div><div class="swatch__info"><div class="swatch__name">TXT SECUNDARIO</div><div class="swatch__hex">#457b9d</div></div></div>
+      <div class="swatch"><div class="swatch__color" style="background:#2a9d8f"></div><div class="swatch__info"><div class="swatch__name">SUCCESS</div><div class="swatch__hex">#2a9d8f</div></div></div>
+    </div>
+  </div>
+
+  <div class="section">
+    <h2 class="section__title">TARJETAS</h2>
+    <div class="cards">
+      <div class="card card--red">
+        <div class="card__shape card__shape--circle"></div>
+        <div class="card__number">01</div>
+        <h3 class="card__title">FORMA</h3>
+        <p class="card__desc">Circulo, cuadrado, triangulo. Tres formas primarias. Tres estructuras. Sin ornamentacion.</p>
+      </div>
+      <div class="card card--blue">
+        <div class="card__shape card__shape--square"></div>
+        <div class="card__number">02</div>
+        <h3 class="card__title">COLOR</h3>
+        <p class="card__desc">Rojo, azul, amarillo. Colores primarios puros. Estructura cromatica radical y funcional.</p>
+      </div>
+      <div class="card card--yellow">
+        <div class="card__shape card__shape--triangle"></div>
+        <div class="card__number">03</div>
+        <h3 class="card__title">FUNCION</h3>
+        <p class="card__desc">La forma sigue a la funcion. Cada elemento tiene proposito. Sin decoracion innecesaria.</p>
+      </div>
+      <div class="card card--inverse">
+        <div class="card__shape card__shape--circle" style="background:#fcbf49"></div>
+        <div class="card__number">04</div>
+        <h3 class="card__title">ESENCIA</h3>
+        <p class="card__desc">Abstraccion geometrica. Precision absoluta. Bauhaus: atemporal y revolucionario.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <h2 class="section__title">FORMULARIOS</h2>
+    <div class="form-row">
+      <div class="field">
+        <label>NOMBRE</label>
+        <input class="input" type="text" placeholder="Tu nombre">
+      </div>
+      <div class="field" style="margin-left:-2px;">
+        <label>CORREO</label>
+        <input class="input" type="email" placeholder="correo@ejemplo.com">
+      </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <h2 class="section__title">ETIQUETAS_Y_BADGES</h2>
+    <div class="chips">
+      <span class="chip">DEFAULT</span>
+      <span class="chip chip--active">ACTIVO</span>
+      <span class="chip chip--primary">PRIMARIO</span>
+      <span class="chip chip--accent">ACENTO</span>
+    </div>
+  </div>
+
+</div>
+</body>
+</html>

@@ -1,0 +1,38 @@
+{
+  "id": "landing-education-academy",
+  "name": "Education & Academy Landing",
+  "type": "landing",
+  "category": "education",
+  "description": "Landing page para academia, curso online o plataforma educativa con hero, cursos, instructores, planes y testimonios",
+  "screenshot": null,
+  "sections": ["hero", "stats", "courses", "instructors", "features", "pricing", "testimonials", "newsletter", "footer"],
+  "styleTags": ["clean", "friendly", "educational", "modern", "approachable"],
+  "colorScheme": {
+    "primary": "#7c3aed",
+    "secondary": "#06b6d4",
+    "background": "#fafafa",
+    "surface": "#ffffff",
+    "text": "#18181b",
+    "textSecondary": "#52525b"
+  },
+  "typography": {
+    "fontFamily": "'DM Sans', 'Inter', system-ui, sans-serif",
+    "headingScale": "clamp(2.25rem, 5vw, 4rem)",
+    "bodySize": "16px",
+    "lineHeight": "1.7"
+  },
+  "spacing": {
+    "section": "80px",
+    "element": "24px",
+    "gap": "20px"
+  },
+  "borderRadius": {
+    "sm": "8px",
+    "md": "12px",
+    "lg": "16px",
+    "xl": "24px"
+  },
+  "responsive": true,
+  "complexity": "medium",
+  "industry": ["education", "elearning", "course", "academy", "training", "bootcamp", "school"]
+}

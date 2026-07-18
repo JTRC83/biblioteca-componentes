@@ -28,6 +28,8 @@ import * as backgrounds from './backgrounds'
 import * as animations from './animations'
 import * as analog from './analog'
 import * as navbars from './navbars'
+import * as icons from './icons'
+import * as dividers from './dividers'
 
 const groups = [
   buttons,
@@ -43,10 +45,14 @@ const groups = [
   backgrounds,
   animations,
   analog,
-  navbars
+  navbars,
+  icons,
+  dividers
 ]
 
-export const components = groups.flatMap((g) => Object.values(g))
+export const components = groups
+  .flatMap((g) => Object.values(g))
+  .filter((c) => c && c.id && c.html)
 
 export function getComponentById(id) {
   return components.find((c) => c.id === id) || null
@@ -59,7 +65,7 @@ export function getComponentsByCategory(category) {
 export const stats = {
   total: components.length,
   byCategory: groups.reduce((acc, g) => {
-    const values = Object.values(g)
+    const values = Object.values(g).filter((c) => c && c.id && c.html)
     if (values.length) {
       const cat = values[0].category
       acc[cat] = values.length

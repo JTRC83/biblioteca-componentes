@@ -1,26 +1,28 @@
 # Catálogo de Componentes
 
-Generado: 2026-07-10T10:00:10.674Z
+Generado: 2026-07-18T18:01:09.722Z
 
-**Total: 237 componentes en 14 categorías**
+**Total: 1238 componentes en 16 categorías**
 
 ## Resumen por categoría
 
 | Categoría | Componentes | Estilos detectados | Archivo |
 |-----------|------------|-------------------|---------|
-| Analog | 21 | transition, skeuomorphic, css-only, neon, glow, filter, 3d, gradient, animated, neumorphic, industrial, mask, dark, glassmorphism, retro, minimal, neobrutalism | [analog.md](./analog.md) |
+| Analog | 22 | transition, skeuomorphic, css-only, neon, glow, filter, 3d, gradient, animated, neumorphic, industrial, mask, dark, glassmorphism, retro, minimal, neobrutalism | [analog.md](./analog.md) |
 | Animations | 24 | gradient, animated, css-only, neon, glow, transition, 3d, neobrutalism, filter, retro, mask, organic | [animations.md](./animations.md) |
 | Backgrounds | 7 | gradient, animated, filter, css-only | [backgrounds.md](./backgrounds.md) |
-| Buttons | 57 | neon, glow, transition, css-only, gradient, animated, glassmorphism, filter, 3d, squircle, neumorphic, mask | [buttons.md](./buttons.md) |
+| Buttons | 58 | neon, glow, transition, css-only, gradient, animated, glassmorphism, filter, 3d, squircle, neumorphic, mask | [buttons.md](./buttons.md) |
 | Cards | 34 | 3d, gradient, transition, css-only, glassmorphism, filter, animated, neon, glow, neumorphic, terminal, dark, minimal, doodle, retro | [cards.md](./cards.md) |
 | Checkboxes | 15 | animated, transition, css-only, neon, glow, gradient, 3d, filter, neumorphic, organic, mask | [checkboxes.md](./checkboxes.md) |
+| Dividers | 16 | gradient | [dividers.md](./dividers.md) |
 | Forms | 1 | gradient, transition, css-only | [forms.md](./forms.md) |
+| Icons | 984 | transition, terminal | [icons.md](./icons.md) |
 | Inputs | 2 | transition, css-only, neon, gradient, glow | [inputs.md](./inputs.md) |
 | Loaders | 26 | gradient, animated, mask, css-only, 3d, terminal, filter, transition, glow, neobrutalism, neon, glassmorphism | [loaders.md](./loaders.md) |
 | Navbars | 1 | glassmorphism, transition, filter, css-only | [navbars.md](./navbars.md) |
 | Patterns | 25 | gradient, css-only, neon, animated, mask, filter, dark | [patterns.md](./patterns.md) |
 | Radios | 2 | neon, transition, animated, css-only | [radios.md](./radios.md) |
-| Toggles | 12 | transition, css-only, squircle, minimal, neon, gradient, glow, animated, filter, 3d, industrial, neumorphic, glassmorphism | [toggles.md](./toggles.md) |
+| Toggles | 11 | transition, css-only, squircle, minimal, neon, gradient, glow, animated, filter, 3d, industrial, neumorphic, glassmorphism | [toggles.md](./toggles.md) |
 | Tooltips | 10 | transition, animated, css-only, gradient, glassmorphism, neon, glow, filter, minimal | [tooltips.md](./tooltips.md) |
 
 ## Estilos disponibles
@@ -63,6 +65,7 @@ Generado: 2026-07-10T10:00:10.674Z
 - `destructive-action`
 - `engagement`
 - `feature-card`
+- `file-action`
 - `flip-animation`
 - `form`
 - `form-action`
@@ -76,6 +79,7 @@ Generado: 2026-07-10T10:00:10.674Z
 - `help-text`
 - `hero-background`
 - `hover-interaction`
+- `icon`
 - `info-hint`
 - `label-hint`
 - `loading-state`
@@ -93,8 +97,10 @@ Generado: 2026-07-10T10:00:10.674Z
 - `progress-indicator`
 - `search`
 - `section-background`
+- `section-separator`
 - `selection`
 - `settings-toggle`
+- `shape-divider`
 - `signup`
 - `skeleton`
 - `skeuomorphic`
@@ -102,5 +108,8 @@ Generado: 2026-07-10T10:00:10.674Z
 - `switch`
 - `text-entry`
 - `texture`
+- `transition`
 - `transition-effect`
+- `ui-element`
 - `utility-action`
+- `visual-element`

@@ -66,6 +66,7 @@ button span:first-child {
   align-items: center;
   gap: 4px;
   white-space: nowrap;
+  transition: transform 500ms ease, opacity 500ms ease, color 500ms ease;
 }
 
 button span:last-child {
@@ -78,6 +79,7 @@ button span:last-child {
   height: 14px;
   line-height: 13px;
   white-space: nowrap;
+  transition: transform 500ms ease, opacity 500ms ease;
 }
 
 button:focus {
@@ -101,13 +103,6 @@ button:focus span:last-child {
   opacity: 1;
   transition-delay: 300ms;
   transition-duration: 500ms;
-}
-
-button:focus:end {
-  background-color: #ffffff;
-  width: 120px;
-  height: 40px;
-  transition-duration: 900ms;
 }
 `
 }

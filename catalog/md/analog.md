@@ -1,6 +1,6 @@
 # Analog
 
-21 componentes
+22 componentes
 
 | ID | Nombre | Tags | Estilo | Complejidad | Interacciones | Descripción |
 |----|--------|------|--------|------------|-------------|-------------|
@@ -25,3 +25,4 @@
 | `tg-on-off` | On Off Toggle | toggle, labeled, animated, css-only, on-off, gradient | neon, gradient, neobrutalism, neumorphic, filter, animated, css-only | low | toggle | Componente analógico animado y con gradiente "On Off Toggle" |
 | `tg-red-green-text` | Red Green Text | red, green, labeled, animated, css-only, toggle, metallic, on-off | neon, gradient, glow, transition, animated, css-only | medium | toggle, transition | Componente analógico animado "Red Green Text" |
 | `btn-3d-layered` | 3D Layered | 3d, layered, animated, css-only | neon, gradient, 3d, animated, css-only | medium | click, transform | Componente analógico con efecto 3D y animado "3D Layered" |
+| `tg-led-toggle` | LED Toggle | led, red, green, animated, css-only, toggle, metallic | neon, gradient, neumorphic, transition, animated, css-only | low | toggle, transition | Componente analógico animado "LED Toggle" |

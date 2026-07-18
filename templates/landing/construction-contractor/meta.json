@@ -1,0 +1,38 @@
+{
+  "id": "landing-construction-contractor",
+  "name": "Construction & Contractor Landing",
+  "type": "landing",
+  "category": "construction",
+  "description": "Landing page para empresa de construccion o contratista con hero, servicios, proyectos, equipo, presupuesto y contacto",
+  "screenshot": null,
+  "sections": ["hero", "services", "projects", "process", "team", "quote", "testimonials", "footer"],
+  "styleTags": ["bold", "industrial", "sturdy", "professional", "construction"],
+  "colorScheme": {
+    "primary": "#ea580c",
+    "secondary": "#475569",
+    "background": "#ffffff",
+    "surface": "#f8fafc",
+    "text": "#1c1917",
+    "textSecondary": "#57534e"
+  },
+  "typography": {
+    "fontFamily": "'Archivo', 'Inter', system-ui, sans-serif",
+    "headingScale": "clamp(2.5rem, 6vw, 5rem)",
+    "bodySize": "16px",
+    "lineHeight": "1.6"
+  },
+  "spacing": {
+    "section": "80px",
+    "element": "24px",
+    "gap": "20px"
+  },
+  "borderRadius": {
+    "sm": "4px",
+    "md": "8px",
+    "lg": "12px",
+    "xl": "16px"
+  },
+  "responsive": true,
+  "complexity": "medium",
+  "industry": ["construction", "contractor", "builder", "renovation", "architecture", "infrastructure", "engineering"]
+}

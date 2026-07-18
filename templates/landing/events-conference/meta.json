@@ -1,0 +1,38 @@
+{
+  "id": "landing-events-conference",
+  "name": "Events & Conference Landing",
+  "type": "landing",
+  "category": "events",
+  "description": "Landing editorial para evento tech con estetica terminal/brutalist, acentos lima, tipografia monospaciada y componentes animados de la biblioteca",
+  "screenshot": null,
+  "sections": ["hero", "countdown", "speakers", "agenda", "tickets", "sponsors", "venue", "footer"],
+  "styleTags": ["dark", "editorial", "terminal", "brutalist", "lime", "mono", "animated"],
+  "colorScheme": {
+    "primary": "#a3e635",
+    "secondary": "#fb923c",
+    "background": "#0a0a0a",
+    "surface": "#141414",
+    "text": "#e5e5e5",
+    "textSecondary": "#737373"
+  },
+  "typography": {
+    "fontFamily": "'Space Mono', 'JetBrains Mono', monospace",
+    "headingScale": "clamp(2.5rem, 8vw, 7rem)",
+    "bodySize": "15px",
+    "lineHeight": "1.5"
+  },
+  "spacing": {
+    "section": "96px",
+    "element": "24px",
+    "gap": "16px"
+  },
+  "borderRadius": {
+    "sm": "0px",
+    "md": "0px",
+    "lg": "0px",
+    "xl": "0px"
+  },
+  "responsive": true,
+  "complexity": "high",
+  "industry": ["events", "conference", "tech", "music", "festival", "meetup"]
+}

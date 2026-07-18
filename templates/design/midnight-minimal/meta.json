@@ -1,0 +1,38 @@
+{
+  "id": "design-midnight-minimal",
+  "name": "Midnight Minimal",
+  "type": "design",
+  "category": "minimal",
+  "description": "dark ultra-minimalist design system, pure white on near-black, no color accents, maximum contrast",
+  "screenshot": null,
+  "sections": ["colors", "typography", "spacing", "components", "elevation", "guidelines"],
+  "styleTags": ["dark", "minimal", "monochrome", "high-contrast", "pure", "architectural"],
+  "colorScheme": {
+    "primary": "#ffffff",
+    "secondary": "#a0a0a0",
+    "background": "#080808",
+    "surface": "#0e0e0e",
+    "text": "#ffffff",
+    "textSecondary": "#888888"
+  },
+  "typography": {
+    "fontFamily": "'Inter', system-ui, sans-serif",
+    "headingScale": "clamp(3rem, 8vw, 7rem)",
+    "bodySize": "16px",
+    "lineHeight": "1.5"
+  },
+  "spacing": {
+    "section": "96px",
+    "element": "24px",
+    "gap": "24px"
+  },
+  "borderRadius": {
+    "sm": "0px",
+    "md": "0px",
+    "lg": "0px",
+    "xl": "0px"
+  },
+  "responsive": true,
+  "complexity": "low",
+  "industry": ["photography", "architecture", "design", "art", "portfolio", "fashion", "studio"]
+}

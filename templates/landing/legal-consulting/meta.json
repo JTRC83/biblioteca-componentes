@@ -1,0 +1,38 @@
+{
+  "id": "landing-legal-consulting",
+  "name": "Legal & Consulting Landing",
+  "type": "landing",
+  "category": "legal",
+  "description": "Landing page para despacho legal o consultoria con hero, areas de practica, abogados, casos, testimonios y contacto",
+  "screenshot": null,
+  "sections": ["hero", "practice-areas", "attorneys", "results", "testimonials", "consultation", "footer"],
+  "styleTags": ["professional", "trustworthy", "corporate", "elegant", "serious"],
+  "colorScheme": {
+    "primary": "#1e3a5f",
+    "secondary": "#0891b2",
+    "background": "#ffffff",
+    "surface": "#f8fafc",
+    "text": "#0f172a",
+    "textSecondary": "#475569"
+  },
+  "typography": {
+    "fontFamily": "'Lora', 'Inter', system-ui, serif",
+    "headingScale": "clamp(2.25rem, 5vw, 4rem)",
+    "bodySize": "16px",
+    "lineHeight": "1.7"
+  },
+  "spacing": {
+    "section": "96px",
+    "element": "24px",
+    "gap": "20px"
+  },
+  "borderRadius": {
+    "sm": "4px",
+    "md": "8px",
+    "lg": "12px",
+    "xl": "16px"
+  },
+  "responsive": true,
+  "complexity": "low",
+  "industry": ["legal", "law", "consulting", "attorney", "corporate", "finance", "compliance"]
+}

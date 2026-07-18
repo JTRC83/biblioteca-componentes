@@ -1,7 +1,1000 @@
 {
-  "generatedAt": "2026-07-10T08:40:26.807Z",
-  "total": 5,
+  "generatedAt": "2026-07-17T09:17:08.120Z",
+  "total": 35,
   "templates": [
+    {
+      "id": "design-bauhaus",
+      "name": "Bauhaus",
+      "type": "design",
+      "category": "bauhaus",
+      "group": "design",
+      "path": "design/bauhaus",
+      "description": "Sistema de design inspirado en la escuela Bauhaus. Formas geometricas primarias (circulo, cuadrado, triangulo), colores primarios (rojo, azul, amarillo) y tipografia bold. Funcional, radical y atemporal.",
+      "sections": [
+        "colors",
+        "typography",
+        "spacing",
+        "components",
+        "elevation",
+        "guidelines"
+      ],
+      "styleTags": [
+        "light",
+        "geometric",
+        "primary-colors",
+        "bold",
+        "functional",
+        "radical"
+      ],
+      "colorScheme": {
+        "primary": "#e63946",
+        "secondary": "#1d3557",
+        "background": "#f1faee",
+        "surface": "#ffffff",
+        "text": "#1d3557",
+        "textSecondary": "#457b9d"
+      },
+      "typography": {
+        "fontFamily": "'Archivo Black', 'Inter', system-ui, sans-serif",
+        "headingScale": "clamp(2.5rem, 7vw, 6rem)",
+        "bodySize": "16px",
+        "lineHeight": "1.4"
+      },
+      "responsive": true,
+      "complexity": "medium",
+      "industry": [
+        "architecture",
+        "art",
+        "design",
+        "education",
+        "museum",
+        "gallery",
+        "creative"
+      ]
+    },
+    {
+      "id": "design-brutalist-raw",
+      "name": "Brutalist Raw",
+      "type": "design",
+      "category": "brutalist",
+      "group": "design",
+      "path": "design/brutalist-raw",
+      "description": "Sistema de design brutalista. Bordes crudos sin redondear, tipografia bold monocroma, alto contraste y layout asimetrico. Estética cruda, directa y sin ornamentacion.",
+      "sections": [
+        "colors",
+        "typography",
+        "spacing",
+        "components",
+        "elevation",
+        "guidelines"
+      ],
+      "styleTags": [
+        "brutalist",
+        "raw",
+        "bold",
+        "monochrome",
+        "high-contrast",
+        "asymmetric"
+      ],
+      "colorScheme": {
+        "primary": "#000000",
+        "secondary": "#ffffff",
+        "background": "#ffffff",
+        "surface": "#ffffff",
+        "text": "#000000",
+        "textSecondary": "#555555"
+      },
+      "typography": {
+        "fontFamily": "'Space Mono', 'JetBrains Mono', monospace",
+        "headingScale": "clamp(2.5rem, 8vw, 7rem)",
+        "bodySize": "16px",
+        "lineHeight": "1.4"
+      },
+      "responsive": true,
+      "complexity": "low",
+      "industry": [
+        "creative",
+        "agency",
+        "design",
+        "art",
+        "music",
+        "editorial",
+        "underground"
+      ]
+    },
+    {
+      "id": "design-corporate-blue",
+      "name": "Corporate Blue",
+      "type": "design",
+      "category": "corporate",
+      "group": "design",
+      "path": "design/corporate-blue",
+      "description": "Sistema de design claro y profesional para enterprise. Azul corporativo, superficies blancas, bordes sutiles y tipografia solida. Transmite confianza, estabilidad y seriedad.",
+      "sections": [
+        "colors",
+        "typography",
+        "spacing",
+        "components",
+        "elevation",
+        "guidelines"
+      ],
+      "styleTags": [
+        "light",
+        "corporate",
+        "professional",
+        "enterprise",
+        "trustworthy",
+        "blue"
+      ],
+      "colorScheme": {
+        "primary": "#1e40af",
+        "secondary": "#0891b2",
+        "background": "#ffffff",
+        "surface": "#f8fafc",
+        "text": "#0f172a",
+        "textSecondary": "#475569"
+      },
+      "typography": {
+        "fontFamily": "'Plus Jakarta Sans', 'Inter', system-ui, sans-serif",
+        "headingScale": "clamp(2.25rem, 5vw, 4rem)",
+        "bodySize": "16px",
+        "lineHeight": "1.6"
+      },
+      "responsive": true,
+      "complexity": "low",
+      "industry": [
+        "enterprise",
+        "b2b",
+        "finance",
+        "legal",
+        "consulting",
+        "corporate"
+      ]
+    },
+    {
+      "id": "design-cyberpunk-amber",
+      "name": "Cyberpunk Amber",
+      "type": "design",
+      "category": "cyberpunk",
+      "group": "design",
+      "path": "design/cyberpunk-amber",
+      "description": "Sistema de design cyberpunk con ambar dorado. Negro carbon + ambar #ffb800 + rojo oxidado. Estetica industrial futurista, Bladerunner-esque, calido pero tecnologico.",
+      "sections": [
+        "colors",
+        "typography",
+        "spacing",
+        "components",
+        "elevation",
+        "guidelines"
+      ],
+      "styleTags": [
+        "dark",
+        "cyberpunk",
+        "amber",
+        "industrial",
+        "futuristic",
+        "blade-runner"
+      ],
+      "colorScheme": {
+        "primary": "#ffb800",
+        "secondary": "#ff6b35",
+        "background": "#0a0a0a",
+        "surface": "#161210",
+        "text": "#f0e0c0",
+        "textSecondary": "#a09080"
+      },
+      "typography": {
+        "fontFamily": "'Rajdhani', 'Inter', system-ui, sans-serif",
+        "headingScale": "clamp(2.5rem, 7vw, 5.5rem)",
+        "bodySize": "16px",
+        "lineHeight": "1.5"
+      },
+      "responsive": true,
+      "complexity": "high",
+      "industry": [
+        "gaming",
+        "cybersecurity",
+        "industrial",
+        "tech",
+        "energy",
+        "automotive",
+        "steampunk"
+      ]
+    },
+    {
+      "id": "design-editorial-clean",
+      "name": "Editorial Clean",
+      "type": "design",
+      "category": "editorial",
+      "group": "design",
+      "path": "design/editorial-clean",
+      "description": "Sistema de design claro, minimalista con tipografia editorial. Generoso whitespace, superficies planas con bordes sutiles y jerarquia tipografica fuerte. Sensacion profesional y confiable.",
+      "sections": [
+        "colors",
+        "typography",
+        "spacing",
+        "components",
+        "elevation",
+        "guidelines"
+      ],
+      "styleTags": [
+        "light",
+        "minimal",
+        "clean",
+        "editorial",
+        "professional"
+      ],
+      "colorScheme": {
+        "primary": "#0a0a0a",
+        "secondary": "#6b6b6b",
+        "background": "#fafafa",
+        "surface": "#ffffff",
+        "text": "#0a0a0a",
+        "textSecondary": "#6b6b6b"
+      },
+      "typography": {
+        "fontFamily": "'General Sans', 'Inter', system-ui, sans-serif",
+        "headingScale": "clamp(2.5rem, 6vw, 5rem)",
+        "bodySize": "15px",
+        "lineHeight": "1.7"
+      },
+      "responsive": true,
+      "complexity": "low",
+      "industry": [
+        "education",
+        "healthcare",
+        "marketing",
+        "portfolio",
+        "blog",
+        "corporate"
+      ]
+    },
+    {
+      "id": "design-glassmorphism-dark",
+      "name": "Glassmorphism Dark",
+      "type": "design",
+      "category": "glassmorphism",
+      "group": "design",
+      "path": "design/glassmorphism-dark",
+      "description": "Sistema de design oscuro con glassmorphism, superficies translucidas con blur y gradientes indigo-violeta. Sensacion premium y tecnologica.",
+      "sections": [
+        "colors",
+        "typography",
+        "spacing",
+        "components",
+        "elevation",
+        "guidelines"
+      ],
+      "styleTags": [
+        "dark",
+        "glassmorphism",
+        "gradient",
+        "premium",
+        "modern"
+      ],
+      "colorScheme": {
+        "primary": "#6366f1",
+        "secondary": "#8b5cf6",
+        "background": "#0a0a0c",
+        "surface": "#18181c",
+        "text": "#f4f4f5",
+        "textSecondary": "#a1a1aa"
+      },
+      "typography": {
+        "fontFamily": "'Inter', system-ui, sans-serif",
+        "headingScale": "clamp(2rem, 5vw, 4rem)",
+        "bodySize": "16px",
+        "lineHeight": "1.6"
+      },
+      "responsive": true,
+      "complexity": "medium",
+      "industry": [
+        "saas",
+        "tech",
+        "startup",
+        "fintech",
+        "crypto"
+      ]
+    },
+    {
+      "id": "design-gradient-vivid",
+      "name": "Gradient Vivid",
+      "type": "design",
+      "category": "gradient",
+      "group": "design",
+      "path": "design/gradient-vivid",
+      "description": "Sistema de design oscuro con gradientes vibrantes multi-color. Magenta, cyan, ambar y violeta. Estetica bold, creativa y energetica. Para marcas que quieren destacar con maximo impacto visual.",
+      "sections": [
+        "colors",
+        "typography",
+        "spacing",
+        "components",
+        "elevation",
+        "guidelines"
+      ],
+      "styleTags": [
+        "dark",
+        "gradient",
+        "vivid",
+        "bold",
+        "creative",
+        "energetic"
+      ],
+      "colorScheme": {
+        "primary": "#ec4899",
+        "secondary": "#06b6d4",
+        "background": "#0a0a0c",
+        "surface": "#15151a",
+        "text": "#f4f4f5",
+        "textSecondary": "#a1a1aa"
+      },
+      "typography": {
+        "fontFamily": "'Space Grotesk', 'Inter', system-ui, sans-serif",
+        "headingScale": "clamp(2.5rem, 7vw, 5.5rem)",
+        "bodySize": "16px",
+        "lineHeight": "1.5"
+      },
+      "responsive": true,
+      "complexity": "high",
+      "industry": [
+        "marketing",
+        "creative",
+        "agency",
+        "music",
+        "gaming",
+        "media",
+        "entertainment"
+      ]
+    },
+    {
+      "id": "design-luxury-gold",
+      "name": "Luxury Gold",
+      "type": "design",
+      "category": "luxury",
+      "group": "design",
+      "path": "design/luxury-gold",
+      "description": "Sistema de design oscuro premium con dorado. Negro mate con acentos oro, tipografia serif elegante y sombras sutiles. Para marcas de lujo, moda, joyeria y hotelera.",
+      "sections": [
+        "colors",
+        "typography",
+        "spacing",
+        "components",
+        "elevation",
+        "guidelines"
+      ],
+      "styleTags": [
+        "dark",
+        "luxury",
+        "gold",
+        "premium",
+        "elegant",
+        "exclusive"
+      ],
+      "colorScheme": {
+        "primary": "#d4af37",
+        "secondary": "#c9a227",
+        "background": "#0c0c0c",
+        "surface": "#161616",
+        "text": "#f5f5f0",
+        "textSecondary": "#a1a1a1"
+      },
+      "typography": {
+        "fontFamily": "'Cormorant Garamond', 'Inter', system-ui, serif",
+        "headingScale": "clamp(2.5rem, 6vw, 5rem)",
+        "bodySize": "16px",
+        "lineHeight": "1.7"
+      },
+      "responsive": true,
+      "complexity": "low",
+      "industry": [
+        "fashion",
+        "jewelry",
+        "hotel",
+        "luxury",
+        "wine",
+        "cosmetics"
+      ]
+    },
+    {
+      "id": "design-midnight-minimal",
+      "name": "Midnight Minimal",
+      "type": "design",
+      "category": "minimal",
+      "group": "design",
+      "path": "design/midnight-minimal",
+      "description": "dark ultra-minimalist design system, pure white on near-black, no color accents, maximum contrast",
+      "sections": [
+        "colors",
+        "typography",
+        "spacing",
+        "components",
+        "elevation",
+        "guidelines"
+      ],
+      "styleTags": [
+        "dark",
+        "minimal",
+        "monochrome",
+        "high-contrast",
+        "pure",
+        "architectural"
+      ],
+      "colorScheme": {
+        "primary": "#ffffff",
+        "secondary": "#a0a0a0",
+        "background": "#080808",
+        "surface": "#0e0e0e",
+        "text": "#ffffff",
+        "textSecondary": "#888888"
+      },
+      "typography": {
+        "fontFamily": "'Inter', system-ui, sans-serif",
+        "headingScale": "clamp(3rem, 8vw, 7rem)",
+        "bodySize": "16px",
+        "lineHeight": "1.5"
+      },
+      "responsive": true,
+      "complexity": "low",
+      "industry": [
+        "photography",
+        "architecture",
+        "design",
+        "art",
+        "portfolio",
+        "fashion",
+        "studio"
+      ]
+    },
+    {
+      "id": "design-mono-terminal",
+      "name": "Mono Terminal",
+      "type": "design",
+      "category": "terminal",
+      "group": "design",
+      "path": "design/mono-terminal",
+      "description": "Sistema de design oscuro estilo terminal/IDE. Verde fosforo sobre negro, tipografia monospaciada, bordes crudos. Estetica hacker, developer y retro-computing.",
+      "sections": [
+        "colors",
+        "typography",
+        "spacing",
+        "components",
+        "elevation",
+        "guidelines"
+      ],
+      "styleTags": [
+        "dark",
+        "terminal",
+        "mono",
+        "developer",
+        "retro",
+        "hacker"
+      ],
+      "colorScheme": {
+        "primary": "#00ff41",
+        "secondary": "#ffbe00",
+        "background": "#0a0a0a",
+        "surface": "#111111",
+        "text": "#c8ffc8",
+        "textSecondary": "#5a8a5a"
+      },
+      "typography": {
+        "fontFamily": "'JetBrains Mono', 'Fira Code', ui-monospace, monospace",
+        "headingScale": "clamp(2rem, 6vw, 4rem)",
+        "bodySize": "14px",
+        "lineHeight": "1.5"
+      },
+      "responsive": true,
+      "complexity": "low",
+      "industry": [
+        "developer",
+        "tech",
+        "saas",
+        "devtools",
+        "cybersecurity",
+        "code"
+      ]
+    },
+    {
+      "id": "design-monochrome-minimal",
+      "name": "Monochrome Minimal",
+      "type": "design",
+      "category": "monochrome",
+      "group": "design",
+      "path": "design/monochrome-minimal",
+      "description": "Sistema de design puramente monocromatico. Sin color, solo grises y blanco. Maximo minimalismo, tipografia ligera y mucho whitespace.",
+      "sections": [
+        "colors",
+        "typography",
+        "spacing",
+        "components",
+        "elevation",
+        "guidelines"
+      ],
+      "styleTags": [
+        "light",
+        "monochrome",
+        "minimal",
+        "pure",
+        "grayscale",
+        "elegant"
+      ],
+      "colorScheme": {
+        "primary": "#18181b",
+        "secondary": "#52525b",
+        "background": "#ffffff",
+        "surface": "#fafafa",
+        "text": "#18181b",
+        "textSecondary": "#71717a"
+      },
+      "typography": {
+        "fontFamily": "'Inter', system-ui, sans-serif",
+        "headingScale": "clamp(2.5rem, 6vw, 5rem)",
+        "bodySize": "16px",
+        "lineHeight": "1.7"
+      },
+      "responsive": true,
+      "complexity": "low",
+      "industry": [
+        "photography",
+        "art",
+        "architecture",
+        "portfolio",
+        "editorial",
+        "fashion",
+        "minimalist"
+      ]
+    },
+    {
+      "id": "design-nature-green",
+      "name": "Nature Green",
+      "type": "design",
+      "category": "nature",
+      "group": "design",
+      "path": "design/nature-green",
+      "description": "Sistema de design ligero, organico y eco-friendly con tonos verdes. Verde bosque, menta y crema calido. Estetica natural, sostenible y fresca. Para marcas que transmiten conexion con la naturaleza y sostenibilidad.",
+      "sections": [
+        "colors",
+        "typography",
+        "spacing",
+        "components",
+        "elevation",
+        "guidelines"
+      ],
+      "styleTags": [
+        "light",
+        "organic",
+        "green",
+        "eco",
+        "natural",
+        "sustainable"
+      ],
+      "colorScheme": {
+        "primary": "#2d6a4f",
+        "secondary": "#52b788",
+        "background": "#f5f7f3",
+        "surface": "#ffffff",
+        "text": "#1a2e1a",
+        "textSecondary": "#4a6a4a"
+      },
+      "typography": {
+        "fontFamily": "'DM Sans', 'Inter', system-ui, sans-serif",
+        "headingScale": "clamp(2rem, 5vw, 3.5rem)",
+        "bodySize": "16px",
+        "lineHeight": "1.7"
+      },
+      "responsive": true,
+      "complexity": "low",
+      "industry": [
+        "sustainability",
+        "outdoor",
+        "agriculture",
+        "eco",
+        "organic",
+        "gardening",
+        "energy"
+      ]
+    },
+    {
+      "id": "design-neon-cyber",
+      "name": "Neon Cyber",
+      "type": "design",
+      "category": "cyber",
+      "group": "design",
+      "path": "design/neon-cyber",
+      "description": "Sistema de design oscuro con neón, glow effects, grid patterns y acentos cyberpunk. Estética futurista, tecnológica y audaz. Para productos que quieren destacar con energía visual.",
+      "sections": [
+        "colors",
+        "typography",
+        "spacing",
+        "components",
+        "elevation",
+        "guidelines"
+      ],
+      "styleTags": [
+        "dark",
+        "neon",
+        "cyber",
+        "futuristic",
+        "glow",
+        "bold"
+      ],
+      "colorScheme": {
+        "primary": "#00ffd1",
+        "secondary": "#ff2a00",
+        "background": "#050505",
+        "surface": "#0d0d0f",
+        "text": "#e0e0e0",
+        "textSecondary": "#8a8a8f"
+      },
+      "typography": {
+        "fontFamily": "'Space Grotesk', 'Inter', system-ui, sans-serif",
+        "headingScale": "clamp(2.5rem, 7vw, 6rem)",
+        "bodySize": "16px",
+        "lineHeight": "1.5"
+      },
+      "responsive": true,
+      "complexity": "high",
+      "industry": [
+        "gaming",
+        "crypto",
+        "tech",
+        "developer",
+        "cybersecurity",
+        "music"
+      ]
+    },
+    {
+      "id": "design-neumorphic-soft",
+      "name": "Neumorphic Soft",
+      "type": "design",
+      "category": "neumorphic",
+      "group": "design",
+      "path": "design/neumorphic-soft",
+      "description": "Sistema de design con neumorfismo suave. Superficies con sombras difusas que crean relieve y profundidad sin bordes duros. Estética tactil, suave y organica.",
+      "sections": [
+        "colors",
+        "typography",
+        "spacing",
+        "components",
+        "elevation",
+        "guidelines"
+      ],
+      "styleTags": [
+        "light",
+        "neumorphic",
+        "soft",
+        "tactile",
+        "organic"
+      ],
+      "colorScheme": {
+        "primary": "#6c5ce7",
+        "secondary": "#a29bfe",
+        "background": "#e8eaf0",
+        "surface": "#e8eaf0",
+        "text": "#2d3436",
+        "textSecondary": "#636e72"
+      },
+      "typography": {
+        "fontFamily": "'Nunito', 'Inter', system-ui, sans-serif",
+        "headingScale": "clamp(2rem, 5vw, 3.5rem)",
+        "bodySize": "16px",
+        "lineHeight": "1.6"
+      },
+      "responsive": true,
+      "complexity": "medium",
+      "industry": [
+        "healthcare",
+        "wellness",
+        "education",
+        "lifestyle",
+        "furniture",
+        "beauty"
+      ]
+    },
+    {
+      "id": "design-nordic-wood",
+      "name": "Nordic Wood",
+      "type": "design",
+      "category": "nordic",
+      "group": "design",
+      "path": "design/nordic-wood",
+      "description": "Sistema de design nordico escandinavo. Madera clara, tonos neutros frios, simplicidad y funcionalidad. Estetica hygge, calma y minimalismo organico.",
+      "sections": [
+        "colors",
+        "typography",
+        "spacing",
+        "components",
+        "elevation",
+        "guidelines"
+      ],
+      "styleTags": [
+        "light",
+        "nordic",
+        "scandinavian",
+        "wood",
+        "organic",
+        "hygge",
+        "minimal"
+      ],
+      "colorScheme": {
+        "primary": "#5e6b5e",
+        "secondary": "#c4a882",
+        "background": "#f7f5f2",
+        "surface": "#ffffff",
+        "text": "#2d2d2d",
+        "textSecondary": "#7a7a7a"
+      },
+      "typography": {
+        "fontFamily": "'DM Sans', 'Inter', system-ui, sans-serif",
+        "headingScale": "clamp(2rem, 5vw, 3.5rem)",
+        "bodySize": "16px",
+        "lineHeight": "1.8"
+      },
+      "responsive": true,
+      "complexity": "low",
+      "industry": [
+        "furniture",
+        "interior",
+        "lifestyle",
+        "home",
+        "organic",
+        "sustainable",
+        "scandinavian"
+      ]
+    },
+    {
+      "id": "design-ocean-glass",
+      "name": "Ocean Glass",
+      "type": "design",
+      "category": "ocean",
+      "group": "design",
+      "path": "design/ocean-glass",
+      "description": "dark glassmorphism design system with teal and cyan tones, evoking depth, water and clarity",
+      "sections": [
+        "colors",
+        "typography",
+        "spacing",
+        "components",
+        "elevation",
+        "guidelines"
+      ],
+      "styleTags": [
+        "dark",
+        "glassmorphism",
+        "teal",
+        "cyan",
+        "ocean",
+        "premium",
+        "modern"
+      ],
+      "colorScheme": {
+        "primary": "#0d9488",
+        "secondary": "#06b6d4",
+        "background": "#0a0f12",
+        "surface": "#0f1a1e",
+        "text": "#e0f2f1",
+        "textSecondary": "#80a0a0"
+      },
+      "typography": {
+        "fontFamily": "'Inter', system-ui, sans-serif",
+        "headingScale": "clamp(2rem, 5vw, 4rem)",
+        "bodySize": "16px",
+        "lineHeight": "1.6"
+      },
+      "responsive": true,
+      "complexity": "medium",
+      "industry": [
+        "travel",
+        "marine",
+        "cloud",
+        "saas",
+        "tech",
+        "azure",
+        "fintech",
+        "logistics"
+      ]
+    },
+    {
+      "id": "design-pastel-dream",
+      "name": "Pastel Dream",
+      "type": "design",
+      "category": "pastel",
+      "group": "design",
+      "path": "design/pastel-dream",
+      "description": "Sistema de design claro y suave con tonos pastel. Rosa, lavanda, menta y azul cielo. Estetica playful, amigable y onirica. Para productos que transmiten calma y alegria.",
+      "sections": [
+        "colors",
+        "typography",
+        "spacing",
+        "components",
+        "elevation",
+        "guidelines"
+      ],
+      "styleTags": [
+        "light",
+        "pastel",
+        "soft",
+        "playful",
+        "friendly",
+        "dreamy"
+      ],
+      "colorScheme": {
+        "primary": "#a78bfa",
+        "secondary": "#f9a8d4",
+        "background": "#fef9f9",
+        "surface": "#ffffff",
+        "text": "#3f3f46",
+        "textSecondary": "#71717a"
+      },
+      "typography": {
+        "fontFamily": "'Quicksand', 'Nunito', system-ui, sans-serif",
+        "headingScale": "clamp(2rem, 5vw, 3.5rem)",
+        "bodySize": "16px",
+        "lineHeight": "1.6"
+      },
+      "responsive": true,
+      "complexity": "low",
+      "industry": [
+        "education",
+        "kids",
+        "lifestyle",
+        "wellness",
+        "social",
+        "app",
+        "playful"
+      ]
+    },
+    {
+      "id": "design-retro-80s",
+      "name": "Retro 80s",
+      "type": "design",
+      "category": "retro",
+      "group": "design",
+      "path": "design/retro-80s",
+      "description": "Sistema de design retro de los 80s. Synthwave, sunset gradients, grid floors y neon pink/cyan. Estetica vaporwave, nostalgia y retrofuturismo.",
+      "sections": [
+        "colors",
+        "typography",
+        "spacing",
+        "components",
+        "elevation",
+        "guidelines"
+      ],
+      "styleTags": [
+        "dark",
+        "retro",
+        "80s",
+        "synthwave",
+        "vaporwave",
+        "neon",
+        "gradient"
+      ],
+      "colorScheme": {
+        "primary": "#ff2a6d",
+        "secondary": "#05d9e8",
+        "background": "#0d0221",
+        "surface": "#1a0b2e",
+        "text": "#d1f7ff",
+        "textSecondary": "#8b6f9c"
+      },
+      "typography": {
+        "fontFamily": "'Orbitron', 'Inter', system-ui, sans-serif",
+        "headingScale": "clamp(2.5rem, 7vw, 6rem)",
+        "bodySize": "16px",
+        "lineHeight": "1.5"
+      },
+      "responsive": true,
+      "complexity": "high",
+      "industry": [
+        "music",
+        "gaming",
+        "retro",
+        "creative",
+        "entertainment",
+        "arcade",
+        "vaporwave"
+      ]
+    },
+    {
+      "id": "design-sunset-orange",
+      "name": "Sunset Orange",
+      "type": "design",
+      "category": "sunset",
+      "group": "design",
+      "path": "design/sunset-orange",
+      "description": "Sistema de design ligero y energetico con tonos naranja vibrantes. Para marcas de delivery, startups y lifestyle que transmiten energia y vitalidad.",
+      "sections": [
+        "colors",
+        "typography",
+        "spacing",
+        "components",
+        "elevation",
+        "guidelines"
+      ],
+      "styleTags": [
+        "light",
+        "vibrant",
+        "orange",
+        "energetic",
+        "warm",
+        "bold"
+      ],
+      "colorScheme": {
+        "primary": "#f97316",
+        "secondary": "#fb923c",
+        "background": "#fffbeb",
+        "surface": "#ffffff",
+        "text": "#1c1917",
+        "textSecondary": "#78716c"
+      },
+      "typography": {
+        "fontFamily": "'Poppins', 'Inter', system-ui, sans-serif",
+        "headingScale": "clamp(2.5rem, 6vw, 4.5rem)",
+        "bodySize": "16px",
+        "lineHeight": "1.6"
+      },
+      "responsive": true,
+      "complexity": "medium",
+      "industry": [
+        "delivery",
+        "startup",
+        "lifestyle",
+        "food",
+        "retail",
+        "social",
+        "consumer"
+      ]
+    },
+    {
+      "id": "design-warm-earth",
+      "name": "Warm Earth",
+      "type": "design",
+      "category": "earth",
+      "group": "design",
+      "path": "design/warm-earth",
+      "description": "Sistema de design calido con tonos tierra. Terracota, ambar, crema y verde oliva. Estetica organica, artesanal y acogedora. Para marcas que transmiten calidez y autenticidad.",
+      "sections": [
+        "colors",
+        "typography",
+        "spacing",
+        "components",
+        "elevation",
+        "guidelines"
+      ],
+      "styleTags": [
+        "warm",
+        "earth",
+        "organic",
+        "cozy",
+        "artisanal",
+        "terracotta"
+      ],
+      "colorScheme": {
+        "primary": "#c8553d",
+        "secondary": "#d4a373",
+        "background": "#faf6f0",
+        "surface": "#ffffff",
+        "text": "#2d2422",
+        "textSecondary": "#6b5d54"
+      },
+      "typography": {
+        "fontFamily": "'Playfair Display', 'Inter', system-ui, serif",
+        "headingScale": "clamp(2.5rem, 6vw, 5rem)",
+        "bodySize": "16px",
+        "lineHeight": "1.7"
+      },
+      "responsive": true,
+      "complexity": "low",
+      "industry": [
+        "restaurant",
+        "cafe",
+        "food",
+        "lifestyle",
+        "furniture",
+        "beauty",
+        "organic"
+      ]
+    },
     {
       "id": "landing-agency-dark",
       "name": "Agency Dark Landing",
@@ -45,6 +1038,57 @@
         "creative",
         "design",
         "marketing"
+      ]
+    },
+    {
+      "id": "landing-construction-contractor",
+      "name": "Construction & Contractor Landing",
+      "type": "landing",
+      "category": "construction",
+      "group": "landing",
+      "path": "landing/construction-contractor",
+      "description": "Landing page para empresa de construccion o contratista con hero, servicios, proyectos, equipo, presupuesto y contacto",
+      "sections": [
+        "hero",
+        "services",
+        "projects",
+        "process",
+        "team",
+        "quote",
+        "testimonials",
+        "footer"
+      ],
+      "styleTags": [
+        "bold",
+        "industrial",
+        "sturdy",
+        "professional",
+        "construction"
+      ],
+      "colorScheme": {
+        "primary": "#ea580c",
+        "secondary": "#475569",
+        "background": "#ffffff",
+        "surface": "#f8fafc",
+        "text": "#1c1917",
+        "textSecondary": "#57534e"
+      },
+      "typography": {
+        "fontFamily": "'Archivo', 'Inter', system-ui, sans-serif",
+        "headingScale": "clamp(2.5rem, 6vw, 5rem)",
+        "bodySize": "16px",
+        "lineHeight": "1.6"
+      },
+      "responsive": true,
+      "complexity": "medium",
+      "industry": [
+        "construction",
+        "contractor",
+        "builder",
+        "renovation",
+        "architecture",
+        "infrastructure",
+        "engineering"
       ]
     },
     {
@@ -92,6 +1136,258 @@
       ]
     },
     {
+      "id": "landing-education-academy",
+      "name": "Education & Academy Landing",
+      "type": "landing",
+      "category": "education",
+      "group": "landing",
+      "path": "landing/education-academy",
+      "description": "Landing page para academia, curso online o plataforma educativa con hero, cursos, instructores, planes y testimonios",
+      "sections": [
+        "hero",
+        "stats",
+        "courses",
+        "instructors",
+        "features",
+        "pricing",
+        "testimonials",
+        "newsletter",
+        "footer"
+      ],
+      "styleTags": [
+        "clean",
+        "friendly",
+        "educational",
+        "modern",
+        "approachable"
+      ],
+      "colorScheme": {
+        "primary": "#7c3aed",
+        "secondary": "#06b6d4",
+        "background": "#fafafa",
+        "surface": "#ffffff",
+        "text": "#18181b",
+        "textSecondary": "#52525b"
+      },
+      "typography": {
+        "fontFamily": "'DM Sans', 'Inter', system-ui, sans-serif",
+        "headingScale": "clamp(2.25rem, 5vw, 4rem)",
+        "bodySize": "16px",
+        "lineHeight": "1.7"
+      },
+      "responsive": true,
+      "complexity": "medium",
+      "industry": [
+        "education",
+        "elearning",
+        "course",
+        "academy",
+        "training",
+        "bootcamp",
+        "school"
+      ]
+    },
+    {
+      "id": "landing-events-conference",
+      "name": "Events & Conference Landing",
+      "type": "landing",
+      "category": "events",
+      "group": "landing",
+      "path": "landing/events-conference",
+      "description": "Landing editorial para evento tech con estetica terminal/brutalist, acentos lima, tipografia monospaciada y componentes animados de la biblioteca",
+      "sections": [
+        "hero",
+        "countdown",
+        "speakers",
+        "agenda",
+        "tickets",
+        "sponsors",
+        "venue",
+        "footer"
+      ],
+      "styleTags": [
+        "dark",
+        "editorial",
+        "terminal",
+        "brutalist",
+        "lime",
+        "mono",
+        "animated"
+      ],
+      "colorScheme": {
+        "primary": "#a3e635",
+        "secondary": "#fb923c",
+        "background": "#0a0a0a",
+        "surface": "#141414",
+        "text": "#e5e5e5",
+        "textSecondary": "#737373"
+      },
+      "typography": {
+        "fontFamily": "'Space Mono', 'JetBrains Mono', monospace",
+        "headingScale": "clamp(2.5rem, 8vw, 7rem)",
+        "bodySize": "15px",
+        "lineHeight": "1.5"
+      },
+      "responsive": true,
+      "complexity": "high",
+      "industry": [
+        "events",
+        "conference",
+        "tech",
+        "music",
+        "festival",
+        "meetup"
+      ]
+    },
+    {
+      "id": "landing-gym-fitness",
+      "name": "Gym & Fitness Landing",
+      "type": "landing",
+      "category": "fitness",
+      "group": "landing",
+      "path": "landing/gym-fitness",
+      "description": "Landing page para gimnasio o centro fitness con hero energetico, clases, trainers, planes y horarios",
+      "sections": [
+        "hero",
+        "classes",
+        "trainers",
+        "pricing",
+        "schedule",
+        "testimonials",
+        "cta",
+        "footer"
+      ],
+      "styleTags": [
+        "energetic",
+        "bold",
+        "dark",
+        "neon",
+        "athletic"
+      ],
+      "colorScheme": {
+        "primary": "#00ff88",
+        "secondary": "#ff2a00",
+        "background": "#0a0a0c",
+        "surface": "#15151a",
+        "text": "#f0f0f0",
+        "textSecondary": "#8a8a8f"
+      },
+      "typography": {
+        "fontFamily": "'Bebas Neue', 'Inter', system-ui, sans-serif",
+        "headingScale": "clamp(3rem, 8vw, 7rem)",
+        "bodySize": "16px",
+        "lineHeight": "1.4"
+      },
+      "responsive": true,
+      "complexity": "medium",
+      "industry": [
+        "fitness",
+        "gym",
+        "wellness",
+        "sports",
+        "health"
+      ]
+    },
+    {
+      "id": "landing-healthcare-clinic",
+      "name": "Healthcare Clinic Landing",
+      "type": "landing",
+      "category": "healthcare",
+      "group": "landing",
+      "path": "landing/healthcare-clinic",
+      "description": "Landing page para clinica o centro de salud con hero tranquilizador, servicios, doctores, citas y contacto",
+      "sections": [
+        "hero",
+        "services",
+        "doctors",
+        "appointment",
+        "testimonials",
+        "faq",
+        "contact",
+        "footer"
+      ],
+      "styleTags": [
+        "clean",
+        "calm",
+        "trustworthy",
+        "medical",
+        "professional"
+      ],
+      "colorScheme": {
+        "primary": "#0891b2",
+        "secondary": "#06b6d4",
+        "background": "#f8fafc",
+        "surface": "#ffffff",
+        "text": "#0f172a",
+        "textSecondary": "#475569"
+      },
+      "typography": {
+        "fontFamily": "'Inter', system-ui, sans-serif",
+        "headingScale": "clamp(2rem, 5vw, 3.5rem)",
+        "bodySize": "16px",
+        "lineHeight": "1.7"
+      },
+      "responsive": true,
+      "complexity": "medium",
+      "industry": [
+        "healthcare",
+        "clinic",
+        "medical",
+        "dental",
+        "wellness"
+      ]
+    },
+    {
+      "id": "landing-legal-consulting",
+      "name": "Legal & Consulting Landing",
+      "type": "landing",
+      "category": "legal",
+      "group": "landing",
+      "path": "landing/legal-consulting",
+      "description": "Landing page para despacho legal o consultoria con hero, areas de practica, abogados, casos, testimonios y contacto",
+      "sections": [
+        "hero",
+        "practice-areas",
+        "attorneys",
+        "results",
+        "testimonials",
+        "consultation",
+        "footer"
+      ],
+      "styleTags": [
+        "professional",
+        "trustworthy",
+        "corporate",
+        "elegant",
+        "serious"
+      ],
+      "colorScheme": {
+        "primary": "#1e3a5f",
+        "secondary": "#0891b2",
+        "background": "#ffffff",
+        "surface": "#f8fafc",
+        "text": "#0f172a",
+        "textSecondary": "#475569"
+      },
+      "typography": {
+        "fontFamily": "'Lora', 'Inter', system-ui, serif",
+        "headingScale": "clamp(2.25rem, 5vw, 4rem)",
+        "bodySize": "16px",
+        "lineHeight": "1.7"
+      },
+      "responsive": true,
+      "complexity": "low",
+      "industry": [
+        "legal",
+        "law",
+        "consulting",
+        "attorney",
+        "corporate",
+        "finance",
+        "compliance"
+      ]
+    },
+    {
       "id": "landing-mobile-app",
       "name": "Mobile App Landing",
       "type": "landing",
@@ -133,6 +1429,55 @@
         "mobile",
         "tech",
         "startup"
+      ]
+    },
+    {
+      "id": "landing-podcast-media",
+      "name": "Podcast & Media Landing",
+      "type": "landing",
+      "category": "podcast",
+      "group": "landing",
+      "path": "landing/podcast-media",
+      "description": "Landing page para podcast, show o plataforma de streaming con hero, episodios, host, suscripcion y reproductor",
+      "sections": [
+        "hero",
+        "episodes",
+        "host",
+        "subscribe",
+        "platforms",
+        "testimonials",
+        "footer"
+      ],
+      "styleTags": [
+        "dark",
+        "audio",
+        "modern",
+        "bold",
+        "streaming"
+      ],
+      "colorScheme": {
+        "primary": "#8b5cf6",
+        "secondary": "#ec4899",
+        "background": "#0a0a0c",
+        "surface": "#15151a",
+        "text": "#f4f4f5",
+        "textSecondary": "#a1a1aa"
+      },
+      "typography": {
+        "fontFamily": "'Space Grotesk', 'Inter', system-ui, sans-serif",
+        "headingScale": "clamp(2.5rem, 7vw, 5.5rem)",
+        "bodySize": "16px",
+        "lineHeight": "1.5"
+      },
+      "responsive": true,
+      "complexity": "medium",
+      "industry": [
+        "podcast",
+        "media",
+        "streaming",
+        "audio",
+        "entertainment",
+        "music"
       ]
     },
     {
@@ -179,6 +1524,103 @@
       ]
     },
     {
+      "id": "landing-realestate-property",
+      "name": "Real Estate Property Landing",
+      "type": "landing",
+      "category": "realestate",
+      "group": "landing",
+      "path": "landing/realestate-property",
+      "description": "Landing page para inmobiliaria o propiedad con hero con busqueda, propiedades destacadas, agentes, servicios y contacto",
+      "sections": [
+        "hero",
+        "search",
+        "featured",
+        "services",
+        "agents",
+        "testimonials",
+        "contact",
+        "footer"
+      ],
+      "styleTags": [
+        "clean",
+        "professional",
+        "trustworthy",
+        "property",
+        "modern"
+      ],
+      "colorScheme": {
+        "primary": "#1e40af",
+        "secondary": "#0891b2",
+        "background": "#ffffff",
+        "surface": "#f8fafc",
+        "text": "#0f172a",
+        "textSecondary": "#475569"
+      },
+      "typography": {
+        "fontFamily": "'Plus Jakarta Sans', 'Inter', system-ui, sans-serif",
+        "headingScale": "clamp(2.25rem, 5vw, 4rem)",
+        "bodySize": "16px",
+        "lineHeight": "1.6"
+      },
+      "responsive": true,
+      "complexity": "medium",
+      "industry": [
+        "realestate",
+        "property",
+        "housing",
+        "construction",
+        "interior"
+      ]
+    },
+    {
+      "id": "landing-restaurant-cafe",
+      "name": "Restaurant & Cafe Landing",
+      "type": "landing",
+      "category": "restaurant",
+      "group": "landing",
+      "path": "landing/restaurant-cafe",
+      "description": "Landing page para restaurante o cafe con hero apetitoso, menu, reservas, galeria y ubicacion",
+      "sections": [
+        "hero",
+        "menu",
+        "reservation",
+        "gallery",
+        "reviews",
+        "location",
+        "footer"
+      ],
+      "styleTags": [
+        "warm",
+        "appetizing",
+        "cozy",
+        "elegant",
+        "food-focused"
+      ],
+      "colorScheme": {
+        "primary": "#c8553d",
+        "secondary": "#f4a261",
+        "background": "#faf6f0",
+        "surface": "#ffffff",
+        "text": "#2d2422",
+        "textSecondary": "#6b5d54"
+      },
+      "typography": {
+        "fontFamily": "'Playfair Display', 'Inter', system-ui, serif",
+        "headingScale": "clamp(2.5rem, 6vw, 5rem)",
+        "bodySize": "16px",
+        "lineHeight": "1.7"
+      },
+      "responsive": true,
+      "complexity": "medium",
+      "industry": [
+        "restaurant",
+        "cafe",
+        "food",
+        "hospitality",
+        "bar"
+      ]
+    },
+    {
       "id": "landing-saas-modern",
       "name": "SaaS Modern Landing",
       "type": "landing",
@@ -220,6 +1662,55 @@
         "saas",
         "tech",
         "startup"
+      ]
+    },
+    {
+      "id": "landing-travel-tourism",
+      "name": "Travel & Tourism Landing",
+      "type": "landing",
+      "category": "travel",
+      "group": "landing",
+      "path": "landing/travel-tourism",
+      "description": "Landing page para agencia de viajes o turismo con hero con destinos, paquetes, experiencias, testimonios y contacto",
+      "sections": [
+        "hero",
+        "destinations",
+        "packages",
+        "experiences",
+        "testimonials",
+        "newsletter",
+        "footer"
+      ],
+      "styleTags": [
+        "vibrant",
+        "warm",
+        "adventurous",
+        "inviting",
+        "modern"
+      ],
+      "colorScheme": {
+        "primary": "#0891b2",
+        "secondary": "#f97316",
+        "background": "#ffffff",
+        "surface": "#f8fafc",
+        "text": "#0f172a",
+        "textSecondary": "#475569"
+      },
+      "typography": {
+        "fontFamily": "'Plus Jakarta Sans', 'Inter', system-ui, sans-serif",
+        "headingScale": "clamp(2.5rem, 6vw, 5rem)",
+        "bodySize": "16px",
+        "lineHeight": "1.6"
+      },
+      "responsive": true,
+      "complexity": "medium",
+      "industry": [
+        "travel",
+        "tourism",
+        "hotel",
+        "adventure",
+        "vacation",
+        "agency"
       ]
     }
   ]

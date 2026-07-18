@@ -1,0 +1,38 @@
+{
+  "id": "design-sunset-orange",
+  "name": "Sunset Orange",
+  "type": "design",
+  "category": "sunset",
+  "description": "Sistema de design ligero y energetico con tonos naranja vibrantes. Para marcas de delivery, startups y lifestyle que transmiten energia y vitalidad.",
+  "screenshot": null,
+  "sections": ["colors", "typography", "spacing", "components", "elevation", "guidelines"],
+  "styleTags": ["light", "vibrant", "orange", "energetic", "warm", "bold"],
+  "colorScheme": {
+    "primary": "#f97316",
+    "secondary": "#fb923c",
+    "background": "#fffbeb",
+    "surface": "#ffffff",
+    "text": "#1c1917",
+    "textSecondary": "#78716c"
+  },
+  "typography": {
+    "fontFamily": "'Poppins', 'Inter', system-ui, sans-serif",
+    "headingScale": "clamp(2.5rem, 6vw, 4.5rem)",
+    "bodySize": "16px",
+    "lineHeight": "1.6"
+  },
+  "spacing": {
+    "section": "80px",
+    "element": "24px",
+    "gap": "20px"
+  },
+  "borderRadius": {
+    "sm": "8px",
+    "md": "12px",
+    "lg": "16px",
+    "xl": "24px"
+  },
+  "responsive": true,
+  "complexity": "medium",
+  "industry": ["delivery", "startup", "lifestyle", "food", "retail", "social", "consumer"]
+}

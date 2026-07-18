@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Pastel Dream — Design System Preview</title>
+<link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;500;600;700&family=JetBrains+Mono:wght@400&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --color-primary: #a78bfa; --color-primary-hover: #8b5cf6; --color-secondary: #f9a8d4;
+    --color-tertiary: #6ee7b7; --color-accent: #93c5fd;
+    --color-background: #fef9f9; --color-background-alt: #fdf4f4;
+    --color-surface: #ffffff; --color-surface-alt: #faf5ff;
+    --color-border: #f3e8ff; --color-text: #3f3f46; --color-text-secondary: #71717a;
+    --color-text-muted: #a1a1aa; --color-success: #6ee7b7; --color-warning: #fcd34d; --color-error: #fca5a5;
+    --font-sans: 'Quicksand', 'Nunito', system-ui, sans-serif;
+    --radius-sm: 12px; --radius-md: 16px; --radius-lg: 20px; --radius-xl: 28px; --transition: 250ms ease;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: var(--font-sans); background: var(--color-background); color: var(--color-text); padding: 80px 24px; min-height: 100vh; }
+  .container { max-width: 1200px; margin: 0 auto; }
+  .hero { text-align: center; margin-bottom: 80px; }
+  .hero__eyebrow { display: inline-block; padding: 8px 18px; background: var(--color-surface-alt); border: 1px solid var(--color-border); border-radius: 9999px; font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.08em; color: var(--color-primary); margin-bottom: 24px; }
+  .hero__title { font-size: clamp(2rem, 5vw, 3.5rem); font-weight: 700; line-height: 1.15; margin-bottom: 16px; }
+  .hero__title .accent { color: var(--color-secondary); }
+  .hero__subtitle { font-size: 1.125rem; color: var(--color-text-secondary); max-width: 520px; margin: 0 auto 32px; line-height: 1.6; }
+  .hero__actions { display: flex; gap: 12px; justify-content: center; }
+  .btn { display: inline-flex; align-items: center; padding: 12px 24px; border: none; border-radius: var(--radius-md); font-family: var(--font-sans); font-size: 14px; font-weight: 600; cursor: pointer; transition: var(--transition); text-decoration: none; }
+  .btn--primary { background: var(--color-primary); color: #fff; }
+  .btn--primary:hover { background: var(--color-primary-hover); box-shadow: 0 4px 12px rgba(167,139,250,0.3); transform: translateY(-1px); }
+  .btn--secondary { background: #fff; border: 1px solid var(--color-border); color: var(--color-primary); }
+  .btn--secondary:hover { background: var(--color-surface-alt); }
+  .btn--ghost { background: transparent; color: var(--color-text-secondary); }
+  .btn--ghost:hover { color: var(--color-primary); }
+  .section { margin-bottom: 64px; }
+  .section__title { font-size: 1.375rem; font-weight: 700; margin-bottom: 24px; }
+  .palette { display: grid; grid-template-columns: repeat(auto-fill, minmax(130px, 1fr)); gap: 16px; }
+  .swatch { background: #fff; border: 1px solid var(--color-border); border-radius: var(--radius-lg); overflow: hidden; transition: var(--transition); }
+  .swatch:hover { box-shadow: 0 8px 24px rgba(167,139,250,0.08); transform: translateY(-2px); }
+  .swatch__color { height: 70px; }
+  .swatch__info { padding: 12px 16px; }
+  .swatch__name { font-size: 12px; font-weight: 600; }
+  .swatch__hex { font-size: 11px; color: var(--color-text-muted); }
+  .cards { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 20px; }
+  .card { background: #fff; border: 1px solid var(--color-border); border-radius: var(--radius-lg); padding: 28px; transition: var(--transition); }
+  .card:hover { box-shadow: 0 8px 24px rgba(167,139,250,0.08); transform: translateY(-2px); }
+  .card__icon { width: 52px; height: 52px; border-radius: var(--radius-md); display: flex; align-items: center; justify-content: center; font-size: 24px; margin-bottom: 16px; }
+  .card__icon--lav { background: rgba(167,139,250,0.15); }
+  .card__icon--pink { background: rgba(249,168,212,0.15); }
+  .card__icon--mint { background: rgba(110,231,183,0.15); }
+  .card__title { font-size: 1.125rem; font-weight: 700; margin-bottom: 8px; }
+  .card__desc { font-size: 14px; color: var(--color-text-secondary); line-height: 1.6; }
+  .form-row { display: flex; gap: 16px; flex-wrap: wrap; max-width: 600px; margin-bottom: 16px; }
+  .field { flex: 1; min-width: 200px; }
+  .field label { display: block; font-size: 13px; font-weight: 500; color: var(--color-text-secondary); margin-bottom: 8px; }
+  .input { width: 100%; padding: 12px 16px; background: #fff; border: 1px solid var(--color-border); border-radius: var(--radius-md); color: var(--color-text); font-family: var(--font-sans); font-size: 14px; transition: var(--transition); }
+  .input:focus { outline: none; border-color: var(--color-primary); box-shadow: 0 0 0 3px rgba(167,139,250,0.15); }
+  .input::placeholder { color: var(--color-text-muted); }
+  .chips { display: flex; gap: 8px; flex-wrap: wrap; }
+  .chip { padding: 6px 14px; border-radius: 9999px; font-size: 12px; font-weight: 500; background: var(--color-surface-alt); color: var(--color-text-secondary); }
+  .chip--active { background: var(--color-primary); color: #fff; }
+  .chip--success { background: rgba(110,231,183,0.2); color: #059669; }
+  .chip--warning { background: rgba(252,211,77,0.2); color: #d97706; }
+  .chip--error { background: rgba(252,165,165,0.2); color: #dc2626; }
+</style>
+</head>
+<body>
+<div class="container">
+  <div class="hero">
+    <span class="hero__eyebrow">✨ Design System</span>
+    <h1 class="hero__title">Pastel <span class="accent">Dream</span></h1>
+    <p class="hero__subtitle">Tonos suaves y redondeados. Lavanda, rosa y menta. Amigable, calmo y onirico.</p>
+    <div class="hero__actions">
+      <a class="btn btn--primary">Get Started</a>
+      <a class="btn btn--secondary">Learn more</a>
+      <a class="btn btn--ghost">Explore</a>
+    </div>
+  </div>
+  <div class="section">
+    <h2 class="section__title">Color Palette</h2>
+    <div class="palette">
+      <div class="swatch"><div class="swatch__color" style="background:#a78bfa"></div><div class="swatch__info"><div class="swatch__name">Primary</div><div class="swatch__hex">#a78bfa</div></div></div>
+      <div class="swatch"><div class="swatch__color" style="background:#f9a8d4"></div><div class="swatch__info"><div class="swatch__name">Secondary</div><div class="swatch__hex">#f9a8d4</div></div></div>
+      <div class="swatch"><div class="swatch__color" style="background:#6ee7b7"></div><div class="swatch__info"><div class="swatch__name">Tertiary</div><div class="swatch__hex">#6ee7b7</div></div></div>
+      <div class="swatch"><div class="swatch__color" style="background:#93c5fd"></div><div class="swatch__info"><div class="swatch__name">Accent</div><div class="swatch__hex">#93c5fd</div></div></div>
+      <div class="swatch"><div class="swatch__color" style="background:#fef9f9"></div><div class="swatch__info"><div class="swatch__name">Background</div><div class="swatch__hex">#fef9f9</div></div></div>
+      <div class="swatch"><div class="swatch__color" style="background:#f3e8ff"></div><div class="swatch__info"><div class="swatch__name">Border</div><div class="swatch__hex">#f3e8ff</div></div></div>
+      <div class="swatch"><div class="swatch__color" style="background:#3f3f46"></div><div class="swatch__info"><div class="swatch__name">Text</div><div class="swatch__hex">#3f3f46</div></div></div>
+      <div class="swatch"><div class="swatch__color" style="background:#6ee7b7"></div><div class="swatch__info"><div class="swatch__name">Success</div><div class="swatch__hex">#6ee7b7</div></div></div>
+      <div class="swatch"><div class="swatch__color" style="background:#fcd34d"></div><div class="swatch__info"><div class="swatch__name">Warning</div><div class="swatch__hex">#fcd34d</div></div></div>
+    </div>
+  </div>
+  <div class="section">
+    <h2 class="section__title">Dreamy Cards</h2>
+    <div class="cards">
+      <div class="card"><div class="card__icon card__icon--lav">💜</div><h3 class="card__title">Calm</h3><p class="card__desc">Find your inner peace with guided meditation and breathing exercises.</p></div>
+      <div class="card"><div class="card__icon card__icon--pink">🌸</div><h3 class="card__title">Bloom</h3><p class="card__desc">Grow at your own pace with personalized learning paths and rewards.</p></div>
+      <div class="card"><div class="card__icon card__icon--mint">🌿</div><h3 class="card__title">Thrive</h3><p class="card__desc">Build healthy habits with gentle reminders and positive reinforcement.</p></div>
+    </div>
+  </div>
+  <div class="section">
+    <h2 class="section__title">Form Elements</h2>
+    <div class="form-row">
+      <div class="field"><label>Your Name</label><input class="input" type="text" placeholder="Jane Doe"></div>
+      <div class="field"><label>Email</label><input class="input" type="email" placeholder="you@example.com"></div>
+    </div>
+  </div>
+  <div class="section">
+    <h2 class="section__title">Chips & Badges</h2>
+    <div class="chips">
+      <span class="chip">Default</span>
+      <span class="chip chip--active">Active</span>
+      <span class="chip chip--success">Done</span>
+      <span class="chip chip--warning">Soon</span>
+      <span class="chip chip--error">Oops</span>
+    </div>
+  </div>
+</div>
+</body>
+</html>

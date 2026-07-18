@@ -1,0 +1,38 @@
+{
+  "id": "design-cyberpunk-amber",
+  "name": "Cyberpunk Amber",
+  "type": "design",
+  "category": "cyberpunk",
+  "description": "Sistema de design cyberpunk con ambar dorado. Negro carbon + ambar #ffb800 + rojo oxidado. Estetica industrial futurista, Bladerunner-esque, calido pero tecnologico.",
+  "screenshot": null,
+  "sections": ["colors", "typography", "spacing", "components", "elevation", "guidelines"],
+  "styleTags": ["dark", "cyberpunk", "amber", "industrial", "futuristic", "blade-runner"],
+  "colorScheme": {
+    "primary": "#ffb800",
+    "secondary": "#ff6b35",
+    "background": "#0a0a0a",
+    "surface": "#161210",
+    "text": "#f0e0c0",
+    "textSecondary": "#a09080"
+  },
+  "typography": {
+    "fontFamily": "'Rajdhani', 'Inter', system-ui, sans-serif",
+    "headingScale": "clamp(2.5rem, 7vw, 5.5rem)",
+    "bodySize": "16px",
+    "lineHeight": "1.5"
+  },
+  "spacing": {
+    "section": "80px",
+    "element": "24px",
+    "gap": "16px"
+  },
+  "borderRadius": {
+    "sm": "2px",
+    "md": "4px",
+    "lg": "8px",
+    "xl": "12px"
+  },
+  "responsive": true,
+  "complexity": "high",
+  "industry": ["gaming", "cybersecurity", "industrial", "tech", "energy", "automotive", "steampunk"]
+}

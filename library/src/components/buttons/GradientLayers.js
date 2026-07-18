@@ -53,11 +53,11 @@ export default {
   --color-overlay-highlight: #fff5;
 
   position: relative;
-  display: flex;
+  display: inline-flex;
   align-items: center;
   justify-content: center;
-  overflow: clip;
-  overflow-clip-margin: 4px;
+  overflow: hidden;
+  isolation: isolate;
 
   border: 2px solid var(--color-wrapper-border);
   border-radius: var(--rad);
@@ -71,7 +71,7 @@ export default {
 
 .gradient-btn {
   position: relative;
-  z-index: -1;
+  z-index: 0;
 
   padding: 12px 36px;
   border: none;
@@ -115,9 +115,11 @@ export default {
   position: absolute;
   pointer-events: none;
 
-  left: -160px;
+  top: 50%;
+  left: 50%;
   width: 500%;
   aspect-ratio: 1;
+  transform: translate(-50%, -50%);
 
   background: radial-gradient(
     ellipse at 65% 180%,
@@ -144,11 +146,11 @@ export default {
 
 @keyframes rotate {
   0% {
-    transform: rotate(0deg);
+    transform: translate(-50%, -50%) rotate(0deg);
   }
 
   100% {
-    transform: rotate(360deg);
+    transform: translate(-50%, -50%) rotate(360deg);
   }
 }
 

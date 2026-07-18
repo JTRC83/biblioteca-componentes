@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Midnight Minimal — Design System Preview</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --color-primary: #ffffff; --color-primary-hover: #f0f0f0; --color-secondary: #a0a0a0;
+    --color-background: #080808; --color-background-alt: #0c0c0c;
+    --color-surface: #0e0e0e; --color-surface-hover: #141414;
+    --color-border: #222222; --color-border-strong: #ffffff;
+    --color-text: #ffffff; --color-text-secondary: #888888; --color-text-muted: #555555;
+    --font-sans: 'Inter', system-ui, sans-serif;
+    --radius: 0px; --transition: 200ms ease;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: var(--font-sans); background: var(--color-background); color: var(--color-text); padding: 96px 24px; min-height: 100vh; line-height: 1.5; }
+  .container { max-width: 1200px; margin: 0 auto; }
+  .hero { text-align: left; margin-bottom: 96px; }
+  .hero__eyebrow { display: inline-block; padding: 6px 16px; border: 1px solid var(--color-border); color: var(--color-text-secondary); font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.2em; margin-bottom: 32px; }
+  .hero__title { font-family: var(--font-sans); font-size: clamp(3rem, 8vw, 7rem); font-weight: 700; line-height: 1.0; letter-spacing: -0.03em; margin-bottom: 24px; color: var(--color-text); }
+  .hero__subtitle { font-size: 1.125rem; color: var(--color-text-secondary); max-width: 520px; margin-bottom: 48px; line-height: 1.5; font-weight: 400; }
+  .hero__actions { display: flex; gap: 16px; flex-wrap: wrap; }
+  .btn { display: inline-flex; align-items: center; padding: 14px 32px; border: 1px solid; border-radius: var(--radius); font-family: var(--font-sans); font-size: 13px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.15em; cursor: pointer; transition: var(--transition); text-decoration: none; }
+  .btn--primary { border-color: var(--color-primary); color: var(--color-primary); background: transparent; }
+  .btn--primary:hover { background: var(--color-primary); color: var(--color-background); }
+  .btn--secondary { border-color: var(--color-border); color: var(--color-text); background: transparent; }
+  .btn--secondary:hover { border-color: var(--color-primary); color: var(--color-primary); }
+  .btn--ghost { border: none; color: var(--color-text-secondary); background: transparent; padding-left: 0; }
+  .btn--ghost:hover { color: var(--color-primary); }
+  .section { margin-bottom: 96px; }
+  .section__title { font-family: var(--font-sans); font-size: 2.5rem; font-weight: 700; letter-spacing: -0.02em; line-height: 1.1; margin-bottom: 48px; }
+  .section__overline { font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.2em; color: var(--color-text-secondary); margin-bottom: 16px; }
+  .palette { display: grid; grid-template-columns: repeat(auto-fill, minmax(120px, 1fr)); gap: 24px; }
+  .swatch { background: var(--color-surface); border: 1px solid var(--color-border); border-radius: var(--radius); overflow: hidden; transition: var(--transition); }
+  .swatch:hover { border-color: var(--color-border-strong); }
+  .swatch__color { height: 80px; }
+  .swatch__info { padding: 12px 16px; }
+  .swatch__name { font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.1em; color: var(--color-text); }
+  .swatch__hex { font-size: 12px; color: var(--color-text-muted); margin-top: 2px; }
+  .cards { display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 24px; }
+  .card { background: var(--color-surface); border: 1px solid var(--color-border); border-radius: var(--radius); padding: 32px; transition: var(--transition); }
+  .card:hover { border-color: var(--color-border-strong); }
+  .card__overline { font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.2em; color: var(--color-text-muted); margin-bottom: 16px; }
+  .card__title { font-size: 1.5rem; font-weight: 700; letter-spacing: -0.01em; line-height: 1.2; margin-bottom: 16px; color: var(--color-text); }
+  .card__desc { font-size: 15px; color: var(--color-text-secondary); line-height: 1.6; }
+  .form-row { display: flex; gap: 24px; flex-wrap: wrap; max-width: 600px; margin-bottom: 16px; }
+  .field { flex: 1; min-width: 200px; }
+  .field label { display: block; font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.2em; color: var(--color-text-secondary); margin-bottom: 12px; }
+  .input { width: 100%; padding: 12px 16px; background: var(--color-background); border: 1px solid var(--color-border); border-radius: var(--radius); color: var(--color-text); font-family: var(--font-sans); font-size: 14px; transition: var(--transition); }
+  .input:focus { outline: 2px solid var(--color-primary); outline-offset: 2px; border-color: var(--color-primary); }
+  .input::placeholder { color: var(--color-text-muted); }
+  .chips { display: flex; gap: 12px; flex-wrap: wrap; }
+  .chip { padding: 6px 14px; border: 1px solid var(--color-border); border-radius: var(--radius); font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.2em; color: var(--color-text-secondary); background: transparent; transition: var(--transition); cursor: default; }
+  .chip:hover { border-color: var(--color-text-secondary); color: var(--color-text); }
+  .chip--active { border-color: var(--color-border-strong); color: var(--color-text); }
+  .nav { display: flex; align-items: center; justify-content: space-between; padding: 24px 0; border-bottom: 1px solid var(--color-border); margin-bottom: 96px; }
+  .nav__logo { font-size: 16px; font-weight: 700; letter-spacing: -0.02em; color: var(--color-text); text-decoration: none; }
+  .nav__links { display: flex; gap: 32px; }
+  .nav__link { font-size: 13px; color: var(--color-text-secondary); text-decoration: none; transition: var(--transition); }
+  .nav__link:hover { color: var(--color-text); }
+</style>
+</head>
+<body>
+<div class="container">
+  <nav class="nav">
+    <a class="nav__logo">MIDNIGHT</a>
+    <div class="nav__links">
+      <a class="nav__link">Estudio</a>
+      <a class="nav__link">Proyectos</a>
+      <a class="nav__link">Contacto</a>
+    </div>
+  </nav>
+  <div class="hero">
+    <span class="hero__eyebrow">Estudio · Diseno</span>
+    <h1 class="hero__title">Menos<br>es todo.</h1>
+    <p class="hero__subtitle">Blanco puro sobre casi-negro. Sin color, sin ornamento. Solo tipografia, espacio y contraste absoluto.</p>
+    <div class="hero__actions">
+      <a class="btn btn--primary">Ver Proyectos</a>
+      <a class="btn btn--secondary">Contacto</a>
+      <a class="btn btn--ghost">Estudio</a>
+    </div>
+  </div>
+  <div class="section">
+    <div class="section__overline">01 — Paleta</div>
+    <h2 class="section__title">Color</h2>
+    <p class="hero__subtitle" style="margin-bottom:32px">Estrictamente monocromo. Blanco, negro y grises. Ningun otro color existe en este sistema.</p>
+    <div class="palette">
+      <div class="swatch"><div class="swatch__color" style="background:#ffffff"></div><div class="swatch__info"><div class="swatch__name">Primary</div><div class="swatch__hex">#ffffff</div></div></div>
+      <div class="swatch"><div class="swatch__color" style="background:#a0a0a0"></div><div class="swatch__info"><div class="swatch__name">Secondary</div><div class="swatch__hex">#a0a0a0</div></div></div>
+      <div class="swatch"><div class="swatch__color" style="background:#080808"></div><div class="swatch__info"><div class="swatch__name">Background</div><div class="swatch__hex">#080808</div></div></div>
+      <div class="swatch"><div class="swatch__color" style="background:#0e0e0e"></div><div class="swatch__info"><div class="swatch__name">Surface</div><div class="swatch__hex">#0e0e0e</div></div></div>
+      <div class="swatch"><div class="swatch__color" style="background:#222222"></div><div class="swatch__info"><div class="swatch__name">Border</div><div class="swatch__hex">#222222</div></div></div>
+      <div class="swatch"><div class="swatch__color" style="background:#888888"></div><div class="swatch__info"><div class="swatch__name">Text Sec.</div><div class="swatch__hex">#888888</div></div></div>
+      <div class="swatch"><div class="swatch__color" style="background:#555555"></div><div class="swatch__info"><div class="swatch__name">Text Muted</div><div class="swatch__hex">#555555</div></div></div>
+      <div class="swatch"><div class="swatch__color" style="background:#000000"></div><div class="swatch__info"><div class="swatch__name">Pure Black</div><div class="swatch__hex">#000000</div></div></div>
+    </div>
+  </div>
+  <div class="section">
+    <div class="section__overline">02 — Proyectos</div>
+    <h2 class="section__title">Cards</h2>
+    <div class="cards">
+      <div class="card"><div class="card__overline">Fotografia</div><h3 class="card__title">Serie Monolito</h3><p class="card__desc">Un estudio sobre forma, luz y sombra. Composiciones despojadas de todo lo accesorio.</p></div>
+      <div class="card"><div class="card__overline">Arquitectura</div><h3 class="card__title">Casa Vacia</h3><p class="card__desc">Proyecto residencial minimalista. Hormigon expuesto, luz natural, cero ornamento.</p></div>
+      <div class="card"><div class="card__overline">Diseno</div><h3 class="card__title">Sistema</h3><p class="card__desc">Identidad visual monocroma para estudio de arquitectura. Tipografia como unica expresion.</p></div>
+    </div>
+  </div>
+  <div class="section">
+    <div class="section__overline">03 — Contacto</div>
+    <h2 class="section__title">Formulario</h2>
+    <div class="form-row">
+      <div class="field"><label>Nombre</label><input class="input" type="text" placeholder="Tu nombre"></div>
+      <div class="field"><label>Email</label><input class="input" type="email" placeholder="tu@email.com"></div>
+    </div>
+    <div class="form-row">
+      <div class="field" style="max-width:600px"><label>Mensaje</label><input class="input" type="text" placeholder="Cuentanos tu proyecto"></div>
+    </div>
+    <div class="hero__actions" style="margin-top:24px">
+      <a class="btn btn--primary">Enviar</a>
+    </div>
+  </div>
+  <div class="section">
+    <div class="section__overline">04 — Etiquetas</div>
+    <h2 class="section__title">Chips</h2>
+    <div class="chips">
+      <span class="chip chip--active">Todos</span>
+      <span class="chip">Fotografia</span>
+      <span class="chip">Arquitectura</span>
+      <span class="chip">Diseno</span>
+      <span class="chip">Arte</span>
+    </div>
+  </div>
+</div>
+</body>
+</html>

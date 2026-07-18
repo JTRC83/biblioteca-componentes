@@ -1,0 +1,38 @@
+{
+  "id": "design-brutalist-raw",
+  "name": "Brutalist Raw",
+  "type": "design",
+  "category": "brutalist",
+  "description": "Sistema de design brutalista. Bordes crudos sin redondear, tipografia bold monocroma, alto contraste y layout asimetrico. Estética cruda, directa y sin ornamentacion.",
+  "screenshot": null,
+  "sections": ["colors", "typography", "spacing", "components", "elevation", "guidelines"],
+  "styleTags": ["brutalist", "raw", "bold", "monochrome", "high-contrast", "asymmetric"],
+  "colorScheme": {
+    "primary": "#000000",
+    "secondary": "#ffffff",
+    "background": "#ffffff",
+    "surface": "#ffffff",
+    "text": "#000000",
+    "textSecondary": "#555555"
+  },
+  "typography": {
+    "fontFamily": "'Space Mono', 'JetBrains Mono', monospace",
+    "headingScale": "clamp(2.5rem, 8vw, 7rem)",
+    "bodySize": "16px",
+    "lineHeight": "1.4"
+  },
+  "spacing": {
+    "section": "64px",
+    "element": "20px",
+    "gap": "16px"
+  },
+  "borderRadius": {
+    "sm": "0px",
+    "md": "0px",
+    "lg": "0px",
+    "xl": "0px"
+  },
+  "responsive": true,
+  "complexity": "low",
+  "industry": ["creative", "agency", "design", "art", "music", "editorial", "underground"]
+}

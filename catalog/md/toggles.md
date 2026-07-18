@@ -1,6 +1,6 @@
 # Toggles
 
-12 componentes
+11 componentes
 
 | ID | Nombre | Tags | Estilo | Complejidad | Interacciones | Descripción |
 |----|--------|------|--------|------------|-------------|-------------|
@@ -12,7 +12,6 @@
 | `tg-yellow-toggle` | Yellow Toggle | ios, realistic, yellow, animated, css-only, toggle, 3d | neon, gradient, neumorphic, transition, animated, css-only, 3d | low | toggle, transition | Toggle switch animado y con efecto 3D "Yellow Toggle" |
 | `tg-metal-knob` | Metal Knob | metallic, red, green, animated, css-only, toggle, knob, 3d | neon, gradient, glow, transition, animated, css-only, 3d | low | toggle, transition | Toggle switch animado y con efecto 3D "Metal Knob" |
 | `tg-holo-toggle` | Holo Toggle | sci-fi, holographic, animated, css-only, toggle, glow, particles, neon | glassmorphism, neon, 3d, gradient, glow, animated, transition, filter, css-only | high | hover, toggle, animation, transition, transform | Toggle switch animado y con efecto glow "Holo Toggle" |
-| `tg-led-toggle` | LED Toggle | led, red, green, animated, css-only, toggle, metallic | neon, gradient, neumorphic, transition, animated, css-only | low | toggle, transition | Toggle switch animado "LED Toggle" |
 | `tg-conic-toggle` | Conic Toggle | conic, gradient, animated, css-only, toggle, glow | neon, gradient, transition, animated, css-only, glow | low | hover, toggle, focus, transition, transform | Toggle switch con gradiente y animado "Conic Toggle" |
 | `cb-slide-switch` | Slide Switch | slider, red, cyan, animated, css-only, gradient, toggle | gradient, transition, animated, css-only | low | toggle, transition | Toggle switch animado y con gradiente "Slide Switch" |
 | `chk-slide` | Slide Check | slide, css-only | transition, css-only | low | toggle, transition | Toggle switch "Slide Check" |

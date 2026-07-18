@@ -180,7 +180,7 @@ export default {
 }
 
 .mc-master-text {
-  bottom: 0.25em;
+  bottom: 1.25em;
   right: 0.8em;
   font-size: 0.75em;
   position: absolute;
@@ -195,7 +195,7 @@ export default {
 }
 
 .mc-number {
-  bottom: 3em;
+  bottom: 2em;
   left: 0.75em;
   font-size: 1.2em;
   position: absolute;
@@ -204,7 +204,7 @@ export default {
 }
 
 .mc-holder {
-  bottom: 3.5em;
+  bottom: 2.5em;
   left: 1.4em;
   font-size: 0.75em;
   position: absolute;
@@ -222,7 +222,7 @@ export default {
 
 .mc-chip {
   position: absolute;
-  top: 27.5%;
+  top: 37.5%;
   left: 8.25%;
   cursor: grab;
 }
