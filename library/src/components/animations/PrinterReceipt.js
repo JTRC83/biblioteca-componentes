@@ -4,11 +4,11 @@ export default {
   category: 'animations',
   tags: ['printer', 'receipt', 'ticket', 'animated', 'css-only', 'print', 'has-selector', 'interactive'],
   author: 'dexter-st',
-  html: `<div class="pr-wrapper">
+  html: `<div class="pr-wrapper" data-js-animated="true">
   <div class="pr-machine"></div>
 
   <div class="pr-screen">
-    <span class="pr-msg"> Click to print</span>
+    <span class="pr-msg">Click to print</span>
     <div class="pr-letters">
       <span class="pr-letter">P</span>
       <span class="pr-letter">r</span>
@@ -24,7 +24,9 @@ export default {
     </div>
   </div>
 
-  <button class="pr-btn">🖨</button>
+  <button class="pr-btn" type="button">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9V2h12v7"/><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"/><rect x="6" y="14" width="12" height="8"/><path d="M6 18h12"/></svg>
+  </button>
 
   <div class="pr-receipt-wrap">
     <div class="pr-receipt">
@@ -33,7 +35,6 @@ export default {
         Address 123, <br />
         City, State, <br />
         ZIP Code
-        <div class="pr-logo">👕</div>
       </div>
       <div class="pr-subhead">
         Order No. #001234 <br />
@@ -75,7 +76,6 @@ export default {
             <td colspan="2">Subtotal</td>
             <td>50.12</td>
           </tr>
-
           <tr class="pr-tax">
             <td colspan="2">Tax (13%)</td>
             <td>6.52</td>
@@ -312,9 +312,13 @@ export default {
 
 .pr-logo {
   width: 48px;
-  font-size: 3em;
+  font-size: 2em;
   transform: rotate(10deg);
   filter: grayscale(1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #555;
 }
 
 .pr-subtotal td,
@@ -351,7 +355,7 @@ export default {
   opacity: 0;
 }
 
-.pr-wrapper:has(.pr-btn:focus) {
+.pr-wrapper.is-printing {
   .pr-receipt-wrap {
     animation:
       pr-print 1.2s 1 forwards ease-in,
@@ -407,5 +411,29 @@ export default {
     opacity: 1;
   }
 }
-`
+`,
+  js: `(() => {
+  function setupPrinter(root) {
+    const btn = root.querySelector('.pr-btn');
+    if (!btn) return;
+    let printing = false;
+    btn.addEventListener('click', () => {
+      if (printing) return;
+      printing = true;
+      root.classList.add('is-printing');
+      setTimeout(() => {
+        root.classList.remove('is-printing');
+        printing = false;
+      }, 2200);
+    });
+  }
+  function init() {
+    document.querySelectorAll('[data-js-animated="true"].pr-wrapper').forEach(setupPrinter);
+  }
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', init);
+  } else {
+    init();
+  }
+})();`
 }

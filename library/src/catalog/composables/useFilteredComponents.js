@@ -37,8 +37,10 @@ export function useFilteredComponents(source = null) {
         items.sort((a, b) => b.name.localeCompare(a.name))
         break
       case 'newest':
-      default:
         items.sort((a, b) => (a.id < b.id ? 1 : -1))
+        break
+      case 'default':
+      default:
         break
     }
 

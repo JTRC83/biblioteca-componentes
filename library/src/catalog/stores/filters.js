@@ -3,7 +3,7 @@ import { defineStore } from 'pinia'
 export const useFiltersStore = defineStore('filters', {
   state: () => ({
     search: '',
-    sort: 'newest',
+    sort: 'default',
     tags: [],
     framework: 'all'
   }),
@@ -29,7 +29,7 @@ export const useFiltersStore = defineStore('filters', {
     },
     reset() {
       this.search = ''
-      this.sort = 'newest'
+      this.sort = 'default'
       this.tags = []
       this.framework = 'all'
     }

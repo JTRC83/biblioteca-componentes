@@ -55,7 +55,10 @@ const groups = [
 ]
 
 export const components = groups
-  .flatMap((g) => Object.values(g))
+  .flatMap((g) => {
+    const def = g.default || g
+    return Object.values(def)
+  })
   .filter((c) => c && c.id && c.html)
 
 export function getComponentById(id) {
