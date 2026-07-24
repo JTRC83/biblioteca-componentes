@@ -25,11 +25,13 @@ import * as forms from './forms'
 import * as tooltips from './tooltips'
 import * as patterns from './patterns'
 import * as backgrounds from './backgrounds'
+import * as visualEffects from './visual-effects'
 import * as animations from './animations'
 import * as analog from './analog'
 import * as navbars from './navbars'
 import * as icons from './icons'
 import * as dividers from './dividers'
+import * as gallery from './gallery'
 
 const groups = [
   buttons,
@@ -43,11 +45,13 @@ const groups = [
   tooltips,
   patterns,
   backgrounds,
+  visualEffects,
   animations,
   analog,
   navbars,
   icons,
-  dividers
+  dividers,
+  gallery
 ]
 
 export const components = groups

@@ -1,0 +1,433 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Marta Vidal — Diseñadora de producto</title>
+<meta name="description" content="Portfolio de Marta Vidal, diseñadora de producto independiente en Barcelona.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg: #fafafa;
+  --surface: #ffffff;
+  --text: #1a1a1a;
+  --text-sec: #737373;
+  --text-muted: #a3a3a3;
+  --border: #e5e5e5;
+  --radius-sm: 4px;
+  --radius-md: 8px;
+  --font-sans: 'Inter', system-ui, sans-serif;
+  --font-mono: 'JetBrains Mono', 'SFMono-Regular', monospace;
+  --font-serif: 'Georgia', 'Times New Roman', serif;
+  --transition: 300ms ease;
+  --transition-slow: 500ms ease;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: var(--font-sans);
+  background: var(--bg);
+  color: var(--text);
+  font-size: 16px;
+  line-height: 1.7;
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+}
+::selection { background: var(--text); color: var(--bg); }
+img { display: block; width: 100%; height: 100%; object-fit: cover; }
+a { color: inherit; }
+.container { max-width: 1200px; margin: 0 auto; padding: 0 48px; }
+
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(16px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.nav {
+  padding: 32px 0;
+}
+.nav-inner {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+}
+.logo {
+  font-weight: 300;
+  font-size: 17px;
+  letter-spacing: -0.01em;
+  text-decoration: none;
+}
+.nav-links {
+  display: flex;
+  gap: 32px;
+  list-style: none;
+}
+.nav-links a {
+  font-size: 14px;
+  color: var(--text-sec);
+  text-decoration: none;
+  transition: color var(--transition);
+}
+.nav-links a:hover { color: var(--text); }
+
+.hero {
+  padding: 120px 0 140px;
+}
+.hero-meta {
+  font-family: var(--font-mono);
+  font-size: 13px;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: var(--text-sec);
+  margin-bottom: 48px;
+  animation: fadeUp 0.9s ease both;
+}
+.hero-title {
+  font-size: clamp(2.75rem, 8.5vw, 7rem);
+  font-weight: 300;
+  letter-spacing: -0.04em;
+  line-height: 1.05;
+  animation: fadeUp 0.9s ease 0.1s both;
+}
+.hero-title em {
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-weight: 400;
+  letter-spacing: -0.02em;
+}
+.hero-sub {
+  max-width: 480px;
+  margin-top: 56px;
+  font-size: 17px;
+  color: var(--text-sec);
+  animation: fadeUp 0.9s ease 0.2s both;
+}
+
+.section { padding: 100px 0; }
+.section-head {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  border-top: 1px solid var(--border);
+  padding-top: 24px;
+  margin-bottom: 72px;
+}
+.section-label {
+  font-family: var(--font-mono);
+  font-size: 13px;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: var(--text);
+}
+.section-note {
+  font-family: var(--font-mono);
+  font-size: 13px;
+  letter-spacing: 0.06em;
+  color: var(--text-muted);
+}
+
+.projects-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  column-gap: 40px;
+  row-gap: 80px;
+}
+.project {
+  text-decoration: none;
+  display: block;
+}
+.project-media {
+  overflow: hidden;
+  border-radius: var(--radius-sm);
+  aspect-ratio: 3 / 2;
+  background: var(--surface);
+}
+.project-media img {
+  filter: grayscale(1);
+  transition: transform 600ms ease;
+}
+.project:hover .project-media img {
+  transform: scale(1.04);
+}
+.project-info {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 16px;
+  margin-top: 24px;
+}
+.project-title {
+  display: inline-block;
+  font-size: 22px;
+  font-weight: 500;
+  letter-spacing: -0.01em;
+  line-height: 1.3;
+  background-image: linear-gradient(currentColor, currentColor);
+  background-repeat: no-repeat;
+  background-position: 0 100%;
+  background-size: 0% 1px;
+  transition: background-size 400ms ease;
+  padding-bottom: 2px;
+}
+.project:hover .project-title { background-size: 100% 1px; }
+.project-meta {
+  display: flex;
+  gap: 24px;
+  font-family: var(--font-mono);
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--text-sec);
+  white-space: nowrap;
+}
+
+.about-grid {
+  display: grid;
+  grid-template-columns: 1.1fr 1fr;
+  gap: 96px;
+  align-items: start;
+}
+.about-bio {
+  font-size: clamp(1.25rem, 2vw, 1.5rem);
+  line-height: 1.6;
+  letter-spacing: -0.01em;
+}
+.about-stats {
+  display: flex;
+  flex-direction: column;
+}
+.stat {
+  padding: 28px 0;
+  border-top: 1px solid var(--border);
+}
+.stat:last-child { border-bottom: 1px solid var(--border); }
+.stat-number {
+  display: block;
+  font-family: var(--font-mono);
+  font-weight: 500;
+  font-size: clamp(2.25rem, 4vw, 3.25rem);
+  letter-spacing: -0.03em;
+  line-height: 1.1;
+}
+.stat-label {
+  display: block;
+  margin-top: 8px;
+  font-family: var(--font-mono);
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--text-sec);
+}
+
+.contact-prompt {
+  font-family: var(--font-mono);
+  font-size: 13px;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: var(--text-sec);
+  margin-bottom: 40px;
+}
+.contact-email {
+  display: inline-block;
+  font-size: clamp(1.75rem, 5vw, 4rem);
+  font-weight: 300;
+  letter-spacing: -0.03em;
+  text-decoration: none;
+  background-image: linear-gradient(currentColor, currentColor);
+  background-repeat: no-repeat;
+  background-position: 0 96%;
+  background-size: 0% 2px;
+  transition: background-size var(--transition-slow);
+  padding-bottom: 6px;
+}
+.contact-email:hover { background-size: 100% 2px; }
+.social-links {
+  display: flex;
+  gap: 40px;
+  list-style: none;
+  margin-top: 72px;
+}
+.social-links a {
+  font-family: var(--font-mono);
+  font-size: 13px;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--text-sec);
+  text-decoration: none;
+  transition: color var(--transition);
+}
+.social-links a:hover { color: var(--text); }
+
+.footer {
+  border-top: 1px solid var(--border);
+  padding: 32px 0;
+}
+.footer-inner {
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+  font-size: 13px;
+  color: var(--text-muted);
+}
+
+@media (max-width: 768px) {
+  .container { padding: 0 24px; }
+  .nav { padding: 24px 0; }
+  .nav-links { gap: 20px; }
+  .nav-links a { font-size: 13px; }
+  .hero { padding: 72px 0 88px; }
+  .hero-meta { margin-bottom: 32px; }
+  .hero-sub { margin-top: 40px; font-size: 16px; }
+  .section { padding: 72px 0; }
+  .section-head { margin-bottom: 48px; }
+  .projects-grid { grid-template-columns: 1fr; row-gap: 56px; }
+  .project-info { flex-direction: column; align-items: flex-start; gap: 8px; }
+  .about-grid { grid-template-columns: 1fr; gap: 56px; }
+  .social-links { gap: 28px; flex-wrap: wrap; margin-top: 56px; }
+  .footer-inner { flex-direction: column; gap: 4px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after {
+    animation: none !important;
+    transition: none !important;
+  }
+}
+</style>
+</head>
+<body>
+
+<nav class="nav">
+  <div class="container nav-inner">
+    <a href="#" class="logo">Marta Vidal</a>
+    <ul class="nav-links">
+      <li><a href="#proyectos">Proyectos</a></li>
+      <li><a href="#sobre-mi">Sobre mí</a></li>
+      <li><a href="#contacto">Contacto</a></li>
+    </ul>
+  </div>
+</nav>
+
+<main>
+
+  <section class="hero">
+    <div class="container">
+      <p class="hero-meta">Diseñadora de producto — Barcelona</p>
+      <h1 class="hero-title">Diseño experiencias<br>que las personas <em>recuerdan</em></h1>
+      <p class="hero-sub">Ayudo a marcas y estudios a construir productos digitales claros, honestos y duraderos.</p>
+    </div>
+  </section>
+
+  <section class="section" id="proyectos">
+    <div class="container">
+      <div class="section-head">
+        <span class="section-label">01 — Proyectos seleccionados</span>
+        <span class="section-note">2021 — 2026</span>
+      </div>
+      <div class="projects-grid">
+        <a class="project" href="#">
+          <div class="project-media">
+            <img src="https://picsum.photos/seed/proj-1/600/400" alt="Proyecto Archivo Nómada" width="600" height="400" loading="lazy">
+          </div>
+          <div class="project-info">
+            <h3 class="project-title">Archivo Nómada</h3>
+            <div class="project-meta">
+              <span>Dirección de arte</span>
+              <span>2026</span>
+            </div>
+          </div>
+        </a>
+        <a class="project" href="#">
+          <div class="project-media">
+            <img src="https://picsum.photos/seed/proj-2/600/400" alt="Proyecto Casa Miralles" width="600" height="400" loading="lazy">
+          </div>
+          <div class="project-info">
+            <h3 class="project-title">Casa Miralles</h3>
+            <div class="project-meta">
+              <span>Identidad visual</span>
+              <span>2025</span>
+            </div>
+          </div>
+        </a>
+        <a class="project" href="#">
+          <div class="project-media">
+            <img src="https://picsum.photos/seed/proj-3/600/400" alt="Proyecto Lumen Studio" width="600" height="400" loading="lazy">
+          </div>
+          <div class="project-info">
+            <h3 class="project-title">Lumen Studio</h3>
+            <div class="project-meta">
+              <span>Diseño web</span>
+              <span>2025</span>
+            </div>
+          </div>
+        </a>
+        <a class="project" href="#">
+          <div class="project-media">
+            <img src="https://picsum.photos/seed/proj-4/600/400" alt="Proyecto Editorial Sur" width="600" height="400" loading="lazy">
+          </div>
+          <div class="project-info">
+            <h3 class="project-title">Editorial Sur</h3>
+            <div class="project-meta">
+              <span>Diseño editorial</span>
+              <span>2024</span>
+            </div>
+          </div>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="sobre-mi">
+    <div class="container">
+      <div class="section-head">
+        <span class="section-label">02 — Sobre mí</span>
+      </div>
+      <div class="about-grid">
+        <p class="about-bio">Soy diseñadora independiente con base en Barcelona. Trabajo en la intersección entre diseño editorial y producto digital, con foco en sistemas tipográficos, claridad y detalle. Colaboro con estudios, startups y editoriales de toda Europa.</p>
+        <div class="about-stats">
+          <div class="stat">
+            <span class="stat-number">5+</span>
+            <span class="stat-label">Años de experiencia</span>
+          </div>
+          <div class="stat">
+            <span class="stat-number">40+</span>
+            <span class="stat-label">Proyectos entregados</span>
+          </div>
+          <div class="stat">
+            <span class="stat-number">12</span>
+            <span class="stat-label">Premios de diseño</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="contacto">
+    <div class="container">
+      <div class="section-head">
+        <span class="section-label">03 — Contacto</span>
+      </div>
+      <p class="contact-prompt">¿Tienes un proyecto en mente?</p>
+      <a class="contact-email" href="mailto:hola@martavidal.es">hola@martavidal.es</a>
+      <ul class="social-links">
+        <li><a href="#">Instagram <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M7 7h10v10"/></svg></a></li>
+        <li><a href="#">LinkedIn <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M7 7h10v10"/></svg></a></li>
+        <li><a href="#">Behance <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M7 7h10v10"/></svg></a></li>
+      </ul>
+    </div>
+  </section>
+
+</main>
+
+<footer class="footer">
+  <div class="container footer-inner">
+    <span>© 2026 Marta Vidal</span>
+    <span>Hecho en Barcelona</span>
+  </div>
+</footer>
+
+</body>
+</html>

@@ -1,0 +1,447 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Wanderly — Travel Landing</title>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --color-primary: #0891b2;
+    --color-primary-hover: #0e7490;
+    --color-secondary: #f97316;
+    --color-accent: #0ea5e9;
+    --color-bg: #ffffff;
+    --color-bg-alt: #f0f9ff;
+    --color-surface: #ffffff;
+    --color-border: #e0f2fe;
+    --color-text: #0c4a6e;
+    --color-text-sec: #475569;
+    --color-text-muted: #94a3b8;
+    --font-sans: 'Plus Jakarta Sans', system-ui, sans-serif;
+    --radius-sm: 8px; --radius-md: 12px; --radius-lg: 16px; --radius-xl: 24px;
+    --transition: 250ms ease;
+    --shadow-sm: 0 1px 3px rgba(8,145,178,0.05);
+    --shadow-md: 0 4px 20px rgba(8,145,178,0.08);
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: var(--font-sans); background: var(--color-bg); color: var(--color-text); line-height: 1.6; overflow-x: hidden; }
+  .container { max-width: 1280px; margin: 0 auto; padding: 0 48px; }
+
+  .nav { position: sticky; top: 0; z-index: 50; background: rgba(255,255,255,0.85); backdrop-filter: blur(16px); border-bottom: 1px solid var(--color-border); }
+  .nav__inner { display: flex; align-items: center; justify-content: space-between; padding: 16px 48px; max-width: 1280px; margin: 0 auto; }
+  .nav__logo { font-size: 24px; font-weight: 800; color: var(--color-text); }
+  .nav__logo .accent { color: var(--color-primary); }
+  .nav__links { display: flex; gap: 28px; }
+  .nav__link { font-size: 15px; font-weight: 500; color: var(--color-text-sec); text-decoration: none; transition: var(--transition); }
+  .nav__link:hover { color: var(--color-primary); }
+  .btn { display: inline-flex; align-items: center; gap: 8px; padding: 12px 28px; border: none; border-radius: var(--radius-md); font-family: var(--font-sans); font-size: 15px; font-weight: 600; cursor: pointer; transition: var(--transition); text-decoration: none; }
+  .btn--primary { background: var(--color-primary); color: #fff; }
+  .btn--primary:hover { background: var(--color-primary-hover); transform: translateY(-1px); }
+  .btn--secondary { background: var(--color-secondary); color: #fff; }
+  .btn--secondary:hover { background: #ea580c; transform: translateY(-1px); }
+
+  .hero { padding: 64px 0; position: relative; overflow: hidden; }
+  .hero::before { content: ''; position: absolute; top: -200px; right: -200px; width: 600px; height: 600px; background: radial-gradient(circle, rgba(8,145,178,0.08), transparent 70%); }
+  .hero__grid { display: grid; grid-template-columns: 1.2fr 1fr; gap: 48px; align-items: center; }
+  .hero__badge { display: inline-flex; align-items: center; gap: 8px; padding: 8px 18px; background: var(--color-bg-alt); border: 1px solid var(--color-border); border-radius: 9999px; font-size: 13px; font-weight: 600; color: var(--color-primary); margin-bottom: 24px; }
+  .hero__title { font-size: clamp(2.5rem, 6vw, 4.5rem); font-weight: 800; letter-spacing: -0.03em; line-height: 1.05; margin-bottom: 20px; }
+  .hero__title .accent { color: var(--color-secondary); }
+  .hero__subtitle { font-size: 1.25rem; color: var(--color-text-sec); max-width: 480px; margin-bottom: 32px; }
+  .hero__actions { display: flex; gap: 16px; margin-bottom: 40px; }
+  .hero__search {
+    display: flex;
+    gap: 0;
+    background: #fff;
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-md);
+    padding: 8px;
+    box-shadow: var(--shadow-md);
+    max-width: 480px;
+  }
+  .hero__search input { flex: 1; padding: 12px 16px; border: none; font-family: var(--font-sans); font-size: 15px; outline: none; }
+  .hero__search input::placeholder { color: var(--color-text-muted); }
+  .hero__search .btn { border-radius: 8px; }
+  .hero__image { position: relative; }
+  .hero__image img { width: 100%; border-radius: var(--radius-xl); }
+  .hero__image-card {
+    position: absolute;
+    bottom: -20px; left: -20px;
+    background: #fff;
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-lg);
+    padding: 16px 20px;
+    box-shadow: var(--shadow-md);
+    display: flex; align-items: center; gap: 12px;
+  }
+  .hero__image-card-icon { font-size: 24px; }
+  .hero__image-card-text { font-size: 14px; font-weight: 600; }
+  .hero__image-card-sub { font-size: 12px; color: var(--color-text-sec); }
+
+  .section { padding: 80px 0; }
+  .section__head { margin-bottom: 48px; text-align: center; }
+  .section__eyebrow { display: inline-block; padding: 6px 16px; background: var(--color-bg-alt); border: 1px solid var(--color-border); border-radius: 9999px; font-size: 12px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.1em; color: var(--color-primary); margin-bottom: 16px; }
+  .section__title { font-size: clamp(1.75rem, 4vw, 2.75rem); font-weight: 800; letter-spacing: -0.02em; }
+  .section__title .accent { color: var(--color-primary); }
+
+  .destinations__grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+  .destination-card { border-radius: var(--radius-lg); overflow: hidden; aspect-ratio: 4/5; position: relative; cursor: pointer; transition: var(--transition); }
+  .destination-card:hover { transform: translateY(-4px); box-shadow: var(--shadow-md); }
+  .destination-card img { width: 100%; height: 100%; object-fit: cover; }
+  .destination-card__overlay { position: absolute; inset: 0; background: linear-gradient(180deg, transparent 40%, rgba(12,74,110,0.8) 100%); display: flex; flex-direction: column; justify-content: flex-end; padding: 24px; }
+  .destination-card__name { font-size: 1.25rem; font-weight: 700; color: #fff; margin-bottom: 4px; }
+  .destination-card__price { font-size: 14px; color: rgba(255,255,255,0.9); font-weight: 600; }
+  .destination-card__badge { position: absolute; top: 16px; right: 16px; padding: 6px 12px; background: rgba(255,255,255,0.2); backdrop-filter: blur(8px); border-radius: 9999px; font-size: 12px; font-weight: 600; color: #fff; }
+
+  .packages__grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; max-width: 960px; margin: 0 auto; }
+  .package-card { background: #fff; border: 1px solid var(--color-border); border-radius: var(--radius-lg); padding: 32px; position: relative; transition: var(--transition); }
+  .package-card:hover { border-color: var(--color-primary); transform: translateY(-4px); box-shadow: var(--shadow-md); }
+  .package-card--featured { border-color: var(--color-primary); box-shadow: 0 0 0 1px var(--color-primary), var(--shadow-md); }
+  .package-card__badge { position: absolute; top: -12px; left: 20px; padding: 4px 16px; background: var(--color-secondary); color: #fff; font-size: 12px; font-weight: 700; border-radius: 9999px; }
+  .package-card__name { font-size: 1.5rem; font-weight: 800; margin-bottom: 8px; }
+  .package-card__price { font-size: 2.5rem; font-weight: 800; color: var(--color-primary); margin-bottom: 4px; }
+  .package-card__price span { font-size: 14px; color: var(--color-text-sec); font-weight: 400; }
+  .package-card__desc { font-size: 14px; color: var(--color-text-sec); margin-bottom: 24px; }
+  .package-card__features { list-style: none; margin-bottom: 28px; }
+  .package-card__features li { padding: 10px 0; font-size: 14px; color: var(--color-text-sec); display: flex; align-items: center; gap: 10px; border-bottom: 1px solid var(--color-border); }
+  .package-card__features li::before { content: ''; display: inline-block; width: 16px; height: 16px; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M17.8 19.2 16 11l3.5-3.5C21 6 21.5 4 21 3c-1-.5-3 0-4.5 1.5L13 8 4.8 6.2c-.5-.1-.9.1-1.1.5l-.3.5c-.2.5-.1 1 .3 1.3L9 12l-2 3-4-1-1 1 4 2 2 4 1-1-1-4 3-2 3.5 5.3c.3.4.8.5 1.3.3l.5-.2c.4-.3.6-.7.5-1.2z'/%3E%3C/svg%3E"); background-size: contain; background-repeat: no-repeat; margin-right: 8px; flex-shrink: 0; color: var(--color-primary); font-size: 16px; }
+  .package-card .btn { width: 100%; justify-content: center; }
+
+  .experiences__grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+  .experience-card { background: #fff; border: 1px solid var(--color-border); border-radius: var(--radius-lg); overflow: hidden; transition: var(--transition); }
+  .experience-card:hover { border-color: var(--color-primary); transform: translateY(-4px); box-shadow: var(--shadow-md); }
+  .experience-card__image { aspect-ratio: 4/3; overflow: hidden; }
+  .experience-card__image img { width: 100%; height: 100%; object-fit: cover; transition: var(--transition); }
+  .experience-card:hover .experience-card__image img { transform: scale(1.05); }
+  .experience-card__info { padding: 20px; }
+  .experience-card__title { font-size: 1.125rem; font-weight: 700; margin-bottom: 4px; }
+  .experience-card__desc { font-size: 14px; color: var(--color-text-sec); line-height: 1.6; margin-bottom: 12px; }
+  .experience-card__meta { display: flex; gap: 16px; font-size: 13px; color: var(--color-text-muted); }
+  .experience-card__meta span { display: flex; align-items: center; gap: 4px; }
+
+  .testimonials__grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+  .testimonial-card { background: #fff; border: 1px solid var(--color-border); border-radius: var(--radius-lg); padding: 28px; transition: var(--transition); }
+  .testimonial-card:hover { border-color: var(--color-border); box-shadow: var(--shadow-md); }
+  .testimonial-card__stars { color: var(--color-secondary); font-size: 18px; margin-bottom: 16px; }
+  .testimonial-card__text { font-size: 15px; color: var(--color-text-sec); line-height: 1.7; margin-bottom: 20px; }
+  .testimonial-card__author { display: flex; align-items: center; gap: 12px; }
+  .testimonial-card__avatar { width: 44px; height: 44px; border-radius: 50%; background: var(--color-bg-alt); color: var(--color-primary); display: flex; align-items: center; justify-content: center; font-size: 18px; font-weight: 700; }
+  .testimonial-card__name { font-size: 15px; font-weight: 600; }
+  .testimonial-card__role { font-size: 13px; color: var(--color-text-muted); }
+
+  .newsletter { background: linear-gradient(135deg, #0c4a6e, #0891b2); color: #fff; padding: 64px 0; text-align: center; }
+  .newsletter__title { font-size: clamp(1.75rem, 4vw, 2.5rem); font-weight: 800; margin-bottom: 12px; }
+  .newsletter__title .accent { color: #7dd3fc; }
+  .newsletter__subtitle { font-size: 1.125rem; color: rgba(255,255,255,0.8); margin-bottom: 32px; }
+  .newsletter__form { display: flex; gap: 12px; max-width: 480px; margin: 0 auto; }
+  .newsletter__input { flex: 1; padding: 14px 20px; border: none; border-radius: var(--radius-md); font-family: var(--font-sans); font-size: 15px; outline: none; }
+  .newsletter__input::placeholder { color: #94a3b8; }
+
+  .footer { background: #0c4a6e; color: #bae6fd; padding: 56px 0 32px; }
+  .footer__grid { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 48px; margin-bottom: 32px; }
+  .footer__brand h3 { font-size: 24px; font-weight: 800; color: #fff; margin-bottom: 12px; }
+  .footer__brand p { font-size: 14px; color: #7dd3fc; line-height: 1.7; }
+  .footer__col h4 { font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.15em; color: #7dd3fc; margin-bottom: 20px; }
+  .footer__col a { display: block; font-size: 14px; color: #bae6fd; text-decoration: none; margin-bottom: 10px; transition: var(--transition); }
+  .footer__col a:hover { color: #fff; }
+  .footer__bottom { display: flex; justify-content: space-between; align-items: center; padding-top: 28px; border-top: 1px solid rgba(255,255,255,0.1); }
+  .footer__copy { font-size: 13px; color: #7dd3fc; }
+  .footer__socials { display: flex; gap: 10px; }
+  .footer__social { width: 36px; height: 36px; border-radius: 50%; background: rgba(255,255,255,0.1); display: flex; align-items: center; justify-content: center; color: #bae6fd; font-size: 14px; text-decoration: none; transition: var(--transition); }
+  .footer__social:hover { background: var(--color-secondary); color: #fff; }
+
+  @media (max-width: 1024px) {
+    .hero__grid { grid-template-columns: 1fr; }
+    .destinations__grid, .testimonials__grid, .experiences__grid { grid-template-columns: repeat(2, 1fr); }
+    .packages__grid { grid-template-columns: 1fr; max-width: 400px; }
+    .footer__grid { grid-template-columns: 1fr 1fr; }
+  }
+  @media (max-width: 768px) {
+    .container { padding: 0 20px; }
+    .nav__inner { padding: 12px 20px; }
+    .nav__links { display: none; }
+    .destinations__grid, .testimonials__grid, .experiences__grid { grid-template-columns: 1fr; }
+    .footer__grid { grid-template-columns: 1fr; }
+    .hero__search { flex-direction: column; }
+    .hero__search input { width: 100%; }
+    .newsletter__form { flex-direction: column; }
+  }
+</style>
+</head>
+<body>
+
+<nav class="nav">
+  <div class="nav__inner">
+    <div class="nav__logo">Wander<span class="accent">ly</span></div>
+    <div class="nav__links">
+      <a class="nav__link">Destinos</a>
+      <a class="nav__link">Paquetes</a>
+      <a class="nav__link">Experiencias</a>
+      <a class="nav__link">Contacto</a>
+    </div>
+    <a class="btn btn--secondary">Crear viaje a medida</a>
+  </div>
+</nav>
+
+<section class="hero">
+  <div class="container">
+    <div class="hero__grid">
+      <div>
+        <div class="hero__badge"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17.8 19.2 16 11l3.5-3.5C21 6 21.5 4 21 3c-1-.5-3 0-4.5 1.5L13 8 4.8 6.2c-.5-.1-.9.1-1.1.5l-.3.5c-.2.5-.1 1 .3 1.3L9 12l-2 3-4-1-1 1 4 2 2 4 1-1-1-4 3-2 3.5 5.3c.3.4.8.5 1.3.3l.5-.2c.4-.3.6-.7.5-1.2z"/></svg> Viajes que transforman</div>
+        <h1 class="hero__title">Explora el mundo, <span class="accent">a tu manera</span></h1>
+        <p class="hero__subtitle">Paquetes de viaje diseñados a medida. Destinos únicos, guías locales y experiencias que no encontrarás en ningún otro sitio.</p>
+        <div class="hero__actions">
+          <a class="btn btn--primary">Explorar destinos</a>
+          <a class="btn btn--secondary">Crear viaje a medida</a>
+        </div>
+        <div class="hero__search">
+          <input type="text" placeholder="A dónde quieres viajar?">
+          <a class="btn btn--primary">Buscar</a>
+        </div>
+      </div>
+      <div class="hero__image">
+        <img src="https://picsum.photos/seed/travel-hero/600/500" alt="Travel">
+        <div class="hero__image-card">
+          <span class="hero__image-card-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M11.525 2.295a.53.53 0 0 1 .95 0l2.31 4.679a2.123 2.123 0 0 0 1.595 1.16l5.166.756a.53.53 0 0 1 .294.904l-3.736 3.638a2.123 2.123 0 0 0-.611 1.878l.882 5.14a.53.53 0 0 1-.771.56l-4.618-2.428a2.122 2.122 0 0 0-1.973 0L6.396 21.01a.53.53 0 0 1-.77-.56l.881-5.139a2.122 2.122 0 0 0-.611-1.879L2.16 9.795a.53.53 0 0 1 .294-.906l5.165-.755a2.122 2.122 0 0 0 1.597-1.16z" fill="currentColor"/></svg></span>
+          <div>
+            <div class="hero__image-card-text">4.9/5 valoración</div>
+            <div class="hero__image-card-sub">+2,400 viajeros satisfechos</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container">
+    <div class="section__head">
+      <span class="section__eyebrow">Destinos destacados</span>
+      <h2 class="section__title">Dónde quieres <span class="accent">ir?</span></h2>
+    </div>
+    <div class="destinations__grid">
+      <div class="destination-card">
+        <img src="https://picsum.photos/seed/travel-bali/400/500" alt="Bali">
+        <span class="destination-card__badge">Trending</span>
+        <div class="destination-card__overlay"><div><div class="destination-card__name">Bali, Indonesia</div><div class="destination-card__price">Desde 1.299€</div></div></div>
+      </div>
+      <div class="destination-card">
+        <img src="https://picsum.photos/seed/travel-santorini/400/500" alt="Santorini">
+        <div class="destination-card__overlay"><div><div class="destination-card__name">Santorini, Grecia</div><div class="destination-card__price">Desde 899€</div></div></div>
+      </div>
+      <div class="destination-card">
+        <img src="https://picsum.photos/seed/travel-machu/400/500" alt="Machu Picchu">
+        <span class="destination-card__badge">Nuevo</span>
+        <div class="destination-card__overlay"><div><div class="destination-card__name">Machu Picchu, Perú</div><div class="destination-card__price">Desde 1.499€</div></div></div>
+      </div>
+      <div class="destination-card">
+        <img src="https://picsum.photos/seed/travel-kyoto/400/500" alt="Kioto">
+        <div class="destination-card__overlay"><div><div class="destination-card__name">Kioto, Japón</div><div class="destination-card__price">Desde 1.899€</div></div></div>
+      </div>
+      <div class="destination-card">
+        <img src="https://picsum.photos/seed/travel-safari/400/500" alt="Safari">
+        <span class="destination-card__badge">Premium</span>
+        <div class="destination-card__overlay"><div><div class="destination-card__name">Safari, Tanzania</div><div class="destination-card__price">Desde 2.199€</div></div></div>
+      </div>
+      <div class="destination-card">
+        <img src="https://picsum.photos/seed/travel-norway/400/500" alt="Noruega">
+        <div class="destination-card__overlay"><div><div class="destination-card__name">Noruega, Aurora Boreal</div><div class="destination-card__price">Desde 1.099€</div></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section" style="background: var(--color-bg-alt);">
+  <div class="container">
+    <div class="section__head">
+      <span class="section__eyebrow">Paquetes</span>
+      <h2 class="section__title">Viajes a <span class="accent">medida</span></h2>
+    </div>
+    <div class="packages__grid">
+      <div class="package-card">
+        <span class="package-card__badge">Económico</span>
+        <div class="package-card__name">Explorador</div>
+        <div class="package-card__price">899€<span>/persona</span></div>
+        <p class="package-card__desc">Perfecto para viajeros aventureros que buscan experiencia sin lujos.</p>
+        <ul class="package-card__features">
+          <li>Vuelos económicos</li>
+          <li>Hotel 3 estrellas</li>
+          <li>Actividades principales</li>
+          <li>Mapa de la zona</li>
+          <li>Soporte 24h</li>
+        </ul>
+        <a class="btn btn--primary">Reservar</a>
+      </div>
+      <div class="package-card package-card--featured">
+        <span class="package-card__badge">Recomendado</span>
+        <div class="package-card__name">Aventura Completa</div>
+        <div class="package-card__price">1.499€<span>/persona</span></div>
+        <p class="package-card__desc">El equilibrio perfecto entre experiencia, comodidad y precio.</p>
+        <ul class="package-card__features">
+          <li>Vuelos incluidos</li>
+          <li>Hotel 4 estrellas</li>
+          <li>Todas las actividades</li>
+          <li>Guía local experto</li>
+          <li>Traslados incluidos</li>
+          <li>Seguro de viaje</li>
+        </ul>
+        <a class="btn btn--secondary">Reservar</a>
+      </div>
+      <div class="package-card">
+        <span class="package-card__badge">Premium</span>
+        <div class="package-card__name">Experiencia VIP</div>
+        <div class="package-card__price">2.499€<span>/persona</span></div>
+        <p class="package-card__desc">Máximo confort con guía privado y acceso exclusivo a experiencias.</p>
+        <ul class="package-card__features">
+          <li>Vuelos business</li>
+          <li>Hotel 5 estrellas</li>
+          <li>Guía privado</li>
+          <li>Tours exclusivos</li>
+          <li>Seguro todo riesgo</li>
+          <li>Flexibilidad total</li>
+        </ul>
+        <a class="btn btn--primary">Reservar</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container">
+    <div class="section__head">
+      <span class="section__eyebrow">Experiencias</span>
+      <h2 class="section__title">Vive <span class="accent">algo único</span></h2>
+    </div>
+    <div class="experiences__grid">
+      <div class="experience-card">
+        <div class="experience-card__image"><img src="https://picsum.photos/seed/exp-1/400/300" alt="Aurora boreal"></div>
+        <div class="experience-card__info">
+          <h3 class="experience-card__title">Caza de aurora boreal</h3>
+          <p class="experience-card__desc">Noches mágicas bajo las luces del norte en Lofoten, con guía experto y cámaras preparadas.</p>
+          <div class="experience-card__meta"><span><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg> Noruega</span><span><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg> 3 días</span><span><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M11.525 2.295a.53.53 0 0 1 .95 0l2.31 4.679a2.123 2.123 0 0 0 1.595 1.16l5.166.756a.53.53 0 0 1 .294.904l-3.736 3.638a2.123 2.123 0 0 0-.611 1.878l.882 5.14a.53.53 0 0 1-.771.56l-4.618-2.428a2.122 2.122 0 0 0-1.973 0L6.396 21.01a.53.53 0 0 1-.77-.56l.881-5.139a2.122 2.122 0 0 0-.611-1.879L2.16 9.795a.53.53 0 0 1 .294-.906l5.165-.755a2.122 2.122 0 0 0 1.597-1.16z" fill="currentColor"/></svg> 4.9</span></div>
+        </div>
+      </div>
+      <div class="experience-card">
+        <div class="experience-card__image"><img src="https://picsum.photos/seed/exp-2/400/300" alt="Safari"></div>
+        <div class="experience-card__info">
+          <h3 class="experience-card__title">Safari fotográfico</h3>
+          <p class="experience-card__desc">Aventura en el Serengeti para ver la migración animal con guías profesionales y lodges premium.</p>
+          <div class="experience-card__meta"><span><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg> Tanzania</span><span><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg> 7 días</span><span><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M11.525 2.295a.53.53 0 0 1 .95 0l2.31 4.679a2.123 2.123 0 0 0 1.595 1.16l5.166.756a.53.53 0 0 1 .294.904l-3.736 3.638a2.123 2.123 0 0 0-.611 1.878l.882 5.14a.53.53 0 0 1-.771.56l-4.618-2.428a2.122 2.122 0 0 0-1.973 0L6.396 21.01a.53.53 0 0 1-.77-.56l.881-5.139a2.122 2.122 0 0 0-.611-1.879L2.16 9.795a.53.53 0 0 1 .294-.906l5.165-.755a2.122 2.122 0 0 0 1.597-1.16z" fill="currentColor"/></svg> 5.0</span></div>
+        </div>
+      </div>
+      <div class="experience-card">
+        <div class="experience-card__image"><img src="https://picsum.photos/seed/exp-3/400/300" alt="Ruta Inca"></div>
+        <div class="experience-card__info">
+          <h3 class="experience-card__title">Camino del Inca</h3>
+          <p class="experience-card__desc">Trekking hasta Machu Picchu atravesando paisajes andinos y ruinas milenarias.</p>
+          <div class="experience-card__meta"><span><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg> Perú</span><span><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg> 5 días</span><span><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M11.525 2.295a.53.53 0 0 1 .95 0l2.31 4.679a2.123 2.123 0 0 0 1.595 1.16l5.166.756a.53.53 0 0 1 .294.904l-3.736 3.638a2.123 2.123 0 0 0-.611 1.878l.882 5.14a.53.53 0 0 1-.771.56l-4.618-2.428a2.122 2.122 0 0 0-1.973 0L6.396 21.01a.53.53 0 0 1-.77-.56l.881-5.139a2.122 2.122 0 0 0-.611-1.879L2.16 9.795a.53.53 0 0 1 .294-.906l5.165-.755a2.122 2.122 0 0 0 1.597-1.16z" fill="currentColor"/></svg> 4.8</span></div>
+        </div>
+      </div>
+      <div class="experience-card">
+        <div class="experience-card__image"><img src="https://picsum.photos/seed/exp-4/400/300" alt="Gastronomía"></div>
+        <div class="experience-card__info">
+          <h3 class="experience-card__title">Tour gastronómico</h3>
+          <p class="experience-card__desc">Recorrido por mercados y cocinas de autor en Tokio, de la tradición a la vanguardia.</p>
+          <div class="experience-card__meta"><span><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg> Japón</span><span><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg> 4 días</span><span><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M11.525 2.295a.53.53 0 0 1 .95 0l2.31 4.679a2.123 2.123 0 0 0 1.595 1.16l5.166.756a.53.53 0 0 1 .294.904l-3.736 3.638a2.123 2.123 0 0 0-.611 1.878l.882 5.14a.53.53 0 0 1-.771.56l-4.618-2.428a2.122 2.122 0 0 0-1.973 0L6.396 21.01a.53.53 0 0 1-.77-.56l.881-5.139a2.122 2.122 0 0 0-.611-1.879L2.16 9.795a.53.53 0 0 1 .294-.906l5.165-.755a2.122 2.122 0 0 0 1.597-1.16z" fill="currentColor"/></svg> 4.9</span></div>
+        </div>
+      </div>
+      <div class="experience-card">
+        <div class="experience-card__image"><img src="https://picsum.photos/seed/exp-5/400/300" alt="Buceo"></div>
+        <div class="experience-card__info">
+          <h3 class="experience-card__title">Buceo en arrecife</h3>
+          <p class="experience-card__desc">Inmersión en la Gran Barrera de Coral con instructores certificados y fauna única.</p>
+          <div class="experience-card__meta"><span><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg> Australia</span><span><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg> 3 días</span><span><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M11.525 2.295a.53.53 0 0 1 .95 0l2.31 4.679a2.123 2.123 0 0 0 1.595 1.16l5.166.756a.53.53 0 0 1 .294.904l-3.736 3.638a2.123 2.123 0 0 0-.611 1.878l.882 5.14a.53.53 0 0 1-.771.56l-4.618-2.428a2.122 2.122 0 0 0-1.973 0L6.396 21.01a.53.53 0 0 1-.77-.56l.881-5.139a2.122 2.122 0 0 0-.611-1.879L2.16 9.795a.53.53 0 0 1 .294-.906l5.165-.755a2.122 2.122 0 0 0 1.597-1.16z" fill="currentColor"/></svg> 4.7</span></div>
+        </div>
+      </div>
+      <div class="experience-card">
+        <div class="experience-card__image"><img src="https://picsum.photos/seed/exp-6/400/300" alt="Globo"></div>
+        <div class="experience-card__info">
+          <h3 class="experience-card__title">Globo en Capadocia</h3>
+          <p class="experience-card__desc">Vuelo al amanecer sobre los chimeneos de hadas de Capadocia con desayuno a bordo.</p>
+          <div class="experience-card__meta"><span><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg> Turquía</span><span><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg> 1 día</span><span><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M11.525 2.295a.53.53 0 0 1 .95 0l2.31 4.679a2.123 2.123 0 0 0 1.595 1.16l5.166.756a.53.53 0 0 1 .294.904l-3.736 3.638a2.123 2.123 0 0 0-.611 1.878l.882 5.14a.53.53 0 0 1-.771.56l-4.618-2.428a2.122 2.122 0 0 0-1.973 0L6.396 21.01a.53.53 0 0 1-.77-.56l.881-5.139a2.122 2.122 0 0 0-.611-1.879L2.16 9.795a.53.53 0 0 1 .294-.906l5.165-.755a2.122 2.122 0 0 0 1.597-1.16z" fill="currentColor"/></svg> 5.0</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container">
+    <div class="section__head">
+      <span class="section__eyebrow">Testimonios</span>
+      <h2 class="section__title">Viajeros <span class="accent">reales</span></h2>
+    </div>
+    <div class="testimonials__grid">
+      <div class="testimonial-card">
+        <div class="testimonial-card__stars"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M11.525 2.295a.53.53 0 0 1 .95 0l2.31 4.679a2.123 2.123 0 0 0 1.595 1.16l5.166.756a.53.53 0 0 1 .294.904l-3.736 3.638a2.123 2.123 0 0 0-.611 1.878l.882 5.14a.53.53 0 0 1-.771.56l-4.618-2.428a2.122 2.122 0 0 0-1.973 0L6.396 21.01a.53.53 0 0 1-.77-.56l.881-5.139a2.122 2.122 0 0 0-.611-1.879L2.16 9.795a.53.53 0 0 1 .294-.906l5.165-.755a2.122 2.122 0 0 0 1.597-1.16z" fill="currentColor"/></svg><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M11.525 2.295a.53.53 0 0 1 .95 0l2.31 4.679a2.123 2.123 0 0 0 1.595 1.16l5.166.756a.53.53 0 0 1 .294.904l-3.736 3.638a2.123 2.123 0 0 0-.611 1.878l.882 5.14a.53.53 0 0 1-.771.56l-4.618-2.428a2.122 2.122 0 0 0-1.973 0L6.396 21.01a.53.53 0 0 1-.77-.56l.881-5.139a2.122 2.122 0 0 0-.611-1.879L2.16 9.795a.53.53 0 0 1 .294-.906l5.165-.755a2.122 2.122 0 0 0 1.597-1.16z" fill="currentColor"/></svg><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M11.525 2.295a.53.53 0 0 1 .95 0l2.31 4.679a2.123 2.123 0 0 0 1.595 1.16l5.166.756a.53.53 0 0 1 .294.904l-3.736 3.638a2.123 2.123 0 0 0-.611 1.878l.882 5.14a.53.53 0 0 1-.771.56l-4.618-2.428a2.122 2.122 0 0 0-1.973 0L6.396 21.01a.53.53 0 0 1-.77-.56l.881-5.139a2.122 2.122 0 0 0-.611-1.879L2.16 9.795a.53.53 0 0 1 .294-.906l5.165-.755a2.122 2.122 0 0 0 1.597-1.16z" fill="currentColor"/></svg><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M11.525 2.295a.53.53 0 0 1 .95 0l2.31 4.679a2.123 2.123 0 0 0 1.595 1.16l5.166.756a.53.53 0 0 1 .294.904l-3.736 3.638a2.123 2.123 0 0 0-.611 1.878l.882 5.14a.53.53 0 0 1-.771.56l-4.618-2.428a2.122 2.122 0 0 0-1.973 0L6.396 21.01a.53.53 0 0 1-.77-.56l.881-5.139a2.122 2.122 0 0 0-.611-1.879L2.16 9.795a.53.53 0 0 1 .294-.906l5.165-.755a2.122 2.122 0 0 0 1.597-1.16z" fill="currentColor"/></svg><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M11.525 2.295a.53.53 0 0 1 .95 0l2.31 4.679a2.123 2.123 0 0 0 1.595 1.16l5.166.756a.53.53 0 0 1 .294.904l-3.736 3.638a2.123 2.123 0 0 0-.611 1.878l.882 5.14a.53.53 0 0 1-.771.56l-4.618-2.428a2.122 2.122 0 0 0-1.973 0L6.396 21.01a.53.53 0 0 1-.77-.56l.881-5.139a2.122 2.122 0 0 0-.611-1.879L2.16 9.795a.53.53 0 0 1 .294-.906l5.165-.755a2.122 2.122 0 0 0 1.597-1.16z" fill="currentColor"/></svg></div>
+        <p class="testimonial-card__text">"El viaje a Bali superó todas mis expectativas. Los guías locales fueron increíbles y el hotel tenía vistas espectaculares."</p>
+        <div class="testimonial-card__author">
+          <div class="testimonial-card__avatar">M</div>
+          <div><div class="testimonial-card__name">Marta S.</div><div class="testimonial-card__role">Viajera frecuente</div></div>
+        </div>
+      </div>
+      <div class="testimonial-card">
+        <div class="testimonial-card__stars"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M11.525 2.295a.53.53 0 0 1 .95 0l2.31 4.679a2.123 2.123 0 0 0 1.595 1.16l5.166.756a.53.53 0 0 1 .294.904l-3.736 3.638a2.123 2.123 0 0 0-.611 1.878l.882 5.14a.53.53 0 0 1-.771.56l-4.618-2.428a2.122 2.122 0 0 0-1.973 0L6.396 21.01a.53.53 0 0 1-.77-.56l.881-5.139a2.122 2.122 0 0 0-.611-1.879L2.16 9.795a.53.53 0 0 1 .294-.906l5.165-.755a2.122 2.122 0 0 0 1.597-1.16z" fill="currentColor"/></svg><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M11.525 2.295a.53.53 0 0 1 .95 0l2.31 4.679a2.123 2.123 0 0 0 1.595 1.16l5.166.756a.53.53 0 0 1 .294.904l-3.736 3.638a2.123 2.123 0 0 0-.611 1.878l.882 5.14a.53.53 0 0 1-.771.56l-4.618-2.428a2.122 2.122 0 0 0-1.973 0L6.396 21.01a.53.53 0 0 1-.77-.56l.881-5.139a2.122 2.122 0 0 0-.611-1.879L2.16 9.795a.53.53 0 0 1 .294-.906l5.165-.755a2.122 2.122 0 0 0 1.597-1.16z" fill="currentColor"/></svg><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M11.525 2.295a.53.53 0 0 1 .95 0l2.31 4.679a2.123 2.123 0 0 0 1.595 1.16l5.166.756a.53.53 0 0 1 .294.904l-3.736 3.638a2.123 2.123 0 0 0-.611 1.878l.882 5.14a.53.53 0 0 1-.771.56l-4.618-2.428a2.122 2.122 0 0 0-1.973 0L6.396 21.01a.53.53 0 0 1-.77-.56l.881-5.139a2.122 2.122 0 0 0-.611-1.879L2.16 9.795a.53.53 0 0 1 .294-.906l5.165-.755a2.122 2.122 0 0 0 1.597-1.16z" fill="currentColor"/></svg><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M11.525 2.295a.53.53 0 0 1 .95 0l2.31 4.679a2.123 2.123 0 0 0 1.595 1.16l5.166.756a.53.53 0 0 1 .294.904l-3.736 3.638a2.123 2.123 0 0 0-.611 1.878l.882 5.14a.53.53 0 0 1-.771.56l-4.618-2.428a2.122 2.122 0 0 0-1.973 0L6.396 21.01a.53.53 0 0 1-.77-.56l.881-5.139a2.122 2.122 0 0 0-.611-1.879L2.16 9.795a.53.53 0 0 1 .294-.906l5.165-.755a2.122 2.122 0 0 0 1.597-1.16z" fill="currentColor"/></svg><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M11.525 2.295a.53.53 0 0 1 .95 0l2.31 4.679a2.123 2.123 0 0 0 1.595 1.16l5.166.756a.53.53 0 0 1 .294.904l-3.736 3.638a2.123 2.123 0 0 0-.611 1.878l.882 5.14a.53.53 0 0 1-.771.56l-4.618-2.428a2.122 2.122 0 0 0-1.973 0L6.396 21.01a.53.53 0 0 1-.77-.56l.881-5.139a2.122 2.122 0 0 0-.611-1.879L2.16 9.795a.53.53 0 0 1 .294-.906l5.165-.755a2.122 2.122 0 0 0 1.597-1.16z" fill="currentColor"/></svg></div>
+        <p class="testimonial-card__text">"Noruega con la aurora boreal fue mágico. La organización impecable y el hotel en plena naturaleza. Repetiré seguro."</p>
+        <div class="testimonial-card__author">
+          <div class="testimonial-card__avatar">J</div>
+          <div><div class="testimonial-card__name">Javier L.</div><div class="testimonial-card__role">Primera vez</div></div>
+        </div>
+      </div>
+      <div class="testimonial-card">
+        <div class="testimonial-card__stars"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M11.525 2.295a.53.53 0 0 1 .95 0l2.31 4.679a2.123 2.123 0 0 0 1.595 1.16l5.166.756a.53.53 0 0 1 .294.904l-3.736 3.638a2.123 2.123 0 0 0-.611 1.878l.882 5.14a.53.53 0 0 1-.771.56l-4.618-2.428a2.122 2.122 0 0 0-1.973 0L6.396 21.01a.53.53 0 0 1-.77-.56l.881-5.139a2.122 2.122 0 0 0-.611-1.879L2.16 9.795a.53.53 0 0 1 .294-.906l5.165-.755a2.122 2.122 0 0 0 1.597-1.16z" fill="currentColor"/></svg><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M11.525 2.295a.53.53 0 0 1 .95 0l2.31 4.679a2.123 2.123 0 0 0 1.595 1.16l5.166.756a.53.53 0 0 1 .294.904l-3.736 3.638a2.123 2.123 0 0 0-.611 1.878l.882 5.14a.53.53 0 0 1-.771.56l-4.618-2.428a2.122 2.122 0 0 0-1.973 0L6.396 21.01a.53.53 0 0 1-.77-.56l.881-5.139a2.122 2.122 0 0 0-.611-1.879L2.16 9.795a.53.53 0 0 1 .294-.906l5.165-.755a2.122 2.122 0 0 0 1.597-1.16z" fill="currentColor"/></svg><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M11.525 2.295a.53.53 0 0 1 .95 0l2.31 4.679a2.123 2.123 0 0 0 1.595 1.16l5.166.756a.53.53 0 0 1 .294.904l-3.736 3.638a2.123 2.123 0 0 0-.611 1.878l.882 5.14a.53.53 0 0 1-.771.56l-4.618-2.428a2.122 2.122 0 0 0-1.973 0L6.396 21.01a.53.53 0 0 1-.77-.56l.881-5.139a2.122 2.122 0 0 0-.611-1.879L2.16 9.795a.53.53 0 0 1 .294-.906l5.165-.755a2.122 2.122 0 0 0 1.597-1.16z" fill="currentColor"/></svg><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M11.525 2.295a.53.53 0 0 1 .95 0l2.31 4.679a2.123 2.123 0 0 0 1.595 1.16l5.166.756a.53.53 0 0 1 .294.904l-3.736 3.638a2.123 2.123 0 0 0-.611 1.878l.882 5.14a.53.53 0 0 1-.771.56l-4.618-2.428a2.122 2.122 0 0 0-1.973 0L6.396 21.01a.53.53 0 0 1-.77-.56l.881-5.139a2.122 2.122 0 0 0-.611-1.879L2.16 9.795a.53.53 0 0 1 .294-.906l5.165-.755a2.122 2.122 0 0 0 1.597-1.16z" fill="currentColor"/></svg><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M11.525 2.295a.53.53 0 0 1 .95 0l2.31 4.679a2.123 2.123 0 0 0 1.595 1.16l5.166.756a.53.53 0 0 1 .294.904l-3.736 3.638a2.123 2.123 0 0 0-.611 1.878l.882 5.14a.53.53 0 0 1-.771.56l-4.618-2.428a2.122 2.122 0 0 0-1.973 0L6.396 21.01a.53.53 0 0 1-.77-.56l.881-5.139a2.122 2.122 0 0 0-.611-1.879L2.16 9.795a.53.53 0 0 1 .294-.906l5.165-.755a2.122 2.122 0 0 0 1.597-1.16z" fill="currentColor"/></svg></div>
+        <p class="testimonial-card__text">"Machu Picchu fue una experiencia que cambió mi vida. Todo muy bien organizado, desde el transporte hasta las entradas."</p>
+        <div class="testimonial-card__author">
+          <div class="testimonial-card__avatar">S</div>
+          <div><div class="testimonial-card__name">Sofía R.</div><div class="testimonial-card__role">Aventurera</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="newsletter">
+  <div class="container">
+    <h2 class="newsletter__title">Recibe ofertas <span class="accent">exclusivas</span></h2>
+    <p class="newsletter__subtitle">Descuentos en viajes, nuevos destinos y tips de viajeros directo a tu email.</p>
+    <div class="newsletter__form">
+      <input class="newsletter__input" type="email" placeholder="tu@email.com">
+      <a class="btn btn--secondary">Suscribirme</a>
+    </div>
+  </div>
+</section>
+
+<footer class="footer">
+  <div class="container">
+    <div class="footer__grid">
+      <div class="footer__brand">
+        <h3>Wanderly</h3>
+        <p>Agencia de viajes especializada en experiencias únicas y personalizadas. Viajar es vivir.</p>
+      </div>
+      <div class="footer__col">
+        <h4>Destinos</h4>
+        <a href="#">Bali</a><a href="#">Japón</a><a href="#">Noruega</a><a href="#">Perú</a>
+      </div>
+      <div class="footer__col">
+        <h4>Empresa</h4>
+        <a href="#">Sobre nosotros</a><a href="#">Blog</a><a href="#">Carreras</a><a href="#">Prensa</a>
+      </div>
+      <div class="footer__col">
+        <h4>Contacto</h4>
+        <a href="#">hola@wanderly.com</a><a href="#">+34 900 000 000</a><a href="#">Barcelona, ES</a>
+      </div>
+    </div>
+    <div class="footer__bottom">
+      <span class="footer__copy">© 2026 Wanderly. Todos los derechos reservados.</span>
+      <div class="footer__socials">
+        <a class="footer__social">ig</a>
+        <a class="footer__social">tw</a>
+        <a class="footer__social">fb</a>
+        <a class="footer__social">yt</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>

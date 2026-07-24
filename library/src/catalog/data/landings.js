@@ -12,16 +12,27 @@ import eventsPreview from '../../../../templates/landing/events-conference/previ
 import gymMeta from '../../../../templates/landing/gym-fitness/meta.json'
 import gymPreview from '../../../../templates/landing/gym-fitness/preview.html?raw'
 import healthcareMeta from '../../../../templates/landing/healthcare-clinic/meta.json'
+import healthcarePreview from '../../../../templates/landing/healthcare-clinic/preview.html?raw'
 import mobileMeta from '../../../../templates/landing/mobile-app/meta.json'
+import mobilePreview from '../../../../templates/landing/mobile-app/preview.html?raw'
 import portfolioMeta from '../../../../templates/landing/portfolio-minimal/meta.json'
+import portfolioPreview from '../../../../templates/landing/portfolio-minimal/preview.html?raw'
 import realestateMeta from '../../../../templates/landing/realestate-property/meta.json'
+import realestatePreview from '../../../../templates/landing/realestate-property/preview.html?raw'
 import restaurantMeta from '../../../../templates/landing/restaurant-cafe/meta.json'
+import restaurantPreview from '../../../../templates/landing/restaurant-cafe/preview.html?raw'
 import saasMeta from '../../../../templates/landing/saas-modern/meta.json'
+import saasPreview from '../../../../templates/landing/saas-modern/preview.html?raw'
 import educationMeta from '../../../../templates/landing/education-academy/meta.json'
+import educationPreview from '../../../../templates/landing/education-academy/preview.html?raw'
 import travelMeta from '../../../../templates/landing/travel-tourism/meta.json'
+import travelPreview from '../../../../templates/landing/travel-tourism/preview.html?raw'
 import podcastMeta from '../../../../templates/landing/podcast-media/meta.json'
+import podcastPreview from '../../../../templates/landing/podcast-media/preview.html?raw'
 import legalMeta from '../../../../templates/landing/legal-consulting/meta.json'
+import legalPreview from '../../../../templates/landing/legal-consulting/preview.html?raw'
 import constructionMeta from '../../../../templates/landing/construction-contractor/meta.json'
+import constructionPreview from '../../../../templates/landing/construction-contractor/preview.html?raw'
 
 import agencyPrompt from '../../../../templates/landing/agency-dark/prompt.md?raw'
 import ecommercePrompt from '../../../../templates/landing/ecommerce-shop/prompt.md?raw'
@@ -76,17 +87,17 @@ export const landings = [
   { ...ecommerceMeta, preview: ecommercePreview, prompt: ecommercePrompt, design: ecommerceDesign, components: ecommerceComponents },
   { ...eventsMeta, preview: eventsPreview, prompt: eventsPrompt, design: eventsDesign, components: eventsComponents },
   { ...gymMeta, preview: gymPreview, prompt: gymPrompt, design: gymDesign, components: gymComponents },
-  { ...healthcareMeta, prompt: healthcarePrompt, design: healthcareDesign, components: healthcareComponents },
-  { ...mobileMeta, prompt: mobilePrompt, design: mobileDesign, components: mobileComponents },
-  { ...portfolioMeta, prompt: portfolioPrompt, design: portfolioDesign, components: portfolioComponents },
-  { ...realestateMeta, prompt: realestatePrompt, design: realestateDesign, components: realestateComponents },
-  { ...restaurantMeta, prompt: restaurantPrompt, design: restaurantDesign, components: restaurantComponents },
-  { ...saasMeta, prompt: saasPrompt, design: saasDesign, components: saasComponents },
-  { ...educationMeta, prompt: educationPrompt, design: educationDesign, components: educationComponents },
-  { ...travelMeta, prompt: travelPrompt, design: travelDesign, components: travelComponents },
-  { ...podcastMeta, prompt: podcastPrompt, design: podcastDesign, components: podcastComponents },
-  { ...legalMeta, prompt: legalPrompt, design: legalDesign, components: legalComponents },
-  { ...constructionMeta, prompt: constructionPrompt, design: constructionDesign, components: constructionComponents }
+  { ...healthcareMeta, preview: healthcarePreview, prompt: healthcarePrompt, design: healthcareDesign, components: healthcareComponents },
+  { ...mobileMeta, preview: mobilePreview, prompt: mobilePrompt, design: mobileDesign, components: mobileComponents },
+  { ...portfolioMeta, preview: portfolioPreview, prompt: portfolioPrompt, design: portfolioDesign, components: portfolioComponents },
+  { ...realestateMeta, preview: realestatePreview, prompt: realestatePrompt, design: realestateDesign, components: realestateComponents },
+  { ...restaurantMeta, preview: restaurantPreview, prompt: restaurantPrompt, design: restaurantDesign, components: restaurantComponents },
+  { ...saasMeta, preview: saasPreview, prompt: saasPrompt, design: saasDesign, components: saasComponents },
+  { ...educationMeta, preview: educationPreview, prompt: educationPrompt, design: educationDesign, components: educationComponents },
+  { ...travelMeta, preview: travelPreview, prompt: travelPrompt, design: travelDesign, components: travelComponents },
+  { ...podcastMeta, preview: podcastPreview, prompt: podcastPrompt, design: podcastDesign, components: podcastComponents },
+  { ...legalMeta, preview: legalPreview, prompt: legalPrompt, design: legalDesign, components: legalComponents },
+  { ...constructionMeta, preview: constructionPreview, prompt: constructionPrompt, design: constructionDesign, components: constructionComponents }
 ]
 
 export function getLandingById(id) {

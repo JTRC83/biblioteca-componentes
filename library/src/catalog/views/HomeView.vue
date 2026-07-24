@@ -7,7 +7,7 @@ import { useCatalogStore } from '@/catalog/stores/catalog'
 
 const catalog = useCatalogStore()
 
-const featured = ['buttons', 'cards', 'loaders', 'backgrounds']
+const featured = ['buttons', 'cards', 'loaders', 'visual-effects']
 
 const open = (component) => catalog.open(component.id)
 </script>
@@ -171,5 +171,9 @@ const open = (component) => catalog.open(component.id)
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
   gap: 16px;
+}
+
+.home__grid:has(.c-card--large) {
+  grid-template-columns: repeat(auto-fill, minmax(480px, 1fr));
 }
 </style>

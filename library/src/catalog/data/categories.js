@@ -18,7 +18,8 @@ import {
   AdjustmentsVerticalIcon,
   Bars3BottomLeftIcon,
   CubeIcon,
-  ChartBarIcon
+  ChartBarIcon,
+  CircleStackIcon
 } from '@heroicons/vue/24/outline'
 
 export const categories = [
@@ -89,10 +90,22 @@ export const categories = [
     icon: PaintBrushIcon
   },
   {
+    slug: 'visual-effects',
+    name: 'Visual Effects',
+    description: 'Componentes animados con HTML, CSS y JavaScript: orbes, esferas, refracción y efectos visuales avanzados.',
+    icon: SparklesIcon
+  },
+  {
+    slug: 'gallery',
+    name: 'Gallery',
+    description: 'Galerías, carruseles y displays de imágenes con efectos 3D, scroll y animaciones.',
+    icon: RectangleStackIcon
+  },
+  {
     slug: 'animations',
     name: 'Animations',
     description: 'Animaciones CSS puras: pulse, float, shake, glow…',
-    icon: SparklesIcon
+    icon: AdjustmentsVerticalIcon
   },
   {
     slug: 'analog',

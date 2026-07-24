@@ -78,8 +78,8 @@ const goToPreview = () => {
           </div>
         </header>
 
-        <div v-if="view === 'preview'" class="modal__preview-only" @click.self="goToCode">
-          <div class="modal__preview preview-surface">
+        <div v-if="view === 'preview'" class="modal__preview-only" :class="{ 'modal__preview-only--large': component.category === 'visual-effects' }" @click.self="goToCode">
+          <div class="modal__preview preview-surface" :class="{ 'modal__preview--large': component.category === 'visual-effects' }">
             <ComponentPreview :component="component" :contained="true" />
           </div>
           <div class="modal__hint">
@@ -88,8 +88,8 @@ const goToPreview = () => {
           </div>
         </div>
 
-        <div v-else class="modal__body">
-          <div class="modal__preview preview-surface">
+        <div v-else class="modal__body" :class="{ 'modal__body--large': component.category === 'visual-effects' }">
+          <div class="modal__preview preview-surface" :class="{ 'modal__preview--large': component.category === 'visual-effects' }">
             <ComponentPreview :component="component" :contained="true" />
             <button class="modal__back-preview" @click="goToPreview" title="Volver al preview">
               <EyeIcon class="modal__back-icon" />
@@ -100,6 +100,15 @@ const goToPreview = () => {
           <div class="modal__code">
             <CodeBlock :code="component.html.trim()" language="html" label="HTML" />
             <CodeBlock :code="component.css.trim()" language="css" label="CSS" />
+            <CodeBlock v-if="component.js" :code="component.js.trim()" language="javascript" label="JS" />
+            <div v-if="component.variables" class="modal__vars">
+              <h4 class="modal__vars-title">Variables CSS editables</h4>
+              <ul class="modal__vars-list">
+                <li v-for="v in component.variables" :key="v.name">
+                  <code>{{ v.name }}</code> — {{ v.description }} (default: <code>{{ v.default }}</code>)
+                </li>
+              </ul>
+            </div>
           </div>
         </div>
       </div>
@@ -132,6 +141,12 @@ const goToPreview = () => {
   flex-direction: column;
   overflow: hidden;
   box-shadow: var(--shadow-lg);
+}
+
+.modal__panel:has(.modal__body--large),
+.modal__panel:has(.modal__preview-only--large) {
+  max-width: 1400px;
+  max-height: 96vh;
 }
 
 .modal__head {
@@ -235,11 +250,15 @@ const goToPreview = () => {
 
 .modal__preview-only .modal__preview {
   width: 100%;
-  min-height: 420px;
+  min-height: 520px;
   flex: 1;
   cursor: pointer;
   position: relative;
   transition: all 0.2s ease;
+}
+
+.modal__preview-only--large .modal__preview {
+  min-height: 720px;
 }
 
 .modal__preview-only .modal__preview:hover {
@@ -286,6 +305,30 @@ const goToPreview = () => {
   max-height: calc(90vh - 100px);
 }
 
+.modal__body--large {
+  grid-template-columns: 1fr 1fr;
+  height: auto;
+  max-height: calc(96vh - 100px);
+}
+
+.modal__preview--large {
+  min-height: 0;
+  max-height: 560px;
+  aspect-ratio: 1;
+  margin: 0 auto;
+  width: 100%;
+  max-width: 560px;
+}
+
+.modal__preview-only--large .modal__preview {
+  min-height: 0;
+  max-height: 560px;
+  aspect-ratio: 1;
+  margin: 0 auto;
+  width: 100%;
+  max-width: 560px;
+}
+
 .modal__preview {
   position: relative;
   display: flex;
@@ -293,7 +336,7 @@ const goToPreview = () => {
   justify-content: stretch;
   border: 1px solid var(--border-subtle);
   border-radius: 16px;
-  min-height: 360px;
+  min-height: 420px;
   height: 100%;
   align-self: stretch;
   padding: 32px;
@@ -336,6 +379,37 @@ const goToPreview = () => {
   min-width: 0;
   min-height: 0;
   overflow: hidden;
+}
+
+.modal__vars {
+  padding: 14px 16px;
+  background: var(--bg-input);
+  border: 1px solid var(--border-subtle);
+  border-radius: 12px;
+}
+
+.modal__vars-title {
+  margin: 0 0 10px 0;
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--text-primary);
+}
+
+.modal__vars-list {
+  margin: 0;
+  padding: 0 0 0 18px;
+  font-size: 13px;
+  line-height: 1.6;
+  color: var(--text-secondary);
+}
+
+.modal__vars-list code {
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+  font-size: 12px;
+  color: var(--accent-primary);
+  background: rgba(139, 92, 246, 0.1);
+  padding: 1px 5px;
+  border-radius: 4px;
 }
 
 @media (max-width: 900px) {

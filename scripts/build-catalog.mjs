@@ -30,11 +30,13 @@ const CATEGORY_USE_CASES = {
   tooltips: ['info-hint', 'help-text', 'label-hint'],
   patterns: ['background-pattern', 'decorative', 'texture'],
   backgrounds: ['section-background', 'hero-background', 'decorative'],
+  'visual-effects': ['hero-decoration', 'section-accent', 'visual-element', 'decorative'],
   animations: ['decoration', 'attention', 'transition-effect'],
   analog: ['hardware-control', 'physical-ui', 'skeuomorphic'],
   navbars: ['navigation', 'menu', 'header'],
   icons: ['icon', 'ui-element', 'visual-element'],
-  dividers: ['section-separator', 'shape-divider', 'transition']
+  dividers: ['section-separator', 'shape-divider', 'transition'],
+  gallery: ['image-gallery', 'carousel', 'showcase', 'portfolio']
 }
 
 const TAG_TO_USE_CASE = {
@@ -269,12 +271,23 @@ function loadCategoryFromBarrel(categoryDir) {
   if (!existsSync(indexPath)) return []
 
   const raw = readFileSync(indexPath, 'utf-8')
-  const importRegex = /import\s+(\* as\s+)?(\w+)\s+from\s+['"]([^'"]+)['"]/g
+  const importRegex = /import\s+(?:\*\s+as\s+(\w+)|(\w+)|\{([^}]+)\})\s+from\s+['"]([^'"]+)['"]/g
   const exportStarRegex = /export\s+\*\s+from\s+['"]([^'"]+)['"]/g
   const imports = []
   let match
   while ((match = importRegex.exec(raw)) !== null) {
-    imports.push({ name: match[2], path: match[3], isNamespace: !!match[1] })
+    const namespace = match[1]
+    const named = match[2]
+    const destructured = match[3]
+    const path = match[4]
+    if (namespace) {
+      imports.push({ name: namespace, path, isNamespace: true })
+    } else if (destructured) {
+      const names = destructured.split(',').map(s => s.trim()).filter(Boolean)
+      imports.push({ name: names[0] || 'multi', path, isNamespace: true, isMulti: true })
+    } else {
+      imports.push({ name: named, path, isNamespace: false })
+    }
   }
   while ((match = exportStarRegex.exec(raw)) !== null) {
     imports.push({ name: '*', path: match[1], isNamespace: true })

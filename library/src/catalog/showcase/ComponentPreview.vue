@@ -41,6 +41,8 @@ const scopedCss = computed(() => {
   return scopeCss(css, scopeId.value)
 })
 
+const scriptEls = ref([])
+
 const render = () => {
   if (!wrapperEl.value) return
   let html = props.component.html || ''
@@ -58,11 +60,29 @@ const render = () => {
   }
   // Reemplazar IDs en el HTML
   for (const [oldId, newId] of idMap) {
-    html = html.replace(new RegExp(`id="${oldId}"`, 'g'), `id="${newId}"`)
-    html = html.replace(new RegExp(`for="${oldId}"`, 'g'), `for="${newId}"`)
-    html = html.replace(new RegExp(`url\\(#${oldId}\\)`, 'g'), `url(#${newId})`)
+    // Reemplazar el ID como palabra completa en cualquier contexto:
+    // id="...", begin="ID.begin+0.1s", begin="0;ID.end-0.5s", url(#ID), href="#ID"
+    html = html.replace(new RegExp(`\\b${oldId}\\b`, 'g'), newId)
   }
   wrapperEl.value.innerHTML = html
+
+  // Forzar reflow y reiniciar animaciones SVG (<animate> se pausa al inyectar via innerHTML)
+  void wrapperEl.value.offsetWidth
+  wrapperEl.value.querySelectorAll('svg').forEach(svg => {
+    const clone = svg.cloneNode(true)
+    svg.parentNode.replaceChild(clone, svg)
+  })
+
+  // Ejecutar JS del componente si existe
+  if (props.component.js) {
+    const js = props.component.js
+    scriptEls.value.forEach((s) => s.remove())
+    scriptEls.value = []
+    const script = document.createElement('script')
+    script.textContent = `(() => { ${js} })()`
+    document.head.appendChild(script)
+    scriptEls.value.push(script)
+  }
 }
 
 const mountStyle = () => {
@@ -139,6 +159,17 @@ const applyAutoScale = () => {
     if (!wrapperEl.value || !previewEl.value) return
     const inner = wrapperEl.value
     const container = previewEl.value
+
+    // Componentes que gestionan su propio tamaño (aspect-ratio, scroll interno, etc.)
+    // No medir ni escalar — dejar que el CSS controle todo.
+    if (container.classList.contains('c-preview--vfx') ||
+        container.classList.contains('c-preview--scroll') ||
+        container.classList.contains('c-preview--cardswap') ||
+        container.classList.contains('c-preview--gallery')) {
+      inner.style.transform = ''
+      return
+    }
+
     // Medir el contenido natural sin escalado ni restricciones del grid
     inner.style.transform = ''
     inner.style.width = 'max-content'
@@ -203,6 +234,8 @@ onBeforeUnmount(() => {
     styleEl.value.remove()
     styleEl.value = null
   }
+  scriptEls.value.forEach((s) => s.remove())
+  scriptEls.value = []
   if (rafId) cancelAnimationFrame(rafId)
   if (typeof window !== 'undefined') {
     window.removeEventListener('resize', applyAutoScale)
@@ -250,6 +283,81 @@ if (typeof window !== 'undefined') {
   max-height: 260px;
   overflow: hidden;
   padding: 12px;
+}
+
+.c-card--large .c-preview--card {
+  height: 620px;
+  min-height: 620px;
+  max-height: 620px;
+}
+
+.c-preview--card.c-preview--vfx {
+  height: 100%;
+  min-height: 0;
+  max-height: none;
+  padding: 0;
+}
+
+.c-preview--card.c-preview--mini {
+  height: 100%;
+  min-height: 0;
+  max-height: none;
+  padding: 0;
+}
+
+.c-preview--card.c-preview--vfx .c-preview__inner {
+  display: flex;
+  align-items: stretch;
+  justify-content: stretch;
+}
+
+.c-preview--card.c-preview--vfx .c-preview__inner > * {
+  width: 100%;
+  height: 100%;
+  min-height: 200px;
+}
+
+.c-preview--card.c-preview--scroll {
+  height: 100%;
+  min-height: 0;
+  max-height: none;
+  padding: 0;
+}
+
+.c-preview--card.c-preview--cardswap {
+  height: 100%;
+  min-height: 0;
+  max-height: none;
+  padding: 0;
+}
+
+.c-preview--card.c-preview--cardswap .c-preview__inner {
+  display: flex;
+  align-items: stretch;
+  justify-content: stretch;
+}
+
+.c-preview--card.c-preview--cardswap .c-preview__inner > * {
+  width: 100%;
+  height: 100%;
+}
+
+.c-preview--card.c-preview--gallery {
+  height: 100%;
+  min-height: 0;
+  max-height: none;
+  padding: 0;
+}
+
+.c-preview--card.c-preview--gallery .c-preview__inner {
+  display: flex;
+  align-items: stretch;
+  justify-content: stretch;
+}
+
+.c-preview--card.c-preview--gallery .c-preview__inner > * {
+  width: 100%;
+  height: 100%;
 }
 
 .c-preview--contained {

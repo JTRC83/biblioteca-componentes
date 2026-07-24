@@ -1,4 +1,5 @@
 import ModernForm from './ModernForm.js'
+import Stepper from './Stepper.js'
 
-export { ModernForm }
-export default { ModernForm }
+export { ModernForm, Stepper }
+export default { ModernForm, Stepper }

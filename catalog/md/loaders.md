@@ -1,6 +1,6 @@
 # Loaders
 
-26 componentes
+72 componentes
 
 | ID | Nombre | Tags | Estilo | Complejidad | Interacciones | Descripción |
 |----|--------|------|--------|------------|-------------|-------------|
@@ -30,3 +30,49 @@
 | `loader-liquid-pill` | Liquid Glass Pill Loader | loader, liquid, glass, orb, animated, css-only, bubbles, premium, 3d | 3d, gradient, animated, transition, filter, glassmorphism, css-only | high | hover, click, focus, animation, transition, transform | Loader con efecto glassmorphism y animado "Liquid Glass Pill Loader" |
 | `loader-3d-cube` | 3D Processing Cube | loader, 3d, cube, rotating, animated, css-only, perspective, geometric, processing | 3d, gradient, animated, filter, css-only | high | animation, transform | Loader con efecto 3D y animado "3D Processing Cube" |
 | `loader-tetris` | Tetris Loader | tetris, game, animated, css-only | animated, css-only | low | animation | Loader animado "Tetris Loader" |
+| `loader-svg-12-dots-scale-rotate` | SVG Spinner 12 Dots Scale Rotate | svg-spinners, loader, spinner, animated, svg, 12-dots-scale-rotate | animated | — | — | Loader animado "SVG Spinner 12 Dots Scale Rotate" |
+| `loader-svg-180-ring` | SVG Spinner 180 Ring | svg-spinners, loader, spinner, animated, svg, 180-ring | animated | — | — | Loader animado "SVG Spinner 180 Ring" |
+| `loader-svg-180-ring-with-bg` | SVG Spinner 180 Ring With Bg | svg-spinners, loader, spinner, animated, svg, 180-ring-with-bg | animated | — | — | Loader animado "SVG Spinner 180 Ring With Bg" |
+| `loader-svg-270-ring` | SVG Spinner 270 Ring | svg-spinners, loader, spinner, animated, svg, 270-ring | animated | — | — | Loader animado "SVG Spinner 270 Ring" |
+| `loader-svg-270-ring-with-bg` | SVG Spinner 270 Ring With Bg | svg-spinners, loader, spinner, animated, svg, 270-ring-with-bg | animated | — | — | Loader animado "SVG Spinner 270 Ring With Bg" |
+| `loader-svg-3-dots-bounce` | SVG Spinner 3 Dots Bounce | svg-spinners, loader, spinner, animated, svg, 3-dots-bounce | animated | — | — | Loader animado "SVG Spinner 3 Dots Bounce" |
+| `loader-svg-3-dots-fade` | SVG Spinner 3 Dots Fade | svg-spinners, loader, spinner, animated, svg, 3-dots-fade | animated | — | — | Loader animado "SVG Spinner 3 Dots Fade" |
+| `loader-svg-3-dots-move` | SVG Spinner 3 Dots Move | svg-spinners, loader, spinner, animated, svg, 3-dots-move | animated | — | — | Loader animado "SVG Spinner 3 Dots Move" |
+| `loader-svg-3-dots-rotate` | SVG Spinner 3 Dots Rotate | svg-spinners, loader, spinner, animated, svg, 3-dots-rotate | animated | — | — | Loader animado "SVG Spinner 3 Dots Rotate" |
+| `loader-svg-3-dots-scale` | SVG Spinner 3 Dots Scale | svg-spinners, loader, spinner, animated, svg, 3-dots-scale | animated | — | — | Loader animado "SVG Spinner 3 Dots Scale" |
+| `loader-svg-3-dots-scale-middle` | SVG Spinner 3 Dots Scale Middle | svg-spinners, loader, spinner, animated, svg, 3-dots-scale-middle | animated | — | — | Loader animado "SVG Spinner 3 Dots Scale Middle" |
+| `loader-svg-6-dots-rotate` | SVG Spinner 6 Dots Rotate | svg-spinners, loader, spinner, animated, svg, 6-dots-rotate | animated | — | — | Loader animado "SVG Spinner 6 Dots Rotate" |
+| `loader-svg-6-dots-scale` | SVG Spinner 6 Dots Scale | svg-spinners, loader, spinner, animated, svg, 6-dots-scale | animated | — | — | Loader animado "SVG Spinner 6 Dots Scale" |
+| `loader-svg-6-dots-scale-middle` | SVG Spinner 6 Dots Scale Middle | svg-spinners, loader, spinner, animated, svg, 6-dots-scale-middle | animated | — | — | Loader animado "SVG Spinner 6 Dots Scale Middle" |
+| `loader-svg-8-dots-rotate` | SVG Spinner 8 Dots Rotate | svg-spinners, loader, spinner, animated, svg, 8-dots-rotate | animated | — | — | Loader animado "SVG Spinner 8 Dots Rotate" |
+| `loader-svg-90-ring` | SVG Spinner 90 Ring | svg-spinners, loader, spinner, animated, svg, 90-ring | animated | — | — | Loader animado "SVG Spinner 90 Ring" |
+| `loader-svg-90-ring-with-bg` | SVG Spinner 90 Ring With Bg | svg-spinners, loader, spinner, animated, svg, 90-ring-with-bg | animated | — | — | Loader animado "SVG Spinner 90 Ring With Bg" |
+| `loader-svg-bars-fade` | SVG Spinner Bars Fade | svg-spinners, loader, spinner, animated, svg, bars-fade | animated | — | — | Loader animado "SVG Spinner Bars Fade" |
+| `loader-svg-bars-rotate-fade` | SVG Spinner Bars Rotate Fade | svg-spinners, loader, spinner, animated, svg, bars-rotate-fade | animated | — | — | Loader animado "SVG Spinner Bars Rotate Fade" |
+| `loader-svg-bars-scale` | SVG Spinner Bars Scale | svg-spinners, loader, spinner, animated, svg, bars-scale | animated | — | — | Loader animado "SVG Spinner Bars Scale" |
+| `loader-svg-bars-scale-fade` | SVG Spinner Bars Scale Fade | svg-spinners, loader, spinner, animated, svg, bars-scale-fade | animated | — | — | Loader animado "SVG Spinner Bars Scale Fade" |
+| `loader-svg-bars-scale-middle` | SVG Spinner Bars Scale Middle | svg-spinners, loader, spinner, animated, svg, bars-scale-middle | animated | — | — | Loader animado "SVG Spinner Bars Scale Middle" |
+| `loader-svg-blocks-scale` | SVG Spinner Blocks Scale | svg-spinners, loader, spinner, animated, svg, blocks-scale | animated | — | — | Loader animado "SVG Spinner Blocks Scale" |
+| `loader-svg-blocks-shuffle-2` | SVG Spinner Blocks Shuffle 2 | svg-spinners, loader, spinner, animated, svg, blocks-shuffle-2 | animated | — | — | Loader animado "SVG Spinner Blocks Shuffle 2" |
+| `loader-svg-blocks-shuffle-3` | SVG Spinner Blocks Shuffle 3 | svg-spinners, loader, spinner, animated, svg, blocks-shuffle-3 | animated | — | — | Loader animado "SVG Spinner Blocks Shuffle 3" |
+| `loader-svg-blocks-wave` | SVG Spinner Blocks Wave | svg-spinners, loader, spinner, animated, svg, blocks-wave | animated | — | — | Loader animado "SVG Spinner Blocks Wave" |
+| `loader-svg-bouncing-ball` | SVG Spinner Bouncing Ball | svg-spinners, loader, spinner, animated, svg, bouncing-ball | animated | — | — | Loader animado "SVG Spinner Bouncing Ball" |
+| `loader-svg-clock` | SVG Spinner Clock | svg-spinners, loader, spinner, animated, svg, clock | animated | — | — | Loader animado "SVG Spinner Clock" |
+| `loader-svg-dot-revolve` | SVG Spinner Dot Revolve | svg-spinners, loader, spinner, animated, svg, dot-revolve | animated | — | — | Loader animado "SVG Spinner Dot Revolve" |
+| `loader-svg-eclipse` | SVG Spinner Eclipse | svg-spinners, loader, spinner, animated, svg, eclipse | animated | — | — | Loader animado "SVG Spinner Eclipse" |
+| `loader-svg-eclipse-half` | SVG Spinner Eclipse Half | svg-spinners, loader, spinner, animated, svg, eclipse-half | animated | — | — | Loader animado "SVG Spinner Eclipse Half" |
+| `loader-svg-gooey-balls-1` | SVG Spinner Gooey Balls 1 | svg-spinners, loader, spinner, animated, svg, gooey-balls-1 | animated | — | — | Loader animado "SVG Spinner Gooey Balls 1" |
+| `loader-svg-gooey-balls-2` | SVG Spinner Gooey Balls 2 | svg-spinners, loader, spinner, animated, svg, gooey-balls-2 | animated | — | — | Loader animado "SVG Spinner Gooey Balls 2" |
+| `loader-svg-pulse` | SVG Spinner Pulse | svg-spinners, loader, spinner, animated, svg, pulse | animated | — | — | Loader animado "SVG Spinner Pulse" |
+| `loader-svg-pulse-2` | SVG Spinner Pulse 2 | svg-spinners, loader, spinner, animated, svg, pulse-2 | animated | — | — | Loader animado "SVG Spinner Pulse 2" |
+| `loader-svg-pulse-3` | SVG Spinner Pulse 3 | svg-spinners, loader, spinner, animated, svg, pulse-3 | animated | — | — | Loader animado "SVG Spinner Pulse 3" |
+| `loader-svg-pulse-multiple` | SVG Spinner Pulse Multiple | svg-spinners, loader, spinner, animated, svg, pulse-multiple | animated | — | — | Loader animado "SVG Spinner Pulse Multiple" |
+| `loader-svg-pulse-ring` | SVG Spinner Pulse Ring | svg-spinners, loader, spinner, animated, svg, pulse-ring | animated | — | — | Loader animado "SVG Spinner Pulse Ring" |
+| `loader-svg-pulse-rings-2` | SVG Spinner Pulse Rings 2 | svg-spinners, loader, spinner, animated, svg, pulse-rings-2 | animated | — | — | Loader animado "SVG Spinner Pulse Rings 2" |
+| `loader-svg-pulse-rings-3` | SVG Spinner Pulse Rings 3 | svg-spinners, loader, spinner, animated, svg, pulse-rings-3 | animated | — | — | Loader animado "SVG Spinner Pulse Rings 3" |
+| `loader-svg-pulse-rings-multiple` | SVG Spinner Pulse Rings Multiple | svg-spinners, loader, spinner, animated, svg, pulse-rings-multiple | animated | — | — | Loader animado "SVG Spinner Pulse Rings Multiple" |
+| `loader-svg-ring-resize` | SVG Spinner Ring Resize | svg-spinners, loader, spinner, animated, svg, ring-resize | animated | — | — | Loader animado "SVG Spinner Ring Resize" |
+| `loader-svg-tadpole` | SVG Spinner Tadpole | svg-spinners, loader, spinner, animated, svg, tadpole | animated | — | — | Loader animado "SVG Spinner Tadpole" |
+| `loader-svg-wifi` | SVG Spinner Wifi | svg-spinners, loader, spinner, animated, svg, wifi | animated | — | — | Loader animado "SVG Spinner Wifi" |
+| `loader-svg-wifi-fade` | SVG Spinner Wifi Fade | svg-spinners, loader, spinner, animated, svg, wifi-fade | animated | — | — | Loader animado "SVG Spinner Wifi Fade" |
+| `loader-svg-wind-toy` | SVG Spinner Wind Toy | svg-spinners, loader, spinner, animated, svg, wind-toy | animated | — | — | Loader animado "SVG Spinner Wind Toy" |

@@ -18,9 +18,9 @@ const isFav = computed(() => favs.isFavorite(props.component.id))
 </script>
 
 <template>
-  <article class="c-card">
+  <article :class="['c-card', { 'c-card--vfx': component.category === 'visual-effects', 'c-card--scroll': component.id === 'scroll-stack', 'c-card--mini': component.iconCategory === 'SVG Spinners', 'c-card--cardswap': component.id === 'card-swap', 'c-card--gallery': component.category === 'gallery' }]">
     <div class="c-card__preview preview-surface">
-      <ComponentPreview :component="component" />
+      <ComponentPreview :component="component" :class="{ 'c-preview--vfx': component.category === 'visual-effects', 'c-preview--scroll': component.id === 'scroll-stack', 'c-preview--mini': component.iconCategory === 'SVG Spinners', 'c-preview--cardswap': component.id === 'card-swap', 'c-preview--gallery': component.category === 'gallery' }" />
     </div>
 
     <footer class="c-card__footer">
@@ -74,9 +74,46 @@ const isFav = computed(() => favs.isFavorite(props.component.id))
   display: flex;
   align-items: center;
   justify-content: center;
-  height: 280px;
+  min-height: 400px;
+  height: 400px;
   padding: 0;
   border-bottom: 1px solid var(--border-subtle);
+  overflow: hidden;
+}
+
+.c-card--large .c-card__preview {
+  min-height: 620px;
+  height: 620px;
+}
+
+.c-card--vfx .c-card__preview {
+  min-height: 0;
+  height: auto;
+  aspect-ratio: 1;
+  overflow: hidden;
+}
+
+.c-card--scroll .c-card__preview {
+  min-height: 480px;
+  height: 480px;
+  overflow: hidden;
+}
+
+.c-card--mini .c-card__preview {
+  min-height: 0;
+  height: auto;
+  aspect-ratio: 1;
+}
+
+.c-card--cardswap .c-card__preview {
+  min-height: 320px;
+  height: 320px;
+  overflow: visible;
+}
+
+.c-card--gallery .c-card__preview {
+  min-height: 400px;
+  height: 400px;
   overflow: hidden;
 }
 

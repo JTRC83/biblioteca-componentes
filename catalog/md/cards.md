@@ -1,6 +1,6 @@
 # Cards
 
-34 componentes
+37 componentes
 
 | ID | Nombre | Tags | Estilo | Complejidad | Interacciones | Descripción |
 |----|--------|------|--------|------------|-------------|-------------|
@@ -38,3 +38,6 @@
 | `card-mastercard` | Mastercard Holographic Card | card, mastercard, credit, holographic, animated, css-only, rotate, perspective, fintech | neon, 3d, gradient, animated, transition, css-only | medium | hover, animation, transition, transform | Tarjeta animado "Mastercard Holographic Card" |
 | `card-doodle-poster` | Doodle Poster Card | card, doodle, poster, handmade, mood-toggle, animated, css-only, retro, zine | gradient, animated, transition, doodle, css-only, retro | high | hover, click, toggle, animation, transition, transform | Tarjeta animado y retro "Doodle Poster Card" |
 | `card-manifesto-poster` | Manifesto Poster | card, poster, manifesto, brutalism, toggle, animated, css-only, marquee, barcode, editorial | 3d, gradient, animated, transition, filter, css-only | high | hover, click, toggle, animation, transition, transform | Tarjeta animado "Manifesto Poster" |
+| `scroll-stack` | Scroll Stack | scroll, stack, cards, sticky, animated, js-driven, scroll-driven | gradient, animated | low | — | Tarjeta animado "Scroll Stack" |
+| `profile-card-glow` | Profile Card Glow | profile, card, tilt, 3d, holographic, shine, glow, animated, js-driven, parallax | glassmorphism, 3d, gradient, animated, transition, filter, glow | medium | hover, animation, transition, transform | Tarjeta con efecto 3D y con efecto glow "Profile Card Glow" |
+| `card-swap` | Card Swap | card, swap, stack, 3d, animated, js-driven, gsap-inspired, perspective, carousel | 3d, gradient, animated | medium | transform | Tarjeta con efecto 3D y animado "Card Swap" |

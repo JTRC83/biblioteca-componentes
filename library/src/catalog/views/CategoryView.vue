@@ -37,6 +37,9 @@ const {
 
 const open = (component) => catalog.open(component.id)
 
+const classicLoaders = computed(() => paginated.value.filter(c => c.iconCategory !== 'SVG Spinners'))
+const svgSpinners = computed(() => paginated.value.filter(c => c.iconCategory === 'SVG Spinners'))
+
 watch(list, () => setPage(1), { flush: 'post' })
 </script>
 
@@ -86,14 +89,29 @@ watch(list, () => setPage(1), { flush: 'post' })
 
     <p class="cat-view__count">{{ list.length }} {{ list.length === 1 ? 'componente' : 'componentes' }}</p>
 
-    <div v-if="paginated.length" class="cat-view__grid">
+    <div v-if="paginated.length" class="cat-view__grid" :class="{ 'cat-view__grid--mini-only': classicLoaders.length === 0 && svgSpinners.length > 0 }">
       <ComponentCard
-        v-for="c in paginated"
+        v-for="c in classicLoaders"
         :key="c.id"
         :component="c"
         @open="open"
       />
     </div>
+
+    <template v-if="svgSpinners.length > 0">
+      <div v-if="classicLoaders.length > 0" class="cat-view__separator">
+        <span class="cat-view__separator-label">SVG Spinners</span>
+      </div>
+
+      <div class="cat-view__grid cat-view__grid--mini">
+        <ComponentCard
+          v-for="c in svgSpinners"
+          :key="c.id"
+          :component="c"
+          @open="open"
+        />
+      </div>
+    </template>
 
     <div v-else class="cat-view__empty">
       <p>No hay componentes en esta vista con los filtros actuales.</p>
@@ -257,6 +275,43 @@ watch(list, () => setPage(1), { flush: 'post' })
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
   gap: 16px;
+}
+
+.cat-view__grid:has(.c-card--large) {
+  grid-template-columns: repeat(auto-fill, minmax(520px, 1fr));
+}
+
+.cat-view__grid--mini {
+  grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+  gap: 12px;
+}
+
+.cat-view__grid--mini-only {
+  grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+  gap: 12px;
+}
+
+.cat-view__separator {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin: 40px 0 20px;
+}
+
+.cat-view__separator::before,
+.cat-view__separator::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: var(--border-subtle);
+}
+
+.cat-view__separator-label {
+  font-size: 13px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--text-muted);
 }
 
 .cat-view__empty,

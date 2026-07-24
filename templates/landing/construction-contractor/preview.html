@@ -1,0 +1,457 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>EdiPro — Construction Landing</title>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --color-primary: #ea580c;
+    --color-primary-hover: #c2410c;
+    --color-secondary: #475569;
+    --color-bg: #ffffff;
+    --color-bg-alt: #fafafa;
+    --color-surface: #ffffff;
+    --color-border: #e7e5e4;
+    --color-text: #1c1917;
+    --color-text-sec: #57534e;
+    --color-text-muted: #a8a29e;
+    --font-sans: 'Archivo', system-ui, sans-serif;
+    --radius-sm: 4px; --radius-md: 8px; --radius-lg: 12px; --radius-xl: 16px;
+    --transition: 250ms ease;
+    --shadow-sm: 0 1px 3px rgba(0,0,0,0.08);
+    --shadow-md: 0 4px 20px rgba(0,0,0,0.1);
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: var(--font-sans); background: var(--color-bg); color: var(--color-text); line-height: 1.6; overflow-x: hidden; }
+  .container { max-width: 1280px; margin: 0 auto; padding: 0 48px; }
+
+  .nav { position: sticky; top: 0; z-index: 50; background: rgba(255,255,255,0.9); backdrop-filter: blur(16px); border-bottom: 1px solid var(--color-border); }
+  .nav__inner { display: flex; align-items: center; justify-content: space-between; padding: 16px 48px; max-width: 1280px; margin: 0 auto; }
+  .nav__logo { font-size: 24px; font-weight: 900; color: var(--color-text); letter-spacing: -0.02em; }
+  .nav__logo .accent { color: var(--color-primary); }
+  .nav__links { display: flex; gap: 28px; }
+  .nav__link { font-size: 15px; font-weight: 600; color: var(--color-text-sec); text-decoration: none; transition: var(--transition); text-transform: uppercase; letter-spacing: 0.02em; }
+  .nav__link:hover { color: var(--color-primary); }
+  .btn { display: inline-flex; align-items: center; gap: 8px; padding: 14px 32px; border: none; border-radius: var(--radius-sm); font-family: var(--font-sans); font-size: 15px; font-weight: 700; cursor: pointer; transition: var(--transition); text-decoration: none; text-transform: uppercase; letter-spacing: 0.02em; }
+  .btn--primary { background: var(--color-primary); color: #fff; }
+  .btn--primary:hover { background: var(--color-primary-hover); transform: translateY(-1px); box-shadow: var(--shadow-md); }
+  .btn--ghost { background: transparent; border: 2px solid var(--color-border); color: var(--color-text-sec); }
+  .btn--ghost:hover { border-color: var(--color-primary); color: var(--color-primary); }
+
+  .hero { padding: 80px 0; position: relative; overflow: hidden; }
+  .hero::before { content: ''; position: absolute; top: 0; left: 0; right: 0; bottom: 0; background: url('https://picsum.photos/seed/construction-bg/1400/800') center/cover; opacity: 0.08; }
+  .hero__content { position: relative; z-index: 1; }
+  .hero__eyebrow { display: inline-flex; align-items: center; gap: 8px; padding: 6px 16px; background: var(--color-bg-alt); border: 1px solid var(--color-border); font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; color: var(--color-primary); margin-bottom: 24px; }
+  .hero__title { font-size: clamp(2.5rem, 7vw, 5.5rem); font-weight: 900; letter-spacing: -0.03em; line-height: 0.95; margin-bottom: 24px; }
+  .hero__title .accent { color: var(--color-primary); }
+  .hero__subtitle { font-size: 1.25rem; color: var(--color-text-sec); max-width: 520px; margin-bottom: 36px; line-height: 1.5; }
+  .hero__actions { display: flex; gap: 16px; margin-bottom: 48px; }
+  .hero__stats { display: flex; gap: 48px; padding: 24px 0; border-top: 2px solid var(--color-text); }
+  .stat__num { font-size: 3rem; font-weight: 900; color: var(--color-text); line-height: 1; }
+  .stat__label { font-size: 13px; color: var(--color-text-sec); text-transform: uppercase; letter-spacing: 0.1em; margin-top: 4px; }
+
+  .section { padding: 80px 0; }
+  .section__head { margin-bottom: 48px; }
+  .section__eyebrow { display: inline-block; padding: 6px 14px; background: var(--color-bg-alt); border: 1px solid var(--color-border); font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; color: var(--color-primary); margin-bottom: 16px; }
+  .section__title { font-size: clamp(1.75rem, 4vw, 2.75rem); font-weight: 800; letter-spacing: -0.02em; }
+  .section__title .accent { color: var(--color-primary); }
+
+  .services__grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0; border: 2px solid var(--color-text); }
+  .service-card { padding: 32px; border-right: 2px solid var(--color-text); transition: var(--transition); position: relative; }
+  .service-card:last-child { border-right: none; }
+  .service-card:hover { background: var(--color-bg-alt); }
+  .service-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 4px; background: var(--color-primary); transform: scaleX(0); transform-origin: left; transition: transform 300ms ease; }
+  .service-card:hover::before { transform: scaleX(1); }
+  .service-card__icon { font-size: 32px; margin-bottom: 20px; }
+  .service-card__title { font-size: 1.25rem; font-weight: 800; margin-bottom: 8px; text-transform: uppercase; letter-spacing: 0.02em; }
+  .service-card__desc { font-size: 14px; color: var(--color-text-sec); line-height: 1.7; }
+
+  .projects__grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+  .project-card { border-radius: var(--radius-sm); overflow: hidden; aspect-ratio: 4/3; position: relative; cursor: pointer; transition: var(--transition); border: 2px solid var(--color-text); }
+  .project-card:hover { transform: translateY(-4px); box-shadow: var(--shadow-md); }
+  .project-card img { width: 100%; height: 100%; object-fit: cover; }
+  .project-card__overlay { position: absolute; inset: 0; background: linear-gradient(180deg, transparent 40%, rgba(28,25,23,0.9) 100%); display: flex; flex-direction: column; justify-content: flex-end; padding: 24px; }
+  .project-card__name { font-size: 1.125rem; font-weight: 800; color: #fff; margin-bottom: 4px; text-transform: uppercase; letter-spacing: 0.02em; }
+  .project-card__location { font-size: 13px; color: rgba(255,255,255,0.8); margin-bottom: 8px; }
+  .project-card__tag { font-size: 11px; color: var(--color-primary); text-transform: uppercase; letter-spacing: 0.1em; font-weight: 700; }
+
+  .process__steps { display: grid; grid-template-columns: repeat(4, 1fr); gap: 24px; }
+  .process-step { padding: 32px 24px; background: var(--color-bg-alt); border: 2px solid var(--color-border); text-align: center; transition: var(--transition); }
+  .process-step:hover { border-color: var(--color-primary); transform: translateY(-4px); }
+  .process-step__num { font-size: 3rem; font-weight: 900; color: var(--color-primary); opacity: 0.2; line-height: 1; margin-bottom: 16px; }
+  .process-step__title { font-size: 1.25rem; font-weight: 800; margin-bottom: 8px; text-transform: uppercase; letter-spacing: 0.02em; }
+  .process-step__desc { font-size: 14px; color: var(--color-text-sec); line-height: 1.6; }
+
+  .quote__grid { display: grid; grid-template-columns: 1fr 1fr; gap: 48px; align-items: start; }
+  .quote__info h3 { font-size: 1.75rem; font-weight: 800; margin-bottom: 24px; text-transform: uppercase; letter-spacing: 0.02em; }
+  .quote__info-item { display: flex; gap: 12px; margin-bottom: 16px; align-items: flex-start; }
+  .quote__info-icon { width: 24px; height: 24px; border-radius: 50%; background: var(--color-primary); color: #fff; display: flex; align-items: center; justify-content: center; font-size: 12px; font-weight: 700; flex-shrink: 0; }
+  .quote__info-text strong { display: block; font-size: 15px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.02em; }
+  .quote__info-text span { font-size: 14px; color: var(--color-text-sec); }
+  .quote__form { background: var(--color-bg-alt); border: 2px solid var(--color-text); padding: 36px; }
+  .quote__form h3 { font-size: 1.375rem; font-weight: 800; margin-bottom: 24px; text-transform: uppercase; letter-spacing: 0.02em; }
+  .form-row { display: flex; gap: 16px; margin-bottom: 16px; }
+  .form-field { flex: 1; }
+  .form-field label { display: block; font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; color: var(--color-text-sec); margin-bottom: 8px; }
+  .form-field input, .form-field select, .form-field textarea { width: 100%; padding: 12px 16px; border: 2px solid var(--color-border); border-radius: var(--radius-sm); font-family: var(--font-sans); font-size: 14px; color: var(--color-text); transition: var(--transition); background: #fff; }
+  .form-field input:focus, .form-field select:focus, .form-field textarea:focus { outline: none; border-color: var(--color-primary); }
+  .quote__form .btn { width: 100%; justify-content: center; padding: 16px; font-size: 16px; }
+
+  .team__grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; }
+  .team-card { background: #fff; border: 2px solid var(--color-border); border-radius: var(--radius-sm); padding: 24px; text-align: center; transition: var(--transition); }
+  .team-card:hover { border-color: var(--color-primary); transform: translateY(-2px); box-shadow: 0 4px 20px rgba(15,23,42,0.08); }
+  .team-card__avatar { width: 80px; height: 80px; border-radius: 50%; overflow: hidden; margin: 0 auto 16px; border: 3px solid var(--color-border); }
+  .team-card__avatar img { width: 100%; height: 100%; object-fit: cover; }
+  .team-card__name { font-size: 1rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.02em; margin-bottom: 4px; }
+  .team-card__role { font-size: 13px; color: var(--color-primary); font-weight: 600; }
+  .team-card__exp { font-size: 12px; color: var(--color-text-muted); margin-top: 8px; }
+
+  .testimonials__grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+  .testimonial-card { background: var(--color-bg-alt); border: 2px solid var(--color-border); padding: 28px; }
+  .testimonial-card__stars { color: var(--color-primary); font-size: 18px; margin-bottom: 16px; }
+  .testimonial-card__text { font-size: 15px; color: var(--color-text-sec); line-height: 1.7; margin-bottom: 20px; font-style: italic; }
+  .testimonial-card__author { display: flex; align-items: center; gap: 12px; }
+  .testimonial-card__avatar { width: 44px; height: 44px; border-radius: 50%; background: var(--color-primary); color: #fff; display: flex; align-items: center; justify-content: center; font-size: 18px; font-weight: 700; }
+  .testimonial-card__name { font-size: 15px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.02em; }
+  .testimonial-card__role { font-size: 13px; color: var(--color-text-muted); }
+
+  .footer { background: var(--color-text); color: #a8a29e; padding: 56px 0 32px; }
+  .footer__grid { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 48px; margin-bottom: 32px; }
+  .footer__brand h3 { font-size: 24px; font-weight: 900; color: #fff; letter-spacing: -0.02em; margin-bottom: 12px; }
+  .footer__brand h3 .accent { color: var(--color-primary); }
+  .footer__brand p { font-size: 14px; color: #a8a29e; line-height: 1.7; }
+  .footer__col h4 { font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.15em; color: #a8a29e; margin-bottom: 20px; }
+  .footer__col a { display: block; font-size: 14px; color: #a8a29e; text-decoration: none; margin-bottom: 10px; transition: var(--transition); }
+  .footer__col a:hover { color: var(--color-primary); }
+  .footer__bottom { display: flex; justify-content: space-between; align-items: center; padding-top: 28px; border-top: 2px solid #44403c; }
+  .footer__copy { font-size: 13px; color: #a8a29e; }
+  .footer__socials { display: flex; gap: 10px; }
+  .footer__social { width: 36px; height: 36px; border: 2px solid #44403c; display: flex; align-items: center; justify-content: center; color: #a8a29e; font-size: 14px; text-decoration: none; transition: var(--transition); }
+  .footer__social:hover { border-color: var(--color-primary); color: var(--color-primary); }
+
+  @media (max-width: 1024px) {
+    .services__grid { grid-template-columns: repeat(2, 1fr); }
+    .service-card:nth-child(2) { border-right: none; }
+    .service-card:nth-child(3) { border-right: 2px solid var(--color-text); }
+    .projects__grid, .testimonials__grid { grid-template-columns: repeat(2, 1fr); }
+    .process__steps { grid-template-columns: repeat(2, 1fr); }
+    .team__grid { grid-template-columns: repeat(2, 1fr); }
+    .quote__grid { grid-template-columns: 1fr; }
+    .footer__grid { grid-template-columns: 1fr 1fr; }
+  }
+  @media (max-width: 768px) {
+    .container { padding: 0 20px; }
+    .nav__inner { padding: 12px 20px; }
+    .nav__links { display: none; }
+    .hero { padding: 48px 0; }
+    .hero__stats { flex-wrap: wrap; gap: 24px; }
+    .services__grid { grid-template-columns: 1fr; }
+    .service-card { border-right: none; border-bottom: 2px solid var(--color-text); }
+    .service-card:last-child { border-bottom: none; }
+    .projects__grid, .testimonials__grid, .process__steps, .team__grid { grid-template-columns: 1fr; }
+    .footer__grid { grid-template-columns: 1fr; }
+    .form-row { flex-direction: column; }
+  }
+</style>
+</head>
+<body>
+
+<nav class="nav">
+  <div class="nav__inner">
+    <div class="nav__logo">EDi<span class="accent">PRO</span></div>
+    <div class="nav__links">
+      <a class="nav__link">Servicios</a>
+      <a class="nav__link">Proyectos</a>
+      <a class="nav__link">Proceso</a>
+      <a class="nav__link">Contacto</a>
+    </div>
+    <a class="btn btn--primary">Pedir presupuesto</a>
+  </div>
+</nav>
+
+<section class="hero">
+  <div class="container">
+    <div class="hero__content">
+      <span class="hero__eyebrow">Construimos desde 1998</span>
+      <h1 class="hero__title">Construimos<br><span class="accent">con confianza</span></h1>
+      <p class="hero__subtitle">Construcción residencial y comercial. Obras de calidad, presupuesto transparente y plazos cumplidos. Pide presupuesto sin compromiso.</p>
+      <div class="hero__actions">
+        <a class="btn btn--primary">Pedir presupuesto</a>
+        <a class="btn btn--ghost">Ver proyectos</a>
+      </div>
+      <div class="hero__stats">
+        <div class="stat"><div class="stat__num">500+</div><div class="stat__label">Proyectos</div></div>
+        <div class="stat"><div class="stat__num">25+</div><div class="stat__label">Años</div></div>
+        <div class="stat"><div class="stat__num">ISO</div><div class="stat__label">9001</div></div>
+        <div class="stat"><div class="stat__num">10</div><div class="stat__label">Años garantía</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container">
+    <div class="section__head">
+      <span class="section__eyebrow">Servicios</span>
+      <h2 class="section__title">Qué <span class="accent">hacemos</span></h2>
+    </div>
+    <div class="services__grid">
+      <div class="service-card">
+        <div class="service-card__icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 21v-8a1 1 0 0 0-1-1h-4a1 1 0 0 0-1 1v8"/><path d="M3 10a2 2 0 0 1 .709-1.528l7-6a2 2 0 0 1 2.582 0l7 6A2 2 0 0 1 21 10v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/></svg></div>
+        <h3 class="service-card__title">Residencial</h3>
+        <p class="service-card__desc">Viviendas unifamiliares, pisos y comunidades completas con máxima calidad.</p>
+      </div>
+      <div class="service-card">
+        <div class="service-card__icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="2" width="16" height="20" rx="2"/><path d="M9 22v-4h6v4"/><path d="M8 6h.01M16 6h.01M8 10h.01M16 10h.01M8 14h.01M16 14h.01"/></svg></div>
+        <h3 class="service-card__title">Comercial</h3>
+        <p class="service-card__desc">Oficinas, locales comerciales y espacios de trabajo diseñados para el negocio.</p>
+      </div>
+      <div class="service-card">
+        <div class="service-card__icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m17 10 3-3 2 2-3 3"/><path d="M14 7 2 19l3 3L17 10z"/></svg></div>
+        <h3 class="service-card__title">Reformas</h3>
+        <p class="service-card__desc">Reformas integrales y parciales. Transformamos espacios sin parar tu vida.</p>
+      </div>
+      <div class="service-card">
+        <div class="service-card__icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 20a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V8l-7 5V8l-7 5V4a2 2 0 0 0-2-2H4a2 2 0 0 0-2 2z"/></svg></div>
+        <h3 class="service-card__title">Industrial</h3>
+        <p class="service-card__desc">Naves industriales y almacenes construidos para durar y cumplir normativa.</p>
+      </div>
+      <div class="service-card">
+        <div class="service-card__icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 22h20M4 22V8l8-6 8 6v14M9 22v-6h6v6M9 11h.01M15 11h.01"/></svg></div>
+        <h3 class="service-card__title">Infraestructura</h3>
+        <p class="service-card__desc">Obras públicas e infraestructuras urbanas con garantías de calidad.</p>
+      </div>
+      <div class="service-card">
+        <div class="service-card__icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 21h18M5 21V5a2 2 0 0 1 2-2h12v18M9 7h.01M13 7h.01M9 11h.01M13 11h.01"/></svg></div>
+        <h3 class="service-card__title">Arquitectura</h3>
+        <p class="service-card__desc">Proyecto arquitectónico completo: desde el diseño hasta la entrega de llaves.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section" style="background: var(--color-bg-alt);">
+  <div class="container">
+    <div class="section__head">
+      <span class="section__eyebrow">Proyectos</span>
+      <h2 class="section__title">Trabajo <span class="accent">reciente</span></h2>
+    </div>
+    <div class="projects__grid">
+      <div class="project-card">
+        <img src="https://picsum.photos/seed/const-p1/400/300" alt="Residencial Las Lomas">
+        <div class="project-card__overlay">
+          <div class="project-card__name">Residencial Las Lomas</div>
+          <div class="project-card__location">Madrid</div>
+          <div class="project-card__tag">Viviendas · 2025</div>
+        </div>
+      </div>
+      <div class="project-card">
+        <img src="https://picsum.photos/seed/const-p2/400/300" alt="Oficinas Centro">
+        <div class="project-card__overlay">
+          <div class="project-card__name">Oficinas Centro</div>
+          <div class="project-card__location">Barcelona</div>
+          <div class="project-card__tag">Comercial · 2024</div>
+        </div>
+      </div>
+      <div class="project-card">
+        <img src="https://picsum.photos/seed/const-p3/400/300" alt="Reforma Ático">
+        <div class="project-card__overlay">
+          <div class="project-card__name">Reforma Integral Ático</div>
+          <div class="project-card__location">Madrid</div>
+          <div class="project-card__tag">Reforma · 2025</div>
+        </div>
+      </div>
+      <div class="project-card">
+        <img src="https://picsum.photos/seed/const-p4/400/300" alt="Nave Industrial">
+        <div class="project-card__overlay">
+          <div class="project-card__name">Nave Industrial</div>
+          <div class="project-card__location">Valencia</div>
+          <div class="project-card__tag">Industrial · 2023</div>
+        </div>
+      </div>
+      <div class="project-card">
+        <img src="https://picsum.photos/seed/const-p5/400/300" alt="Hotel Boutique">
+        <div class="project-card__overlay">
+          <div class="project-card__name">Hotel Boutique</div>
+          <div class="project-card__location">San Sebastián</div>
+          <div class="project-card__tag">Hostelería · 2025</div>
+        </div>
+      </div>
+      <div class="project-card">
+        <img src="https://picsum.photos/seed/const-p6/400/300" alt="Colegio San José">
+        <div class="project-card__overlay">
+          <div class="project-card__name">Colegio San José</div>
+          <div class="project-card__location">Madrid</div>
+          <div class="project-card__tag">Institucional · 2024</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container">
+    <div class="section__head">
+      <span class="section__eyebrow">Proceso</span>
+      <h2 class="section__title">Cómo <span class="accent">trabajamos</span></h2>
+    </div>
+    <div class="process__steps">
+      <div class="process-step">
+        <div class="process-step__num">01</div>
+        <h3 class="process-step__title">Escuchamos</h3>
+        <p class="process-step__desc">Visitamos tu espacio, entendemos tus necesidades y analizamos el terreno.</p>
+      </div>
+      <div class="process-step">
+        <div class="process-step__num">02</div>
+        <h3 class="process-step__title">Diseñamos</h3>
+        <p class="process-step__desc">Creamos el proyecto arquitectónico con presupuesto detallado y plazos claros.</p>
+      </div>
+      <div class="process-step">
+        <div class="process-step__num">03</div>
+        <h3 class="process-step__title">Construimos</h3>
+        <p class="process-step__desc">Ejecutamos la obra con control de calidad semanal y seguimiento continuo.</p>
+      </div>
+      <div class="process-step">
+        <div class="process-step__num">04</div>
+        <h3 class="process-step__title">Entregamos</h3>
+        <p class="process-step__desc">Entregamos llave en mano con garantía de 10 años y soporte post-obra.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container">
+    <div class="section__head">
+      <span class="section__eyebrow">Equipo</span>
+      <h2 class="section__title">Quiénes <span class="accent">somos</span></h2>
+    </div>
+    <div class="team__grid">
+      <div class="team-card"><div class="team-card__avatar"><img src="https://i.pravatar.cc/160?img=12" alt=""></div><div class="team-card__name">Enrique Díaz</div><div class="team-card__role">Director de obra</div><div class="team-card__exp">25 años de experiencia</div></div>
+      <div class="team-card"><div class="team-card__avatar"><img src="https://i.pravatar.cc/160?img=45" alt=""></div><div class="team-card__name">Marta Ruiz</div><div class="team-card__role">Arquitecta jefa</div><div class="team-card__exp">18 años de experiencia</div></div>
+      <div class="team-card"><div class="team-card__avatar"><img src="https://i.pravatar.cc/160?img=53" alt=""></div><div class="team-card__name">Javier Lozano</div><div class="team-card__role">Jefe de producción</div><div class="team-card__exp">20 años de experiencia</div></div>
+      <div class="team-card"><div class="team-card__avatar"><img src="https://i.pravatar.cc/160?img=32" alt=""></div><div class="team-card__name">Ana Vidal</div><div class="team-card__role">Coordinadora de calidad</div><div class="team-card__exp">15 años de experiencia</div></div>
+    </div>
+  </div>
+</section>
+
+<section class="section" style="background: var(--color-bg-alt);">
+  <div class="container">
+    <div class="section__head">
+      <span class="section__eyebrow">Presupuesto</span>
+      <h2 class="section__title">Pide tu <span class="accent">presupuesto</span></h2>
+    </div>
+    <div class="quote__grid">
+      <div class="quote__info">
+        <h3>¿Por qué EdiPro?</h3>
+        <div class="quote__info-item">
+          <div class="quote__info-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></div>
+          <div class="quote__info-text"><strong>Presupuesto transparente</strong><span>Sin sorpresas ni costes ocultos</span></div>
+        </div>
+        <div class="quote__info-item">
+          <div class="quote__info-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></div>
+          <div class="quote__info-text"><strong>Plazos cumplidos</strong><span>97% de proyectos entregados a tiempo</span></div>
+        </div>
+        <div class="quote__info-item">
+          <div class="quote__info-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></div>
+          <div class="quote__info-text"><strong>Garantía 10 años</strong><span>En todas nuestras obras</span></div>
+        </div>
+        <div class="quote__info-item">
+          <div class="quote__info-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></div>
+          <div class="quote__info-text"><strong>ISO 9001</strong><span>Certificación de calidad desde 2005</span></div>
+        </div>
+      </div>
+      <div class="quote__form">
+        <h3>Solicita presupuesto</h3>
+        <div class="form-row">
+          <div class="form-field"><label>Nombre</label><input type="text" placeholder="Tu nombre"></div>
+          <div class="form-field"><label>Email</label><input type="email" placeholder="tu@email.com"></div>
+        </div>
+        <div class="form-row">
+          <div class="form-field"><label>Teléfono</label><input type="tel" placeholder="+34 600 000 000"></div>
+          <div class="form-field"><label>Tipo de proyecto</label><select><option>Vivienda nueva</option><option>Reforma</option><option>Comercial</option><option>Industrial</option><option>Otro</option></select></div>
+        </div>
+        <div class="form-row">
+          <div class="form-field"><label>Ubicación</label><input type="text" placeholder="Ciudad o zona"></div>
+          <div class="form-field"><label>Superficie aprox.</label><input type="text" placeholder="m²"></div>
+        </div>
+        <div class="form-row">
+          <div class="form-field"><label>Cuéntanos tu proyecto</label><textarea rows="4" placeholder="Describe brevemente lo que necesitas..."></textarea></div>
+        </div>
+        <a class="btn btn--primary">Solicitar presupuesto</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container">
+    <div class="section__head">
+      <span class="section__eyebrow">Testimonios</span>
+      <h2 class="section__title">Clientes que <span class="accent">confían</span></h2>
+    </div>
+    <div class="testimonials__grid">
+      <div class="testimonial-card">
+        <div class="testimonial-card__stars"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M11.525 2.295a.53.53 0 0 1 .95 0l2.31 4.679a2.123 2.123 0 0 0 1.595 1.16l5.166.756a.53.53 0 0 1 .294.904l-3.736 3.638a2.123 2.123 0 0 0-.611 1.878l.882 5.14a.53.53 0 0 1-.771.56l-4.618-2.428a2.122 2.122 0 0 0-1.973 0L6.396 21.01a.53.53 0 0 1-.77-.56l.881-5.139a2.122 2.122 0 0 0-.611-1.879L2.16 9.795a.53.53 0 0 1 .294-.906l5.165-.755a2.122 2.122 0 0 0 1.597-1.16z" fill="currentColor"/></svg><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M11.525 2.295a.53.53 0 0 1 .95 0l2.31 4.679a2.123 2.123 0 0 0 1.595 1.16l5.166.756a.53.53 0 0 1 .294.904l-3.736 3.638a2.123 2.123 0 0 0-.611 1.878l.882 5.14a.53.53 0 0 1-.771.56l-4.618-2.428a2.122 2.122 0 0 0-1.973 0L6.396 21.01a.53.53 0 0 1-.77-.56l.881-5.139a2.122 2.122 0 0 0-.611-1.879L2.16 9.795a.53.53 0 0 1 .294-.906l5.165-.755a2.122 2.122 0 0 0 1.597-1.16z" fill="currentColor"/></svg><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M11.525 2.295a.53.53 0 0 1 .95 0l2.31 4.679a2.123 2.123 0 0 0 1.595 1.16l5.166.756a.53.53 0 0 1 .294.904l-3.736 3.638a2.123 2.123 0 0 0-.611 1.878l.882 5.14a.53.53 0 0 1-.771.56l-4.618-2.428a2.122 2.122 0 0 0-1.973 0L6.396 21.01a.53.53 0 0 1-.77-.56l.881-5.139a2.122 2.122 0 0 0-.611-1.879L2.16 9.795a.53.53 0 0 1 .294-.906l5.165-.755a2.122 2.122 0 0 0 1.597-1.16z" fill="currentColor"/></svg><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M11.525 2.295a.53.53 0 0 1 .95 0l2.31 4.679a2.123 2.123 0 0 0 1.595 1.16l5.166.756a.53.53 0 0 1 .294.904l-3.736 3.638a2.123 2.123 0 0 0-.611 1.878l.882 5.14a.53.53 0 0 1-.771.56l-4.618-2.428a2.122 2.122 0 0 0-1.973 0L6.396 21.01a.53.53 0 0 1-.77-.56l.881-5.139a2.122 2.122 0 0 0-.611-1.879L2.16 9.795a.53.53 0 0 1 .294-.906l5.165-.755a2.122 2.122 0 0 0 1.597-1.16z" fill="currentColor"/></svg><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M11.525 2.295a.53.53 0 0 1 .95 0l2.31 4.679a2.123 2.123 0 0 0 1.595 1.16l5.166.756a.53.53 0 0 1 .294.904l-3.736 3.638a2.123 2.123 0 0 0-.611 1.878l.882 5.14a.53.53 0 0 1-.771.56l-4.618-2.428a2.122 2.122 0 0 0-1.973 0L6.396 21.01a.53.53 0 0 1-.77-.56l.881-5.139a2.122 2.122 0 0 0-.611-1.879L2.16 9.795a.53.53 0 0 1 .294-.906l5.165-.755a2.122 2.122 0 0 0 1.597-1.16z" fill="currentColor"/></svg></div>
+        <p class="testimonial-card__text">"Reformaron nuestro piso en 6 semanas. Calidad impecable y cumplieron el presupuesto exacto. Muy recomendables."</p>
+        <div class="testimonial-card__author">
+          <div class="testimonial-card__avatar">P</div>
+          <div><div class="testimonial-card__name">Pedro M.</div><div class="testimonial-card__role">Propietario</div></div>
+        </div>
+      </div>
+      <div class="testimonial-card">
+        <div class="testimonial-card__stars"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M11.525 2.295a.53.53 0 0 1 .95 0l2.31 4.679a2.123 2.123 0 0 0 1.595 1.16l5.166.756a.53.53 0 0 1 .294.904l-3.736 3.638a2.123 2.123 0 0 0-.611 1.878l.882 5.14a.53.53 0 0 1-.771.56l-4.618-2.428a2.122 2.122 0 0 0-1.973 0L6.396 21.01a.53.53 0 0 1-.77-.56l.881-5.139a2.122 2.122 0 0 0-.611-1.879L2.16 9.795a.53.53 0 0 1 .294-.906l5.165-.755a2.122 2.122 0 0 0 1.597-1.16z" fill="currentColor"/></svg><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M11.525 2.295a.53.53 0 0 1 .95 0l2.31 4.679a2.123 2.123 0 0 0 1.595 1.16l5.166.756a.53.53 0 0 1 .294.904l-3.736 3.638a2.123 2.123 0 0 0-.611 1.878l.882 5.14a.53.53 0 0 1-.771.56l-4.618-2.428a2.122 2.122 0 0 0-1.973 0L6.396 21.01a.53.53 0 0 1-.77-.56l.881-5.139a2.122 2.122 0 0 0-.611-1.879L2.16 9.795a.53.53 0 0 1 .294-.906l5.165-.755a2.122 2.122 0 0 0 1.597-1.16z" fill="currentColor"/></svg><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M11.525 2.295a.53.53 0 0 1 .95 0l2.31 4.679a2.123 2.123 0 0 0 1.595 1.16l5.166.756a.53.53 0 0 1 .294.904l-3.736 3.638a2.123 2.123 0 0 0-.611 1.878l.882 5.14a.53.53 0 0 1-.771.56l-4.618-2.428a2.122 2.122 0 0 0-1.973 0L6.396 21.01a.53.53 0 0 1-.77-.56l.881-5.139a2.122 2.122 0 0 0-.611-1.879L2.16 9.795a.53.53 0 0 1 .294-.906l5.165-.755a2.122 2.122 0 0 0 1.597-1.16z" fill="currentColor"/></svg><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M11.525 2.295a.53.53 0 0 1 .95 0l2.31 4.679a2.123 2.123 0 0 0 1.595 1.16l5.166.756a.53.53 0 0 1 .294.904l-3.736 3.638a2.123 2.123 0 0 0-.611 1.878l.882 5.14a.53.53 0 0 1-.771.56l-4.618-2.428a2.122 2.122 0 0 0-1.973 0L6.396 21.01a.53.53 0 0 1-.77-.56l.881-5.139a2.122 2.122 0 0 0-.611-1.879L2.16 9.795a.53.53 0 0 1 .294-.906l5.165-.755a2.122 2.122 0 0 0 1.597-1.16z" fill="currentColor"/></svg><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M11.525 2.295a.53.53 0 0 1 .95 0l2.31 4.679a2.123 2.123 0 0 0 1.595 1.16l5.166.756a.53.53 0 0 1 .294.904l-3.736 3.638a2.123 2.123 0 0 0-.611 1.878l.882 5.14a.53.53 0 0 1-.771.56l-4.618-2.428a2.122 2.122 0 0 0-1.973 0L6.396 21.01a.53.53 0 0 1-.77-.56l.881-5.139a2.122 2.122 0 0 0-.611-1.879L2.16 9.795a.53.53 0 0 1 .294-.906l5.165-.755a2.122 2.122 0 0 0 1.597-1.16z" fill="currentColor"/></svg></div>
+        <p class="testimonial-card__text">"Construyeron nuestra casa en 10 meses. El equipo de obra muy profesional y la comunicación excelente en todo momento."</p>
+        <div class="testimonial-card__author">
+          <div class="testimonial-card__avatar">L</div>
+          <div><div class="testimonial-card__name">Lucía G.</div><div class="testimonial-card__role">Propietaria</div></div>
+        </div>
+      </div>
+      <div class="testimonial-card">
+        <div class="testimonial-card__stars"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M11.525 2.295a.53.53 0 0 1 .95 0l2.31 4.679a2.123 2.123 0 0 0 1.595 1.16l5.166.756a.53.53 0 0 1 .294.904l-3.736 3.638a2.123 2.123 0 0 0-.611 1.878l.882 5.14a.53.53 0 0 1-.771.56l-4.618-2.428a2.122 2.122 0 0 0-1.973 0L6.396 21.01a.53.53 0 0 1-.77-.56l.881-5.139a2.122 2.122 0 0 0-.611-1.879L2.16 9.795a.53.53 0 0 1 .294-.906l5.165-.755a2.122 2.122 0 0 0 1.597-1.16z" fill="currentColor"/></svg><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M11.525 2.295a.53.53 0 0 1 .95 0l2.31 4.679a2.123 2.123 0 0 0 1.595 1.16l5.166.756a.53.53 0 0 1 .294.904l-3.736 3.638a2.123 2.123 0 0 0-.611 1.878l.882 5.14a.53.53 0 0 1-.771.56l-4.618-2.428a2.122 2.122 0 0 0-1.973 0L6.396 21.01a.53.53 0 0 1-.77-.56l.881-5.139a2.122 2.122 0 0 0-.611-1.879L2.16 9.795a.53.53 0 0 1 .294-.906l5.165-.755a2.122 2.122 0 0 0 1.597-1.16z" fill="currentColor"/></svg><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M11.525 2.295a.53.53 0 0 1 .95 0l2.31 4.679a2.123 2.123 0 0 0 1.595 1.16l5.166.756a.53.53 0 0 1 .294.904l-3.736 3.638a2.123 2.123 0 0 0-.611 1.878l.882 5.14a.53.53 0 0 1-.771.56l-4.618-2.428a2.122 2.122 0 0 0-1.973 0L6.396 21.01a.53.53 0 0 1-.77-.56l.881-5.139a2.122 2.122 0 0 0-.611-1.879L2.16 9.795a.53.53 0 0 1 .294-.906l5.165-.755a2.122 2.122 0 0 0 1.597-1.16z" fill="currentColor"/></svg><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M11.525 2.295a.53.53 0 0 1 .95 0l2.31 4.679a2.123 2.123 0 0 0 1.595 1.16l5.166.756a.53.53 0 0 1 .294.904l-3.736 3.638a2.123 2.123 0 0 0-.611 1.878l.882 5.14a.53.53 0 0 1-.771.56l-4.618-2.428a2.122 2.122 0 0 0-1.973 0L6.396 21.01a.53.53 0 0 1-.77-.56l.881-5.139a2.122 2.122 0 0 0-.611-1.879L2.16 9.795a.53.53 0 0 1 .294-.906l5.165-.755a2.122 2.122 0 0 0 1.597-1.16z" fill="currentColor"/></svg><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M11.525 2.295a.53.53 0 0 1 .95 0l2.31 4.679a2.123 2.123 0 0 0 1.595 1.16l5.166.756a.53.53 0 0 1 .294.904l-3.736 3.638a2.123 2.123 0 0 0-.611 1.878l.882 5.14a.53.53 0 0 1-.771.56l-4.618-2.428a2.122 2.122 0 0 0-1.973 0L6.396 21.01a.53.53 0 0 1-.77-.56l.881-5.139a2.122 2.122 0 0 0-.611-1.879L2.16 9.795a.53.53 0 0 1 .294-.906l5.165-.755a2.122 2.122 0 0 0 1.597-1.16z" fill="currentColor"/></svg></div>
+        <p class="testimonial-card__text">"La reforma de nuestras oficinas fue rápida y sin parar la actividad. EdiPro es garantía de calidad y seriedad."</p>
+        <div class="testimonial-card__author">
+          <div class="testimonial-card__avatar">R</div>
+          <div><div class="testimonial-card__name">Roberto S.</div><div class="testimonial-card__role">CEO Empresa</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer class="footer">
+  <div class="container">
+    <div class="footer__grid">
+      <div class="footer__brand">
+        <h3>EDi<span class="accent">PRO</span></h3>
+        <p>Construcción de calidad desde 1998. 500+ proyectos con garantía de 10 años.</p>
+      </div>
+      <div class="footer__col">
+        <h4>Servicios</h4>
+        <a href="#">Residencial</a><a href="#">Comercial</a><a href="#">Reformas</a><a href="#">Industrial</a>
+      </div>
+      <div class="footer__col">
+        <h4>Empresa</h4>
+        <a href="#">Sobre nosotros</a><a href="#">Proyectos</a><a href="#">Blog</a><a href="#">Trabaja con nosotros</a>
+      </div>
+      <div class="footer__col">
+        <h4>Contacto</h4>
+        <a href="#">hola@edipro.com</a><a href="#">+34 900 000 000</a><a href="#">Calle Construcción 42, Madrid</a>
+      </div>
+    </div>
+    <div class="footer__bottom">
+      <span class="footer__copy">© 2026 EdiPro. Todos los derechos reservados.</span>
+      <div class="footer__socials">
+        <a class="footer__social">in</a>
+        <a class="footer__social">ig</a>
+        <a class="footer__social">tw</a>
+        <a class="footer__social">yt</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
